@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Re:che（リッシュ）公式オンラインパンフレット｜在宅型サステナ物販スクール</title>
+<meta name="description" content="株式会社Meroneが運営する国内最大規模の在宅型サステナ物販スクールRe:che（リッシュ）の公式オンラインパンフレット。仕入れの仕組み・サポート体制・生徒の実績・運営会社情報を掲載しています。">
+<meta property="og:title" content="Re:che（リッシュ）公式オンラインパンフレット">
+<meta property="og:description" content="自立しよう、自分の足で立つと気持ちいい。在宅型サステナ物販スクールRe:cheの公式ガイドです。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://lp.merone.jp/reche-pamphlet/img/sec-hero.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef3f8; --bg2:#e4edf5; --pink-bg:#fbeef1;
+  --ink:#4a4446; --charcoal:#26405f; --charcoal-deep:#1d3149;
+  --rose:#c08c98; --rose-deep:#a86673;
+  --taupe:#8fb3cf; --line:#dbe4ed;
+  --grad:linear-gradient(90deg,#e9c7d1 0%,#dcd0e6 55%,#bcd5ea 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"Yu Gothic","YuGothic","Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;
+  color:var(--ink); background:var(--bg); line-height:2; font-size:15.5px;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block;}
+a{color:var(--rose-deep);}
+.en{font-family:"Cormorant Garamond","Yu Gothic",serif;}
+.serif{font-family:"Shippori Mincho","Yu Mincho",serif;}
+.wrap{max-width:1020px; margin:0 auto; padding:0 22px;}
+.mob{display:none;}
+@media(max-width:560px){ .mob{display:inline;} }
+
+/* reveal */
+.rv{opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease;}
+.rv.in{opacity:1; transform:none;}
+@media (prefers-reduced-motion: reduce){ .rv{opacity:1; transform:none; transition:none;} }
+
+/* デザインボード（支給デザイン画像・無加工） */
+.board{max-width:1240px; margin:0 auto; padding:0 10px;}
+.board img{width:100%;}
+.board.top{padding-top:14px;}
+.stats{max-width:1240px; margin:16px auto 0; padding:0 10px;}
+.stats .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+.stat{background:#fff; border-radius:18px; padding:20px 14px; box-shadow:0 10px 30px rgba(38,64,95,.08); display:flex; align-items:center; justify-content:center; gap:16px;}
+.stat svg{width:34px; height:34px; stroke:var(--rose-deep); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
+.stat .lb{font-size:12px; color:var(--charcoal); font-weight:700; letter-spacing:.08em; display:block;}
+.stat .vl{font-size:25px; font-weight:900; color:#b95d70; line-height:1.3; display:block;}
+.stat .vl small{font-size:13px; font-weight:700;}
+@media(max-width:880px){ .stats .grid{grid-template-columns:1fr;} }
+
+/* sections */
+section{padding:74px 0;}
+section.alt{background:#fff;}
+section.pinkbg{background:var(--pink-bg);}
+section.darkbg{background:var(--charcoal-deep); color:#efe9e4;}
+.sec-head{margin-bottom:40px;}
+.sec-head .en-ov{font-size:12px; letter-spacing:.3em; color:var(--rose-deep); font-weight:700; display:block; margin-bottom:8px;}
+.darkbg .sec-head .en-ov{color:var(--rose);}
+.sec-head h2{font-family:"Shippori Mincho","Yu Mincho",serif; font-size:30px; font-weight:700; color:var(--charcoal-deep); letter-spacing:.05em; line-height:1.7; word-break:auto-phrase;}
+.darkbg .sec-head h2{color:#fff;}
+.sec-head h2 .u{background:linear-gradient(transparent 70%,rgba(192,140,152,.32) 70%);}
+.sec-head p.sub{margin-top:12px; font-size:14.5px; word-break:auto-phrase; max-width:760px;}
+.darkbg .sec-head p.sub{color:#d6cdc7;}
+.hairline{height:3px; background:var(--grad); border-radius:99px; width:76px; margin-top:16px;}
+
+.cards{display:grid; gap:16px;}
+.cards.c2{grid-template-columns:1fr 1fr;}
+.cards.c3{grid-template-columns:repeat(3,1fr);}
+.card{background:#fff; border:1px solid var(--line); border-radius:20px; padding:24px 22px;}
+.pinkbg .card, .pinkbg .frame{border-color:#eedede;}
+.card h3{font-family:"Shippori Mincho","Yu Mincho",serif; font-size:17px; color:var(--charcoal); font-weight:700; margin-bottom:8px; letter-spacing:.04em; word-break:auto-phrase;}
+.card p{font-size:13.8px; line-height:1.95; word-break:auto-phrase;}
+.card .tag{display:inline-block; font-size:10px; font-weight:900; letter-spacing:.12em; color:#fff; background:linear-gradient(135deg,var(--rose),var(--rose-deep)); border-radius:999px; padding:3px 12px; margin-bottom:10px;}
+.card .tag.bl{background:linear-gradient(135deg,#a9c8de,var(--taupe));}
+.card .cimg{border-radius:14px; overflow:hidden; margin:12px 0 4px; border:1px solid var(--line);}
+
+/* photo frames */
+.frame{background:#fff; border-radius:22px; padding:12px; box-shadow:0 18px 46px rgba(63,57,60,.10); border:1px solid var(--line);}
+.frame img{border-radius:14px;}
+.frame .cap{font-size:11.5px; color:#9a9089; font-weight:700; letter-spacing:.06em; padding:10px 6px 2px; text-align:center; word-break:auto-phrase;}
+
+.split{display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:center;}
+.split .txt h3{font-family:"Shippori Mincho","Yu Mincho",serif; font-size:21px; font-weight:700; color:var(--charcoal-deep); line-height:1.9; margin-bottom:10px; word-break:auto-phrase;}
+.split .txt h3 .u{background:linear-gradient(transparent 70%,rgba(192,140,152,.32) 70%);}
+.split .txt p{font-size:14px; word-break:auto-phrase;}
+
+.tblwrap{overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:18px; border:1px solid var(--line); background:#fff;}
+table{width:100%; border-collapse:collapse; min-width:560px; font-size:13.5px;}
+th,td{padding:14px 16px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.8;}
+thead th{background:var(--charcoal); color:#fff; font-size:12.5px; letter-spacing:.08em; border-bottom:none;}
+thead th.hl{background:var(--rose-deep);}
+tbody tr:last-child td{border-bottom:none;}
+td.hl{background:#faf3f4; font-weight:700; color:var(--charcoal-deep);}
+td.rowlb,th.rowlb{font-weight:900; color:var(--charcoal); white-space:nowrap; background:var(--bg2);}
+
+.flow{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:8px;}
+.flow .f{background:#fff; border:1px solid var(--line); border-radius:18px; padding:20px 18px; position:relative;}
+.flow .f .no{font-size:26px; font-weight:600; color:var(--rose); line-height:1; font-family:"Cormorant Garamond",serif;}
+.flow .f h4{font-family:"Shippori Mincho","Yu Mincho",serif; font-size:15.5px; color:var(--charcoal-deep); font-weight:700; margin:8px 0 6px; word-break:auto-phrase;}
+.flow .f p{font-size:12.8px; line-height:1.9; word-break:auto-phrase;}
+
+.gallery{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:26px; align-items:start;}
+.gallery .wide{grid-column:1/-1;}
+.strip{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:26px; align-items:start;}
+
+.club{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+.club .cl{background:#fff; border:1px solid var(--line); border-radius:14px; padding:12px 16px; font-size:13px; font-weight:700; color:var(--charcoal); display:flex; gap:10px; align-items:baseline; word-break:auto-phrase;}
+.club .cl span{font-size:10.5px; color:var(--rose-deep); font-weight:900; white-space:nowrap;}
+
+.medlist{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+.medlist .m{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:14px; padding:14px 18px; font-size:13px; line-height:1.8; word-break:auto-phrase;}
+.medlist .m b{color:#fff; display:block; font-size:13.5px;}
+.medlist .m span{color:#b5a9a1; font-size:11.5px;}
+
+.masonry{columns:3; column-gap:14px; margin-top:26px;}
+.masonry .frame{margin:0 0 14px; break-inside:avoid; padding:8px;}
+.masonry .frame img{border-radius:10px;}
+
+.msg{background:#fff; border-radius:24px; border:1px solid var(--line); padding:0; overflow:hidden; display:grid; grid-template-columns:.9fr 1.1fr;}
+.msg .ph{min-height:100%;}
+.msg .ph img{width:100%; height:100%; object-fit:cover;}
+.msg .bd{padding:36px 32px;}
+.msg .q{font-family:"Shippori Mincho","Yu Mincho",serif; font-size:19px; font-weight:700; color:var(--charcoal-deep); line-height:2; margin-bottom:16px; word-break:auto-phrase;}
+.msg .q .u{background:linear-gradient(transparent 70%,rgba(192,140,152,.32) 70%);}
+.msg p{font-size:13.8px; margin-bottom:12px; word-break:auto-phrase;}
+.msg .sign{text-align:right; font-size:13px; font-weight:900; color:var(--charcoal); margin-top:18px;}
+.msg .sign small{display:block; font-weight:700; color:#9a9089; font-size:11px; letter-spacing:.08em;}
+
+.cta{background:linear-gradient(135deg,var(--charcoal) 0%,var(--charcoal-deep) 100%); border-radius:26px; padding:46px 34px; text-align:center; color:#fff; position:relative; overflow:hidden;}
+.cta::before{content:""; position:absolute; inset:auto -60px -120px auto; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle,rgba(192,140,152,.35),transparent 70%);}
+.cta h3{font-family:"Shippori Mincho","Yu Mincho",serif; font-size:22px; font-weight:700; letter-spacing:.06em; line-height:1.8; word-break:auto-phrase; position:relative;}
+.cta p{font-size:13.5px; color:#d6cdc7; margin-top:10px; word-break:auto-phrase; position:relative;}
+.cta .btns{display:flex; gap:12px; justify-content:center; margin-top:24px; flex-wrap:wrap; position:relative;}
+.cta a.bt{display:inline-block; text-decoration:none; font-weight:900; font-size:14px; border-radius:999px; padding:14px 32px; letter-spacing:.04em;}
+.cta a.p{background:linear-gradient(135deg,var(--rose),var(--rose-deep)); color:#fff;}
+.cta a.w{background:#fff; color:var(--charcoal-deep);}
+
+.links{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px;}
+.links a{display:block; text-decoration:none; background:#fff; border:1px solid var(--line); border-radius:18px; padding:20px 22px; transition:box-shadow .2s;}
+.links a:hover{box-shadow:0 10px 30px rgba(63,57,60,.10);}
+.links b{color:var(--charcoal-deep); font-size:14.5px; display:block;}
+.links span{font-size:12px; color:#9a9089;}
+
+footer{background:var(--charcoal-deep); color:#b5a9a1; padding:40px 0 110px; font-size:12px;}
+footer .fx{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;}
+footer .co{color:#fff; font-weight:900; font-size:14px; letter-spacing:.06em; font-family:"Shippori Mincho",serif;}
+footer a{color:#d6cdc7;}
+.smallnote{font-size:10.5px; color:#aca29b; margin-top:14px; line-height:1.8;}
+.darkbg .smallnote{color:#948a84;}
+
+@media(max-width:880px){
+  .cards.c2,.cards.c3{grid-template-columns:1fr;}
+  .flow{grid-template-columns:1fr;}
+  .club{grid-template-columns:1fr;}
+  .medlist{grid-template-columns:1fr;}
+  .links{grid-template-columns:1fr;}
+  .split{grid-template-columns:1fr; gap:22px;}
+  .gallery{grid-template-columns:1fr;}
+  .strip{grid-template-columns:1fr;}
+  .masonry{columns:2;}
+  .msg{grid-template-columns:1fr;}
+  .msg .ph img{max-height:340px;}
+  section{padding:56px 0;}
+  .sec-head h2{font-size:23px;}
+  body{font-size:14.5px;}
+}
+@media(max-width:520px){ .masonry{columns:1;} }
+
+/* PC/SP出し分け・モバイル最適化 */
+.pconly{display:block;}
+.sponly{display:none;}
+.bsec{padding:64px 0;}
+.wcard{background:#fff; border-radius:18px; overflow:hidden; box-shadow:0 12px 30px rgba(38,64,95,.08);}
+.wcard img{display:block; width:100%;}
+.mstack img{display:block; width:100%;}
+.mstack .gap{height:12px;}
+.tgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px 10px; background:#fff; border-radius:18px; padding:20px 14px; box-shadow:0 12px 30px rgba(38,64,95,.08);}
+.tgrid img{width:100%; display:block;}
+.mhero{padding:22px 20px 4px; max-width:560px; margin:0 auto;}
+.mhero .mh-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
+.mhero .mh-head .nm{font-family:"Shippori Mincho","Yu Mincho",serif; font-size:21px; font-weight:600; color:#3a3a3a; line-height:1.2;}
+.mhero .mh-head .nm small{font-size:11px; color:var(--rose-deep); font-weight:700; letter-spacing:.08em;}
+.mhero .mh-head .sb{display:block; font-size:7.5px; letter-spacing:.16em; color:#8a97a5; font-weight:700; margin-top:2px;}
+.mhero .op{display:flex; align-items:center; gap:6px; background:#fff; border-radius:999px; padding:7px 13px; box-shadow:0 4px 14px rgba(38,64,95,.10); flex-shrink:0;}
+.mhero .op span{font-size:10px; color:#8a97a5; font-weight:700;}
+.mhero .op img{height:19px; width:auto;}
+.mhero .kick{display:inline-block; font-size:10px; letter-spacing:.26em; color:var(--rose-deep); font-weight:700; border-bottom:1.5px solid var(--rose); padding-bottom:4px; margin-bottom:14px;}
+.mhero h1{font-size:13.5px; color:#4a4446; letter-spacing:.14em; font-weight:700; margin-bottom:2px;}
+.mhero .ttl{font-family:"Shippori Mincho","Yu Mincho",serif; font-size:46px; color:#3a3a3a; font-weight:600; letter-spacing:.02em; line-height:1.15;}
+.mhero .ttl small{font-size:14px; color:var(--rose-deep); letter-spacing:.1em; font-weight:700;}
+.mhero .pr{font-family:"Shippori Mincho","Yu Mincho",serif; font-size:19px; font-weight:700; color:#3a3a3a; line-height:1.9; border-bottom:2px solid var(--rose); display:inline-block; padding-bottom:6px; margin:10px 0 14px;}
+.mhero p.ld{font-size:12.8px; line-height:2.05; color:#5a5456; word-break:auto-phrase; margin-bottom:8px;}
+.mhero .ph{border-radius:18px; overflow:hidden; margin:16px 0 18px; box-shadow:0 14px 34px rgba(38,64,95,.14);}
+.mhero .ph img{width:100%; display:block;}
+@media(max-width:880px){
+  .pconly{display:none;}
+  .sponly{display:block;}
+  section{padding:38px 0;}
+  section.darkbg{padding:44px 0;}
+  .bsec{padding:22px 0;}
+  .sec-head{margin-bottom:22px;}
+  .sec-head p.sub{margin-top:8px;}
+  .club .cl{display:block; padding:12px 16px;}
+  .club .cl span{display:block; margin-bottom:3px;}
+  .club .cl .tx{word-break:keep-all; overflow-wrap:break-word; display:block;}
+  .cta{padding:36px 22px;}
+}
+
+/* bug report tool */
+#bugL{position:fixed; left:12px; bottom:16px; z-index:59; background:rgba(255,255,255,.92); border:1px solid var(--line); color:#9a9089; font-size:10.5px; font-weight:800; border-radius:999px; padding:5px 12px; cursor:pointer; letter-spacing:.04em;}
+#bugM{position:fixed; inset:0; background:rgba(51,46,49,.55); display:none; align-items:center; justify-content:center; z-index:70; padding:24px;}
+#bugM.on{display:flex;}
+#bugM .bx{background:#fff; border-radius:20px; padding:22px 20px; max-width:360px; width:100%;}
+#bugM h3{font-size:14.5px; color:var(--charcoal-deep); margin-bottom:8px;}
+#bugM textarea{width:100%; border:1.5px solid #eae3db; border-radius:12px; padding:11px 13px; font-size:14px; line-height:1.8; color:var(--charcoal-deep); font-family:inherit; min-height:100px; resize:vertical;}
+#bugM .bb{display:flex; gap:8px; margin-top:12px;}
+#bugM button{flex:1; border:none; border-radius:999px; padding:11px; font-size:13px; font-weight:800; cursor:pointer; font-family:inherit;}
+#bugM .s{background:linear-gradient(135deg,#b5798a,var(--rose)); color:#fff;}
+#bugM .c{background:#f2ede7; color:var(--charcoal);}
+#bugM .done{display:none; font-size:12.5px; color:var(--rose-deep); font-weight:800; margin-top:8px; text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- HERO（支給デザイン） -->
+<div class="board top pconly">
+  <img src="img/sec-hero.png?v=5" alt="Re:che（リッシュ）在宅型サステナ物販スクール 公式オンラインパンフレット。自立しよう、自分の足で立つと気持ちいい。創立2016年・総生徒数2,700名超（2026年8月現在）・平均作業時間 週3〜6時間">
+</div>
+<div class="mhero sponly">
+  <div class="mh-head">
+    <div><span class="nm">Re:che <small>リッシュ</small></span><span class="sb">ZAITAKU SUSTAINABLE RESELLING SCHOOL</span></div>
+    <div class="op"><span>運営</span><img src="img/merone-logo.png" alt="Merone"></div>
+  </div>
+  <span class="kick en">OFFICIAL ONLINE PAMPHLET</span>
+  <h1>在宅型サステナ物販スクール</h1>
+  <div class="ttl">Re:che <small>リッシュ</small></div>
+  <div class="pr">自立しよう、<br>自分の足で立つと気持ちいい</div>
+  <p class="ld">企業から届く、まだまだきれいなリユース品を、おうちで再販売する。売れる商品を探し回る必要はありません。検品済みのお品が、あなたのもとに届きます。</p>
+  <p class="ld">Re:cheは、女性の精神的・経済的自立を支える国内最大規模の在宅型サステナ物販スクールです。</p>
+  <div class="ph"><img src="img/m-hero-sea.png" alt="海辺で両手を広げる女性。わたしは、昨日の「私」より自由で強い"></div>
+  <div class="stats" style="padding:0; margin:0;">
+    <div class="grid">
+      <div class="stat"><svg viewBox="0 0 24 24"><path d="M5 21V3"></path><path d="M5 4h12l-2.5 3.5L17 11H5"></path></svg><div><span class="lb">創立</span><span class="vl">2016<small> 年</small></span></div></div>
+      <div class="stat"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><circle cx="16.5" cy="9" r="2.5"></circle><path d="M4 19c0-2.8 2.2-5 5-5s5 2.2 5 5"></path><path d="M14.5 14.5c.6-.3 1.3-.5 2-.5 2.2 0 4 1.8 4 4"></path></svg><div><span class="lb">総生徒数</span><span class="vl">2,700<small> 名超</small></span></div></div>
+      <div class="stat"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><div><span class="lb">平均作業時間</span><span class="vl">週3〜6<small> 時間</small></span></div></div>
+    </div>
+  </div>
+  <p class="smallnote" style="text-align:center; margin-top:12px;">発行：株式会社Merone｜2026年8月改訂版<br>※生徒数は2026年8月現在。数値はスクール実績値であり、成果を保証するものではありません。</p>
+</div>
+
+<!-- ABOUT -->
+<section class="alt" style="margin-top:44px;">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="en-ov en">ABOUT RE:CHE</span>
+      <h2>「Re:seller」という、<br class="mob"><span class="u">あたらしい働き方</span></h2>
+      <div class="hairline"></div>
+      <p class="sub">Re:cheが教えるのは、安く買って高く売るテクニックではありません。廃棄されるはずだった企業の過剰在庫やリユース品に、もう一度価値を吹き込んで社会に届ける「Re:seller（リセラー）」という働き方です。</p>
+    </div>
+    <div class="flow rv">
+      <div class="f"><div class="no">01</div><h4>企業にうれしい</h4><p>アパレルメーカーやリユース企業の「まだきれいなのに行き場のないお品」をお預かりし、廃棄率を下げるお手伝いをします。</p></div>
+      <div class="f"><div class="no">02</div><h4>わたしにうれしい</h4><p>検品済みのお品がおうちに届くので、撮影・出品・発送まで完全在宅。すきま時間で、自分の力で収入をつくれます。</p></div>
+      <div class="f"><div class="no">03</div><h4>社会にうれしい</h4><p>アパレル業界の廃棄問題の解決に貢献。売れば売るほど社会貢献になる、胸を張れるお仕事です。</p></div>
+    </div>
+    <div class="split rv" style="margin-top:44px;">
+      <div class="frame"><img src="img/ill-closet.jpg" alt="家の不要品が、別の人から見たら宝物に見えるイラスト" loading="lazy"><div class="cap">自分にとっては不要でも、別の人から見たら宝物</div></div>
+      <div class="txt">
+        <h3>クローゼットに眠るものが、<br><span class="u">未来を変える「資産」</span>になります</h3>
+        <p>同じものでも、自分にとっては不要だったとしても、別の人から見たら宝物に見えます。Re:cheではまず、おうちの不要品の販売からスタートします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 選ばれる理由（支給デザイン） -->
+<section class="bsec">
+  <div class="board rv">
+    <img src="img/sec-reason.png?v=4" alt="Re:cheが選ばれる理由の比較表。利益率は一般的な物販が10〜30％のところRe:cheは50％以上。扱う商品は検証済みの中古品・一点もの。商品は独占提携の卸から検品済みで届く" loading="lazy">
+  </div>
+</section>
+
+<!-- こんなのも売れます（支給デザイン） -->
+<section class="bsec">
+  <div class="board rv">
+    <img src="img/sec-surprise.png?v=4" alt="ハーゲンダッツの蓋64個が1,680円、松ぼっくり26個が1,600円、玉ねぎの皮が2,000円で売れた実例。あなたの「これ、売れるかも！」を見つけるお手伝いをします" loading="lazy">
+  </div>
+</section>
+
+<!-- 仕入れネットワーク -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="en-ov en">ONLY ONE NETWORK</span>
+      <h2>Re:cheにしかない、<br class="mob"><span class="u">仕入れネットワーク</span></h2>
+      <div class="hairline"></div>
+      <p class="sub">スクールの価値は「何を教えるか」だけでなく「どこから仕入れられるか」で決まります。Re:cheは企業との直接提携により、他社には真似できない仕入れ環境を整えています。</p>
+    </div>
+    <div class="cards c2 rv">
+      <div class="card">
+        <span class="tag">国内スクール唯一</span>
+        <h3>BOOKOFFホールディングスと<br class="mob">事業提携</h3>
+        <p>国内の物販スクールとして唯一、BOOKOFFホールディングス様と正式に事業提携。視察や実績報告など、企業と二人三脚の取り組みを続けています。</p>
+      </div>
+      <div class="card">
+        <span class="tag">国内スクール唯一</span>
+        <h3>古物市場「YBA GROUP」と提携</h3>
+        <p>横浜ブランドオークション（YBA GROUP）と提携する唯一のスクールとして、毎月8日・12日の古物市場に参加できます。ブランド品を実際に手に取り、その場で仕入れることも可能です（リユース経済新聞 2024年7月掲載）。</p>
+      </div>
+      <div class="card">
+        <span class="tag bl">サステナブル</span>
+        <h3>SMASELL（スマセル）と<br class="mob">業務提携</h3>
+        <p>サステナブルアウトレットモールSMASELL様と業務提携し、アパレル業界の廃棄問題解決に共に取り組んでいます。Re:che生専用の割引クーポンもご用意しています。</p>
+      </div>
+      <div class="card">
+        <span class="tag bl">独占提携</span>
+        <h3>卸パートナーからの直接仕入れ</h3>
+        <p>独占提携の卸パートナーから、アパレルは2万円から（1着280円〜）、ブランド品は5万円パックから仕入れが可能。全て新品で定価から91％OFFになるパックもあり、送料無料・ほぼ原価でご紹介しています。</p>
+      </div>
+      <div class="card">
+        <span class="tag bl">運営セレクト</span>
+        <h3>Re:che Collection<br class="mob">（リシュコレ）</h3>
+        <p>運営講師がセレクトしたお品を、生徒向けの特別価格で購入できるECサイト。目利きのプロが選んだお品から始められるので、初心者の最初の一歩に最適です。</p>
+      </div>
+      <div class="card">
+        <span class="tag bl">2つの仕入れ方</span>
+        <h3>オンラインでも、現地でも</h3>
+        <p>仕入れは24時間受付のオンラインフォームと、古物市場・現地仕入れ会の2タイプ。おうち中心の方も、実物を見て学びたい方も、自分のペースで選べます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 利益額をあげるお品たち（支給デザイン） -->
+<section class="bsec">
+  <div class="board rv">
+    <img src="img/sec-goods.png?v=4" alt="利益額をあげるお品たち。仕入れ280円のネックレスが利益8,510円に。ナイロンバッグ利益11,950円、ブレスレット利益49,350円、ネックレス利益18,310円など" loading="lazy">
+  </div>
+
+</section>
+
+<!-- 学び・サポート -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="en-ov en">LEARNING &amp; SUPPORT</span>
+      <h2>期限なし。<br class="mob"><span class="u">無期限サポート</span>で、<br class="mob">できるまで伴走します</h2>
+      <div class="hairline"></div>
+      <p class="sub">業界では半年〜1年のサポート期限が一般的ですが、Re:cheのサポートに期限はありません。結婚・出産・お仕事の繁忙期など、女性のライフイベントに合わせて、休んでも戻ってこられる場所です。</p>
+    </div>
+    <div class="board rv pconly" style="padding:0;">
+      <img src="img/sec-support.png?v=4" alt="会員限定コンテンツサイト・月一講座（アーカイブあり）・3層のLINEグループのご紹介" loading="lazy">
+    </div>
+    <div class="mstack sponly rv">
+      <img src="img/m-support-1.png" alt="会員限定コンテンツサイトのご紹介" loading="lazy"><div class="gap"></div>
+      <img src="img/m-support-2.png" alt="月一講座（アーカイブあり）のご紹介" loading="lazy"><div class="gap"></div>
+      <img src="img/m-support-3.png" alt="3層のLINEグループのご紹介" loading="lazy">
+    </div>
+    <div class="split rv" style="margin-top:44px;">
+      <div class="txt">
+        <h3>「月2万円」から始める、<br><span class="u">未来のための3ステップ</span></h3>
+        <p>ステップ1は、おうちの不要品販売で家計負担ゼロのままコツを掴む期間（1〜2ヶ月目・目標 月2〜3万円）。ステップ2でスターターパックを使い仕入れの基本を覚え（3〜5ヶ月目・目標 月5万円）、ステップ3で月10万円を安定して利益に（6ヶ月目〜）。焦らず、順番に登れる設計です。</p>
+      </div>
+      <div class="frame rv"><img src="img/ill-3step.jpg" alt="家計負担ゼロ期間、プラス収入期、資産構築期の3ステップロードマップ" loading="lazy"><div class="cap">入会後のロードマップ（目標値はスクール標準の目安です）</div></div>
+    </div>
+    <div style="margin-top:44px;" class="rv">
+      <div class="sec-head" style="margin-bottom:22px;">
+        <h2 style="font-size:21px;">参加は自由。<br class="mob"><span class="u">部活感覚</span>で入れる<br class="mob">たくさんのグループ</h2>
+      </div>
+      <div class="club">
+        <div class="cl"><span>実績づくり</span><span class="tx">月利益10万以上グループ／<wbr>月利益20万以上グループ</span></div>
+        <div class="cl"><span>販売テク強化</span><span class="tx">アパレル攻略部屋／<wbr>ブランド攻略部屋</span></div>
+        <div class="cl"><span>次のステージへ</span><span class="tx">外注化戦略グループ</span></div>
+        <div class="cl"><span>自己成長</span><span class="tx">マインドアップグループ／<wbr>メルカリ寄付グループ</span></div>
+        <div class="cl"><span>仲間づくり</span><span class="tx">ひとりごと部屋／<wbr>ママ雑談グループ／<wbr>男子部／<wbr>ダイエット部屋</span></div>
+        <div class="cl"><span>習慣化</span><span class="tx">定期の課題・毎週の目標提出で、<wbr>続く仕組みに</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 講師（支給デザイン） -->
+<section class="bsec">
+  <div class="board rv pconly">
+    <img src="img/sec-teachers.png?v=4" alt="生徒から講師へ。現役Re:sellerの講師陣：迫みちよさん、上田ひかるさん、南雲和宏さん、神野智尋さん、大庭まゆみさん、宮島美里さん、小倉可奈未さん、本田理恵さん、唐沢美由樹さん、町田あつこさん、藤北のぞみさん" loading="lazy">
+  </div>
+  <div class="wrap sponly rv">
+    <img src="img/m-teachers-head.png" alt="生徒から講師へ。現役Re:sellerの講師陣" loading="lazy" style="margin-bottom:12px;">
+    <div class="tgrid">
+      <img src="img/t-sako.png" alt="講師 迫みちよさん" loading="lazy">
+      <img src="img/t-ueda.png" alt="講師 上田ひかるさん" loading="lazy">
+      <img src="img/t-nagumo.png" alt="講師 南雲和宏さん" loading="lazy">
+      <img src="img/t-kanno.png" alt="講師 神野智尋さん" loading="lazy">
+      <img src="img/t-oba.png" alt="講師 大庭まゆみさん" loading="lazy">
+      <img src="img/t-miyajima.png" alt="講師 宮島美里さん" loading="lazy">
+      <img src="img/t-ogura.png" alt="講師 小倉可奈未さん" loading="lazy">
+      <img src="img/t-honda.png" alt="講師 本田理恵さん" loading="lazy">
+      <img src="img/t-karasawa.png" alt="講師 唐沢美由樹さん" loading="lazy">
+      <img src="img/t-machida.png" alt="講師 町田あつこさん" loading="lazy">
+      <img src="img/t-fujikita.png" alt="講師 藤北のぞみさん" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- 実績（支給デザイン） -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="en-ov en">RESULTS</span>
+      <h2>生徒さんの実績<br class="mob">（在籍生62名アンケート）</h2>
+      <div class="hairline"></div>
+    </div>
+  </div>
+  <div class="board rv pconly">
+    <img src="img/sec-results.png?v=4" alt="在籍生62名アンケートの円グラフ3種：初月の利益は半分以上が平均8万円以上、月の平均利益は70%が10〜20万円以上、入会金の回収は60%が半年以内にペイ" loading="lazy">
+  </div>
+  <div class="wrap mstack sponly rv">
+    <img src="img/m-results-1.png" alt="初月の利益：半分以上が初月平均8万円以上" loading="lazy"><div class="gap"></div>
+    <img src="img/m-results-2.png" alt="月の平均利益：70%が10〜20万円以上" loading="lazy"><div class="gap"></div>
+    <img src="img/m-results-3.png" alt="入会金の回収：60%が半年以内にペイ" loading="lazy">
+  </div>
+  <div class="board rv pconly" style="margin-top:26px;">
+    <img src="img/sec-line.png?v=4" alt="生徒さんから届いたリアルなご報告。キャンペーン期間中に生徒さんご本人から講師へ届いたLINEの実物" loading="lazy">
+  </div>
+  <div class="wrap mstack sponly rv" style="margin-top:26px;">
+    <img src="img/m-line-head.png" alt="生徒さんから届いた、リアルなご報告" loading="lazy"><div class="gap"></div>
+    <img src="img/m-line-1.png" alt="生徒さんからのLINE報告（売上449,778円・利益率70%など）" loading="lazy"><div class="gap"></div>
+    <img src="img/m-line-2.png" alt="生徒さんからのLINE報告（売上238,145円・最終売上591,099円など）" loading="lazy"><div class="gap"></div>
+    <img src="img/m-line-3.png" alt="生徒さんからのLINE報告（キャンペーン期間合計 売上1,414,570円・利益率77.5%など）" loading="lazy">
+  </div>
+  <div class="wrap">
+    <p class="smallnote">※在籍生62名への任意アンケートおよびご本人の申告にもとづく実績です。成果を保証するものではありません。</p>
+  </div>
+</section>
+
+<!-- インセンティブ・キャンペーン -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="en-ov en">INCENTIVE &amp; CAMPAIGN</span>
+      <h2>がんばりに、<br class="mob"><span class="u">最大20万円の奨励金</span></h2>
+      <div class="hairline"></div>
+      <p class="sub">一定の基準をクリアした生徒さんには、Re:che incentive（奨励金）として最大20万円をキャッシュバック。Re:cheで人生を変えようとする方を支援するため、多くの法人会員様にスポンサーとしてご協力いただいています。</p>
+    </div>
+    <div class="tblwrap rv">
+      <table>
+        <thead><tr><th>ランク</th><th>期間</th><th>基準</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td class="rowlb">ゴールド</td><td>入会から2ヶ月</td><td>単月利益30万円以上を達成</td><td class="hl">20万円キャッシュバック</td></tr>
+          <tr><td class="rowlb">シルバー</td><td>入会から6ヶ月</td><td>単月利益10万円以上を累計3回達成</td><td class="hl">10万円キャッシュバック</td></tr>
+          <tr><td class="rowlb">ブラウン</td><td>入会から12ヶ月</td><td>単月利益10万円以上を累計2回達成</td><td class="hl">3万円分の仕入れパックをプレゼント</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="board rv pconly" style="margin-top:36px;">
+    <img src="img/sec-campaign.png?v=4" alt="年3回のキャンペーンで総額100万円分の商品も。ルーキー賞の実績：1位638,098円、2位531,003円、3位325,611円。キャンペーン商品の一例" loading="lazy">
+  </div>
+  <div class="wrap mstack sponly rv" style="margin-top:26px;">
+    <img src="img/m-camp-head.png" alt="年3回のキャンペーンで、総額100万円分の商品も" loading="lazy"><div class="gap"></div>
+    <img src="img/m-camp-rookie.png" alt="キャンペーン ルーキー賞の実績：1位638,098円、2位531,003円、3位325,611円" loading="lazy"><div class="gap"></div>
+    <img src="img/m-camp-photos.png" alt="キャンペーン商品の一例（お食事・体験）" loading="lazy">
+  </div>
+</section>
+
+<!-- 安心の制度 -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="en-ov en">SAFETY NET</span>
+      <h2>「売れなかったら？」まで<br class="mob"><span class="u">設計してあるスクール</span>です</h2>
+      <div class="hairline"></div>
+      <p class="sub">物販の一番の不安は「売れ残り」と「わからないこと」。Re:cheは、その両方に制度でお応えします。</p>
+    </div>
+    <div class="cards c2 rv">
+      <div class="card">
+        <span class="tag">NEW</span>
+        <h3>買取制度・市場出品制度</h3>
+        <p>引越・出産・お仕事の繁忙期など、出品できない時期のお品はRe:cheが買取。さらに市場出品制度（リセマネ・リセパス）で、オークションを通じて業者への販売もできます。「売れ残りは自己責任」にしません。</p>
+      </div>
+      <div class="card">
+        <h3>税務・法務の無料相談</h3>
+        <p>弁護士法人プロテクトスタンス様（第一東京弁護士会所属）と提携。「扶養から外れたらどうしよう」「確定申告はどうするの」など、通常1回数万円するような相談も、Re:che生徒は専用LINEで無料相談が可能です。</p>
+      </div>
+      <div class="card">
+        <h3>適法性への取り組み</h3>
+        <p>運営はリユース検定士の資格を保有し、古物営業の適法性に配慮した仕入れ環境を整えています。「この仕入れは大丈夫かな」と不安になる場面がありません。</p>
+      </div>
+      <div class="card">
+        <h3>ペア制度・追加料金なし</h3>
+        <p>ご家族やお友達をお一人追加しても料金はそのまま。コンテンツ・講座・サポートすべて追加料金は一切かかりません。ふたりで一緒なら、続けやすさも二倍です。</p>
+      </div>
+      <div class="card">
+        <h3>お金を守る無料相談</h3>
+        <p>収入をつくるだけでなく、守ることも大切に。ライフプランの見直しや保険・節約について、専門家に無料で相談できます。ご家族の万一や病気など、暮らしの不安にも寄り添います。</p>
+      </div>
+      <div class="card">
+        <h3>福利厚生</h3>
+        <p>チェーン店舗利用優待サービスや、女性特有の悩みを解消するフェムテックサービスなど、独自の福利厚生を整備。年々増え続ける福利厚生も魅力の1つです。</p>
+      </div>
+    </div>
+    <div style="margin-top:36px;" class="rv">
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th style="width:24%"></th><th class="hl">Re:che</th><th>一般的なスクール</th></tr></thead>
+          <tbody>
+            <tr><td class="rowlb">サポート期限</td><td class="hl">無期限</td><td>半年〜1年</td></tr>
+            <tr><td class="rowlb">追加料金</td><td class="hl">なし</td><td>追加・更新で費用がかかる場合あり</td></tr>
+            <tr><td class="rowlb">仕入れ先</td><td class="hl">提携仕入れ先（検品済み）</td><td>自分でリサーチ・開拓</td></tr>
+            <tr><td class="rowlb">売れ残り</td><td class="hl">買取制度・市場出品制度あり</td><td>自己責任</td></tr>
+            <tr><td class="rowlb">適法性</td><td class="hl">リユース検定士の資格あり</td><td>店舗・ネット仕入れは注意が必要</td></tr>
+            <tr><td class="rowlb">その他</td><td class="hl">税務・法務相談無料／ペア参加OK／メルカリShops対応</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="smallnote">※「一般的なスクール」欄は弊社調べの一般的な傾向です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- メディア -->
+<section class="darkbg">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="en-ov en">MEDIA &amp; TRUST</span>
+      <h2>メディア掲載・社会的評価</h2>
+    </div>
+    <div class="medlist rv">
+      <div class="m"><b>リユース企業100選</b>2021年より選出<span>（リユース経済新聞社）</span></div>
+      <div class="m"><b>リユース経済新聞</b>YBA GROUPとの提携を紹介<span>（2024年7月）</span></div>
+      <div class="m"><b>anan</b>掲載<span>（2021年5月号）</span></div>
+      <div class="m"><b>経済界</b>掲載<span>（2020年11月号）</span></div>
+      <div class="m"><b>PR TIMES</b>ランキング1位・29媒体に掲載<span>（2021年3月）</span></div>
+      <div class="m"><b>渋谷スクランブル交差点ビジョン</b>広告放映<span>（2022年10月）</span></div>
+      <div class="m"><b>渋谷・新宿駅構内 壁面広告</b>掲出<span>（2023年11月）</span></div>
+      <div class="m"><b>日経X WOMAN</b>代表 森川公美子がアンバサダー就任<span>（2022年〜）</span></div>
+      <div class="m"><b>情報経営イノベーション専門職大学</b>CEO 森川公美子・COO 清水翔が客員准教授に就任<span>（2024年〜）</span></div>
+      <div class="m"><b>企業アライアンス</b>BOOKOFFホールディングス／SMASELL／YBA GROUP／ABCash ほか多数</div>
+    </div>
+  </div>
+</section>
+
+<!-- 運営会社 -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="en-ov en">COMPANY</span>
+      <h2>運営会社について</h2>
+      <div class="hairline"></div>
+    </div>
+    <div class="cards c2 rv" style="margin-bottom:16px;">
+      <div class="card">
+        <img src="img/merone-logo.png" alt="株式会社Merone" style="height:34px; width:auto; margin-bottom:14px;">
+        <p>株式会社Meroneは、女性の経済的・精神的自立を目的として、女性支援事業を多岐にわたり展開しています。Re:cheはその創業事業として、女性の社会貢献を創出し、一人ひとりの働き方を支援しています。</p>
+      </div>
+      <div class="card">
+        <h3>グループサービス</h3>
+        <p><b style="color:var(--charcoal);">nomama</b>｜社内独自のノウハウを活用したDX人材スクール。どんな場所でも通用する人材への教育を提供しています。</p>
+        <p style="margin-top:8px;"><b style="color:var(--charcoal);">スクール運営支援</b>｜累計45社を超えるスクール支援の実績があります。</p>
+      </div>
+    </div>
+    <div class="msg rv">
+      <div class="ph"><img src="img/photo-class.jpg" alt="生徒のみなさまと語り合う代表の森川公美子" loading="lazy"></div>
+      <div class="bd">
+        <div class="q">「何のために収入を増やし、<br class="mob">どう生きていくか。<br><span class="u">誰を幸せにしたいか。</span>」</div>
+        <p>起業して間もない頃、仕事とお金のことだけに専念した結果、体調を崩し、大切な仲間が離れていく経験をしました。だからこそRe:cheは、利益の数字だけを追いかけるスクールにはしないと決めています。</p>
+        <p>結婚や出産などのライフイベントがあっても戻ってこられる無期限サポート。しっかり休むことも大切にする文化。そして、税務や法務、起業のご相談まで、収入をつくった「その後」まで伴走する体制。倫理的で、胸を張れる働き方を、これからも生徒のみなさまと一緒に追求してまいります。</p>
+        <div class="sign">株式会社Merone 代表取締役　森川公美子<small>MORIKAWA KUMIKO</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="wrap">
+    <div class="cta rv">
+      <h3>ご料金・入会時期は、<br class="mob">説明会・個別面談でご案内しています</h3>
+      <p>おひとりおひとりの状況に合わせて、最適なスタートの仕方をご提案します。<br class="mob">気になることは、どんな小さなことでもお気軽にご相談ください。</p>
+      <div class="btns">
+        <a class="bt p" href="https://kumiko0814.github.io/reche-faq/">よくある質問を見る</a>
+        <a class="bt w" href="https://lp.merone.jp/reche-interview/">生徒インタビューを読む</a>
+      </div>
+    </div>
+    <div class="links rv">
+      <a href="https://merone.jp" target="_blank" rel="noopener"><b>Merone 公式サイト</b><span>merone.jp｜会社情報・特定商取引法に基づく表記はこちら</span></a>
+      <a href="https://lp.merone.jp/reche-interview/"><b>Re:che 生徒インタビュー集</b><span>19名のリアルなストーリーを掲載しています</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fx">
+      <div class="co">Re:che｜在宅型サステナ物販スクール</div>
+      <div>運営：株式会社Merone｜<a href="https://merone.jp" target="_blank" rel="noopener">merone.jp</a></div>
+    </div>
+    <p class="smallnote">本パンフレットの記載内容は2026年8月時点の情報です。実績値は在籍生アンケート等にもとづくものであり、成果を保証するものではありません。掲載内容の無断転載はご遠慮ください。<br>© Merone Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- バグ報告ツール -->
+<div id="bugL">不具合を報告</div>
+<div id="bugM"><div class="bx">
+  <h3>不具合・気になったことを教えてください</h3>
+  <textarea id="bugT" placeholder="例）表がスマホで見切れています（iPhone/Safari）"></textarea>
+  <div class="bb"><button class="c" id="bugC">閉じる</button><button class="s" id="bugS">送信する</button></div>
+  <div class="done" id="bugD">届きました。ありがとうございます。すぐ確認します。</div>
+</div></div>
+<script>
+(function(){
+var U="https://inrvprlyobghviklulcv.supabase.co/rest/v1/ailab_notes";
+var K="sb_publishable_ZrCNcsRHMci-l7Fns8QtIA_X22XZGJp";
+var M=document.getElementById("bugM");
+document.getElementById("bugL").onclick=function(){ M.classList.add("on"); };
+document.getElementById("bugC").onclick=function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; };
+document.getElementById("bugS").onclick=function(){
+  var t=document.getElementById("bugT").value.trim();
+  if(!t){ document.getElementById("bugT").focus(); return; }
+  var btn=this; btn.disabled=true;
+  function done(){
+    document.getElementById("bugD").style.display="block";
+    document.getElementById("bugT").value=""; btn.disabled=false;
+    setTimeout(function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; },1800);
+  }
+  fetch(U,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},
+    body:JSON.stringify({member_id:"bug_reche-pamphlet",member_name:"Re:cheパンフレット",mood:"バグ報告",worry:t,want:location.href.slice(0,180)+" ／ "+navigator.userAgent.slice(0,140)})})
+    .then(function(){ done(); }).catch(function(){ btn.disabled=false; alert("送信できませんでした。通信環境をご確認ください。"); });
+};
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.12, rootMargin:"0px 0px -40px 0px"});
+  document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
+}else{
+  document.querySelectorAll(".rv").forEach(function(el){ el.classList.add("in"); });
+}
+})();
+</script>
+</body>
+</html>
