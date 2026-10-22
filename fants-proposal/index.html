@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>FANTS 見つけられる日</title>
+<style>
+:root{
+  --paper:#eef4fa; --paper-grad:#e3eef7;
+  --panel:#ffffff; --panel-2:#f6fafd;
+  --ink:#22384f; --ink-strong:#1d3149;
+  --body:#4a4446; --muted:#78899b;
+  --line:#dbe6f0; --line-soft:#e9f1f8;
+  --blue:#3f79ad; --blue-soft:#7fb0d2; --blue-tint:#eef5fb; --blue-deep:#26405f;
+  --pink:#bd7886; --pink-soft:#cf8f9c; --pink-tint:#fbeef1; --pink-deep:#9d5c6b;
+  --gold:#b08a3e; --gold-tint:#fbf5e8;
+  --navy:#1d3149; --navy-ink:#f3f7fb; --navy-pink:#f2b8c6; --navy-gold:#f1dc9a;
+  --shadow:0 18px 40px -28px rgba(29,49,73,.45);
+  --shadow-sm:0 10px 24px -20px rgba(29,49,73,.4);
+  --font-jp:"游ゴシック体","Yu Gothic Medium","Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Hiragino Sans",system-ui,-apple-system,sans-serif;
+  --font-serif:Georgia,"Times New Roman","Hiragino Mincho ProN","Yu Mincho",serif;
+  --font-mincho:"Hiragino Mincho ProN","Yu Mincho","游明朝体","YuMincho","Noto Serif JP",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#111925; --paper-grad:#0c141e; --panel:#1a2532; --panel-2:#212e3e;
+    --ink:#e7eef6; --ink-strong:#f3f7fb; --body:#c4cdd8; --muted:#8698a8;
+    --line:#2b3a4c; --line-soft:#26333f;
+    --blue:#8fbfe6; --blue-soft:#6fa7d0; --blue-tint:#17293a; --blue-deep:#a9c8e6;
+    --pink:#e2a6b3; --pink-soft:#cf8f9c; --pink-tint:#2d2028; --pink-deep:#e2a6b3;
+    --gold:#d4b06a; --gold-tint:#2b2617; --navy:#0f1c2a;
+    --shadow:0 22px 46px -30px rgba(0,0,0,.7); --shadow-sm:0 12px 26px -22px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#111925; --paper-grad:#0c141e; --panel:#1a2532; --panel-2:#212e3e;
+  --ink:#e7eef6; --ink-strong:#f3f7fb; --body:#c4cdd8; --muted:#8698a8;
+  --line:#2b3a4c; --line-soft:#26333f;
+  --blue:#8fbfe6; --blue-soft:#6fa7d0; --blue-tint:#17293a; --blue-deep:#a9c8e6;
+  --pink:#e2a6b3; --pink-soft:#cf8f9c; --pink-tint:#2d2028; --pink-deep:#e2a6b3;
+  --gold:#d4b06a; --gold-tint:#2b2617; --navy:#0f1c2a;
+  --shadow:0 22px 46px -30px rgba(0,0,0,.7); --shadow-sm:0 12px 26px -22px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1100px 520px at 12% -8%,var(--paper-grad),transparent 60%),var(--paper);
+  color:var(--body);font-family:var(--font-jp);line-height:1.8;-webkit-font-smoothing:antialiased;font-size:14.5px;padding-inline:16px}
+.wrap{max-width:1000px;margin:0 auto;padding-block:32px 72px}
+img{max-width:100%;display:block}
+h1,h2,h3{text-wrap:balance;word-break:auto-phrase}
+p{margin:0}
+a{color:var(--blue)}
+.mob{display:none}
+@media(max-width:560px){.mob{display:inline}}
+
+.mast{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.mlogo{height:30px;width:auto}
+.mast-meta{font-family:var(--font-serif);font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--panel) 0%,var(--panel-2) 100%);border:1px solid var(--line);border-radius:20px;padding:30px 30px 24px;box-shadow:var(--shadow)}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--blue-soft),var(--pink-soft))}
+.eyebrow{font-family:var(--font-serif);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:10px}
+.hero h1{margin:0 0 10px;font-family:var(--font-mincho);font-size:34px;line-height:1.35;color:var(--ink-strong);font-weight:700;letter-spacing:.02em}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 68%,rgba(207,143,156,.38) 68%);padding:0 3px}
+.hero .lead{font-size:15px;line-height:1.85;color:var(--body);max-width:62ch;margin:0 0 16px}
+.hero .lead b{color:var(--ink-strong)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 0}
+.two>div{background:var(--blue-tint);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.two>div.p{background:var(--pink-tint)}
+.two .k{font-family:var(--font-serif);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.two .t{font-family:var(--font-mincho);font-size:19px;color:var(--ink-strong);font-weight:700;line-height:1.4;margin:4px 0 2px}
+.two .s{font-size:13px;color:var(--body);line-height:1.6}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.toc a{font-size:12.5px;text-decoration:none;color:var(--ink-strong);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.toc a:hover{border-color:var(--blue-soft)}
+
+.sec{margin-top:48px}
+.sec-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:6px}
+.sec-num{font-family:var(--font-serif);font-size:34px;line-height:1;font-weight:700;color:var(--blue);opacity:.9;min-width:44px}
+.sec-head h2{margin:0;font-size:21px;color:var(--ink-strong);font-weight:800}
+.sec-sub{margin:2px 0 0;font-size:13.5px;color:var(--muted)}
+.sec-rule{height:2px;border:0;margin:12px 0 18px;background:linear-gradient(90deg,var(--blue-soft) 0%,var(--line) 30%,transparent 72%)}
+.sec.p .sec-num{color:var(--pink)} .sec.p .sec-rule{background:linear-gradient(90deg,var(--pink-soft) 0%,var(--line) 30%,transparent 72%)}
+
+.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;padding:1px 8px;border-radius:6px;border:1px solid;white-space:nowrap;vertical-align:1px;line-height:1.6;margin-right:4px}
+.tag.fact{background:var(--blue-tint);color:var(--blue);border-color:var(--blue-soft)}
+.tag.est{background:var(--panel-2);color:var(--muted);border-color:var(--line)}
+.tag.plan{background:var(--gold-tint);color:var(--gold);border-color:var(--gold)}
+.tag.ask{background:var(--pink-tint);color:var(--pink-deep);border-color:var(--pink-soft)}
+.tag.na{background:var(--panel-2);color:var(--pink-deep);border-color:var(--pink-soft)}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow-sm);margin-top:14px}
+.card h3{margin:0 0 8px;font-size:16px;color:var(--ink-strong);font-weight:800}
+.card h4{margin:12px 0 4px;font-size:14px;color:var(--ink-strong);font-weight:800}
+.card p{margin:6px 0 0;font-size:13.5px}
+.card ul,.card ol{margin:6px 0 0;padding-left:18px;font-size:13.5px}
+.card li{margin:3px 0}
+.card li b,.card p b{color:var(--ink-strong)}
+.card.tint{background:var(--blue-tint)}
+.card.pink{background:var(--pink-tint)}
+.card.navy{background:var(--navy);color:var(--navy-ink);border-color:transparent}
+.card.navy h3{color:var(--navy-ink)} .card.navy p{color:var(--navy-ink)} .card.navy b{color:#fff}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.split>.card{margin:0}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.three>.card{margin:0}
+
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--pink-soft);border-radius:14px;padding:16px 18px;margin-top:14px;box-shadow:var(--shadow-sm)}
+.verdict .mark{font-family:var(--font-mincho);font-size:26px;color:var(--pink-deep);font-weight:700;line-height:1.1;min-width:64px}
+.verdict h3{margin:0 0 4px;font-size:15.5px;color:var(--ink-strong)}
+.verdict p{margin:4px 0 0;font-size:13.5px}
+
+.tbl-wrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);margin-top:14px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:top;line-height:1.55}
+thead th{font-size:12px;letter-spacing:.06em;color:var(--muted);font-weight:700;background:var(--panel-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.t{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink-strong);font-weight:700}
+td.b{color:var(--ink-strong);font-weight:700}
+td.aim{color:var(--muted);font-size:12.5px}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+.step .k{font-family:var(--font-serif);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-deep)}
+.step h4{margin:4px 0 6px;font-size:15px;color:var(--ink-strong)}
+.step p,.step li{font-size:13px}
+.step ul{margin:0;padding-left:16px}
+
+.rule{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+.rule .line1{font-family:var(--font-mincho);font-size:22px;color:var(--ink-strong);font-weight:700;line-height:1.5;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow-sm)}
+.rule .line1 small{display:block;font-family:var(--font-jp);font-size:12.5px;color:var(--muted);font-weight:400;margin-top:4px}
+
+.phone{width:300px;max-width:100%;margin:14px auto 0;background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:14px 12px;box-shadow:var(--shadow)}
+.phone .bar{height:6px;width:90px;border-radius:3px;background:var(--line);margin:0 auto 12px}
+.phone .ttl{font-size:12px;color:var(--muted);letter-spacing:.1em;text-align:center;margin-bottom:8px}
+.phone .big{font-family:var(--font-mincho);font-size:17px;color:var(--ink-strong);font-weight:700;text-align:center;line-height:1.4;margin-bottom:10px}
+.crow{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin-top:6px;background:var(--panel-2)}
+.crow .av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--blue-soft),var(--pink-soft));flex:none}
+.crow .nm{font-size:13px;color:var(--ink-strong);font-weight:700;line-height:1.3}
+.crow .sb{font-size:11.5px;color:var(--muted)}
+.crow .btn{margin-left:auto;font-size:11.5px;font-weight:800;color:#fff;background:var(--pink);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.crow .btn.ghost{background:transparent;color:var(--blue);border:1px solid var(--blue-soft)}
+.phone .foot{font-size:11.5px;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5}
+.mockrow{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.kv div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow-sm)}
+.kv .k{font-size:11.5px;color:var(--muted);letter-spacing:.06em}
+.kv .v{font-family:var(--font-mincho);font-size:22px;color:var(--ink-strong);font-weight:700;line-height:1.2;margin-top:2px;font-variant-numeric:tabular-nums}
+.kv .s{font-size:12px;color:var(--body);margin-top:2px}
+
+.src{font-size:12px;color:var(--muted);line-height:1.7}
+.src ol{padding-left:18px;margin:6px 0 0}
+.src a{color:var(--blue);word-break:break-all}
+.foot{margin-top:40px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+@media(max-width:760px){
+  .two,.split,.three,.steps,.mockrow{grid-template-columns:1fr}
+  .kv{grid-template-columns:1fr 1fr}
+  .hero{padding:22px 18px 18px}
+  .hero h1{font-size:26px}
+  .sec-num{font-size:28px;min-width:36px}
+  .verdict{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.nw{white-space:nowrap}
+.three>div{min-width:0}
+.board{background:var(--navy);color:var(--navy-ink);border-radius:14px;padding:18px 18px 14px;box-shadow:var(--shadow);font-family:var(--font-mincho);min-height:230px}
+.board .bt{font-size:12.5px;letter-spacing:.06em;color:var(--navy-gold);font-family:var(--font-jp);margin-bottom:8px;line-height:1.5}
+.board .bn{font-size:20px;font-weight:700;margin:6px 0;color:#fff}
+.board .bn b{font-size:38px;color:var(--navy-pink);margin:0 4px;font-variant-numeric:tabular-nums}
+.board .bs{font-size:13px;font-family:var(--font-jp);line-height:1.7;color:rgba(243,247,251,.9)}
+.board .bl{margin-top:10px;font-size:14px;border-top:1px dashed rgba(243,247,251,.3);padding-top:8px;color:#fff}
+.board .bl span{color:var(--navy-gold)}
+.board .bf{margin-top:10px;font-size:11.5px;font-family:var(--font-jp);color:rgba(243,247,251,.7);line-height:1.6}
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.doors>div{border:1px solid rgba(243,247,251,.35);border-radius:10px 10px 4px 4px;padding:10px 6px;text-align:center;font-family:var(--font-jp)}
+.doors span{display:block;font-size:12.5px;font-weight:700;color:#fff}
+.doors small{display:block;font-size:11px;color:var(--navy-gold);margin-top:2px}
+.note{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.7}
+.quote{font-family:var(--font-mincho);font-size:20px;line-height:1.6;color:var(--ink-strong);font-weight:700;margin:0}
+.quote small{display:block;font-family:var(--font-jp);font-size:13px;font-weight:400;color:var(--body);margin-top:8px;line-height:1.8}
+.devices{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.device{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--pink-soft);border-radius:14px;padding:16px;box-shadow:var(--shadow-sm)}
+.device .n{font-family:var(--font-serif);font-size:12px;letter-spacing:.2em;color:var(--pink-deep)}
+.device h4{margin:4px 0 6px;font-family:var(--font-mincho);font-size:19px;color:var(--ink-strong)}
+.device p{font-size:13px;margin:0}
+.year{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.year>div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+.year .s{font-family:var(--font-serif);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.year .t{font-family:var(--font-mincho);font-size:18px;color:var(--ink-strong);font-weight:700;margin:2px 0}
+.year .d{font-size:12.5px;color:var(--body)}
+.year>div.now{background:var(--blue-tint)}
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.ladder>div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+.ladder .k{font-family:var(--font-serif);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink-deep)}
+.ladder ol{margin:6px 0 0;padding-left:18px;font-size:13px}
+.ladder li{margin:3px 0}
+.ladder li span{color:var(--muted);font-size:12px}
+.bars{margin-top:8px}
+.bar{display:grid;grid-template-columns:72px 1fr 44px;align-items:center;gap:8px;font-size:12px;margin-top:6px}
+.bar .lab{color:var(--ink-strong);font-weight:700;white-space:nowrap}
+.bar .trk{height:12px;background:var(--line-soft);border-radius:6px;overflow:hidden}
+.bar .fil{height:100%;background:linear-gradient(90deg,var(--blue-soft),var(--pink-soft));border-radius:6px}
+.bar .num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-strong);font-weight:700}
+.todo{list-style:none;padding:0;margin:6px 0 0}
+.todo li{display:flex;gap:8px;align-items:center;font-size:12.5px;padding:6px 8px;border:1px solid var(--line);border-radius:10px;margin-top:5px;background:var(--panel-2);color:var(--ink-strong)}
+.todo li .st{font-size:10.5px;font-weight:800;padding:1px 7px;border-radius:999px;background:var(--blue-tint);color:var(--blue);border:1px solid var(--blue-soft);white-space:nowrap}
+.todo li .st.done{background:var(--pink-tint);color:var(--pink-deep);border-color:var(--pink-soft)}
+.todo li .tm{margin-left:auto;color:var(--muted);font-size:11px;white-space:nowrap}
+.cert{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow-sm);margin-top:14px;position:relative;overflow:hidden}
+.cert::before{content:"";position:absolute;inset:8px;border:1px solid var(--line);border-radius:10px;pointer-events:none}
+.cert .h{font-family:var(--font-mincho);font-size:22px;color:var(--ink-strong);font-weight:700;letter-spacing:.2em;text-align:center}
+.cert .b{font-size:13px;text-align:center;color:var(--body);margin-top:8px;line-height:1.9}
+.cert .blank{display:inline-block;min-width:180px;border-bottom:1px solid var(--ink);vertical-align:-2px}
+.cert .f{font-size:11.5px;color:var(--muted);text-align:center;margin-top:10px;letter-spacing:.1em}
+.menu{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+.menu>div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-sm)}
+.menu h4{margin:0 0 4px;font-size:14.5px;color:var(--ink-strong)}
+.menu p{font-size:13px;margin:0}
+.askbox{background:var(--pink-tint);border:1px solid var(--pink-soft);border-radius:14px;padding:16px 20px;margin-top:14px}
+.askbox h3{margin:0 0 6px;font-size:15.5px;color:var(--pink-deep)}
+.askbox ol{margin:0;padding-left:18px;font-size:13.5px}
+.askbox li{margin:4px 0}
+@media(max-width:760px){.devices,.year,.ladder,.menu{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <div class="mast">
+    <img class="mlogo" src="data:image/png;base64,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" alt="Merone">
+    <div class="mast-meta">Proposal for FANTS · 2026.10.22</div>
+  </div>
+
+  <section class="hero" id="top">
+    <div class="eyebrow">株式会社スタジアム 森川智仁 代表 様　／　企画のご提案（案）</div>
+    <h1>クリエイターが、<br class="mob"><em>見つけられる</em><br class="mob"><span class="nw">日をつくる。</span></h1>
+    <p class="lead">御社が発信されている「クリエイターを主役にした文化圏づくり」に沿って、<b>一般の方が初めてFANTSのクリエイターに出会う公開の場</b>を2つご提案します。既存のクリエイターアワード・キャンパス・各コミュニティのオフ会と重ならない位置づけです。アワードが「表彰」なら、この2つは「見つけられる」です。</p>
+    <div class="two">
+      <div>
+        <div class="k">短期 · 四半期ごと</div>
+        <div class="t">Produced by FANTS 一日学校</div>
+        <div class="s">失敗した先生から、1日で学ぶ。バラエティの形で。全国から、金曜と土曜の21時にZoomで。<br>2027年3月5日（金）・6日（土）案・二夜連続・定員60名・講師3名・3,000円</div>
+      </div>
+      <div class="p">
+        <div class="k">中長期 · 年1回</div>
+        <div class="t">FANTS推し活祭り</div>
+        <div class="s">推しに会いに来て、推しが増えて帰る日。<br>2027年11月20日（土）案・来場150名・出場6組</div>
+      </div>
+    </div>
+    <div class="toc">
+      <a href="#s1">01 冒頭の一言</a><a href="#s2">02 なぜ今か</a><a href="#s3">03 全体像</a><a href="#s4">04 一日学校</a><a href="#s5">05 推し活祭り</a><a href="#s6">06 借りたもの</a><a href="#s7">07 弊社の関わり</a><a href="#s8">08 先に伺いたいこと</a><a href="#s9">09 スケジュール</a><a href="#s10">10 出典</a>
+    </div>
+    <p class="note">表記：<span class="tag fact">事実</span>公開情報で確認済み　<span class="tag plan">案</span>弊社の提案で未確定　<span class="tag ask">未確認</span>御社にお伺いしたい事項　<span class="tag est">推測</span>弊社の見立て。企画名・用語はすべて候補です。</p>
+  </section>
+
+  <!-- 01 -->
+  <section class="sec" id="s1">
+    <div class="sec-head"><div class="sec-num">01</div><div><h2>冒頭の一言</h2><p class="sec-sub">「総選挙」と見えたときに、先にお答えしておきたいこと</p></div></div>
+    <hr class="sec-rule">
+    <div class="card navy">
+      <p class="quote" style="color:#f3f7fb">総選挙に見えるかもしれませんが、票の向きが逆です。<small style="color:rgba(243,247,251,.85)">順位は、ファンの票ではなく「今日その先生とはじめて出会った人の数」で決まります。だからファンは推しを勝たせるために、まだ知らない人を連れてきて、推しの教室に入れます。推しを増やす行動が、そのまま御社の新しいファン登録になります。課金で増える要素はありません。</small></p>
+    </div>
+    <div class="split">
+      <div class="card">
+        <h3>一言の看板（候補）</h3>
+        <p><b>祭り</b>：「推しに会いに来て、推しが増えて帰る日。」<br>ルール：今日いちばん“はじめまして”された先生が勝ち。</p>
+        <p><b>学校</b>：「失敗した先生から、1日で学ぶ。」<br>ルール：意見を変えさせた人数で、勝ち負けが決まる。</p>
+      </div>
+      <div class="card">
+        <h3>登壇者を並べる形式との違い（3点）</h3>
+        <ul>
+          <li><b>同じ問いに答えてもらう</b>。並べて講演する形は採りません</li>
+          <li><b>来場者に役割がある</b>。見るだけの席をつくりません</li>
+          <li><b>1コマは15分以内</b>。移動と対決で人が流れます</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card tint">
+      <h3>この企画の原点（森川公美子より）</h3>
+      <p>私は今年、EBiDANの15周年記念曲「Yes! 東京」をきっかけに、ONE N' ONLYのHAYATOさん（「ワビサビニキ」として話題になった方）を知り、同じEBiDANの別グループ「原因は自分にある。」の動画まで見るようになりました。入口は1人ではなく、9グループ60名が同時に見える1本の曲でした。<b>複数のクリエイターが同時に見える「ハブ」があると、推しは増える</b>。この構造を、御社のクリエイターに翻訳したのが本提案です。</p>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="sec" id="s2">
+    <div class="sec-head"><div class="sec-num">02</div><div><h2>なぜ今か</h2><p class="sec-sub">公開情報で確認できる数字だけを置きます</p></div></div>
+    <hr class="sec-rule">
+    <div class="kv">
+      <div><div class="k">推し活人口（2026年1月）</div><div class="v">約1,940万人</div><div class="s">前年比＋556万人・市場規模約4.1兆円（CDG・Oshicoco、n=23,125）</div></div>
+      <div><div class="k">推しの数</div><div class="v">平均2.7人</div><div class="s">約6割が複数推し（jeki 2026、n=22,009）</div></div>
+      <div><div class="k">担降り理由の1位</div><div class="v">16.2%</div><div class="s">「別の推しができた」（Favomatch 2025）＝推しが増えるのは標準の動き</div></div>
+      <div><div class="k">推すきっかけ</div><div class="v">14.4%</div><div class="s">「イベント・ライブ」。テレビ・動画に次ぐ入口（タニタ 2026）</div></div>
+    </div>
+    <div class="split">
+      <div class="card">
+        <h3>御社について（公開情報）<span class="tag fact">事実</span></h3>
+        <ul>
+          <li>運営コミュニティ667件（2026年6月末）・クリエイター600人超・累計決済30億円超</li>
+          <li>主力は教育・スキル・ライフスタイル系の個人クリエイター。各コミュニティがオフ会・ライブ配信・会員限定イベントを運営</li>
+          <li>2026年にFANTSクリエイターアワード（3月14日（土））とFANTSキャンパス（8月4日）を開始。イベント施策は御社の正式ライン</li>
+          <li>FANTSサービス販売（2026年1月23日開始）で単発の1on1・ワークショップ・デジタルコンテンツを販売可能。初期費用・月額0円</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>「並べる形式」への飽き <span class="tag est">海外調査</span></h3>
+        <p>参加者が好む形式はワークショップ44%、パネル40%、基調講演31%。72%が「講演は20〜40分が理想」、58%が双方向を希望（Talent Bureau 2025、n=250）。国内の一次数値は未確認のため、弊社の勉強会運営の経験則と合わせた見立てです。</p>
+        <p>番組研究では、競技の勝敗そのものより「出演者の振る舞い」が視聴者の興味を決めるという結果もあります（Taskmaster 18シリーズの分析）。本提案が「対決」より「人柄が出るお題」と「本人の言葉」を厚くしている理由です。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="sec" id="s3">
+    <div class="sec-head"><div class="sec-num">03</div><div><h2>全体像</h2><p class="sec-sub">短期で測り、中長期で広げる。年次化すると「FANTSの名前が外に出る日」が年5回になります</p></div></div>
+    <hr class="sec-rule">
+    <div class="year">
+      <div><div class="s">春 · 既存</div><div class="t">FANTSクリエイターアワード</div><div class="d">クリエイター向け・表彰。御社の既存施策（弊社は関与しません）</div></div>
+      <div class="now"><div class="s">四半期 · 短期提案</div><div class="t">一日学校</div><div class="d">一般向け・オンライン二夜（金・土21時）・60名・講師3名。祭りの判定式を画面の中で先に試運転する「体験入学版」</div></div>
+      <div class="now"><div class="s">秋 · 中長期提案</div><div class="t">推し活祭り</div><div class="d">一般向け・150名・出場6組。「見つけられる」日の本番</div></div>
+    </div>
+    <div class="card">
+      <h3>短期から中長期へ渡す実測値（8つ）</h3>
+      <ol>
+        <li>はじめまして率（申込時「講師を知らなかった」）と、受講生の属性（年齢・性別・都道府県・「先生を“推し”と呼ぶか」・FANTSを今日はじめて知ったか）</li>
+        <li>心変わり率：第1試合（討論型）と第2試合（実演型）＝祭りと同じ型の検証対決が画面の中で成立するか</li>
+        <li>推し以外の先生の体験入学チケットを受け取った人数（講師別×申込時の推し登録の突合）＝祭りの判定式と同じ、手間のある行動の初実測</li>
+        <li>転校率（職員室で部屋を移った割合）＝転校ベルの当たり</li>
+        <li>2日目残存率とコマ別の退出＝連夜型の実測</li>
+        <li>参加しやすい曜日と時間帯＝祭りの予選生配信・合同授業の時刻の検証</li>
+        <li>祭りへの遠征意向（「祭りが東京なら行きますか」）＝チケット価格と同伴設計の当たり</li>
+        <li>どのコーナーが切り抜かれ、再生されたか</li>
+      </ol>
+      <p class="note">60名規模の数字は傾向として扱い、統計的な断定には使いません。受講生の都道府県は「配信部門の見込み規模」の参考値にとどめ、祭りの開催地（東京か名古屋か）の判断は御社の会員データの都道府県分布（人数のみ・未確認）と併せて伺います。この8つを持って、祭りの協賛営業と出場公募に進みます。</p>
+    </div>
+    <h3 style="margin:22px 0 0;font-size:16px;color:var(--ink-strong)">独自の仕組みは3つ</h3>
+    <div class="devices">
+      <div class="device"><div class="n">01</div><h4>はじめまして受け取り</h4><p>勝敗は票ではなく「その先生とはじめて出会った人が、その先生の体験入学チケットを受け取った数」で決まります。受け取り＝FANTS登録という手間のある行動なので、捨て票も談合も成り立ちません。</p></div>
+      <div class="device"><div class="n">02</div><h4>転校ベル</h4><p>隣り合う2つの教室が同じお題で15分。途中のベルで教室を移ってよく、残った人数・移ってきた人数がその場でスコアボードに出ます。人の流れが画になります。</p></div>
+      <div class="device"><div class="n">03</div><h4>検証対決</h4><p>2人の先生が正反対の教え方で、希望者の生徒を10分教え、15分後に生徒が実演して決着。演出で結果は動きません。負けた側にも「この教え方が合う人」が残ります。</p></div>
+    </div>
+    <p class="note">短期（オンライン）では、このうち「検証対決」（実演型を1試合）と「はじめまして受け取り」（推し以外の先生のチケット受け取り・講師別）、そして部屋移動（職員室の転校率）を、60名・画面の中で先に測ります。</p>
+  </section>
+
+  <!-- 04 短期 -->
+  <section class="sec p" id="s4">
+    <div class="sec-head"><div class="sec-num">04</div><div><h2>短期：Produced by FANTS 一日学校（オンライン・二夜）</h2><p class="sec-sub">失敗した先生から、1日で学ぶ。バラエティの形で。全国から、金曜と土曜の21時にZoomで</p></div></div>
+    <hr class="sec-rule">
+
+    <div class="split">
+      <div class="card">
+        <h3>名称の候補 <span class="tag plan">案</span></h3>
+        <ul>
+          <li>Produced by FANTS 一日学校 夜間部 〜先生たちの、言えなかった話〜</li>
+          <li>しくじり体験入学 Produced by FANTS 〜金曜と土曜、21時に集合〜</li>
+          <li>「捨てない説 vs 全部出す説、決着の夜」（募集を“決着”で売る案。先生の名前ではなく決着で集める）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>骨格：3人の先生、2つの説、1つの宿題</h3>
+        <p>講師3名（FANTSのクリエイター）。二夜に分けます。<b>1日目「入学の夜」</b>＝3年前の自分への手紙・授業・第1試合（討論型）。<b>2日目「決着の夜」</b>＝第2試合（実演型）・実技・本音の職員会議・公開添削・卒業式。二夜の接着剤は「票の持ち越し」で、1日目の最後に2日目の説の事前票を取って見せて終わります。<b>投票で順位はつけない日</b>です。</p>
+      </div>
+    </div>
+
+    <div class="rule"><div class="line1">意見を変えさせた人数で、勝ち負けが決まる。<small>対決は「どちらが正しいか」ではなく「討論のあと、何人の意見が動いたか」。前後は匿名の1タップ（Zoom投票）。負けた側も「○人動かした」とプラスの数字で終わり、審判役の講師が「この説が通じる条件」を必ず言葉にします。順位表・累積スコア・課金で増える要素は置きません。</small></div></div>
+
+    <h3 style="margin:22px 0 0;font-size:16px;color:var(--ink-strong)">なぜオンラインか、なぜ金・土の21時か</h3>
+    <div class="kv">
+      <div><div class="k">参加しやすい時間帯</div><div class="v">20時台</div><div class="s">一般向けイベントで約半数が20時台を選択（Peatix 2020、n=1,524）</div></div>
+      <div><div class="k">子育て女性の自由時間</div><div class="v">平均42分</div><div class="s">1位は「子どもが寝た後」58.9%（ZOZO 2025、n=1,000）</div></div>
+      <div><div class="k">ウェビナーの最適な長さ</div><div class="v">1時間以内</div><div class="s">「1時間以内が最適」が90%超（Jストリーム 2024、n=550）</div></div>
+      <div><div class="k">オンライン化の集客</div><div class="v">約2.3倍</div><div class="s">平均80.9名→189.5名（TECH PLAY 2020、n=158）</div></div>
+    </div>
+    <div class="split">
+      <div class="card">
+        <h3>決めた形（案）</h3>
+        <ul>
+          <li><b>1日目 2027年3月5日（金）</b> 20:45開場／21:00〜22:08本編／〜22:25 放課後（任意）／22:30閉室</li>
+          <li><b>2日目 2027年3月6日（土）</b> 20:45開場／21:00〜22:18本編／〜22:38 放課後（任意）／22:40閉室</li>
+          <li>代替日 3月26日（金）・27日（土）。4月案 4月16日（金）・17日（土）（御社の予算年度とアワード2027の時期を伺ってから）</li>
+          <li>本編は各夜70〜80分。弊社の勉強会運営の標準（夜21時・60分）に核の部品が画になる分だけ足し、放課後は本編に含めません</li>
+          <li><b>「対決まで見たら、今夜は帰っても大丈夫です」</b>と開校で言い切ります。1日目の第1試合は開始40分目。42分で抜ける方にも一夜分が成立します</li>
+          <li>金・土か火・木かは、申込前に御社チャネルで「参加しやすい曜日と時間帯」を1問取ってから決める案</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>画面の3原則</h3>
+        <ol>
+          <li><b>10〜15分に1回、「数字が動く」か「新しい人が画面に出る」</b>。3人の先生は同じ型を繰り返さず、3人目は「AとBが突っ込む」形で崩します</li>
+          <li><b>画面に出るのは一度に1〜3人</b>（スマホのギャラリーは4人まで）。画面共有は「数字を出す瞬間」と「黒板の3行」だけにし、人が画になる時間は共有を止めます</li>
+          <li><b>受講生の役割は「1タップ・1行・30秒」の3種類だけ</b>。何もしない時間を設計段階で可視化します</li>
+        </ol>
+        <p class="note">スマホOK・カメラ任意・お子さま同席OK・途中退出OK・音声だけの参加も可。投票の受付は最低60秒とし、見逃した方はチャットにAかBで集計に入れます。</p>
+      </div>
+    </div>
+
+    <h3 style="margin:22px 0 0;font-size:16px;color:var(--ink-strong)">配信の層と役割分担（第1回）</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>層</th><th>役割</th></tr></thead>
+      <tbody>
+        <tr><td class="b">Zoomミーティング（御社名義推奨・既存契約があれば流用）<span class="tag fact">正本</span></td><td>受講生60名＋講師3名＋講師の手元端末3＋運営7名＋サポーター10名。投票・ブレイクアウト・スポットライト・チャット・クラウド録画。ウェビナー形式は採りません（出席者のカメラ・ブレイクアウト・リアクションが使えず、観客に役割がなくなるため）</td></tr>
+        <tr><td class="b">受講生向けアーカイブ（御社名義の限定公開URL・FANTS登録不要・7日間）</td><td>受講料に含める配布物はここに置きます（手紙・授業・添削・卒業式。対決と職員会議は講師が「公開可」と選んだ分のみ）。一般公開はしません</td></tr>
+        <tr><td class="b">FANTS（御社）</td><td>体験入学チケット（サービス販売・受け取り＝FANTS登録・任意）、体験入学週間、会員向けの上乗せ（完全版・アーカイブチャット・期限なし）。Zoom→FANTS内ライブの同時中継（在校生席）は、御社規約の確認と配信リハで疎通が取れた場合に限り、講師3名・担任・黒板のみを送出する条件付きの案 <span class="tag ask">未確認</span></td></tr>
+        <tr><td class="b">YouTube（御社チャンネル・案）</td><td>手紙の予告60秒×3本（事前）、講師承認済みの切り抜き2〜4本（事後）。第1回は無料見学席を置きません（画面収録はOSレベルで防げず、見るだけの層が実測を濁すため）</td></tr>
+        <tr><td class="b">LINE公式（御社名義）</td><td>申込後の配信・当日URLとパスコード・再入室の非常口・感想と宿題の受け口・配布。本編中にLINEへ送る行動は求めません（Zoomを離れると戻れない方が出るため）</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3 style="margin:22px 0 0;font-size:16px;color:var(--ink-strong)">1日目「入学の夜」の時間割（3月5日（金））</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>時刻</th><th>コマ</th><th>中身</th><th>使う機能</th></tr></thead>
+      <tbody>
+        <tr><td class="t">20:45</td><td class="b">開場・接続テスト枠（15分）</td><td>待機室で名簿と表示名（県名＋ニックネーム）を突合して入室。待機画面に二夜の時間割と「受講生の役割表」。練習投票「今の気持ち3択（楽しみ／ちょっと不安／忘れかけていた）」で操作を体験。チャットに「県名＋呼ばれたい名前」</td><td class="aim">待機室・練習投票・チャット</td></tr>
+        <tr><td class="t">21:00</td><td class="b">出席確認（2分）</td><td>講師3名を10秒ずつスポットライトして一言。受講生はチャットに「○先生」で挨拶</td><td class="aim">スポットライト・チャット</td></tr>
+        <tr><td class="t">21:02</td><td class="b">開校（3分）</td><td>学園長役1分（森川代表にお願いできればと考えております・案。事前収録60秒）→担任が一言ルールと二夜のやることリスト→「対決まで見たら、今夜は帰っても大丈夫です」→校則は掲示のみ「失敗は拍手」「質問はチャットでよし」「推すのは説、攻めない」</td><td class="aim">黒板（30秒）→共有OFF</td></tr>
+        <tr><td class="t">21:05</td><td class="b">0限「担任も失敗した」（1分）</td><td>担任（森川）が自分の失敗を1つ、60秒で。以降は講師を立てます</td><td class="aim">スポットライト1人</td></tr>
+        <tr><td class="t">21:06</td><td class="b">手紙A＋授業A（10分）</td><td>講師Aの「3年前の自分への手紙」は本人承認の事前収録2分（3年前の写真1枚を添える・回線落ちの保険）→読み終えた直後の顔をライブで30秒、最後の1行をスケッチブックに書いて掲げる→投票「どこが刺さったか」3択→授業7分「なぜそう直したか」。最後に「今日できる1手」を黒板に1行。受講生は教科書の空欄①をチャットに1行</td><td class="aim">動画共有→OFF・投票1・チャット</td></tr>
+        <tr><td class="t">21:16</td><td class="b">手紙B＋授業B（10分）</td><td>同型。刺さった一言と空欄②はチャットに1行（投票ではなくチャットを動かす）。チャイムで切替</td><td class="aim">動画共有→OFF・チャット</td></tr>
+        <tr><td class="t">21:26</td><td class="b">手紙C＋授業C「AとBが突っ込む」（11分）</td><td>授業Cは講師A・BがCに1問ずつ突っ込む形式で、3人が初めて同時に画面に出る（対決の前哨戦）。終わりに「黒板の3行」が並ぶ</td><td class="aim">スポットライト3人・黒板</td></tr>
+        <tr><td class="t">21:37</td><td class="b">休み時間（3分）</td><td>無音にしません。担任が黒板の3行を読み上げ、チャット番が県名＋ニックネームでコメントを拾う。休憩明けの時刻を画面に</td><td class="aim">黒板・チャット</td></tr>
+        <tr><td class="t">21:40</td><td class="b">2限 第1試合「○○説」討論型・くじ回（20分）</td><td>くじを実物で引いて立場を決める（黒板に「くじで決めた立場です」を常時掲示）→事前2択（結果は口頭で「多数派は○説」のみ）→ゴング→6分討論→中間票「今、○人動きました」→6分（審判がチャットの質問を1つ拾って両者にぶつける。受講生は「この説が通じる条件」を1行）→4択の心変わり票→ドラムロール→結果を共有→審判が負けた側の「通じる条件」を言語化</td><td class="aim">手元カメラ・投票2・投票3・結果共有</td></tr>
+        <tr><td class="t">22:00</td><td class="b">予告と宿題（8分）</td><td>明日の第2試合（実演型）の説を予告→事前2択を今取る（票の持ち越し「今の空気は○対○。明日この数字が動きます」）→実演に挑戦する希望者生徒（4名）をチャットで募集→宿題「今夜いちばん刺さった先生の教えを、自分の言葉で100字」（文章・10分・締切土曜18時・LINE公式へ。間に合わなくても明日来て大丈夫）→班番号の確認→「明日は封筒も開きます」</td><td class="aim">投票4・黒板・チャット</td></tr>
+        <tr><td class="t">22:08</td><td class="b">放課後「推しの先生の部屋」（任意・〜22:25）</td><td>「本編終了」とは言わず「推しの先生の部屋が開きました」と続けます。講師名の部屋を自分で選んで入室（移動は1回）。サポーターが最初の一言を渡す。担任はミュートで部屋を回る</td><td class="aim">ブレイクアウト（自己選択）</td></tr>
+        <tr><td class="t">22:30</td><td class="b">閉室</td><td>22:40にLINEで御礼＋感想（一言でも文章・1分）。感想を送った方には「昨夜の票の内訳と舞台裏1枚」が上乗せで開きます。2日目の教科書は翌朝9時に全員へ</td><td class="aim">LINE</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3 style="margin:22px 0 0;font-size:16px;color:var(--ink-strong)">2日目「決着の夜」の時間割（3月6日（土））</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>時刻</th><th>コマ</th><th>中身</th><th>使う機能</th></tr></thead>
+      <tbody>
+        <tr><td class="t">20:45</td><td class="b">開場（15分）</td><td>待機画面に昨日の結果（黒板の後出し棒グラフ）・黒板の3行・宿題の提出が並んだ画面（班名のみ・順位なし）・「初めての方はここだけ」3行</td><td class="aim">待機室・黒板</td></tr>
+        <tr><td class="t">21:00</td><td class="b">朝礼（3分）</td><td>昨日の票が動いた瞬間の30秒ダイジェスト→今日の役割表→第2試合の事前2択を取り直し「昨日○対○→今○対○」</td><td class="aim">動画共有→OFF・投票5</td></tr>
+        <tr><td class="t">21:03</td><td class="b">2限 第2試合「○○説」実演型（22分）</td><td>希望者生徒4名を講師B・Cがそれぞれの説で2名ずつブレイクアウト8分で教える（メインでは審判Aと担任が「教え方の見どころ」とチャットの質問を拾い、沈黙を作らない）→戻って4名が実演（各1分・カメラON同意者のみ・声だけでも可）→本人が「できた／できなかった」を先に言う→受講生は5択（「昨日は投票していない」を含む）→結果共有→審判が「この教え方が合う人」を言語化。祭りの検証対決と同じ型</td><td class="aim">ブレイクアウト2室・投票6・結果共有</td></tr>
+        <tr><td class="t">21:25</td><td class="b">3限 実技「推しの先生を、自分の言葉で30秒」（20分）</td><td>運営が土曜18〜20時に宿題100字を班ごと1枚にまとめて貼る→班ブレイクアウト8分で「班の1本」を選び発表係が練習→メインで5班×30秒（発表係のみカメラON）→講師の一言→5班×30秒→講師本人が「いちばん自分を正しく伝えた班」を本人の言葉で選ぶ。できなかった班は記録係の原稿を担任が読む</td><td class="aim">ブレイクアウト10室・スポットライト</td></tr>
+        <tr><td class="t">21:45</td><td class="b">休み時間（3分）</td><td>添削に出す2作品を1タップで絞る（「もう一度読みたい」・順位なし）。チャット番が読み上げ</td><td class="aim">投票7・チャット</td></tr>
+        <tr><td class="t">21:48</td><td class="b">名物「本音の職員会議」（12分）</td><td>申込時の匿名「しくじり1行」を5〜6のテーマ束にして本物の封筒で講師へ郵送済み。講師が手元カメラで束を開け「14人の方へ」と答える。各講師に紙のパス券1枚。パスは他の講師が答える。公開不可の束への答えは体験入学週間に講師から</td><td class="aim">手元カメラ・スポットライト</td></tr>
+        <tr><td class="t">22:00</td><td class="b">4限 公開添削（10分・文字）</td><td>2作品の原稿を黒板に文字で出す→講師3名が同じ材料から違う結論を1分ずつ→「自分ならどちらの直し方」に1タップ→講師が他の講師の「ここが好き」を1つずつ</td><td class="aim">黒板（文字）・投票8</td></tr>
+        <tr><td class="t">22:10</td><td class="b">卒業式（8分・3動作）</td><td>①「今日できる1手」を1行でチャットに（黒板に流れる）②講師3名が「今日いちばん動いた1行」を1つずつ選び本人の言葉で読む（人ではなく1行を選ぶ・順位なし）③「今日のあいことば」→体験入学チケットの受け取り方をチャットに固定（売らない・任意・講師別のページ）</td><td class="aim">チャット・黒板</td></tr>
+        <tr><td class="t">22:18</td><td class="b">放課後「職員室」選択2室（任意・〜22:38）</td><td>班単位の時間割を黒板に出す（例「班1〜5：A先生→C先生、班6〜10：C先生→B先生」入学診断の割当）×各8分。途中で部屋を移ってよく、移動人数を記録（転校率）。続きの個別相談はサービス販売の予約案内だけ。掲げたい方は「今日できる1手」を書いた紙を掲げた写真を自分で撮ってLINEへ</td><td class="aim">ブレイクアウト3室・黒板・LINE</td></tr>
+        <tr><td class="t">22:40</td><td class="b">閉室</td><td>22:45にLINEで御礼＋終了アンケート（属性・都道府県・参加しやすい曜日と時間帯・祭りへの遠征意向・「先生を推しと呼びますか」・FANTSを今日はじめて知ったか・申込前に講師を知っていたか）＋一言感想（文章必須）→提出した方に翌朝の配布と応援記録証が開きます</td><td class="aim">LINE・フォーム</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">代替案B：土曜10:30〜13:00の1日完結（150分＋休み10分×2）。講師が1回で済む一方、2日目残存率が測れません。第1回の2日目残存率が60%未満なら第2回からこの形へ切り替える判定線を置いています。</p>
+
+    <div class="three">
+      <div>
+        <div class="board">
+          <div class="bt">第1試合「捨てない説 vs 全部出す説」（くじで決めた立場です）</div>
+          <div class="bn">動いた人数 <b>23</b>人</div>
+          <div class="bs">捨てない説へ 14人／全部出す説へ 9人／動かなかった 37人</div>
+          <div class="bl">この説が通じる条件：<span>＿＿＿＿＿＿＿＿</span></div>
+          <div class="bf">票は匿名。意見が動いたかだけを数えています。順位はつけません</div>
+        </div>
+        <p class="note">モック1：心変わり票の結果。Zoom投票の「結果を共有」が全員の画面に出た直後、黒板で後出しする画面（数字は例）。ワイプや合成はせず、講師の顔は共有を止めた時間にスポットライトで出します。</p>
+      </div>
+      <div>
+        <div class="board">
+          <div class="bt">職員室の時間割（2日目 22:18〜22:38）</div>
+          <div class="doors">
+            <div><span>A先生の部屋</span><small>いま 7人</small></div>
+            <div><span>B先生の部屋</span><small>いま 9人</small></div>
+            <div><span>C先生の部屋</span><small>いま 6人</small></div>
+          </div>
+          <div class="bs">1コマ目 22:20〜22:28／2コマ目 22:30〜22:38<br>班1〜5：A先生→C先生　班6〜10：C先生→B先生</div>
+          <div class="bf">途中で移ってもかまいません（移った人数は数えています）。最初の一言は「こんにちは、から」</div>
+        </div>
+        <p class="note">モック2：職員室の時間割ボード。Zoomのブレイクアウト一覧と同じ順番で部屋名を並べ、迷わせません。カメラは任意。困ったらLINEの保健室か電話へ。</p>
+      </div>
+      <div>
+        <div class="cert">
+          <div class="h">応援記録証</div>
+          <div class="b">第1号　出席番号 __<br>今日できる1手：<span class="blank"></span><br>推し登録した先生／職員室で会った先生／班の30秒／あなたの封筒が入った束と、先生の答えの1行<br>2027年3月5日（金）・6日（土） 夜間部</div>
+          <div class="f">この1行は、4月3日（土）に戻ってきます　／　Produced by FANTS（裏面）</div>
+        </div>
+        <p class="note">モック3：デジタル卒業証書（スマホ縦）。翌日21時に感想提出者へ。1日目のみ・2日目のみの出席者にも発行し、項目は出席分のみ。SNS投稿用の正方形版も同時に生成します。</p>
+      </div>
+    </div>
+
+    <div class="menu">
+      <div><h4>画面の中で画になる瞬間（各90秒以内・切り抜きは講師承認制）</h4><p>手紙を読み終えた直後の顔と、最後の1行を書いたスケッチブックを掲げる本人／中間票「今、3人動きました」と4択の結果が全員の画面に出る瞬間／くじを引く手元、封筒束を開ける手元、パス券を切って掲げる手／希望者生徒が「できた／できなかった」を自分で言う顔／発表係が自宅から30秒、推しがファンの布教を採点する顔／卒業証書の1行がチャットに流れて黒板に積まれる／票の持ち越し「明日この数字が動きます」</p></div>
+      <div><h4>チャットが動く仕掛け</h4><p>出席確認の「○先生」／開場の「県名＋名前」／授業中「空欄①②を1行」／手紙B・Cの「刺さった一言」／対決中「この説が通じる条件を1行」（審判が1つ引用）／休み時間の読み上げ／職員会議の「これ私だ」／卒業証書の1行。後半でも「チャットに書いてみませんか」と具体的に2回声をかけます。</p></div>
+      <div><h4>敗者の救済</h4><p>対決の負けは「○人動かした」で発表し、審判が「この説が通じる条件」を言語化。実演型は生徒本人が主語。実技は「できなかった」も発表枠。添削は2作品に絞り、3人の結論が割れる。表彰に順位はありません。くじ回は「くじで決めた立場です」を常時掲示し、切り抜かれても文脈が残ります。</p></div>
+      <div><h4>ハプニングの受け皿</h4><p>講師の回線落ち＝手紙は事前収録で成立、授業中は「転校生タイム」、対決中は審判が代打（担任は入りません）／ホスト断＝共同ホスト2名を別拠点・別回線、予備ミーティングをLINEで即時案内、15分復旧しなければ当夜分を代替日に／投票不発＝チャットにA・Bで集計／ブレイクアウト不発＝記録係の原稿を黒板で読む／押したら「休み時間→授業Cの突っ込み→職員会議の束を1つ減らす→添削を1作品」の順に削り、対決・封筒・卒業式は削りません。</p></div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>持ち帰るもの（学びの設計）</h3>
+        <ul>
+          <li>講師3名分の「今日できる1手」（黒板の3行）と、空欄を自分で埋めた教科書3枚（PDF。希望者には紙を郵送）</li>
+          <li>第1試合で「自分の意見が動いた理由」と「負けた説が通じる条件」、第2試合で「どの教え方が自分に合うか」</li>
+          <li>宿題「いちばん刺さった先生の教えを自分の言葉で100字」と班の30秒</li>
+          <li>公開添削の「3人の違う結論」と、自分ならどちらの直し方</li>
+          <li>卒業証書の1行（4月3日（土）に本人へ戻る）と、自分の封筒が入った束への先生の答え</li>
+        </ul>
+        <p class="note">学びの軸は各先生の専門（生活側）。クリエイター経営の話は授業でしません。宿題は文章必須で軽量化せず、承認は20時までにまとめて返します。</p>
+      </div>
+      <div class="card">
+        <h3>参加者・定員・価格・申込 <span class="tag plan">案</span></h3>
+        <ul>
+          <li>一般公開・全国。御社のクリエイターを知らない方を含む。18歳以上（生年月日入力）。中心層は推測で30〜45歳の女性ですが性別は限定せず、属性は終了アンケートで測ります</li>
+          <li>定員60名（班10・各6名）。拡張案80名</li>
+          <li>受講料3,000円（二夜セット・教科書PDF・限定公開アーカイブ7日間・応援記録証込み。<b>FANTS登録は不要と明記</b>）。完全無料は採りません。同伴割は同一画面で視聴できるため置きません</li>
+          <li>返品特約3区分：①受講生都合＝次回振替1回まで可 ②主催者都合（本編の半分以上が実施できない場合）＝振替または半額返金を選べる ③片夜欠席＝限定公開アーカイブで代替</li>
+          <li>申込時：推しの先生（任意）・申込前に講師を知っていたか・入学診断8問・聞きたい質問1つ・実演の希望・紙の教科書の郵送希望・録画同意3段階（A 顔と名前を含めて公開可／B 声と名前のみ／C 配布・公開は不可）・事前課題「あなたのしくじりを1行で」（文章・匿名のテーマ束へ）</li>
+          <li>集客の内訳：御社チャネル30名・講師ファン枠20名（各7名）・広告10名（15〜25万円）。はじめまして率は申込時の「講師を知っていたか」で直接測ります</li>
+        </ul>
+        <h4>向いていない方（募集文に明示・案）</h4>
+        <ul>
+          <li>失敗の話を聞くのがつらい方</li>
+          <li>2晩とも画面の前で聞くだけでいたい方</li>
+          <li>学んだことをその場で誰かに勧めるのが苦手な方</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>事前の配信（御社名義LINE公式・1通1アクション・所要時間明示）</h3>
+        <ul>
+          <li><b>申込翌朝9時まで</b> 当番1名から名前を呼ぶ初回返信（問いで終える）。日時を大きく「3月5日（金）21時／3月6日（土）21時」</li>
+          <li><b>2月12日（金）〜</b> 手紙の予告60秒×3本（YouTube＋FANTS内）</li>
+          <li><b>2月27日（土）</b> 教科書セット発送（希望者）。講師宛は封筒束・パス券・くじ</li>
+          <li><b>2月28日（日）9時</b> 教科書PDF（3枚・空欄2つ）</li>
+          <li><b>3月2日（火）21時</b> 第1試合の説を発表「どっち派ですか」（1タップ・答えは当日）</li>
+          <li><b>3月3日（水）朝7時</b> 個別連絡風「いま一番なんとかしたいことを一言」→テーマ束の順番に反映</li>
+          <li><b>3月4日（木）21時</b> 「二夜でお持ち帰りいただくこと3つ」＋「スマホで、カメラは切ったままで大丈夫です」＋Zoomアプリを最新に。振替はリッチメニューから。気持ちスタンプ3択</li>
+          <li><b>3月5日（金）朝7時</b> 接続の3点と開始時刻。「対決まで見たら帰っても大丈夫」／<b>20:30</b> URL＋パスコード＋「20:45から練習投票ができます」</li>
+          <li><b>3月6日（土）9時</b> 2日目の教科書＋宿題の送り先と締切18時／<b>20:30</b> URL＋「初めての方はここだけ」3行</li>
+        </ul>
+        <p class="note">欠席・途中離脱の方には翌日「その後お変わりないですか」（共感型・日程を出さない）→返信があれば振替枠を1〜2つ→未返信には2日後に1通で終えます。</p>
+      </div>
+      <div class="card">
+        <h3>事後（翌朝から1か月）</h3>
+        <ul>
+          <li><b>3月7日（日）9時</b> 「集合写真（本人送付分）・教科書PDF・各班の30秒原稿・限定公開アーカイブを受け取りたい方はスタンプを」（配るものをいきなり配らない）</li>
+          <li><b>3月7日（日）12時</b> スタンプが並んだ画面を添えて配布。限定公開URL（御社名義・FANTS登録不要・3月7日（日）〜13日（土））</li>
+          <li><b>3月7日（日）21時</b> 応援記録証 第1号＋あいことばを添えて体験入学チケットの受け取り案内（任意・受け取り＝FANTS登録・講師別ページ）</li>
+          <li><b>3月7日（日）〜13日（土）</b> 体験入学週間（講師のサービス販売経由）。御社名義の案内は1通のみ。公開不可の封筒束への答えは講師から受講生へこの週に</li>
+          <li><b>3月13日（土）9時</b> 「今日できる1手、やってみましたか」スタンプ3択</li>
+          <li><b>4月3日（土）9時</b> 卒業証書の1行が本人に戻る。実行した方の声を次回の教科書「先輩の1手」に（本人許諾）</li>
+        </ul>
+        <p class="note">受講料に含めるものは「FANTS登録なしで届くもの」に揃え、体験入学チケットの受け取り（＝登録）は推し以外の動機で濁さないようにします。講師別の受け取り数は申込時の推し登録と突合し、「推し以外の先生のチケットを受け取った人数」を出します。御社に「受け取った方が各コミュニティの未会員だったか」を人数のみ返していただく照合を1回お願いする想定です（祭りの判定式の試運転・<span class="tag ask">未確認</span>）。</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>FANTSを知ってもらう装置</h3>
+        <ul>
+          <li>教科書の表紙と応援記録証の裏面に「Produced by FANTS」。表面には御社ロゴを置きません（証書は生徒のもの）</li>
+          <li>開校で担任が1回だけ「この3名は全員、FANTSでコミュニティを運営している先生です」</li>
+          <li>学園長役を森川代表にお願いできればと考えております（案・事前収録60秒）</li>
+          <li>手紙の予告はYouTube無料＋FANTS内。受講生向けアーカイブは御社名義の限定公開（登録不要・7日間）、会員向けの上乗せ（完全版・期限なし）はFANTS内。非会員向けの視聴設定の有無は御社にお伺いします</li>
+          <li>体験入学チケット（講師がサービス販売で発行・受け取り＝FANTS登録・任意・講師別ページ）。0円商品の可否は未確認。代替は無料招待機能またはトライアル期間（公式ヘルプに機能あり）</li>
+          <li>講師に前日「○○説、あなたはどっち派？」のアンケート投稿を自分のコミュニティで1本お願いする案（任意・PR表記の方針は御社に合わせます）</li>
+          <li>申込・連絡は御社名義（LP・LINE公式）。Zoomアカウントも御社契約を推奨（録画と投票レポートが御社に残ります）。参加者データの管理者は御社、弊社は委託先</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>講師の選び方と、お声がけのトークポイント</h3>
+        <ul>
+          <li>自分のしくじりを他責ゼロで話せる（判定面談30分で見る）</li>
+          <li>生活側の持論が対立軸になる（2名は正反対、1名は審判を兼ねる）</li>
+          <li>ジャンル重複なし・炎上履歴なし・反社チェック通過。手紙を書き下ろし、公開範囲を自分で決められる</li>
+          <li>オンライン版の追加条件：PC（スマホ不可）と安定回線、21時台の登壇可否、手元カメラ用のスマホ2台目</li>
+        </ul>
+        <p>候補15〜20名を1月に御社からご紹介いただき、5〜6名に打診→判定面談→3名確定＋代替候補2名を保持する想定です（人選は<span class="tag ask">未確認</span>）。</p>
+        <h4>本人に伝えること</h4>
+        <ul>
+          <li>しくじりを話した人のほうが愛される（『しくじり先生』の原則）</li>
+          <li>自宅から2晩で、手紙と授業の映像・教科書・切り抜きが手元に残り、以後ずっと使える入口になる。切り抜きの公開範囲は本人承認制</li>
+          <li>対決は「意見を動かした人数」。累積や順位表は出さず、負けた側には審判の「通じる条件」が付く。第2試合は生徒が主語</li>
+          <li>講師別の体験入学チケット受け取り数（新規）を本人にだけ返す。職員室の続きの予約がそのまま自分の売上になる</li>
+          <li>負担の上限：判定面談30分＋打ち合わせ3回（各2時間・オンライン）＋手紙1本（収録2分）＋接続テスト30分＋通しリハ30分＋当夜2回（各約2時間）。移動なし。謝礼5万円を下限</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>人員・機材・リハーサル</h3>
+        <div class="tbl-wrap" style="margin-top:8px"><table style="min-width:0">
+          <thead><tr><th>役</th><th>人数</th><th>仕事</th></tr></thead>
+          <tbody>
+            <tr><td class="b">担任（MC）</td><td class="t">1</td><td>進行の声・名前の読み上げ・黒板を声で読む（音声参加の方向け）</td></tr>
+            <tr><td class="b">ディレクター（ホスト）</td><td class="t">1</td><td>分刻み進行表、投票の起動と結果共有、スポットライト、巻きの判断</td></tr>
+            <tr><td class="b">画面出し兼録画（共同ホスト・別拠点）</td><td class="t">1</td><td>黒板・動画共有・音・クラウド録画</td></tr>
+            <tr><td class="b">チャット番</td><td class="t">2</td><td>読み上げ候補、「今ここです」、荒れ対応3段階、質問拾い</td></tr>
+            <tr><td class="b">集計係</td><td class="t">1</td><td>投票レポート保存、テーマ束の作成、宿題を班ごと1枚に、転校人数の記録、受け取りの突合</td></tr>
+            <tr><td class="b">サポート係</td><td class="t">1</td><td>待機室の名簿突合、LINE窓口＋当日専用電話（保健室）、迷子の手動移動</td></tr>
+            <tr><td class="b">班付きサポーター</td><td class="t">10</td><td>各班1名。最初の一言、開始終了と異常の有無を集計係へ報告。主案＝御社スタッフ＋弊社スタッフ</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">運営はPC有線＋スマホテザリング予備。共同ホスト2名は別拠点・別回線。講師はPC・安定回線・イヤホン・手元用スマホ2台目。参加者同士のプライベートチャットは最初から無効。リハ：2月24日（水）講師の接続テスト／2月26日（金）21:00 通しリハーサル（本番と同じ曜日・時刻）／当日20:30 運営入室。</p>
+      </div>
+      <div class="card">
+        <h3>KPI（案・手間のある行動で測る）</h3>
+        <ul>
+          <li>申込60名・事前キャンセル10%以下／申込→1日目入室率80%以上（有料・事前決済・役割付与の3条件で高く置く・推測）</li>
+          <li><b>2日目残存率70%</b>（実測が第一目的。75%超なら連夜型を標準に、60%未満なら案Bへ）</li>
+          <li>コマ別の退出人数と本編の平均視聴時間（本編の80%以上）</li>
+          <li>はじめまして率（申込時「講師を知らなかった」）50%以上</li>
+          <li>心変わり率（第1試合・第2試合）30%以上／宿題100字の提出率50%以上／一言感想の提出率 1日目50%・2日目60%</li>
+          <li><b>推し以外の先生の体験入学チケットを受け取った人数</b>：受講生の20%（主KPI・推測）／受け取り総数（＝FANTS登録）：受講生の30%</li>
+          <li>転校率（職員室で部屋を移った割合）：計測／職員室の立ち寄り率：各夜40%以上／7日後の再接触率：受け取り者の40%</li>
+          <li>属性：年齢・性別・都道府県・参加しやすい曜日と時間帯・祭りへの遠征意向・「先生を推しと呼ぶか」・「FANTSを今日はじめて知った」</li>
+          <li>安全：チャットの誹謗中傷・ブレイクアウト内の勧誘報告・画面収録の流出・回線による中断 0件</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>収支（相場ベース・円） <span class="tag plan">案</span></h3>
+        <div class="tbl-wrap" style="margin-top:8px"><table style="min-width:0">
+          <thead><tr><th>項目</th><th>金額</th></tr></thead>
+          <tbody>
+            <tr><td>受講料 3,000円×60名（80名案なら240,000円）</td><td class="t">180,000円</td></tr>
+            <tr><td>Zoomプロ（御社名義・2か月。既存契約があれば0）</td><td class="t">約6,000円</td></tr>
+            <tr><td>郵送（教科書セット・講師宛の封筒束・パス券・くじ）</td><td class="t">3〜5万円</td></tr>
+            <tr><td>当日運営実費（核7名×3稼働＝リハ＋2夜）</td><td class="t">21〜25万円</td></tr>
+            <tr><td>当番（申込返信5週間・宿題承認）・サポーター10名謝礼</td><td class="t">6〜8万円</td></tr>
+            <tr><td>講師謝礼 3名×5万円（下限・交通費なし）</td><td class="t">15万円</td></tr>
+            <tr><td>デザイン（教科書PDF・応援記録証・黒板）・編集（予告3本＋切り抜き）</td><td class="t">8〜13万円</td></tr>
+            <tr><td>広告費（Meta・全国配信・二段導線）</td><td class="t">15〜25万円</td></tr>
+            <tr><td>弁護士（受講規約・返品特約・出演契約・同意文。雛形確認のみなら5〜8万円）</td><td class="t">5〜15万円</td></tr>
+            <tr><td>LINE公式プラン・決済手数料・フォーム・予備回線等</td><td class="t">2〜5万円</td></tr>
+            <tr><td class="b">支出合計</td><td class="t">約76〜115万円</td></tr>
+            <tr><td class="b">差引</td><td class="t">▲58〜97万円</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">会場・2カメ配信・印刷・保険・交通費が落ち、講師謝礼と広告を実態に合わせて厚くしています。この差引は、祭り（予算245〜355万円）の設計を間違えた場合の損失に対する「保険料」と位置づけています。縮める案：定員80名（＋6万円）・弁護士は雛形確認のみ・切り抜きは2本・広告は御社チャネル優先で縮小。負担者は主催形態（07章）で先に決めます。講師の職員室の続きと体験入学チケットはサービス販売経由（売上は講師、手数料は御社）。</p>
+      </div>
+      <div class="card">
+        <h3>リスクと手当</h3>
+        <ul>
+          <li><b>離脱</b>：10〜15分の山・各コマ10分以内・休み時間を無音にしない・途中退出OK・カメラ任意・開始10分以内に投票1回・本編中にアプリを離れる行動を求めない</li>
+          <li><b>2日目の欠席</b>：票の持ち越し・宿題が流れる・封筒は2日目・前夜21時と当日朝7時と20:30のご案内</li>
+          <li><b>画面収録・流出</b>：OSレベルの録画はZoomで防げません。受講規約で禁止、講師の本音は「公開可の束」と「体験入学週間での答え」の二層に分け、流出しても困らない範囲に設計。「アーカイブなし」の告知はしません</li>
+          <li><b>チャット荒れ・講師への攻撃</b>：プライベートチャット無効、チャット番2名、3段階対応、黒板に「推すのは説、攻めない」、ログ保存</li>
+          <li><b>ブレイクアウト内の勧誘</b>：録画・ログが残らないため全班にサポーター、職員室に運営1名、規約に勧誘・連絡先交換の強要の禁止</li>
+          <li><b>同意の抜け</b>：3段階の録画同意、表示名は県名＋ニックネーム、集合写真は本人が送る、30秒の配布は発表係の個別許諾、お子さまが映らない向きの案内。撮影の同意と公開の同意は別に取ります</li>
+          <li><b>対決が人気投票に見える</b>：票は「意見が動いたか」だけ・匿名4択・順位表なし。くじ回の常時掲示。第2試合は実演型で生徒が主語。結果共有をその場で出し、編集で順序を変えません</li>
+          <li><b>講師の回線落ち・ホスト断</b>：上のハプニングの受け皿のとおり。15分復旧しなければ当夜分を代替日に（返品特約②）</li>
+          <li><b>法務5点</b>：特定商取引法の表示（最終確認画面・返品特約3区分）・受講規約（勧誘禁止・画面収録禁止）・録画同意（申込時1か所）・出演契約（肖像・限定公開とFANTS内の範囲・事後承認・二次利用権・PR表記）・個人情報の管理者（御社。住所は郵送後14日で削除）</li>
+          <li><b>FANTS仕様の未確認</b>：0円商品、非会員向け視聴設定、同時中継の規約、月間配信上限（公開情報で「5時間/月」と「3時間」の表記が混在）、同時視聴上限、未会員照合の可否、既存Zoom契約の有無。1月15日（金）までにお伺いします</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>スケジュール（2026年10月22日（木）起点・曜日検算済み）</h3>
+      <ul>
+        <li>2026年12月18日（金）：GO判断一段目（口頭の方向性）。主催形態・検証費の負担・弊社対価・弁護士確認の方向</li>
+        <li>2027年1月8日（金）：御社から候補15〜20名のご紹介→5〜6名に打診（PC・回線・21時台の可否を書面で確認）</li>
+        <li>2027年1月15日（金）：GO判断二段目（正式稟議）。御社への確認事項の回答。〜22日（金）判定面談30分×各候補</li>
+        <li>2027年1月29日（金）：講師3名確定・代替候補2名保持・説の2題決定・Zoomアカウント名義確定</li>
+        <li>2月5日（金）打ち合わせ①／2月12日（金）手紙の予告収録・公開、募集開始、広告開始／2月19日（金）打ち合わせ②・教科書草案／2月24日（水）打ち合わせ③・教科書確定・接続テスト</li>
+        <li>2月26日（金）一次申込締切・21:00通しリハーサル・配信文全通完成／2月27日（土）発送／2月28日（日）教科書PDF／3月3日（水）最終申込締切</li>
+        <li><b>3月5日（金）・6日（土）開催</b>（代替3月26日（金）・27日（土）。4月案4月16日（金）・17日（土））</li>
+        <li>3月7日（日）〜13日（土）体験入学週間／3月13日（土）集計完了・御社への未会員照合のお願い／4月3日（土）1か月後配信→結果レポート→祭りの判定式・配信部門・協賛資料に反映</li>
+        <li>以後、四半期ごと（第2回 5月14日（金）・15日（土）、第3回 8月6日（金）・7日（土）案）。御社アワード2027の日程とは重ねません（<span class="tag ask">未確認</span>）</li>
+      </ul>
+    </div>
+
+    <div class="askbox">
+      <h3>短期について、ご一緒に決めたいこと</h3>
+      <ol>
+        <li>形式と日程：二夜連続（金・土21時）か、代替案B（土曜10:30〜13:00）か。3月5日（金）・6日（土）か、4月16日（金）・17日（土）か</li>
+        <li>第2試合を実演型（祭りと同じ型・希望者生徒4名）にする案の採否</li>
+        <li>受講料3,000円（二夜セット・FANTS登録不要）・定員60名か80名か・返品特約3区分</li>
+        <li>受講生向けアーカイブの置き場（御社名義の限定公開か、FANTSの非会員向け設定か）と、対決・職員会議を含める範囲</li>
+        <li>在校生席（FANTS内ライブへの同時中継）を条件付きで入れるか。YouTube見学席は第2回以降に回す方針の可否</li>
+        <li>班付きサポーター10名の出どころ（御社スタッフ＋弊社スタッフを主案）</li>
+        <li>主催形態と検証費の負担、弊社の対価（07章）。学園長役を森川代表にお願いできるか</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 05 中長期 -->
+  <section class="sec" id="s5">
+    <div class="sec-head"><div class="sec-num">05</div><div><h2>中長期：FANTS推し活祭り</h2><p class="sec-sub">推しに会いに来て、推しが増えて帰る日</p></div></div>
+    <hr class="sec-rule">
+
+    <div class="split">
+      <div class="card">
+        <h3>名称の候補 <span class="tag plan">案</span></h3>
+        <ul>
+          <li>推しが増える日 presented by FANTS（副題：今日いちばん“はじめまして”された先生が勝ち）</li>
+          <li>FANTS 体験入学祭 〜はじめましての先生たち〜（「推し活」を看板から外す案）</li>
+          <li>FANTS推し活祭り 〜推しを勝たせたければ、連れてくる〜</li>
+        </ul>
+        <p class="note">集客文面は「先生に出会う日」の語で統一し、「推し」は会場内の呼び名に限定します。「アイドル」「総選挙」「ガチ恋」は使いません。語彙は御社公式の「クリエイター」「コミュニティ」「ファンと共に育てる」に合わせます。</p>
+      </div>
+      <div class="card">
+        <h3>骨格</h3>
+        <ul>
+          <li>決勝出場6組（第1回・案）。公募から6組を直接決定して発表し、落選を公にしません（御社の顧客対応部門が同意した選考基準を事前公開）</li>
+          <li>来場者はチケット購入時に「推し登録」（1組・固定）。未登録の方は「はじめまして枠」で入場し、オープニング直後に1組を仮登録</li>
+          <li>教室は3ラウンド×15分。隣り合う2教室が同じお題。途中の転校ベルで移動自由</li>
+          <li>検証対決は3試合。勝者は次ラウンドで大教室（定員2倍）を使う権利</li>
+          <li>マーケットで「はじめまして受け取り」（体験入学チケット）。締切16:00</li>
+          <li>全員集合は2回だけ（オープニング集会／後半集会）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rule"><div class="line1">今日いちばん“はじめまして”された先生が勝ち。<small>発掘賞（優勝）＝その組の体験入学チケットを受け取った人のうち、①推し登録がその組ではなく、②その組のFANTSコミュニティ未会員だった人数。①は購入時の登録と機械照合、②は御社の会員データで判定し人数だけをお戻しいただく形を想定しています（<span class="tag ask">未確認</span>）。自己申告は一切使いません。課金で増える要素はゼロ。集計は制作と分離した第三者の立会いで行い、上位3組の順位と人数を当日公表、4位以下は非公表、集計報告書を事後に公開します。</small></div></div>
+
+    <div class="split">
+      <div class="card">
+        <h3>賞は2つ</h3>
+        <ol>
+          <li><b>発掘賞（優勝）</b>：上位3組は順位と人数を公表。優勝組の「はじめましての人」（同意者）の名前を次回合同授業のテキストと会場掲示に載せる「発掘者名簿」を発行し、受け取った方には発掘者No.の連番記録をお渡しします（「最初に推したのは私」の公式記録）</li>
+          <li><b>検証対決賞</b>：3試合の勝者。優勝には関与しません</li>
+        </ol>
+        <p>副賞は現金ではなく、御社のビジネス特典（アワード2027への推薦枠・次回合同授業の主講師・アプリ内掲載枠など）で整理する案です（御社判断・<span class="tag ask">未確認</span>）。配信視聴者は同じ「体験入学チケット受け取り」で当日21時まで参加でき、「配信部門」として別集計します。</p>
+      </div>
+      <div class="card">
+        <h3>予選と合同授業（6週間前〜）</h3>
+        <ul>
+          <li><b>予選「はじめましての生配信」</b>：6組が同じ1問に90秒で答える1本。YouTube無料＋FANTS内完全版。視聴者は「はじめましてスタンプ」のみ（順位無関係・熱量の可視化）</li>
+          <li>各組の<b>「3年前の自分への手紙」</b>（本人書き下ろし・公開範囲は本人承認制）を予選で先出しし、切り抜きが祭り前に回る</li>
+          <li>1週前に<b>合同授業</b>（1人5分×6人で1本・同じ1問・オンライン無料30分）</li>
+        </ul>
+        <p class="note">「Yes! 東京」が合同曲→グループ別→合同ライブ→各グループの動画へ回遊させた構造を、クリエイターに翻訳しています。</p>
+      </div>
+    </div>
+
+    <h3 style="margin:22px 0 0;font-size:16px;color:var(--ink-strong)">当日の時間割（土曜・12:00開場・18:30完全終了）</h3>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>時刻</th><th>ブロック</th><th>中身</th><th>狙い</th></tr></thead>
+      <tbody>
+        <tr><td class="t">12:00／12:20／12:40</td><td class="b">登校（3枠分散受付）</td><td>紙の推し活手帳台紙＋QRを受け取り、名札に推しと役割（応援団・案内係・記録係）が印字。未登録の方は「はじめまして枠」の名札。組色リストバンド</td><td class="aim">役割付与。受付の滞留を潰す</td></tr>
+        <tr><td class="t">12:50</td><td class="b">オープニング集会（全員集合1・20分）</td><td>学園長役1分（森川代表にお願いできればと考えております・案）→MCがルールを肯定文3行で掲示→6組が「3年前の自分への手紙」を90秒ずつ読む→はじめまして枠の方は直後に1組を仮登録（30秒）</td><td class="aim">全員が同時に見えるハブ。切り抜き6本が確定で生まれる</td></tr>
+        <tr><td class="t">13:10</td><td class="b">ファンが語る、推しの90秒（第1弾・2組）</td><td>事前の応援メッセージ1行から抽選したファン代表が90秒で推しを語る。本人は聞くだけ席。直後に「この90秒で教室を決めた人」の人数を掲示</td><td class="aim">ファンが画になる</td></tr>
+        <tr><td class="t">13:15</td><td class="b">教室ラウンド1（15分・転校ベル）</td><td>隣り合う2教室×3ペアが同じお題（各先生の専門・生活側の説）。持ち込んだ実物（告知文・クローゼット写真・1品）をその場で直す添削教室。7分で転校ベル。残った人数・移ってきた人数がスコアボードへ。転換5分</td><td class="aim">教室移動が画になる。学びは生活側に置く</td></tr>
+        <tr><td class="t">13:35</td><td class="b">検証対決 第1試合（15分）</td><td>2組が同じお題に正反対の教え方。事前募集の希望者生徒3名ずつを10分で教え、実演。生徒本人の「できた／できなかった」を先に見せ、会場は後から1タップ。勝者は次ラウンドで大教室</td><td class="aim">やらせの動機が消える。緊張</td></tr>
+        <tr><td class="t">13:50</td><td class="b">ファンが語る、推しの90秒（第2弾・2組）</td><td>同上</td><td class="aim">緩和</td></tr>
+        <tr><td class="t">13:55</td><td class="b">教室ラウンド2（15分・転校ベル）</td><td>ペアを組み替え。第1試合の勝者は大教室</td><td class="aim">推し以外との出会いを制度で起こす</td></tr>
+        <tr><td class="t">14:15</td><td class="b">検証対決 第2試合（15分）</td><td>同上</td><td class="aim">同上</td></tr>
+        <tr><td class="t">14:30</td><td class="b">ファンが語る、推しの90秒（第3弾・2組）</td><td>同上</td><td class="aim">同上</td></tr>
+        <tr><td class="t">14:35</td><td class="b">教室ラウンド3（15分・転校ベル）</td><td>ペアを組み替え。第2試合の勝者は大教室</td><td class="aim">同上</td></tr>
+        <tr><td class="t">14:55</td><td class="b">検証対決 第3試合（15分）</td><td>3試合の結果で検証対決賞が決まる</td><td class="aim">同上</td></tr>
+        <tr><td class="t">15:10</td><td class="b">中間発表（5分）</td><td>転校スコア上位3組のみ数字つきで掲示。「はじめまして受け取りは、ここから45分」</td><td class="aim">後半の行動を駆り立てる</td></tr>
+        <tr><td class="t">15:15〜16:00</td><td class="b">マーケット・はじめまして受け取り（45分・締切16:00）</td><td>各組ブースで体験入学チケットを受け取る（サービス販売QR＝FANTS登録・7日間有効）。推しカード交換（自分の推しのカードを1枚、知らない人に渡す・30秒）。協賛は役割型（マーケット・サポートルーム・実況席・手帳のフレーム）。先輩解説役がブースを実況</td><td class="aim">勝敗を決める唯一の行動＝御社の計測点</td></tr>
+        <tr><td class="t">16:00</td><td class="b">お題ひとつ、答えは6つ（全員集合2・20分）</td><td>会場から選んだ1問（生活側）に6組が90秒ずつ答える。観客は「いちばん持ち帰りたい答え」に1タップ（順位無関係）</td><td class="aim">同じ問いに答えてもらう＝並べるだけとの差</td></tr>
+        <tr><td class="t">16:20</td><td class="b">本音の時間（20分）</td><td>来場者の質問カードに砂時計1分で即答。先輩解説役がツッコミ役</td><td class="aim">集計中の緊張と緩和</td></tr>
+        <tr><td class="t">16:40</td><td class="b">推しの推し（15分）</td><td>出場者が自分以外で「今日いちばん推してほしい先生」を1組指名し、理由を本人の言葉で（審査なし）</td><td class="aim">対立を構造で消す。箱推しを生む</td></tr>
+        <tr><td class="t">17:00</td><td class="b">結果発表（20分）</td><td>検証対決賞→配信部門→発掘賞。上位3組は順位と人数を公表、4〜6位は非公表。優勝組は発掘者No.1の方と一緒に登壇</td><td class="aim">順位コールの緊張。ファンが画になる</td></tr>
+        <tr><td class="t">17:20</td><td class="b">クロージング集会（10分）</td><td>着席のまま全員が「今日増えた先生の名前」を手帳に書く→エンドロール（応援メッセージ1行と来場者名・同意者のみ）</td><td class="aim">感情の山を明日の行動に接続</td></tr>
+        <tr><td class="t">17:30〜18:30</td><td class="b">交流・下校（任意）</td><td>各組ブースで直接話せる時間。受け取り忘れの方は体験入学チケットの受け取り可（順位には加算しない）。入会は売らず「続きはこちら」の案内だけ</td><td class="aim">翌日からの導線へ</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="mockrow">
+      <div>
+        <div class="phone">
+          <div class="bar"></div>
+          <div class="ttl">推し活手帳（画面イメージ・案）</div>
+          <div class="big">推し：A先生　役割：応援団</div>
+          <ul class="todo">
+            <li><span class="st done">済</span>登校・名札<span class="tm">12:20</span></li>
+            <li><span class="st">2/3</span>教室を3つ回る<span class="tm">転校ベルで移動OK</span></li>
+            <li><span class="st">16:00まで</span>はじめまして受け取り<span class="tm">1分</span></li>
+            <li><span class="st">これから</span>推しカードを1枚渡す<span class="tm">30秒</span></li>
+          </ul>
+          <div class="crow"><div class="av"></div><div><div class="nm">次の1手</div><div class="sb">13:55 ラウンド2・片づけ教室（B先生×D先生）</div></div></div>
+          <div class="foot">第1回は紙の台紙＋QRを正本とし、画面版は御社名義のLINE公式上で任意（案）</div>
+        </div>
+      </div>
+      <div>
+        <div class="phone">
+          <div class="bar"></div>
+          <div class="ttl">スコアボード · 15:10 中間発表（数字は例）</div>
+          <div class="big">転校スコア 上位3組</div>
+          <div class="bars">
+            <div class="bar"><span class="lab">D先生</span><div class="trk"><div class="fil" style="width:88%"></div></div><span class="num">+31</span></div>
+            <div class="bar"><span class="lab">A先生</span><div class="trk"><div class="fil" style="width:70%"></div></div><span class="num">+24</span></div>
+            <div class="bar"><span class="lab">F先生</span><div class="trk"><div class="fil" style="width:52%"></div></div><span class="num">+18</span></div>
+          </div>
+          <div class="crow" style="margin-top:12px"><div><div class="nm">はじめまして受け取り</div><div class="sb">ここから45分・締切16:00</div></div><span class="btn">各組ブースへ</span></div>
+          <div class="foot">転校スコアは賞にせず中間発表のみ。発掘賞は受け取り数で決まります</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:22px 0 0;font-size:16px;color:var(--ink-strong)">ファンの「小さなYes」の階段（催促せず、次の1手だけを手帳に表示）</h3>
+    <div class="ladder">
+      <div><div class="k">事前</div><ol>
+        <li>「3年前の自分への手紙」を1本見る <span>90秒・無料</span></li>
+        <li>スタンプ3択 <span>10秒</span></li>
+        <li>チケット購入＋推し登録 <span>3分</span></li>
+        <li>友だちを1人誘う <span>同伴1名無料</span></li>
+        <li>予選の生配信ではじめましてスタンプ <span>10秒</span></li>
+        <li>応援メッセージ1行 <span>1分</span></li>
+        <li>推しの仲間を1人だけ予習 <span>90秒</span></li>
+      </ol></div>
+      <div><div class="k">当日（4つに固定）</div><ol start="8">
+        <li>登校・名札</li>
+        <li>教室を3つ回る <span>転校ベルで移動可</span></li>
+        <li>はじめましての先生の体験入学チケットを受け取る <span>1分・FANTS登録</span></li>
+        <li>推しカードを1枚渡す <span>30秒</span></li>
+      </ol></div>
+      <div><div class="k">事後</div><ol start="12">
+        <li>帰路に増えた推しへのひとこと <span>1分・LINE</span></li>
+        <li>翌朝7時の手紙にスタンプ返信 <span>10秒</span></li>
+        <li>7日間の体験入学をのぞく <span>任意</span></li>
+        <li>1か月後「推し、増えましたか」 <span>1分</span></li>
+      </ol></div>
+    </div>
+    <p class="note">「先着」「残席」「ラスト」など損失をあおる文言は、事前・当日・事後のすべてで使いません。</p>
+
+    <div class="split">
+      <div class="card">
+        <h3>推しを増やす装置（11）</h3>
+        <ol>
+          <li>はじめまして受け取りが勝敗（連れてくる・他の教室へ行かせることが推しを勝たせる唯一の行動）</li>
+          <li>転校ベル（偶然の出会いが制度で起きる）</li>
+          <li>検証対決の勝者が大教室</li>
+          <li>同伴1名無料（告知文は「友だちと一緒に」とだけ）</li>
+          <li>合同授業（1本の作品に6人・1人1パート）と「3年前の自分への手紙」</li>
+          <li>「推しの仲間を1人だけ予習」の事前配信</li>
+          <li>「お題ひとつ、答えは6つ」（比べられる形で並べる）</li>
+          <li>「推しの推し」相互推薦</li>
+          <li>推しカード交換（語らせず渡させる。枚数が数えられる）</li>
+          <li>発掘賞と発掘者名簿・発掘者No.</li>
+          <li>翌朝「あなたが昨日はじめて出会った先生」一覧と体験入学の配信</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>画になる瞬間・緊張と緩和・敗者の救済</h3>
+        <p><b>画になる瞬間</b>（各90秒以内・切り抜き担当1名固定）：手紙を読む90秒×6本／転校ベルで教室から人が流れる俯瞰とスコアボード／生徒が15分後に実演する瞬間／「あと○人」の中間発表／受け取りの列／優勝組と発掘者No.1が並ぶ瞬間（涙は設計せず「本人が初めて聞く言葉」を画にする）</p>
+        <p><b>緊張と緩和</b>：教室（動）→検証対決（緊張）→ファンが語る90秒（緩和）の繰り返し。受け取り締切後は本音の時間と推しの推しで待ち時間を埋めます。</p>
+        <p><b>敗者の救済</b>：4位以下は非公表・個別の人数は本人にだけ・全組に手紙映像と教室映像を贈る（次回の集客素材）。検証対決の負けた側には「この教え方が合った人」の挙手を必ず作ります。</p>
+        <p><b>ハプニングの受け皿</b>：サポートルーム（休憩・撮影されたくない方のエリア）／実況席（進行の遅れを吸収・機材不良時は紙の号外）／出場者の欠席は「ファンが語る90秒」を代役で成立させ、推しの推しは相方が代打／受け取りの正本は紙台紙のスタンプ＋QR読取ログ／避難・救護の動線表／子連れは保護者席（託児は会場次第・案）。</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>事前の配信カレンダー（6週間前〜・毎回1通1アクション・所要時間明示）</h3>
+        <ul>
+          <li><b>W-6</b> 出場6組発表。チケット販売開始＋推し登録（3分）。同伴1名無料</li>
+          <li><b>W-5</b> 各組の「3年前の自分への手紙」を毎週土曜21時に公開（90秒）→スタンプ3択「気になる／もう推してる／もう少し見たい」。受け取りの仕組みをクイズ型で1問。検証対決の生徒を事前募集</li>
+          <li><b>W-5 土曜21時</b> 予選「はじめましての生配信」</li>
+          <li><b>W-4</b> 応援メッセージ1行の募集（当日の掲示板とエンドロールに）</li>
+          <li><b>W-3</b> 「推しの仲間を1人だけ予習」（推し以外の手紙を1本）</li>
+          <li><b>W-2</b> 時間割と「やることリスト」を全公開（当日やることは4つ・所要約5時間）。土曜21時に合同授業</li>
+          <li><b>前日21時</b> 「明日の持ち物は、推しカードを渡す相手だけ」（日程変更・振替導線つき）</li>
+          <li><b>当日朝7時</b> 会場の場所と登校枠</li>
+        </ul>
+        <p class="note">送信元は御社名義のLINE公式またはFANTS。弊社名義では送りません。</p>
+      </div>
+      <div class="card">
+        <h3>事後（翌朝から1か月）</h3>
+        <ul>
+          <li><b>翌朝7時</b> 推しからの手紙。受け取りで会員になった方＝FANTS管理者メッセージ機能、未登録の方＝購入時の連絡先（御社名義）</li>
+          <li><b>翌日21時</b> 「応援記録証」（推し登録・転校の記録・受け取った先生・発掘者No.・エンドロール掲載番号）</li>
+          <li><b>翌日〜7日間</b> 体験入学週間（チケット有効。0円または低額・御社仕様<span class="tag ask">未確認</span>）。7日後の再接触率を主要KPIに</li>
+          <li><b>翌日</b> 「推し増えレポート」公開（受け取り総数・1人あたり受け取り数・転校率・配信部門）→PR TIMES</li>
+          <li><b>1週間後</b> アーカイブ（本編はYouTube、舞台裏・ノーカットはFANTS内のみ）</li>
+          <li><b>1か月後</b> 帰路に送った「増えた推しへのひとこと」が本人に戻る配信＋「推し、増えましたか」1問</li>
+          <li>出場者には個別レポート（はじめまして人数・転校で移ってきた人数・翌週新規会員数）。集計報告書（立会人署名入り）を公開</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>FANTSを知ってもらう装置</h3>
+        <ul>
+          <li>「FANTSのクリエイターだけが出られる祭り」という前提そのものがブランドの提示。冠は「presented by FANTS」。会場で御社のサービス説明はせず、MCが1回だけ「この6組は全員、FANTSでコミュニティを運営しています」</li>
+          <li>二層構造：手紙・予選・合同授業・本編はYouTube無料（非会員の入口）。完全版・舞台裏・翌朝の手紙はFANTS内</li>
+          <li>体験入学チケット（各クリエイターがサービス販売で発行。受け取り＝FANTS登録＝勝敗の判定と新規ファンの計測点を兼ねる）。来場の条件にはしません</li>
+          <li>推し活手帳の実装3案（御社判断）：①FANTSアプリ既存機能（ポイント・アンケート）の転用 ②御社名義LINE公式でのLIFF ③紙台紙＋QR。第1回は③を正本とし②は任意</li>
+          <li>御社の年間カレンダーに「春アワード→四半期学校→秋祭り」として置く（配置は御社判断）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>出場クリエイター（6組）の選び方と、お声がけ</h3>
+        <ul>
+          <li>ジャンル重複なし（教育・語学・料理・片づけ・看護・セラピスト・子育て・スポーツ等から分散）</li>
+          <li>生活側の「説」を持ち、15分で初めての人が実演できる課題を持っている</li>
+          <li>ファン代表が90秒語れる関係がある</li>
+          <li>炎上履歴なし・反社チェック通過。本人が「新しい人に出会いたい」と口にする</li>
+          <li><b>既存会員数は条件にしません</b>。はじめまして受け取りなので、動員が多い組も損をしません。アワード2026受賞組を「先輩解説役」で招く案</li>
+        </ul>
+        <h4>本人に伝えること</h4>
+        <ul>
+          <li>「翌日に、あなたとはじめて出会った人の数が分かる」</li>
+          <li>「動員は損にならない。連れてきた人が他の教室に行っても、あなたの数は減らない」</li>
+          <li>ファンが自分を語る90秒と手紙の映像が手元に残る。当日のチケットとサービス販売がそのまま売上と会員になる</li>
+          <li>負担の上限：打ち合わせ3回（各90分）・手紙1本・合同授業1回・当日1日。謝礼5万円＋交通宿泊実費。切り抜きは本人承認制。他の出演者への言及は推薦のみ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>KPI（案・手間のある行動に統一）</h3>
+        <div class="tbl-wrap" style="margin-top:8px"><table style="min-width:0">
+          <thead><tr><th>区分</th><th>指標</th><th>第1回目標</th></tr></thead>
+          <tbody>
+            <tr><td>来場</td><td>来場150名・同伴率40%・事前キャンセル10%以下・当日欠席5%以下</td><td class="t">—</td></tr>
+            <tr><td>推し増え</td><td>はじめまして受け取り数（推し登録外かつ未会員）</td><td class="t">1人あたり1.0件</td></tr>
+            <tr><td>推し増え</td><td>転校率・推しカード交換枚数</td><td class="t">計測・来場者数と同数</td></tr>
+            <tr><td>継続</td><td>7日後の再接触率（体験入学週間）</td><td class="t">受け取り者の40%</td></tr>
+            <tr><td>認知</td><td>「FANTSを今日はじめて知った」率とその後の登録率／指名検索「FANTS」週次</td><td class="t">計測／ベース比+30%</td></tr>
+            <tr><td>認知</td><td>ハッシュタグ投稿数・切り抜き（6本＋4本）の再生合計</td><td class="t">1,500件・計測</td></tr>
+            <tr><td>配信</td><td>予選生配信・合同授業の視聴</td><td class="t">各5,000回</td></tr>
+            <tr><td>クリエイター</td><td>出演組の翌週新規会員数（御社データ・未確認）</td><td class="t">1組あたり+15名</td></tr>
+            <tr><td>事後</td><td>翌朝の手紙スタンプ返信率・1か月後ひとこと返信率</td><td class="t">40%・30%</td></tr>
+            <tr><td>安全</td><td>誹謗中傷の発生件数</td><td class="t">0</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="card">
+        <h3>収支（第1回・150名・相場ベース・円） <span class="tag plan">案</span></h3>
+        <div class="tbl-wrap" style="margin-top:8px"><table style="min-width:0">
+          <thead><tr><th>項目</th><th>金額</th></tr></thead>
+          <tbody>
+            <tr><td>チケット3,000円×有料約110名（同伴率40%で来場150名）</td><td class="t">330,000円</td></tr>
+            <tr><td>外部協賛（現物中心・役割型4枠×20〜30万円相当）</td><td class="t">50〜100万円</td></tr>
+            <tr><td>会場（150〜200名ホール＋教室6室）</td><td class="t">35〜50万円</td></tr>
+            <tr><td>配信（2カメ＋スイッチャー）＋6室収録</td><td class="t">40〜70万円</td></tr>
+            <tr><td>音響・照明オペレーター</td><td class="t">15〜30万円</td></tr>
+            <tr><td>運営人件費（26名＋ディレクター2名）</td><td class="t">50〜60万円</td></tr>
+            <tr><td>手帳台紙・美術・印刷</td><td class="t">20〜30万円</td></tr>
+            <tr><td>出演謝礼6組×5万円＋交通宿泊</td><td class="t">40〜50万円</td></tr>
+            <tr><td>弁護士（契約書・立会い）</td><td class="t">30〜40万円</td></tr>
+            <tr><td>広告費・保険・雑費</td><td class="t">15〜25万円</td></tr>
+            <tr><td class="b">支出合計</td><td class="t">約245〜355万円</td></tr>
+            <tr><td class="b">差引（協賛50〜100万円の場合）</td><td class="t">▲112〜272万円</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">チケットは「体験入学チケット受け取りの権利を含むセット」として明示します。当日のサービス販売の売上は各クリエイター、決済手数料は御社。有料配信・課金要素・物販（組色リストバンド以外）は第1回では設けません。協賛営業の主体は弊社、着手は2027年6月、訴求材料は短期の実測・予選配信の再生数・PR TIMES露出です。差引の負担者は主催形態（07章）で先に決めます。</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="card">
+        <h3>リスクと手当</h3>
+        <ul>
+          <li><b>ファン同士の対立</b>：票がないので他を叩く動機がない。相互推薦を先に見せる。投稿ガイドラインを事前掲示</li>
+          <li><b>金権批判</b>：課金要素ゼロ。同伴者も有料者も同条件</li>
+          <li><b>談合・なりすまし</b>：推し登録は購入時固定・機械照合。受け取りはFANTS登録を伴う行動で、既会員は御社データで除外。規約に売買・譲渡・代理の無効を明記。立会人の集計報告書を公開</li>
+          <li><b>やらせ疑惑</b>：ルール事前公開、第三者立会い、上位3組を当日公表、編集で順序を変えない。検証対決は生徒の実演で決まる</li>
+          <li><b>未会員判定が不可の場合</b>：推し登録外のみで判定し、その旨を事前公開（自己申告は使わない）</li>
+          <li><b>人気格差</b>：4位以下非公表・個別の人数は本人にだけ</li>
+          <li><b>会場・日程</b>：2027年4月に複数候補を仮押さえし代替日も同時確保。中止・順延時の返金規定と中止保険の要否を確認。運動会・台風期・3連休を避け11月中旬</li>
+          <li><b>心理的安全</b>：涙を狙わない、起立で可視化しない、実演は事前募集の希望者のみ</li>
+          <li><b>計測の障害</b>：正本は紙台紙＋QR読取ログに一本化。会場Wi-Fi・電源・同時接続の負荷試験</li>
+          <li><b>弁護士確認6点</b>：①受け取り権付き有料チケットの位置づけと同伴者の扱い ②来場者の撮影同意・撮影不可エリア・エンドロール実名の同意・未成年同伴者 ③配信・BGM・アーカイブの著作権処理と映像の二次利用条件 ④出場者・協賛社の反社チェック ⑤個人情報の管理者と委託契約 ⑥出演契約（肖像・切り抜き承認制）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>スケジュール（曜日検算済み）</h3>
+        <ul>
+          <li>2026年12月18日（金）まで：主催形態・費用負担・弊社対価の合意、弁護士確認の着手、質問リストのご回答</li>
+          <li>2027年3月5日（金）・6日（土）：第1回一日学校（オンライン二夜・祭りの判定式の試運転）</li>
+          <li>2027年4月3日（土）まで：検証レビュー。規模150名・日程・主催形態を確定。会場を複数候補で仮押さえ</li>
+          <li>2027年4〜5月：公募→6組を直接決定</li>
+          <li>2027年6月12日（土）：出場6組発表、協賛募集開始（弊社担当）</li>
+          <li>2027年9月：出演契約・手紙収録・検証対決の課題確定・生徒募集</li>
+          <li>2027年10月9日（土）：チケット販売開始＋推し登録（W-6）</li>
+          <li>2027年10月16日（土）21時：予選「はじめましての生配信」</li>
+          <li>2027年11月6日（土）21時：合同授業／11月13日（土）通しリハーサル・負荷試験</li>
+          <li><b>2027年11月20日（土）：本祭</b>（代替11月27日（土））。前倒し案は6月26日（土）</li>
+          <li>11月21日（日）朝7時：推しからの手紙。11月21日〜27日：体験入学週間</li>
+          <li>12月18日（土）前後：1か月後アンケート、推し増えレポート、第2回判断。第2回以降は御社主催・名古屋開催も案</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="askbox">
+      <h3>中長期について、ご一緒に決めたいこと</h3>
+      <ol>
+        <li>企画名（「推し活」を看板に入れるか外すか）と用語（はじめまして受け取り／転校ベル／推し活手帳／発掘賞）</li>
+        <li>勝敗の決め方（受け取り型を推奨。票を使う案との比較は口頭でご説明します）</li>
+        <li>主催形態と差引の負担、弊社の対価（07章）</li>
+        <li>本祭の日程（11月20日（土）主案／前倒し6月26日（土））、第1回の規模150名と300名への拡大条件</li>
+        <li>チケット3,000円・同伴1名無料・振替制</li>
+        <li>学園長役を森川代表にお願いできるか、御社の会員データで「未会員かどうか」を判定し人数だけをお戻しいただけるか</li>
+        <li>推し活手帳の実装（紙台紙＋QR正本／御社名義LIFF任意）と、非会員向け配信の可否</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="sec p" id="s6">
+    <div class="sec-head"><div class="sec-num">06</div><div><h2>借りたもの、避けたもの</h2><p class="sec-sub">参考にした番組・イベントと、採らなかった要素</p></div></div>
+    <hr class="sec-rule">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>参考</th><th>借りた</th><th>避けた</th></tr></thead>
+      <tbody>
+        <tr><td class="b">AKB48選抜総選挙</td><td>順位コールの緊張、「自分の行動で推しの運命が変わる」当事者性</td><td>CD複数買い＝票、課金票、票そのもの（本案は票を使わない）、4位以下の公表</td></tr>
+        <tr><td class="b">PRODUCE 101</td><td>選考過程がコンテンツ、第三者立会いの集計、売買禁止規約</td><td>運営が結果に手を入れられる設計、脱落演出、長期拘束</td></tr>
+        <tr><td class="b">BreakingDown</td><td>選考過程（予選の生配信・手紙）を本戦より先に厚く出す</td><td>露悪・罵倒・乱闘</td></tr>
+        <tr><td class="b">ほこ×たて／弊社の過去企画（立場の違う当事者の討論）</td><td>一言で言える対決ルール、決着の一瞬</td><td>結果の編集改変（検証対決は生徒の実演と動いた票で決まる）</td></tr>
+        <tr><td class="b">しくじり先生</td><td>教科書という「物」、告白→なぜ→教訓、事前打ち合わせ3回、他責ゼロ、今日できる1手まで降ろす</td><td>準備不足の即興告白、人生の見世物化</td></tr>
+        <tr><td class="b">水曜日のダウンタウン</td><td>対決を「○○説」の検証として提示</td><td>検証対象を人の尊厳にしない</td></tr>
+        <tr><td class="b">ラヴ上等</td><td>「学校」の枠組み、掲示されたルール、締めの儀式</td><td>過去の見世物化、校則の唱和</td></tr>
+        <tr><td class="b">M-1（2023敗者復活戦）／THE W</td><td>観客が結果に関与する発想／「見た人だけが関与できる」発想</td><td>ネット人気投票／出番順の不利</td></tr>
+        <tr><td class="b">有吉の壁／カズレーザーと学ぶ。</td><td>審査なしの協調型コーナー（推しの推し）／同じ問いに別角度で答える</td><td>全体を勝敗なしで平坦にすること／講義の連続</td></tr>
+        <tr><td class="b">Nailed It!／Taskmaster／Hot Ones</td><td>失敗を一緒に笑う、人柄が出るお題、本音を引き出す制約（砂時計1分・手紙・封筒とパス券）</td><td>罰、晒し、身体的負荷、過去投稿の無断音読</td></tr>
+        <tr><td class="b">EBiDAN「Yes! 東京」</td><td>合同作品→個別→体験入学の回遊導線、1人1パート</td><td>複数買い特典型の販売</td></tr>
+        <tr><td class="b">FANTSクリエイターアワード（御社）</td><td>選考基準の事前公開、落選を公にしない設計</td><td>表彰型に留まること（本案は「見つけられる」）</td></tr>
+        <tr><td class="b">既存のサミット形式</td><td>—</td><td>登壇者を並べて講演させる（観客に役割がない・同じ問いに答えない・尺が長い）</td></tr>
+        <tr><td class="b">弊社の自社フェス（2026年11月開催予定）</td><td>役割付与・時間割・全員集合2回・低額有料＋同伴1名無料・役割型協賛</td><td>弊社固有の語と色。役割名・部屋名は御社の語彙で付け直し、色は御社ブランドに合わせます</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 07 -->
+  <section class="sec" id="s7">
+    <div class="sec-head"><div class="sec-num">07</div><div><h2>弊社の関わり</h2><p class="sec-sub">弊社はこの章でのみ前に出ます</p></div></div>
+    <hr class="sec-rule">
+    <div class="card">
+      <h3>株式会社Merone について</h3>
+      <p>在宅リユースのスクール（約2,700名・30〜45歳の女性が中心）を運営しながら、教育系・キャリア系の企業に向けて、LINEを軸にした育成設計（勉強会・配信・面談への導線）を提供しています。弊社自身も2026年11月に、学校一棟を貸し切り「役割付与・時間割・全員集合2回」の型で300名規模のフェスを開催します。本提案の進行表・手帳・配信の型は、その実物を使って組んでいます。代表の森川公美子が総合プロデューサー兼MCを務めます（役名は御社の語彙で）。出場者ではなく、審査にも加わりません。</p>
+    </div>
+    <div class="three">
+      <div class="card"><h3>弊社が担うもの</h3><ul><li><b>短期</b>：二夜の時間割と教科書、進行台本（分刻み・共有ON/OFF列・巻きの順番）、Zoom投票と結果共有の設計、ブレイクアウト14室の設計、配信文13通と申込フォーム・同意文、待機画面と黒板、判定面談と打ち合わせ3回への同席、通しリハーサル、結果レポート</li><li><b>中長期</b>：企画設計・進行表（秒単位）、推し活手帳の設計（紙台紙＋QR。画面版は御社名義）、協賛営業</li><li><b>両方</b>：事前・事後の配信設計（1通1アクション・所要時間明示・生活時間に合わせる）、当日のMC（担任）・実況席</li></ul></div>
+      <div class="card"><h3>弊社がしないこと</h3><ul><li>弊社サービスの出場</li><li>来場者・受講生への弊社スクール・勉強会の案内、弊社ブース</li><li>弊社名義のLINEでの友だち取得（申込・連絡はすべて御社名義）</li><li>審査・採点への関与、欠席者の代打としての討論参加</li></ul></div>
+      <div class="card"><h3>データの所有</h3><ul><li>参加者データの管理者は御社。弊社は委託先として個人情報取扱契約を結びます</li><li>友だちリストと会員データの所有者は御社</li><li>Zoomの録画・投票レポート・アンケート回答も御社名義に残します</li><li>同意取得画面・返還削除の手順を要件に入れます</li></ul></div>
+    </div>
+    <div class="split">
+      <div class="card">
+        <h3>主催形態（3案・推奨は案1） <span class="tag plan">案</span></h3>
+        <ol>
+          <li><b>御社主催・弊社企画制作委託</b>：契約主体・特定商取引法の表示・保険・源泉徴収・個人情報管理者は御社。差引は御社のマーケティング費。弊社は委託費</li>
+          <li><b>共催</b>：差引を折半。契約主体は御社、制作は弊社</li>
+          <li><b>弊社主催・御社メインパートナー</b>：弊社がリスクを負い、御社は冠協賛</li>
+        </ol>
+        <p class="note">上場グループの稟議に乗せやすいよう、概算見積・契約形態・支払条件を別紙でお付けします。</p>
+      </div>
+      <div class="card">
+        <h3>弊社の対価 <span class="tag plan">案</span></h3>
+        <ul>
+          <li>短期（一日学校・オンライン二夜）：企画制作委託費 50万円前後（上の制作一式を含む。当日運営の実費は04章の収支に別建て）</li>
+          <li>中長期（祭り）：企画制作委託費 150万円前後（企画設計・進行・手帳設計・配信設計・打ち合わせ同席・協賛営業一式）</li>
+          <li>レベニューシェア・協賛枠での対価は採りません（場の主語を御社に保つため）</li>
+          <li>内訳は別紙</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section class="sec p" id="s8">
+    <div class="sec-head"><div class="sec-num">08</div><div><h2>先に伺いたいこと</h2><p class="sec-sub">設計の精度を上げるために、御社にお伺いしたい11点</p></div></div>
+    <hr class="sec-rule">
+    <div class="card">
+      <ol>
+        <li>御社の意思決定スケジュール（担当部門・稟議の所要期間・予算年度の締め）と、クリエイターアワード2027の時期</li>
+        <li>既存のZoom契約の有無（短期の正本をZoomミーティングで組むため）</li>
+        <li>会員データの都道府県分布（人数のみ。祭りの開催地と配信部門の判断材料）</li>
+        <li>「あるコミュニティの未会員かどうか」を御社データで判定し、人数だけをお戻しいただけるか</li>
+        <li>サービス販売で0円の体験入学チケットが出せるか（代替：無料招待・トライアル期間）</li>
+        <li>受講生向けアーカイブを非会員に見せる設定の有無（なければ御社名義の限定公開URLで運用）</li>
+        <li>Zoomからのライブ同時中継の規約と、月間配信上限（公開情報で5時間/月と3時間の表記が混在）、同時視聴上限</li>
+        <li>講師候補15〜20名のご紹介と学園長役（事前収録60秒）の可否、御社チャネルでの告知とPR表記の方針</li>
+        <li>班付きサポーター10名を御社スタッフから出せるか</li>
+        <li>祭りについて：出場者のご紹介の可否（顧客対応部門のご意向）と、既存のオフ会・会員限定イベントとの棲み分け</li>
+        <li>テレビ・メディア露出の予定（告知の相乗りが可能か）</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section class="sec" id="s9">
+    <div class="sec-head"><div class="sec-num">09</div><div><h2>全体スケジュール</h2><p class="sec-sub">2026年10月21日（水）起点・曜日検算済み</p></div></div>
+    <hr class="sec-rule">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>時期</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td class="t">2026年11月13日（金）まで</td><td>御社へ短期・中長期を同時提案（短期のGO判断を先に）</td></tr>
+        <tr><td class="t">2026年12月18日（金）</td><td>短期のGO判断一段目（口頭の方向性）。主催形態・費用負担・弊社対価の方向</td></tr>
+        <tr><td class="t">2027年1月15日（金）</td><td>短期のGO判断二段目（正式稟議）・講師の判定面談開始</td></tr>
+        <tr><td class="t">2027年1月29日（金）</td><td>講師3名確定・説の2題決定</td></tr>
+        <tr><td class="t">2027年3月5日（金）・6日（土）</td><td>第1回 一日学校（オンライン二夜・21時）。代替3月26日（金）・27日（土）、4月案4月16日（金）・17日（土）</td></tr>
+        <tr><td class="t">2027年4月上旬</td><td>短期の結果レポート。祭りの規模・日程・主催形態を確定。会場仮押さえ</td></tr>
+        <tr><td class="t">2027年5月14日（金）・15日（土）</td><td>第2回 一日学校（案）</td></tr>
+        <tr><td class="t">2027年6月12日（土）</td><td>祭りの出場6組発表、協賛募集開始</td></tr>
+        <tr><td class="t">2027年8月6日（金）・7日（土）</td><td>第3回 一日学校（案）</td></tr>
+        <tr><td class="t">2027年10月16日（土）21時</td><td>予選「はじめましての生配信」</td></tr>
+        <tr><td class="t">2027年11月6日（土）21時</td><td>合同授業（オンライン無料30分）</td></tr>
+        <tr><td class="t">2027年11月20日（土）</td><td>第1回 推し活祭り（代替11月27日（土）・前倒し案6月26日（土））</td></tr>
+        <tr><td class="t">2027年12月</td><td>推し増えレポート公開、第2回判断</td></tr>
+      </tbody>
+    </table></div>
+    <div class="card navy" style="margin-top:18px">
+      <h3>締めに</h3>
+      <p>春にアワード、四半期に学校、秋に祭り。御社のクリエイターが「見つけられる」日を、年に5回つくります。推しが1人増える日を、FANTSの名前で定着させたいと考えています。</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="sec p" id="s10">
+    <div class="sec-head"><div class="sec-num">10</div><div><h2>出典</h2><p class="sec-sub">本資料の数字はすべて公開情報と相場に基づく概算です</p></div></div>
+    <hr class="sec-rule">
+    <div class="card src">
+      <ol>
+        <li>CDG・Oshicoco 第3回推し活実態調査（2026年1月30日） <a href="https://prtimes.jp/main/html/rd/p/000000071.000025413.html">prtimes.jp</a></li>
+        <li>jeki「Cheering AD」推し活調査2026 <a href="https://cheering-ad.jeki.co.jp/blogs/magazine/oshikatsu2026">cheering-ad.jeki.co.jp</a></li>
+        <li>Favomatch 担降り調査（2025年3月） <a href="https://prtimes.jp/main/html/rd/p/000000003.000107077.html">prtimes.jp</a></li>
+        <li>タニタ 推し活に関する意識・実態調査2026 <a href="https://api-img.tanita.co.jp/files/user/news/pdf/2026/fanactivities_research.pdf">tanita.co.jp</a></li>
+        <li>株式会社スタジアム 会社概要 <a href="https://fants.jp/company">fants.jp</a>／FANTS プラン・手数料 <a href="https://biz.fants.jp/products/community/plan/">biz.fants.jp</a>／機能一覧 <a href="https://biz.fants.jp/products/community/features/">biz.fants.jp</a></li>
+        <li>PR TIMES（スタジアム）：500コミュニティ突破（2026年2月3日）／サービス販売 提供開始（2026年1月23日）／管理者メッセージ機能（2026年1月28日）／FANTSクリエイターアワード2026 結果発表（2026年3月16日） <a href="https://prtimes.jp/main/html/searchrlp/company_id/140975">prtimes.jp</a></li>
+        <li>スタメン 2026年12月期 第2四半期決算短信（コミュニティ667件）・FY2025通期決算説明資料（年間施策） <a href="https://f.irbank.net/pdf/20260213/140120260212558675.pdf">irbank.net</a></li>
+        <li>FANTSキャンパス リリース（2026年8月4日） <a href="https://biz.fants.jp/news/9xkpc_xo/">biz.fants.jp</a></li>
+        <li>EBiDAN 15th ANNIVERSARY 特設（「Yes! 東京」） <a href="https://ebidan.jp/feature/15th_yes_release">ebidan.jp</a>／USEN「EBiDAN × HIGHLIGHT」（ONE N' ONLY HAYATO） <a href="https://e.usen.com/news/news-movie/ebidan-highlight-15ebidanhighlight-one-n-onlyhayato-yes-remix.html">e.usen.com</a></li>
+        <li>Talent Bureau「What Makes a Great Conference」2025 Survey（n=250） <a href="https://talentbureau.com/what-makes-a-great-conference-2025-survey-results/">talentbureau.com</a></li>
+        <li>Taskmaster 18シリーズの分析（arXiv 2505.02886） <a href="https://arxiv.org/abs/2505.02886">arxiv.org</a></li>
+        <li>Peatix「オンラインイベントに関する調査」2020（参加しやすい時間帯・欠席理由） <a href="https://documents.peatix.com/Peatix_Online_Event_Survey_2020.pdf">peatix.com</a>／CRファクトリー 参加しやすい時間帯調査 <a href="https://crfactory.com/6782/">crfactory.com</a></li>
+        <li>ZOZO 子育て女性の自由時間調査2025（ネットショップ担当者フォーラム） <a href="https://netshop.impress.co.jp/node/13713">netshop.impress.co.jp</a>／TECH PLAY 2020 オンライン化と参加者数（パーソルイノベーション） <a href="https://www.persol-innovation.co.jp/news/2020-0521">persol-innovation.co.jp</a></li>
+        <li>Jストリーム ウェビナーの最適な長さ調査2024（DXマガジン） <a href="https://dxmagazine.jp/news/cs84wnr/">dxmagazine.jp</a>／Microsoft Human Factors Lab 2021（連続会議と休憩） <a href="https://www.cnbc.com/2021/04/20/microsofts-new-outlook-fix-to-end-brain-drain-of-work-meetings.html">cnbc.com</a>／Shockley ほか 2021 カメラONと疲労 <a href="https://www.sciencedaily.com/releases/2021/08/210830092203.htm">sciencedaily.com</a></li>
+        <li>Zoom 公式料金・機能 <a href="https://zoom.us/ja/pricing">zoom.us</a>／ブレイクアウトの自己選択・投票・スマホ表示の仕様解説 <a href="https://symphonict.nesic.co.jp/workingstyle/zoom/breakout-rooms/">symphonict.nesic.co.jp</a>／画面収録の抑止 <a href="https://nex-pro.com/blog/webinar/webinar-recording-ban/">nex-pro.com</a></li>
+        <li>FANTS ヘルプ：ライブ配信のよくある質問・外部ソフトウェア配信・無料招待・トライアル・サービス販売 <a href="https://support.fants.jp/hc/ja">support.fants.jp</a>／FANTS ライブ配信機能リリース（2024年7月22日） <a href="https://prtimes.jp/main/html/rd/p/000000012.000140975.html">prtimes.jp</a></li>
+        <li>上智大学 2020年9月オンライン学位授与式 <a href="https://findsophia.jp/sophia-topics/20201021-onlineceremony/">findsophia.jp</a>／同志社中学 オンライン学園祭2021（note） <a href="https://note.com/kaichou_1224/n/na8d610b4ccf2">note.com</a>／テレビ東京「サンドウィッチマンの脱落テスト！」 <a href="https://www.tv-tokyo.co.jp/information/2020/07/06/220892.html">tv-tokyo.co.jp</a></li>
+        <li>消費者庁 通信販売の返品特約・最終確認画面 <a href="https://www.no-trouble.caa.go.jp/case/mailorder/case01.html">no-trouble.caa.go.jp</a>／デジタルアーカイブ学会 肖像権ガイドライン2023 <a href="https://digitalarchivejapan.org/wp-content/uploads/2023/04/Shozokenguideline-20230424.pdf">digitalarchivejapan.org</a></li>
+        <li>リクナビNEXT『しくじり先生』制作原則 <a href="https://next.rikunabi.com/journal/20151125_1/">next.rikunabi.com</a></li>
+        <li>PRODUCE 101 JAPAN 外部弁護士立会い集計 <a href="https://www.oricon.co.jp/news/2148810/full/">oricon.co.jp</a>／M-1 2023 敗者復活戦の会場審査化 <a href="https://natalie.mu/owarai/news/552262">natalie.mu</a></li>
+        <li>消費者庁：景品規制の概要／ステルスマーケティング規制／通信販売の表示義務 <a href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/">caa.go.jp</a></li>
+        <li>会場・配信・運営費の相場：ライブ配信代行費用相場 <a href="https://www.1stop-studio.tokyo/blog/live-streaming/live-streaming-cost/">1stop-studio.tokyo</a>／運営スタッフ・MC費用相場 <a href="https://frontierchannel.jp/blog/mc_fee/">frontierchannel.jp</a>／セミナー参加費相場 <a href="https://seminarbase.com/column/0581/">seminarbase.com</a></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>株式会社Merone　代表取締役　森川公美子</span>
+    <span>2026年10月21日（水）作成・10月22日（木）短期をオンライン版に更新 · 本資料は提案段階の案であり、記載の金額・日程・仕組みはすべて御社とのご相談で確定します</span>
+  </div>
+</div>
+
+</body>
+</html>
