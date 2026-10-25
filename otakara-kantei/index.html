@@ -302,7 +302,7 @@ function render(r){
   var top=r.items[0];
   var s= top.st>=4 ? "「"+top.n+"」が売れるのは、知らない人がほとんどです。捨てる前に出品してみる価値があります。" : "身近なものほど、写真と説明文で値段が変わります。";
   document.getElementById("sSay").innerHTML=s+"<small>鑑定士：森川</small>";
-  document.getElementById("sLead").textContent="この中から3点、"+EVENT_LABEL+"に持ってきませんか。写真の撮り方と値付けを教わって、その場で出品して帰れます。来られない方は、同じ内容を動画でお届けします。";
+  document.getElementById("sLead").textContent="この中から3点、"+EVENT_LABEL+"に持ってきませんか。写真の撮り方と値付けを教わって、その場で出品して帰れます。参加は無料、お子さま連れも大丈夫です。来られない方は、同じ内容を動画でお届けします。";
   var names=r.items.slice(0,3).map(function(it){ return it.n; }).join("・");
   var realMsg="出品会に参加します（鑑定："+n+"点／"+names+"）";
   var onMsg="オンラインで参加します（鑑定："+n+"点／"+names+"）";
