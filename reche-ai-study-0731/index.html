@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>AIに使われる人、AIを使いこなす人。｜Re:che AI勉強会 7/31</title>
+<style>
+:root{
+  --bg:#f6f1f9; --bg2:#f1eaf7; --card:#ffffff;
+  --navy:#26405f; --navy2:#1d3149;
+  --pink:#cf8f9c; --pink2:#bd7886; --pinkbg:#fbeef1;
+  --blue:#8f9fd8; --text:#4a4446;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif;
+  background:linear-gradient(168deg,#f4edf8 0%,#faf7fb 50%,#fbeef1 100%); color:var(--text); overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.deck{position:relative;width:100%;height:100%;}
+.slide{
+  position:absolute; inset:0; display:none;
+  padding:clamp(24px,5vh,64px) clamp(20px,6vw,96px);
+  flex-direction:column; justify-content:center;
+}
+.slide.active{display:flex;}
+.slide .inner{max-width:1080px;margin:0 auto;width:100%;}
+.kicker{
+  display:inline-block; background:var(--navy); color:#fff;
+  font-size:clamp(12px,1.6vw,16px); letter-spacing:.12em;
+  padding:6px 16px; border-radius:999px; margin-bottom:clamp(12px,2.4vh,24px); font-weight:700;
+}
+.kicker.pink{background:var(--pink2);}
+h1{color:var(--navy2); font-size:clamp(30px,5.6vw,64px); line-height:1.35; font-weight:800; letter-spacing:.02em;}
+h2{color:var(--navy2); font-size:clamp(24px,4.2vw,46px); line-height:1.4; font-weight:800; margin-bottom:clamp(14px,3vh,30px);}
+h2 .em{color:var(--pink2);}
+h1 .em{color:var(--pink2);}
+p.lead{font-size:clamp(16px,2.4vw,24px); line-height:1.9;}
+p.sub{font-size:clamp(14px,2vw,20px); line-height:1.9; color:#6b6467;}
+.cards{display:grid; gap:clamp(10px,1.8vh,18px); margin-top:clamp(12px,2.4vh,24px);}
+.cards.c2{grid-template-columns:1fr 1fr;}
+.cards.c3{grid-template-columns:1fr 1fr 1fr;}
+.card{
+  background:var(--card); border-radius:18px; padding:clamp(14px,2.6vh,26px) clamp(16px,2.2vw,28px);
+  box-shadow:0 6px 24px rgba(38,64,95,.07);
+}
+.card h3{color:var(--navy); font-size:clamp(16px,2.2vw,23px); margin-bottom:8px; line-height:1.5;}
+.card p{font-size:clamp(13px,1.8vw,18px); line-height:1.8;}
+.card .big{font-size:clamp(22px,3.4vw,36px); font-weight:800; color:var(--navy2);}
+.card.pink{background:var(--pinkbg);}
+.card.navy{background:var(--navy); }
+.card.navy h3,.card.navy p{color:#fff;}
+.num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:clamp(30px,4vh,40px); height:clamp(30px,4vh,40px); border-radius:50%;
+  background:var(--pink2); color:#fff; font-weight:800; font-size:clamp(14px,2vw,19px); margin-bottom:10px;
+}
+.quote{
+  background:var(--card); border-left:6px solid var(--blue); border-radius:0 14px 14px 0;
+  padding:clamp(12px,2vh,20px) clamp(14px,2vw,24px); margin-top:12px;
+  font-size:clamp(14px,2vw,19px); line-height:1.8;
+}
+.quote small{display:block; color:#8a8286; margin-top:6px; font-size:clamp(11px,1.4vw,14px);}
+table.tbl{width:100%; border-collapse:separate; border-spacing:0; margin-top:clamp(10px,2vh,18px); background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 6px 24px rgba(38,64,95,.07);}
+table.tbl th{background:var(--navy); color:#fff; padding:clamp(10px,1.6vh,16px); font-size:clamp(14px,1.9vw,19px);}
+table.tbl td{padding:clamp(10px,1.6vh,16px) clamp(12px,1.6vw,18px); font-size:clamp(13px,1.8vw,18px); line-height:1.7; border-top:1px solid #eef2f6; vertical-align:top;}
+table.tbl td:first-child{font-weight:700; color:var(--navy); white-space:nowrap;}
+.timechip{
+  position:absolute; top:clamp(12px,2vh,20px); right:clamp(14px,2vw,24px);
+  background:#fff; color:var(--navy); border:1px solid #d8e6f1;
+  font-size:clamp(10px,1.3vw,13px); padding:4px 12px; border-radius:999px; font-weight:700; letter-spacing:.05em;
+}
+.footerbar{
+  position:fixed; left:0; right:0; bottom:0; height:6px; background:#dbe8f2; z-index:5;
+}
+.footerbar i{display:block; height:100%; background:linear-gradient(90deg,var(--blue),var(--pink)); width:0%; transition:width .25s;}
+.pager{
+  position:fixed; bottom:14px; right:18px; z-index:6; display:flex; gap:8px; align-items:center;
+  font-size:12px; color:#8a97a5; font-weight:700;
+}
+.pager button{
+  border:none; background:#fff; color:var(--navy); width:34px; height:34px; border-radius:50%;
+  box-shadow:0 3px 10px rgba(38,64,95,.15); cursor:pointer; font-size:15px; font-weight:800;
+}
+.brand{position:fixed; bottom:14px; left:18px; z-index:6; font-size:11px; color:#9aa7b4; letter-spacing:.1em; font-weight:700;}
+.bars{margin-top:clamp(12px,2vh,20px); display:grid; gap:clamp(8px,1.4vh,14px);}
+.bar{display:grid; grid-template-columns:clamp(90px,12vw,140px) 1fr clamp(48px,6vw,70px); align-items:center; gap:12px; font-size:clamp(13px,1.9vw,18px);}
+.bar .label{font-weight:700; color:var(--navy);}
+.bar .track{background:#e3edf5; border-radius:999px; height:clamp(14px,2.2vh,22px); overflow:hidden;}
+.bar .fill{height:100%; border-radius:999px; background:linear-gradient(90deg,var(--blue),var(--pink));}
+.bar .val{font-weight:800; color:var(--navy2); text-align:right;}
+.vs{display:grid; grid-template-columns:1fr auto 1fr; gap:clamp(8px,1.6vw,18px); align-items:stretch; margin-top:clamp(12px,2.4vh,22px);}
+.vs .mid{display:flex; align-items:center; font-weight:800; color:var(--pink2); font-size:clamp(16px,2.4vw,24px);}
+ul.list{list-style:none; margin-top:clamp(10px,2vh,16px);}
+ul.list li{
+  font-size:clamp(14px,2vw,20px); line-height:1.8; padding:clamp(6px,1.2vh,10px) 0 clamp(6px,1.2vh,10px) 34px; position:relative;
+}
+ul.list li::before{content:""; position:absolute; left:8px; top:calc(50% - 5px); width:10px; height:10px; border-radius:50%; background:var(--pink);}
+ul.list li b{color:var(--navy2);}
+.centered{text-align:center;}
+.tag{display:inline-block; background:var(--bg2); border:1px solid #d8e6f1; color:var(--navy); border-radius:999px; padding:6px 14px; font-size:clamp(12px,1.6vw,15px); font-weight:700; margin:4px;}
+.note{margin-top:clamp(10px,2vh,16px); font-size:clamp(11px,1.5vw,14px); color:#9aa0a6;}
+@media (max-width:760px){
+  .cards.c2,.cards.c3{grid-template-columns:1fr;}
+  .vs{grid-template-columns:1fr;}
+  .vs .mid{justify-content:center;}
+  body{overflow:auto;}
+}
+.cuewrap{max-width:760px; margin:0 auto; padding:16px 16px 60px;}
+.cuehead{position:sticky; top:0; background:var(--bg); padding:12px 4px; display:flex; justify-content:space-between; align-items:baseline; gap:10px; z-index:2;}
+.cuehead b{color:var(--navy2); font-size:17px;}
+.cuehead span{font-size:11px; color:#8a97a5;}
+.cuecard{background:#fff; border-radius:14px; padding:14px 16px; margin-top:12px; box-shadow:0 4px 14px rgba(38,64,95,.08);}
+.cuetop{display:flex; gap:10px; align-items:center; margin-bottom:6px;}
+.cueno{background:var(--navy); color:#fff; border-radius:8px; font-size:12px; font-weight:800; padding:2px 10px;}
+.cuetop b{color:var(--navy2); font-size:15px; flex:1; line-height:1.5;}
+.cuetime{font-size:11px; color:#8a97a5; font-weight:700; white-space:nowrap;}
+.cuecard p{font-size:13.5px; line-height:1.8; white-space:pre-line;}
+.cuenext{margin-top:8px; font-size:12px; color:var(--pink2); font-weight:800;}
+#nextcue{position:fixed; bottom:26px; left:50%; transform:translateX(-50%); background:rgba(29,49,73,.92); color:#fff; font-size:14px; font-weight:700; padding:8px 22px; border-radius:999px; z-index:9; display:none; letter-spacing:.05em; max-width:80vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- 1 表紙 -->
+<section class="slide active">
+  <div class="timechip">21:00</div>
+  <div class="inner centered">
+    <div class="kicker">Re:che AI勉強会</div>
+    <h1>AIに使われる人、<br><span class="em">AIを使いこなす人。</span></h1>
+    <p class="lead" style="margin-top:24px;">2026年7月31日（金）21:00〜22:30</p>
+    <p class="sub">森川くみこ</p>
+  </div>
+</section>
+
+<!-- 2 実演 -->
+<section class="slide">
+  <div class="timechip">21:00〜21:05</div>
+  <div class="inner centered">
+    <h1 style="font-size:clamp(84px,18vw,220px); color:var(--pink2); text-shadow:0 6px 0 rgba(38,64,95,.12);">実演！！</h1>
+  </div>
+</section>
+
+<!-- 3 サボる努力 -->
+<section class="slide">
+  <div class="timechip">21:00〜21:05</div>
+  <div class="inner centered">
+    <h2 style="font-size:clamp(28px,5.6vw,52px); margin-bottom:6px;">AIは、サボるための<br>ものでは<span class="em">ない！！</span></h2>
+    <p class="lead" style="margin-bottom:18px;">サボるのにも、努力が必要。</p>
+    <p class="sub">森川がサボるためにかけた時間とトークンは——</p>
+    <div class="cards c2" style="max-width:760px; margin:14px auto 0;">
+      <div class="card"><p class="big" style="font-size:clamp(40px,7vw,72px);">253<span style="font-size:.4em;">時間</span></p></div>
+      <div class="card pink"><p class="big" style="font-size:clamp(40px,7vw,72px);">71<span style="font-size:.4em;">億トークン</span></p></div>
+    </div>
+    <p class="note">2026年4月〜7月・Claude作業ログの実測値（チャットでの相談分は含まず）</p>
+  </div>
+</section>
+
+<!-- 4 はじめに -->
+<section class="slide">
+  <div class="timechip">21:00〜21:10</div>
+  <div class="inner">
+    <div class="kicker">はじめに</div>
+    <h2>アンケート、<span class="em">約100名分</span>すべて読みました。</h2>
+    <div class="quote">「何から始めればいいのか、わからないままです」<small>初級・AIはほぼ初めての方</small></div>
+    <div class="quote">「出品までに時間がかかりすぎて、心も体も疲れてしまいました」<small>初級・物販に取り組むママ</small></div>
+    <div class="quote">「AIに使われるのではなく、使いこなせる人間になりたいです」<small>課題①のご感想より</small></div>
+    <p class="lead" style="margin-top:20px;">今日の90分は、この声から逆算して作りました。</p>
+  </div>
+</section>
+
+<!-- 3 今日のゴール -->
+<section class="slide">
+  <div class="timechip">21:00〜21:10</div>
+  <div class="inner">
+    <div class="kicker">今日のゴール</div>
+    <h2>帰るときに、この<span class="em">3つ</span>が手に入っています。</h2>
+    <div class="cards c3">
+      <div class="card"><span class="num">1</span><h3>AIとの正しい距離感</h3><p>任せてよいこと・任せてはいけないことを、自分で仕分けできるようになります。</p></div>
+      <div class="card"><span class="num">2</span><h3>3つのAIの使い分け</h3><p>ChatGPT・Gemini・Claude。性格の違いがわかれば、迷いが消えます。</p></div>
+      <div class="card"><span class="num">3</span><h3>正しい頼み方</h3><p>今夜から使える「頼み方5点セット」を持ち帰っていただきます。</p></div>
+    </div>
+    <p class="sub" style="margin-top:18px;">そして後半、みなさんの「やりたいこと」を目の前で1つ形にします。</p>
+  </div>
+</section>
+
+<!-- 4 アンケート結果 -->
+<section class="slide">
+  <div class="timechip">21:00〜21:10</div>
+  <div class="inner">
+    <div class="kicker">アンケートからわかったこと</div>
+    <h2>みなさんの現在地</h2>
+    <div class="bars">
+      <div class="bar"><span class="label">初級</span><span class="track"><span class="fill" style="width:55%"></span></span><span class="val">約半分</span></div>
+      <div class="bar"><span class="label">中級</span><span class="track"><span class="fill" style="width:28%"></span></span><span class="val">約3割</span></div>
+      <div class="bar"><span class="label">上級</span><span class="track"><span class="fill" style="width:17%"></span></span><span class="val">約2割</span></div>
+    </div>
+    <div class="cards c3" style="margin-top:18px;">
+      <div class="card"><h3>つまずきTOP3</h3><p>①何から始めれば<br>②プロンプトがわからない<br>③答えの質が安定しない</p></div>
+      <div class="card"><h3>使える時間</h3><p>週30分〜2時間の方が中心。<br>時間は、みなさん本当に限られています。</p></div>
+      <div class="card pink"><h3>それでも</h3><p>「上級まで行きたい」が大多数。<br>この気持ちが、今日の出発点です。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 第1部 とびら -->
+<section class="slide">
+  <div class="timechip">21:10〜21:25</div>
+  <div class="inner centered">
+    <div class="kicker pink">第1部</div>
+    <h1>一番危険なのは、<br><span class="em">「自己流」</span>です。</h1>
+  </div>
+</section>
+
+<!-- 6 課題動画の回収 -->
+<section class="slide">
+  <div class="timechip">21:10〜21:25</div>
+  <div class="inner">
+    <div class="kicker pink">第1部｜自己流の危険</div>
+    <h2>あの動画の彼女は、<span class="em">怠けていたわけではない。</span></h2>
+    <p class="lead">「便利」を1つずつ積み重ねただけです。<br>献立→予定→文章→相談→気持ち。気づいたら、決める力を手放していました。</p>
+    <div class="quote">「すでに一部、自分にも始まっている気がしました」<small>課題①のご感想より（同じ感想の方が多数）</small></div>
+    <p class="sub" style="margin-top:16px;">実際のニュースでも、AIに「心の相談」まで委ねてしまったことによる事故が報じられるようになりました。（詳しくは口頭でお話しします）</p>
+  </div>
+</section>
+
+<!-- 7 3大事故 -->
+<section class="slide">
+  <div class="timechip">21:10〜21:25</div>
+  <div class="inner">
+    <div class="kicker pink">第1部｜自己流の危険</div>
+    <h2>自己流で起きる<span class="em">「3つの事故」</span></h2>
+    <div class="cards c3">
+      <div class="card"><span class="num">1</span><h3>丸投げ</h3><p>考える前に聞くクセがつくと、考える力が少しずつ痩せていきます。</p></div>
+      <div class="card"><span class="num">2</span><h3>鵜呑み</h3><p>AIは自信満々に間違えます。確認しない使い方は、仕事では危険です。</p></div>
+      <div class="card"><span class="num">3</span><h3>依存</h3><p>気持ちや決断まで委ねると、心の主導権がAI側に移ってしまいます。</p></div>
+    </div>
+    <p class="lead" style="margin-top:18px;">事故が起きる原因は、AIの性能ではなく<b style="color:var(--navy2);">「付き合い方を習っていないこと」</b>です。</p>
+  </div>
+</section>
+
+<!-- 8 逆の実例 -->
+<section class="slide">
+  <div class="timechip">21:10〜21:25</div>
+  <div class="inner">
+    <div class="kicker pink">第1部｜自己流の危険</div>
+    <h2>でも、逆のことも起きています。</h2>
+    <p class="lead">事前課題の推理ゲーム。作ったのは、AIがほぼ初めての私の友人です。<br>私が60分教えて、しゃべっただけで完成しました。</p>
+    <div class="vs">
+      <div class="card"><h3>自己流の3年</h3><p>なんとなく質問→なんとなくの答え→「AIって微妙」で止まる。</p></div>
+      <div class="mid">vs</div>
+      <div class="card pink"><h3>正しい型の60分</h3><p>任せ方と頼み方の「型」を知る→初めてでも形になる。</p></div>
+    </div>
+    <p class="lead" style="margin-top:18px;">差は才能ではなく、<b style="color:var(--pink2);">順番と型</b>だけです。</p>
+  </div>
+</section>
+
+<!-- 9 第2部 とびら -->
+<section class="slide">
+  <div class="timechip">21:25〜21:40</div>
+  <div class="inner centered">
+    <div class="kicker pink">第2部</div>
+    <h1>主導権を守る<br><span class="em">「仕分け術」</span></h1>
+  </div>
+</section>
+
+<!-- 10 社長と秘書 -->
+<section class="slide">
+  <div class="timechip">21:25〜21:40</div>
+  <div class="inner">
+    <div class="kicker pink">第2部｜仕分け術</div>
+    <h2>合言葉は、<span class="em">「あなたが社長、AIは秘書」</span></h2>
+    <div class="cards c2">
+      <div class="card navy"><h3>秘書（AI）の仕事</h3><p>作業・整理・下書き・調べ物のたたき台・計算・記録。<br>速くて文句を言わない、とても優秀な秘書です。</p></div>
+      <div class="card pink"><h3>社長（あなた）の仕事</h3><p>決めること。感じること。責任を持つこと。<br>ここを渡した瞬間、立場が入れ替わります。</p></div>
+    </div>
+    <p class="lead" style="margin-top:18px;">優秀な秘書がいる会社ほど、社長は「決めること」に集中できます。</p>
+  </div>
+</section>
+
+<!-- 11 3つの質問 -->
+<section class="slide">
+  <div class="timechip">21:25〜21:40</div>
+  <div class="inner">
+    <div class="kicker pink">第2部｜仕分け術</div>
+    <h2>迷ったら、この<span class="em">3つの質問</span></h2>
+    <div class="cards c3">
+      <div class="card"><span class="num">1</span><h3>それは「作業」？<br>それとも「決断」？</h3><p>作業なら任せてOK。決断は社長の仕事です。</p></div>
+      <div class="card"><span class="num">2</span><h3>そこに「わたしの心」は<br>関わりますか？</h3><p>気持ち・人間関係の本音は、任せない領域です。</p></div>
+      <div class="card"><span class="num">3</span><h3>間違えたとき、<br>誰が困りますか？</h3><p>自分や相手が困ることほど、最終チェックは人間の仕事です。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 仕分け表 -->
+<section class="slide">
+  <div class="timechip">21:25〜21:40</div>
+  <div class="inner">
+    <div class="kicker pink">第2部｜仕分け術</div>
+    <h2>仕分け早見表</h2>
+    <table class="tbl">
+      <tr><th style="width:50%;">任せてOK（秘書の仕事）</th><th>任せない（社長の仕事）</th></tr>
+      <tr>
+        <td style="white-space:normal;">説明文の下書き／要約／調べ物のたたき台／表の整理／計算／画像のたたき台／スケジュールの整理</td>
+        <td>買う・売る・やめるの決断／お金と健康の最終判断／大切な人への本音の言葉／出す前の最終チェック</td>
+      </tr>
+    </table>
+    <p class="lead" style="margin-top:18px;">「たたき台はAI、仕上げと決断はわたし」。この一行だけ覚えて帰ってください。</p>
+  </div>
+</section>
+
+<!-- 13 ミニワーク -->
+<section class="slide">
+  <div class="timechip">21:25〜21:40（ワーク3分）</div>
+  <div class="inner">
+    <div class="kicker pink">ミニワーク（3分）</div>
+    <h2>昨日やったことを、1つ仕分けてみましょう。</h2>
+    <ul class="list">
+      <li><b>STEP1</b>　昨日やったことを1つ思い浮かべる（例：説明文づくり、献立、学校への連絡文）</li>
+      <li><b>STEP2</b>　さっきの「3つの質問」に通す</li>
+      <li><b>STEP3</b>　チャットに書き込む　→　「任せる：〇〇」or「任せない：〇〇」</li>
+    </ul>
+    <p class="sub" style="margin-top:16px;">正解はありません。「仕分ける目」を持つことが、今日いちばんのおみやげです。</p>
+  </div>
+</section>
+
+<!-- 14 第3部 とびら -->
+<section class="slide">
+  <div class="timechip">21:40〜21:50</div>
+  <div class="inner centered">
+    <div class="kicker pink">第3部</div>
+    <h1>3つのAI、<br><span class="em">性格がぜんぶ違います。</span></h1>
+  </div>
+</section>
+
+<!-- 15 キャラ表 -->
+<section class="slide">
+  <div class="timechip">21:40〜21:50</div>
+  <div class="inner">
+    <div class="kicker pink">第3部｜使い分け</div>
+    <h2>3人の秘書、それぞれの得意技</h2>
+    <table class="tbl">
+      <tr><th style="width:22%;">AI</th><th style="width:30%;">性格</th><th>得意なこと</th></tr>
+      <tr><td>ChatGPT</td><td>画像もLPも作れる万能係</td><td style="white-space:normal;">新モデル「GPT Image 2」で画像生成が大幅進化。日本語の文字も正確に描けるので、商品画像・バナー・LPのたたき台までこの子に頼めます。</td></tr>
+      <tr><td>Gemini</td><td>Google連携の事務員さん</td><td style="white-space:normal;">検索・スプレッドシート・Gmail・カレンダー。Googleの中の作業はこの子です。</td></tr>
+      <tr><td>Claude</td><td>じっくり型の右腕</td><td style="white-space:normal;">長い文章・資料づくり・アプリやツールを「作る」。私が仕事で一番頼っています。</td></tr>
+    </table>
+    <p class="lead" style="margin-top:16px;">まずは<b style="color:var(--navy2);">全部無料でOK</b>。課金は「毎日使うようになってから」で十分です。</p>
+  </div>
+</section>
+
+<!-- 16 迷ったら -->
+<section class="slide">
+  <div class="timechip">21:40〜21:50</div>
+  <div class="inner">
+    <div class="kicker pink">第3部｜使い分け</div>
+    <h2>迷ったときの<span class="em">3行ルール</span></h2>
+    <div class="cards c3">
+      <div class="card"><h3>相談・画像・LP</h3><p class="big">ChatGPT</p><p>アイデア・画像づくり・LPの下書き</p></div>
+      <div class="card"><h3>Googleの中の作業</h3><p class="big">Gemini</p><p>スプシ・メール・カレンダー</p></div>
+      <div class="card"><h3>「作る」仕事</h3><p class="big">Claude</p><p>長文・資料・アプリ・仕組み</p></div>
+    </div>
+    <p class="sub" style="margin-top:16px;">スクショ推奨です。この1枚だけで、使い分けの迷いはほぼ消えます。</p>
+  </div>
+</section>
+
+<!-- 17 第4部 とびら -->
+<section class="slide">
+  <div class="timechip">21:50〜22:05</div>
+  <div class="inner centered">
+    <div class="kicker pink">第4部</div>
+    <h1>結局、<span class="em">頼み方が9割。</span></h1>
+  </div>
+</section>
+
+<!-- 18 ダメな頼み方 -->
+<section class="slide">
+  <div class="timechip">21:50〜22:05</div>
+  <div class="inner">
+    <div class="kicker pink">第4部｜頼み方</div>
+    <h2>答えの質が安定しない、本当の理由</h2>
+    <div class="quote">「メルカリの説明文を書いて」<small>→ ふわっとした、誰にでも当てはまる文が返ってきます</small></div>
+    <p class="lead" style="margin-top:16px;">これは、新しく来た秘書に「よろしく」とだけ言って席に戻る状態です。<br>優秀な秘書でも、<b style="color:var(--pink2);">材料と目的がなければ</b>いい仕事はできません。</p>
+    <p class="sub" style="margin-top:12px;">アンケートのつまずき第2位「プロンプトがわからない」は、難しい呪文の話ではありません。頼み方の順番の話です。</p>
+  </div>
+</section>
+
+<!-- 19 5点セット -->
+<section class="slide">
+  <div class="timechip">21:50〜22:05</div>
+  <div class="inner">
+    <div class="kicker pink">第4部｜頼み方</div>
+    <h2>くみこ式・<span class="em">頼み方5点セット</span></h2>
+    <table class="tbl">
+      <tr><th style="width:30%;">セット</th><th>言い方の例</th></tr>
+      <tr><td>① 役割</td><td>「あなたはフリマ販売のプロです」</td></tr>
+      <tr><td>② 目的</td><td>「30代女性に、安心して買ってもらうための説明文です」</td></tr>
+      <tr><td>③ 材料</td><td>ブランド・サイズ・状態・写真など、知っていることを渡す</td></tr>
+      <tr><td>④ 形</td><td>「200字以内・箇条書きで・絵文字なしで」</td></tr>
+      <tr><td>⑤ 直す前提</td><td>「まず1案ください。あとで直します」→ 追加で注文する</td></tr>
+    </table>
+    <p class="lead" style="margin-top:14px;">一発で完璧を求めない。<b style="color:var(--navy2);">往復して育てる</b>のがプロの使い方です。</p>
+  </div>
+</section>
+
+<!-- 20 実演 -->
+<section class="slide">
+  <div class="timechip">21:50〜22:05（実演）</div>
+  <div class="inner">
+    <div class="kicker pink">その場で実演</div>
+    <h2>同じお願いを、5点セットでやり直すと。</h2>
+    <div class="vs">
+      <div class="card"><h3>ビフォー</h3><p>「説明文書いて」<br>→ どこにでもある文章</p></div>
+      <div class="mid">→</div>
+      <div class="card pink"><h3>アフター</h3><p>5点セットで依頼<br>→ そのまま使えるレベルの文章</p></div>
+    </div>
+    <p class="sub" style="margin-top:16px;">画面共有で、いま目の前でやります。</p>
+  </div>
+</section>
+
+<!-- 21 音声入力 -->
+<section class="slide">
+  <div class="timechip">21:50〜22:05</div>
+  <div class="inner">
+    <div class="kicker pink">第4部｜頼み方</div>
+    <h2>入力が苦手な方へ、<span class="em">最強の裏ワザ</span></h2>
+    <p class="lead">キーボードで打たなくて大丈夫です。<b style="color:var(--navy2);">スマホのマイクに話しかけるだけ</b>。<br>「えっと」「なんか」が混ざっても、AIはちゃんと理解します。</p>
+    <ul class="list">
+      <li>家事をしながら、声で下書きを頼む</li>
+      <li>移動中に、今日のやることを声で整理してもらう</li>
+      <li>長い説明ほど、打つより話すほうが早くて正確</li>
+    </ul>
+    <div class="card pink" style="margin-top:14px;"><h3>くみこのおすすめ：音声入力AI「Typeless（タイプレス）」</h3><p>話した言葉から「えっと」「なんか」を取り除いて、そのまま使える文章に整えてくれる音声入力アプリです。頼みごとが長い日ほど効きます。</p></div>
+  </div>
+</section>
+
+<!-- 22 第5部 とびら -->
+<section class="slide">
+  <div class="timechip">22:05〜22:15</div>
+  <div class="inner centered">
+    <div class="kicker pink">第5部</div>
+    <h1>Cowork<span style="font-size:.6em;">（コワーク）</span>——<br><span class="em">「作業ごと」任せる</span>という新しい形</h1>
+  </div>
+</section>
+
+<!-- 23 Coworkとは -->
+<section class="slide">
+  <div class="timechip">22:05〜22:15</div>
+  <div class="inner">
+    <div class="kicker pink">第5部｜Cowork</div>
+    <h2>チャットとの違いは、<span class="em">「机ごと渡す」</span>こと。</h2>
+    <div class="cards c2">
+      <div class="card"><h3>いつものチャット</h3><p>1問1答の会話。聞いたら、答えが返ってくる。</p></div>
+      <div class="card pink"><h3>Cowork</h3><p>Claudeに机を渡して、作業そのものを進めてもらう。ファイルづくり・資料づくり・ツールづくりまで。</p></div>
+    </div>
+    <ul class="list" style="margin-top:14px;">
+      <li>この<b>スライドも</b>、AIとの共同作業で作りました</li>
+      <li>みなさんに送った<b>診断アンケートも</b>そうです</li>
+      <li>推理ゲームも、議事録ツールも、同じ仕組みです</li>
+    </ul>
+    <p class="sub" style="margin-top:10px;">※PC＋有料プラン向けの機能です。今日は「こういう世界がある」を見てください。</p>
+  </div>
+</section>
+
+<!-- 24 ライブデモ -->
+<section class="slide">
+  <div class="timechip">22:05〜22:15（デモ）</div>
+  <div class="inner">
+    <div class="kicker pink">ライブデモ</div>
+    <h2>アンケートの声を、いま形にします。</h2>
+    <div class="quote">「1週間の献立と買い物リストが、予算内で作れるようになりたい」<small>アンケートのご回答より</small></div>
+    <p class="lead" style="margin-top:16px;">この声を、5点セットで頼んで、目の前で「使えるもの」にします。</p>
+    <p class="sub">ポイントは、私が特別なことをしていない点です。今日お伝えした「仕分け」と「頼み方」を、そのまま使うだけです。</p>
+  </div>
+</section>
+
+<!-- 25 まとめ -->
+<section class="slide">
+  <div class="timechip">22:15〜22:25</div>
+  <div class="inner">
+    <div class="kicker">今日のまとめ</div>
+    <h2>持ち帰っていただく3つ</h2>
+    <div class="cards c3">
+      <div class="card"><span class="num">1</span><h3>自己流が一番危険</h3><p>事故は性能ではなく「付き合い方」で起きる。</p></div>
+      <div class="card"><span class="num">2</span><h3>社長と秘書</h3><p>たたき台はAI、仕上げと決断はわたし。</p></div>
+      <div class="card"><span class="num">3</span><h3>頼み方5点セット</h3><p>役割・目的・材料・形・直す前提。往復して育てる。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 26 ここから先 -->
+<section class="slide">
+  <div class="timechip">22:15〜22:25</div>
+  <div class="inner">
+    <div class="kicker">ここから先の話</div>
+    <h2>90分で渡せるのは、<span class="em">「入口」</span>まででした。</h2>
+    <p class="lead">アンケートでは「上級まで行きたい」方が大多数。<br>いっぽうで、使える時間は週30分〜2時間。AIへの自己投資は0円の方が約6割でした。</p>
+    <p class="lead" style="margin-top:14px;">この条件で自己流を続けると、いちばん高くつくのは<b style="color:var(--pink2);">「迷っている時間」</b>です。<br>だから、続きを一緒にやる場所を作りました。</p>
+  </div>
+</section>
+
+<!-- 27 講座概要（盛り盛り1枚） -->
+<section class="slide">
+  <div class="timechip">22:15〜22:25</div>
+  <div class="inner">
+    <div class="kicker pink">ご案内</div>
+    <h2 style="margin-bottom:6px;">Merone AI活用ラボ<span style="display:inline-block; background:var(--pink2); color:#fff; font-size:.42em; padding:5px 18px; border-radius:999px; vertical-align:middle; margin-left:14px; letter-spacing:.08em; font-weight:800;">100名限定</span></h2>
+    <p class="sub" style="margin-bottom:10px;">AIの相棒を育成しよう ── 1ヶ月半で「AIの頼み方」をマスターする、生徒さん限定プログラム。</p>
+    <div class="card navy" style="margin-bottom:12px;">
+      <p>一般募集はしません。ふだん、数万人規模のスクール4社をマーケティング顧問として月額100万円でご支援しています。その現場のAI活用を、Meroneの生徒さんにだけ、最小限の金額で開きます。今回は100名限定です。</p>
+    </div>
+    <div class="cards c3">
+      <div class="card"><h3>勉強会 全3回</h3><p>一般論ではなく「くみこならこう頼む」。私の脳みそを覗ける、ここでしか学べない内容です。</p></div>
+      <div class="card"><h3>あなた専用カルテ</h3><p>毎日でも悩みを送れる専用ページ。くみこが直接お返しし、悩みの傾向・思考のくせ・合うAI活用プランまで自動で分析します。</p></div>
+      <div class="card"><h3>3つのAIへの頼み方</h3><p>ChatGPT・Gemini・Claude。それぞれへの「くみこ流の依頼文」をそのままお渡しします。</p></div>
+    </div>
+    <div class="cards c3" style="margin-top:10px;">
+      <div class="card"><h3>AIくみこ（24時間）</h3><p>くみこの考え方を学習したAIチャットが、カルテ画面の右下に常駐。夜中の不安も、いつでも相談できます。</p></div>
+      <div class="card"><h3>オープンチャット（無期限）</h3><p>作ったものを披露し合う場。卒業後もずっとご参加いただけます。</p></div>
+      <div class="card pink"><h3>最終ミッション</h3><p>自分用に1つ、身近な人用に1つ。アプリを2つ作り終えたら卒業です。</p></div>
+    </div>
+    <p class="sub" style="margin-top:10px;">8月8日（土）開講。最初は講義ではなく、あなたの課題の炙り出しから。勉強会は8/11（火）・8/16（日）・8/28（金）の全3回、アーカイブつきです。</p>
+  </div>
+</section>
+
+<!-- 28 カルテ実物画面 -->
+<section class="slide">
+  <div class="timechip">22:15〜22:25</div>
+  <div class="inner">
+    <div class="kicker pink">実物画面</div>
+    <h2>あなた専用カルテは、<span class="em">もう動いています。</span></h2>
+    <div style="display:flex; gap:clamp(16px,3vw,44px); align-items:flex-start;">
+      <img src="img/karte-form.png" alt="AIカルテ 入力画面" style="height:clamp(270px,50vh,430px); width:auto; border-radius:16px; box-shadow:0 12px 32px rgba(38,64,95,.18); border:1px solid #e8dcef;">
+      <img src="img/karte-ana.png" alt="AIカルテ 分析レポート画面" style="height:clamp(270px,50vh,430px); width:auto; border-radius:16px; box-shadow:0 12px 32px rgba(38,64,95,.18); border:1px solid #e8dcef;">
+      <div style="flex:1; min-width:0;">
+        <div class="card" style="margin-bottom:clamp(8px,1.6vh,14px);"><p><b style="color:var(--navy2);">書くのは2問だけ。</b>1分で送れて、毎日でも大丈夫です。</p></div>
+        <div class="card" style="margin-bottom:clamp(8px,1.6vh,14px);"><p><b style="color:var(--navy2);">くみこから直接お返事</b>が、あなたのページに届きます。</p></div>
+        <div class="card" style="margin-bottom:clamp(8px,1.6vh,14px);"><p>悩みの傾向・思考のくせ・合うAI活用プランを<b style="color:var(--pink2);">自動で分析</b>します。</p></div>
+        <div class="card pink"><p>画面の右下には<b style="color:var(--navy2);">AIくみこが24時間常駐</b>。夜中でも相談できます。</p></div>
+        <p class="sub" style="margin-top:clamp(8px,1.8vh,14px);">ご入会後、あなた専用のURLをお渡しします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 29 受講料 -->
+<section class="slide">
+  <div class="timechip">22:15〜22:25</div>
+  <div class="inner centered">
+    <div class="kicker">受講料</div>
+    <h1 style="font-size:clamp(52px,10.5vw,130px); letter-spacing:.02em;">45,900<span style="font-size:.32em; font-weight:700;">円（税込）</span></h1>
+    <p class="lead" style="margin-top:4px;">銀行振込の場合：<b style="color:var(--pink2);">43,500円（税込）</b></p>
+    <p style="margin-top:14px; font-size:clamp(17px,2.8vw,27px); font-weight:800; color:#c62828; letter-spacing:.02em;">お申込みは 8月3日（月）まで。以降の募集はありません。</p>
+    <div class="cards c3" style="max-width:860px; margin:20px auto 0;">
+      <div class="card"><h3>勉強会 第1回</h3><p class="big">8/11（火）</p></div>
+      <div class="card"><h3>勉強会 第2回</h3><p class="big">8/16（日）</p></div>
+      <div class="card"><h3>勉強会 第3回</h3><p class="big">8/28（金）</p></div>
+    </div>
+    <p class="sub" style="margin-top:12px;">すべてアーカイブつき。リアタイできなくても大丈夫です。</p>
+  </div>
+</section>
+
+<!-- 28 向き不向き -->
+<section class="slide">
+  <div class="timechip">22:15〜22:25</div>
+  <div class="inner">
+    <div class="kicker pink">大切なお願い</div>
+    <h2>向いている方・向いていない方</h2>
+    <div class="cards c2">
+      <div class="card pink"><h3>向いている方</h3><p>・週1時間、手を動かせる方<br>・家族との時間を増やしたい方<br>・学んだことを仕事や暮らしに使いたい方</p></div>
+      <div class="card"><h3>向いていない方</h3><p>・見ているだけで変われると考えている方<br>・すべて自動でお金が増えると考えている方<br>・AIにすべてを決めてほしい方</p></div>
+    </div>
+    <p class="sub" style="margin-top:14px;">主導権はいつも、あなたに持っていてほしいからです。</p>
+  </div>
+</section>
+
+<!-- 30 クロージング -->
+<section class="slide">
+  <div class="timechip">22:25〜22:30</div>
+  <div class="inner centered">
+    <div class="kicker">おわりに</div>
+    <h1>AIは、あなたの代わりには<br>なりません。<br><span class="em">あなたの味方には、なれます。</span></h1>
+    <p class="lead" style="margin-top:22px;">ご参加ありがとうございました。質問タイムにうつります。</p>
+  </div>
+</section>
+
+</div>
+
+<div class="footerbar"><i id="prog"></i></div>
+<div class="brand">Merone｜Re:che AI勉強会</div>
+<div class="pager">
+  <button id="prev" aria-label="前へ">‹</button>
+  <span id="counter">1 / 30</span>
+  <button id="next" aria-label="次へ">›</button>
+</div>
+
+<script>
+(function(){
+  var NOTES=[
+  {t:"表紙", time:"21:00", n:"開始前からこの画面を表示。21:00になったら「はじめます」。自己紹介は名前だけ10秒。"},
+  {t:"実演！！", time:"21:00-05", n:"つかみデモ。例）Typelessに声で話しかける→Claudeに貼って一瞬で形にする／画像を1枚その場で生成。"},
+  {t:"AIはサボるためのものではない", time:"21:00-05", n:"実演の種明かしフック。「ラクするために、これだけ積み上げました」\n253時間・71億トークン＝4月からのClaude作業ログ実測。\n「今日の90分は、この積み重ねの入口です」→はじめにへ。"},
+  {t:"はじめに（声の紹介）", time:"21:05-10", n:"「アンケート約100名分、すべて読みました」。3つの声をゆっくり読み上げる。\n「今日はこの声から逆算して作った90分です」。"},
+  {t:"今日のゴール3つ", time:"21:05-10", n:"①距離感 ②使い分け ③頼み方。\n「後半、みなさんのやりたいことを目の前で1つ形にします」で期待づくり。"},
+  {t:"アンケート現在地", time:"21:05-10", n:"初級が約半分。でも「上級まで行きたい」が大多数。\n「気持ちはある、時間がない。だから自己流ではなく型が必要」→第1部へ。"},
+  {t:"第1部とびら", time:"21:10-25", n:"一呼吸おいて「一番危険なのは、自己流です」と言い切る。"},
+  {t:"課題動画の回収", time:"21:10-25", n:"「彼女は怠けていない。便利を積み重ねただけ」。\n※阿部監督の事例はここで口頭のみ（画面には出していない）。重くしすぎない。"},
+  {t:"3つの事故", time:"21:10-25", n:"丸投げ・鵜呑み・依存。\n締め：「事故の原因は性能ではなく、付き合い方を習っていないこと」←今日の背骨。"},
+  {t:"逆の実例（推理ゲーム）", time:"21:10-25", n:"種明かし：「作ったのはAIほぼ初めての私の友人。教えたのは60分」。\n差は才能ではなく、順番と型。"},
+  {t:"第2部とびら", time:"21:25-40", n:"仕分け術へ。"},
+  {t:"社長と秘書", time:"21:25-40", n:"合言葉「あなたが社長、AIは秘書」。\n決めるのは社長。ここを渡すと立場が入れ替わる。"},
+  {t:"3つの質問", time:"21:25-40", n:"①作業か決断か ②心が関わるか ③間違えたら誰が困るか。\nゆっくり2回くり返す。"},
+  {t:"仕分け早見表", time:"21:25-40", n:"覚えて帰る1行：「たたき台はAI、仕上げと決断はわたし」。\nスクショOKと伝える。"},
+  {t:"ミニワーク3分", time:"21:25-40", n:"チャットに「任せる：〇〇」「任せない：〇〇」を書いてもらう。\n2〜3人分読み上げて拾う。「正解はありません」と必ず言う。"},
+  {t:"第3部とびら", time:"21:40-50", n:"3つのAIの性格へ。"},
+  {t:"3人の秘書キャラ表", time:"21:40-50", n:"ChatGPT＝GPT Image 2で画像・LPが得意に（日本語の文字も描ける）。\nGemini＝Googleの中の作業。Claude＝作る右腕（私の一番の相棒）。\n課金は「毎日使うようになってから」でOK。"},
+  {t:"迷ったら3行ルール", time:"21:40-50", n:"「この1枚だけスクショしてください」。"},
+  {t:"第4部とびら", time:"21:50-22:05", n:"「結局、頼み方が9割」。"},
+  {t:"ダメな頼み方", time:"21:50-22:05", n:"新しい秘書に「よろしく」とだけ言って席に戻る例え。\nプロンプト＝呪文ではなく、頼み方の順番。"},
+  {t:"頼み方5点セット", time:"21:50-22:05", n:"役割・目的・材料・形・直す前提。\n「一発で完璧を求めない。往復して育てる」。"},
+  {t:"ビフォーアフター実演", time:"21:50-22:05", n:"画面共有で実演（説明文がおすすめ・リハ済みのお題で）。\nビフォーのふわっと感→5点セットで一変、を見せる。"},
+  {t:"音声入力＋Typeless", time:"21:50-22:05", n:"「打つのが苦手なら、話せばいい」。\nおすすめはTypeless。話すだけで整った文章になる。"},
+  {t:"第5部とびら（Cowork）", time:"22:05-15", n:"「作業ごと任せる、という新しい形」。"},
+  {t:"Coworkとは", time:"22:05-15", n:"チャット＝会話、Cowork＝机ごと渡す。\n実物3つ：このスライド・診断アンケート・推理ゲーム。\n※PC＋有料プラン向けの補足を忘れずに。"},
+  {t:"ライブデモ（献立）", time:"22:05-15", n:"アンケートの声「1週間の献立と買い物リストを予算内で」を5点セットで実演。\n※不調時は事前リハのスクショに即切替。\n締め：「特別なことはしていません。今日の型をそのまま使っただけです」。"},
+  {t:"今日のまとめ3つ", time:"22:15-25", n:"①自己流が一番危険 ②社長と秘書 ③頼み方5点セット。復唱する。"},
+  {t:"ここから先の話", time:"22:15-25", n:"上級まで行きたい×週30分〜2時間×自己投資0円が約6割。\n「一番高くつくのは、迷っている時間」→ご案内へ。"},
+  {t:"Merone AI活用ラボ案内", time:"22:15-25", n:"読み上げない。口頭で強調するのは5つ：\n①一般募集はしない（4社を月額100万円で支援している中身）\n②100名限定\n③一般論ではなく「くみこならこう頼む」\n④カルテは「実装済み」＝もう動いている。毎日送れて、悩みの傾向・思考のくせまで自動分析\n⑤AIくみこが24時間常駐（夜中でも相談できる）。\n勉強会は8/11火・8/16日・8/28金。※価格はまだ言わない。"},
+  {t:"カルテ実物画面", time:"22:15-25", n:"「実は、もう動いています」で画面を見せる。\n左=2問書くだけ→私に届く／右=自動分析（悩みの傾向・思考のくせ）\n右下にAIくみこ24時間。\n締め:「入会したその日から使えます」→次で価格。"},
+  {t:"受講料 45,900円", time:"22:15-25", n:"金額を静かに出して、2秒待つ。\n「銀行振込の場合は43,500円です」\n勉強会は8/11(火)・8/16(日)・8/28(金)、すべてアーカイブあり。\n🔴締切を必ず言う:「お申込みは8月3日（月）まで。以降の募集はありません」\n「分割はありません。お申込リンクはリアタイ参加のみなさまへLINEでお送りします」。"},
+  {t:"向いている方・向いていない方", time:"22:15-25", n:"圧をかけない。「合う方だけ来てください」のトーンで。"},
+  {t:"クロージング→質問タイム", time:"22:25-30", n:"締めの一言のあと質問タイムへ。\n※リアタイ特典（頼み方テンプレ3本）は口頭で告知：「今夜LINEで届きます。感想をひとことチャットにどうぞ」。"}
+  ];
+  var qs=new URLSearchParams(location.search);
+  if(qs.get('cue')==='1'){
+    document.body.style.overflow='auto';
+    document.getElementById('deck').style.display='none';
+    document.querySelector('.footerbar').style.display='none';
+    document.querySelector('.pager').style.display='none';
+    document.querySelector('.brand').style.display='none';
+    var w=document.createElement('div'); w.className='cuewrap';
+    var h='<div class="cuehead"><b>カンペ（進行メモ）</b><span>全'+NOTES.length+'枚｜Zoomで共有するのは ?cue なしの通常URL</span></div>';
+    for(var k=0;k<NOTES.length;k++){
+      var nx=(k<NOTES.length-1)?NOTES[k+1].t:'（終了）';
+      h+='<div class="cuecard"><div class="cuetop"><span class="cueno">'+(k+1)+'</span><b>'+NOTES[k].t+'</b><span class="cuetime">'+NOTES[k].time+'</span></div><p>'+NOTES[k].n+'</p><div class="cuenext">次▶ '+nx+'</div></div>';
+    }
+    w.innerHTML=h;
+    document.body.appendChild(w);
+    return;
+  }
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, total=slides.length;
+  var prog=document.getElementById('prog'), counter=document.getElementById('counter');
+  var nextcue=document.createElement('div'); nextcue.id='nextcue'; document.body.appendChild(nextcue);
+  function updateCue(){ nextcue.textContent='次▶ '+((i<total-1&&NOTES[i+1])?NOTES[i+1].t:'（終了）'); }
+  function show(n){
+    if(n<0)n=0; if(n>total-1)n=total-1;
+    slides[i].classList.remove('active');
+    i=n; slides[i].classList.add('active');
+    counter.textContent=(i+1)+' / '+total;
+    prog.style.width=((i+1)/total*100)+'%';
+    updateCue();
+  }
+  document.getElementById('next').onclick=function(){show(i+1);};
+  document.getElementById('prev').onclick=function(){show(i-1);};
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter'){show(i+1);}
+    if(e.key==='ArrowLeft'){show(i-1);}
+    if(e.key==='c'||e.key==='C'){nextcue.style.display=(nextcue.style.display==='block')?'none':'block';}
+  });
+  var sx=null;
+  document.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(sx===null)return;
+    var dx=e.changedTouches[0].clientX-sx;
+    if(dx<-50)show(i+1); if(dx>50)show(i-1);
+    sx=null;
+  },{passive:true});
+  show(0);
+})();
+</script>
+</body>
+</html>

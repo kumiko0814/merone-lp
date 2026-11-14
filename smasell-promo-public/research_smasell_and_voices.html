@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>媒体リサーチ＋ユーザー声分析｜スマセル6月プロモーション（パブリック版）｜Merone</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --sub: #5a5a5a;
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --line: #e6e3dc;
+    --accent: #c25b3f;
+    --accent2: #1f6f5e;
+    --soft: #f3efe7;
+    --hot-bg: #fff8f4;
+    --hot-border: #f0d6c8;
+    --warn: #b8412a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Yu Gothic", "YuGothic", "游ゴシック", "Hiragino Kaku Gothic ProN", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.01em;
+  }
+
+  .navbar {
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    font-size: 12px;
+  }
+  .nav-brand {
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .nav-inner a {
+    color: var(--sub);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .nav-inner a:hover { background: var(--soft); color: var(--accent); }
+  .nav-inner a.current { background: var(--accent); color: var(--card); }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  .hero {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 40px 28px;
+    margin-bottom: 32px;
+  }
+  .hero::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 18px;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--sub);
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+  .hero-sub {
+    color: var(--sub);
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+  .hero-summary {
+    background: var(--soft);
+    border-left: 3px solid var(--accent);
+    padding: 18px 20px;
+    border-radius: 2px;
+  }
+  .hero-summary li { margin-bottom: 8px; }
+  .hero-summary strong { color: var(--accent); }
+
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    scroll-margin-top: 70px;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  h2 .num {
+    color: var(--accent);
+    margin-right: 10px;
+    font-weight: 800;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 22px 0 10px;
+    border-left: 3px solid var(--accent2);
+    padding-left: 10px;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 16px 0 8px;
+    color: var(--accent);
+  }
+  p { margin-bottom: 10px; }
+  .muted { color: var(--sub); font-size: 13px; }
+  ul, ol { margin-left: 1.4em; margin-bottom: 10px; }
+  ul li, ol li { margin-bottom: 6px; }
+
+  .tbl-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 13.5px;
+  }
+  th, td {
+    border-bottom: 1px solid var(--line);
+    padding: 10px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--soft);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  tbody tr:nth-child(even) td { background: #fbfaf6; }
+  tbody tr:hover td { background: var(--hot-bg); }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--soft);
+    color: var(--sub);
+    margin-right: 4px;
+    letter-spacing: 0.05em;
+  }
+  .tag-accent { background: var(--accent); color: var(--card); }
+  .tag-forest { background: var(--accent2); color: var(--card); }
+  .tag-warn { background: var(--warn); color: var(--card); }
+  .chip {
+    display: inline-block;
+    background: var(--hot-bg);
+    border: 1px solid var(--hot-border);
+    color: var(--accent);
+    padding: 1px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* 吹き出し風quote */
+  .voice {
+    background: var(--card);
+    border: 1px solid var(--hot-border);
+    border-radius: 14px;
+    border-top-left-radius: 4px;
+    padding: 12px 16px;
+    margin: 10px 0 14px;
+    font-size: 14px;
+    line-height: 1.7;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    position: relative;
+  }
+  .voice-speaker {
+    font-size: 11px;
+    color: var(--sub);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+  .voice-quote {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    background: var(--hot-bg);
+    margin: 10px 0 14px;
+    font-size: 14px;
+    color: var(--ink);
+    border-radius: 2px;
+  }
+
+  .suggestion {
+    background: var(--soft);
+    border-left: 3px solid var(--accent2);
+    padding: 14px 18px;
+    border-radius: 2px;
+    margin: 12px 0;
+  }
+  .suggestion .label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent2);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  a.src-link {
+    color: var(--accent2);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent2);
+  }
+  a.src-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  footer {
+    text-align: center;
+    color: var(--sub);
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 14px 60px; }
+    .hero { padding: 28px 20px; }
+    .hero h1 { font-size: 22px; }
+    section { padding: 22px 16px; }
+    h2 { font-size: 18px; }
+    table { font-size: 12px; }
+    th, td { padding: 8px 6px; }
+    .nav-inner { font-size: 11px; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <span class="nav-brand">MERONE</span>
+    <a href="index.html">index</a>
+    <a href="SUMMARY.html">サマリー</a>
+    <a href="strategy_proposal.html">戦略提案</a>
+    <a href="research_smasell_and_voices.html" class="current">リサーチ</a>
+    <a href="tool_spec_seller_checker.html">ツール仕様</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-label">RESEARCH ／ SMASELL ＋ USER VOICES</div>
+    <h1>スマセル媒体リサーチ＋<br>ユーザー声分析</h1>
+    <p class="hero-sub">作成 2026-06-03 ／ Merone プロモーション事業部 リサーチアナリスト ／ 目的：6月再起動「女性・在宅ママ専用」勉強会の戦略土台<br><span style="color:var(--warn);font-size:11px;">※ 本書はMerone社内提案書のパブリック公開サンプル。実名・実数値はすべて匿名化済み。</span></p>
+
+    <div class="hero-summary">
+      <ul>
+        <li><strong>スマセルは「会員28万人規模／在宅副業特化の最大手B2C古着仕入れモール」</strong>。月商5-10万の在宅ユーザー層が運営公式LPで明示されており、Merone勉強会のターゲットと完全一致する。</li>
+        <li><strong>3月までは月数十万円台の手数料が発生したが4月以降ゼロ化</strong>。原因は「ローン否決層」「サロン並行検討層」「カード枠なし層」での連続離脱と、男性流入混合による女性層の薄まり（推測）。</li>
+        <li><strong>6月再起動の鍵は「ローン不要・カード枠不要で始められる入口」と「ママ属性に最初の3秒で絞り込む冒頭設計」</strong>。成約者A（中価格帯コース）が個人的事情を打ち明けても買えたのは「買取保証」「家族のため」の2点で背中を押されたから。</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- 1 媒体プロファイル -->
+  <section id="profile">
+    <h2><span class="num">1</span>媒体プロファイル（Web調査）</h2>
+
+    <h3>運営会社</h3>
+    <ul>
+      <li><strong>株式会社ウィファブリック（WEFABRIK, Inc.）</strong></li>
+      <li>2015年設立。経営理念は「ファッションをもっと楽しく持続可能なものに」</li>
+      <li>代表（事業者）はインパクト起業家</li>
+      <li>2022年に <span class="chip">7億5,000万円</span> の資金調達実施（プレスリリース）</li>
+      <li>出典：<a class="src-link" href="https://www.wefabrik.jp/">wefabrik.jp</a> ／ <a class="src-link" href="https://prtimes.jp/main/html/rd/p/000000058.000071637.html">PR TIMES</a></li>
+    </ul>
+
+    <h3>スマセル（SMASELL）本体</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>数値・内容</th><th>出典</th></tr></thead>
+      <tbody>
+        <tr><td>会員数（購入ユーザー）</td><td><span class="chip">約28.17万人</span></td><td>smasell.jp/abouts</td></tr>
+        <tr><td>出品ブランド数</td><td>常時1,000以上（広告では「5,000ブランド」表記もあり）</td><td>smasell.jp/abouts ／ sp/user_b</td></tr>
+        <tr><td>出品サプライヤー数</td><td>約1,020社以上</td><td>プレスリリース</td></tr>
+        <tr><td>平均値引き</td><td>最大98%OFF</td><td>smasell.jp/abouts</td></tr>
+        <tr><td>CO2削減実績</td><td>330万kg超（樹木235,600本相当）</td><td>smasell.jp/abouts</td></tr>
+        <tr><td>利用料金</td><td><strong>完全無料</strong>（仕入れ代のみ）</td><td>maru01.com ／ oresedo.com</td></tr>
+        <tr><td>手数料モデル</td><td>サプライヤー側に20%、出品者に80%（B2B側）</td><td>ktkm.net</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>商品ラインナップ</h3>
+    <ul>
+      <li><strong>smasell.USED</strong>：古着（メイン在庫。社内仕入れデータでも8割以上）</li>
+      <li><strong>M.Second</strong>：セカンドハンド／ヴィンテージ寄り</li>
+      <li><strong>INAF</strong>：化粧品（アルビオン／DHC等の流通在庫）</li>
+      <li>カテゴリ別：キャリー品／キャンセル品／B品／サンプル品／古着</li>
+      <li>出典：<a class="src-link" href="https://blog.smasell.jp/">blog.smasell.jp</a></li>
+    </ul>
+
+    <h3>在宅ユーザー像（公式LP明示）</h3>
+    <ul>
+      <li>「スマセルで仕入れて月5-10万を継続的に稼ぐユーザー急増中」と公式が訴求</li>
+      <li>主な販売先：メルカリ／ラクマ／ヤフオク</li>
+      <li>出典：<a class="src-link" href="https://www.smasell.jp/sp/user_b">smasell.jp/sp/user_b</a></li>
+    </ul>
+
+    <h3>Merone契約上のスマセル媒体スペック（LINEログより事実）</h3>
+    <ul>
+      <li>メルマガ＋公式LINEプッシュ配信枠あり</li>
+      <li>Meroneは「アフィリエイト契約」で送客報酬を獲得（業界標準の報酬率）</li>
+      <li>高割引（90%OFF級）の限定枠を貴社限定で出すことがある（媒体側からの個別オファー実績あり）</li>
+      <li>「セットアップ料金」 <span class="chip">数十万円／月</span>（固定）＋成果報酬（実績連動）</li>
+    </ul>
+  </section>
+
+  <!-- 2 競合比較 -->
+  <section id="competitors">
+    <h2><span class="num">2</span>競合比較</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>媒体</th><th>会員資格</th><th>古物商</th><th>在宅主婦向け</th><th>単価</th><th>古着特化</th><th>スマセル比</th></tr></thead>
+      <tbody>
+        <tr><td><strong>スマセル</strong></td><td>個人OK・無料</td><td>不要（個人転売OK）</td><td>◎特化</td><td>数百円〜</td><td>◎</td><td>—</td></tr>
+        <tr><td>SUPER DELIVERY</td><td>法人・個人事業主のみ</td><td>開業届必要</td><td>△（フリマ転売は審査落ち多）</td><td>数千円〜</td><td>△新品メイン</td><td>スマセルが入口圧倒的に低い</td></tr>
+        <tr><td>ZOZOUSED</td><td>一般購入者向け</td><td>転売目的は別途要古物商</td><td>△</td><td>数千円〜</td><td>◎</td><td>スマセルが法的に明朗</td></tr>
+        <tr><td>ヤフオク／メルカリ仕入れ</td><td>個人OK</td><td>グレー領域</td><td>△（古物営業法注意）</td><td>バラ売り</td><td>×</td><td>スマセルが安全</td></tr>
+        <tr><td>TAGCONSO</td><td>法人主体</td><td>必要</td><td>×</td><td>高単価</td><td>△</td><td>スマセルが圧倒的に主婦向け</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>スマセルの差別化要素（女性・在宅ママ視点）</h3>
+    <ol>
+      <li><strong>入会無料・古物商不要・即仕入れ可能</strong>：ハードルゼロ</li>
+      <li><strong>数百円〜1点仕入れ</strong>：少額から始められる（一般卸の1/10以下）</li>
+      <li><strong>ユニクロ／ラルフローレン／フェイラー等</strong>ママ層に売れるブランドが豊富（社内データ参照）</li>
+      <li><strong>環境貢献ストーリー</strong>：「お得に買って地球を守る」＝主婦の「ちゃんとした副業」名分が立つ</li>
+      <li><strong>公式が在宅ユーザー向けLPを持つ</strong>：副業推奨が「公認」されている安心感</li>
+    </ol>
+
+    <h3>スマセルの弱点（推測含む）</h3>
+    <ul>
+      <li>商品品質バラつき（シミ・毛玉あり）の口コミ多数 → 写真撮影と検品スキルが必要（推測：これが「初心者でも稼げる」と謳いつつ実は学習コスト発生する構造）</li>
+      <li>福袋系は「ハズレ品」が混入する → リサーチ力なしで全部仕入れる初心者が躓く</li>
+      <li>→ <strong>Merone勉強会で「売れる商品の見極め方」を教える価値が立つ</strong>（データ提供者Zの月数万円台実績データは強力な教材）</li>
+    </ul>
+  </section>
+
+  <!-- 3 刺さるフレーズ -->
+  <section id="voices-top">
+    <h2><span class="num">3</span>在宅ママ層の生声TOP10 刺さるフレーズ（要約版）</h2>
+    <p class="muted">社内LINEトークログから抽出した実発言を、本パブリック版では匿名化＆要約して掲載。具体個人発言は社内版を参照。</p>
+
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>順位</th><th>フレーズ（要約）</th><th>文脈（匿名化）</th><th>なぜ刺さったか</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>「売れなければ弊社で買取保証をつけています」</strong></td><td>Merone側→成約者A（成約直前）</td><td>最後の一押し。「失敗しても損しない」リスクゼロ訴求</td></tr>
+        <tr><td>2</td><td><strong>「今までで1番大きな自分への投資」と言語化</strong></td><td>成約者A（中価格帯コース成約）</td><td>大きな金額の決断を「投資」と言語化＝自己肯定材料</td></tr>
+        <tr><td>3</td><td><strong>「お子さまの体調、大丈夫でしたか？」</strong></td><td>Merone→離脱者C（キャンセル後フォロー）</td><td>返信率100%実証。共感型 &gt; 追撃型の典型</td></tr>
+        <tr><td>4</td><td><strong>「無理に決断していただきたいわけではありません」</strong></td><td>Merone→成約者B（家族の事情で対応中断中）</td><td>圧排除。結果：事情落ち着き後に復活して成約</td></tr>
+        <tr><td>5</td><td><strong>短期で利益達成の体験あり</strong></td><td>成約者B（既に実績あり）</td><td>「自分でもできた」体験＝最強の証拠</td></tr>
+        <tr><td>6</td><td><strong>特典が家族の生活に直結する具体イメージへ転換</strong></td><td>成約者B（チケット特典への反応）</td><td>特典が"家族で使える"具体イメージに変換された瞬間</td></tr>
+        <tr><td>7</td><td><strong>「1枚売れるごとに褒める／自分でコメント入れる」</strong></td><td>成約者B（運営者として既に楽しんでる）</td><td>「副業＝楽しい」を体現する生の声</td></tr>
+        <tr><td>8</td><td><strong>「ある受講生は単品1分で1万円超の利益」スナップ事例</strong></td><td>離脱寸前のヒント（Dさんからの示唆）</td><td>"短時間で利益"のスナップ事例の威力</td></tr>
+        <tr><td>9</td><td><strong>「読み込むだけで稼げる方がいらっしゃる」</strong></td><td>Dさん示唆</td><td>コンテンツ受動的でも稼げる安心感</td></tr>
+        <tr><td>10</td><td><strong>家族・ペットを巻き込む雑談からの温度上昇</strong></td><td>成約者A（雑談）</td><td>雑談から始まる信頼関係。クロージング前段の温度感</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- 4 離脱 -->
+  <section id="dropouts">
+    <h2><span class="num">4</span>離脱トリガーTOP5</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>順位</th><th>引き金</th><th>該当者</th><th>具体発言</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>ローン否決／カード枠なし</strong></td><td>Fさん／Dさん</td><td>「ローンが組めず支払いにプラスは足踏み」「カード分割枠なし」旨の発言（要約）</td></tr>
+        <tr><td>2</td><td><strong>債務整理中・債権問題</strong></td><td>Fさん</td><td>債権整理検討中である旨の返信（致命的離脱）</td></tr>
+        <tr><td>3</td><td><strong>競合サロン並行検討</strong></td><td>Gさん</td><td>他社サロン説明会との比較検討に時間がかかり結局見送り</td></tr>
+        <tr><td>4</td><td><strong>時間制約・家族都合</strong></td><td>Eさん</td><td>「自分都合で休まないといけない事情があり今回は見送る」旨</td></tr>
+        <tr><td>5</td><td><strong>「自分には権限がない」自信喪失</strong></td><td>離脱者C</td><td>自己効力感が崩壊した旨の発言（「私のような場所の権限なさそう」）</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h4>解釈（推測）</h4>
+    <ul>
+      <li><strong>1-2はカード／ローン依存設計の限界</strong>。高額一括は経済的余裕層しか取れない</li>
+      <li><strong>3はキャンペーン期間短すぎ／他社比較余地を残してる</strong>ことが原因</li>
+      <li><strong>4-5はママ特有の「予測不能な家庭事情」と「自分への許可が出ない」心理</strong>（Meroneのナーチャリング原則「自己肯定感を上げてから行動を促す」の必要性を裏付け）</li>
+    </ul>
+  </section>
+
+  <!-- 5 決断 -->
+  <section id="triggers">
+    <h2><span class="num">5</span>決断トリガーTOP5</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>順位</th><th>トリガー</th><th>該当者</th><th>何が効いたか</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>買取保証</strong></td><td>成約者A</td><td>「売れなければ弊社で買取保証」→失敗ゼロ化</td></tr>
+        <tr><td>2</td><td><strong>すでに小さな成功体験あり</strong></td><td>成約者B</td><td>短期で利益達成済み＝既に証明済み</td></tr>
+        <tr><td>3</td><td><strong>家族のための特典イメージ化</strong></td><td>成約者B</td><td>チケット特典→家族行動の具体イメージ化</td></tr>
+        <tr><td>4</td><td><strong>共感型放置（圧排除）</strong></td><td>成約者B</td><td>家族の事情中の「無理に決断していただきたいわけではありません」</td></tr>
+        <tr><td>5</td><td><strong>「投資」言語化＋自己物語化</strong></td><td>成約者A</td><td>「自分への投資」言語化＝消費でなく成長への自己許可</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- 6 成約ペルソナ -->
+  <section id="personas">
+    <h2><span class="num">6</span>成約者ペルソナ分析</h2>
+
+    <h3>成約者A（首都圏在住・中価格帯コース成約・カード決済）</h3>
+    <h4>心理ブロッカー3つ</h4>
+    <ol>
+      <li><strong>個人的事情で開始日への不安</strong>：開始日が決まらないと不安が爆発する特性</li>
+      <li><strong>金額への怖さ</strong>：「今までで1番大きな自分への投資」＝大きな金額の重さに緊張</li>
+      <li><strong>担当者ペースへの違和感</strong>：早すぎるレスがかえって不信感を生む旨の発言</li>
+    </ol>
+    <h4>ドライバー3つ</h4>
+    <ol>
+      <li><strong>買取保証によるリスク低減</strong>：「売れなければ弊社で買取保証をつけています」が決め手</li>
+      <li><strong>家族（子・ペット）を巻き込む雑談</strong>：人間関係の温度を作ってからクロージング</li>
+      <li><strong>「自分への投資」フレーム</strong>：消費でなく成長と言語化されると決断できる</li>
+    </ol>
+
+    <h3>成約者B（横浜在住・特殊事情で当初先送り→家族の事情落ち着き後に復活）</h3>
+    <h4>心理ブロッカー3つ</h4>
+    <ol>
+      <li><strong>家族の事情という極限状況</strong>：家族の事情で対応が遅れた旨の発言</li>
+      <li><strong>タイミングへの罪悪感</strong>：通常なら買えるが、その時期に決断することへの抵抗</li>
+      <li><strong>既に出品経験あり＝逆に自分でできる感</strong>：販売自体は経験者だからこそ「スクール必要？」の疑問</li>
+    </ol>
+    <h4>ドライバー3つ</h4>
+    <ol>
+      <li><strong>共感型放置（圧排除）</strong>：「無理に決断していただきたいわけではありません」で逆に決断できた</li>
+      <li><strong>既存の小成功体験</strong>：短期で利益達成済み＝自分の販売センスへの自信</li>
+      <li><strong>特典の家族用途化</strong>：チケット特典→家族行動の具体化（移動コスト低い圏内での利用）</li>
+    </ol>
+  </section>
+
+  <!-- 7 離脱ペルソナ -->
+  <section id="dropout-personas">
+    <h2><span class="num">7</span>離脱者ペルソナ分析</h2>
+    <h3>離脱者C／Dさん／Eさん／Fさん／Gさん 共通の心理ブロッカー3つ</h3>
+    <ol>
+      <li><strong>経済的余裕の枯渇</strong>：「ローン組めない」「カード枠ない」「いまの支払いにプラスにすると足踏み」「債権整理」<br>→ <strong>高額一括／分割NG層を最初から取りに行く設計が破綻していた</strong></li>
+      <li><strong>自己効力感の不足</strong>：「自分には権限なさそう」「自分都合で休まなきゃいけない」<br>→ 「自分にできる気がしない」「迷惑をかけそう」のママ特有の自己否定</li>
+      <li><strong>競合との比較余地</strong>：他社サロン説明会との並行検討／低単価入口希望の発言<br>→ 比較検討中／低単価入口を求めている層が「いきなり高額」を見て逃げる</li>
+    </ol>
+  </section>
+
+  <!-- 8 総合プロファイル -->
+  <section id="profile-all">
+    <h2><span class="num">8</span>在宅ママ総合プロファイル</h2>
+    <p class="muted">LINEログ＋データ提供者Zの実績データから抽出した「Merone×スマセル送客のスイートスポット層」。</p>
+
+    <h3>基本属性</h3>
+    <ul>
+      <li><strong>年齢</strong>：30代後半〜40代（推測：子育て中・幼児〜小学生の子あり層）</li>
+      <li><strong>家族構成</strong>：既婚・子どもあり（成約者A・Bともに家族あり）</li>
+      <li><strong>居住エリア</strong>：全国分散。データ提供者Zは地方（地方在宅でも完結する仕組みを実証）</li>
+      <li><strong>就労状況</strong>：在宅／専業主婦／パート併用</li>
+      <li><strong>既存スキル</strong>：フリマ出品経験あり層が半数程度（推測）</li>
+    </ul>
+
+    <h3>収入レンジ（推測含む）</h3>
+    <ul>
+      <li>月利目標：<span class="chip">5万円層</span>（最多）〜<span class="chip">10万円層</span>（経験者）</li>
+      <li>データ提供者Z実績：<span class="chip">月数万円台</span>（地方・在宅主婦・スマセル単体で達成）</li>
+      <li>仕入れ単価：<span class="chip">500円〜3,000円</span>中心、1点5,000円超は稀（実データ）</li>
+    </ul>
+
+    <h3>購買動機</h3>
+    <ol>
+      <li><strong>家計補填／教育費／自分のお小遣い</strong>：「ローン返済を早めて投資フェーズに進みたい」前向き層（Merone原則）</li>
+      <li><strong>時間の自由</strong>：保育園送迎の合間／子の昼寝中／早朝に作業できる副業を探している</li>
+      <li><strong>「ちゃんとした副業」名分</strong>：環境貢献ストーリーがあるスマセルは家族説明しやすい</li>
+      <li><strong>「自分への投資」言語化欲求</strong>：消費でなく成長として正当化したい</li>
+    </ol>
+
+    <h3>不安要素</h3>
+    <ol>
+      <li><strong>失敗したら家計を圧迫する罪悪感</strong>：買取保証が刺さるのはこれ</li>
+      <li><strong>時間が確保できるか不安</strong>：「短時間で利益」「読むだけで稼げる」訴求が刺さる</li>
+      <li><strong>「自分にもできるか」の自信不足</strong>：実例（データ提供者Z・成約者B）が必須</li>
+      <li><strong>家族の理解</strong>：夫・親に説明できる事業ストーリー（環境貢献）必要</li>
+    </ol>
+
+    <h3>NG層（最初から排除すべき）</h3>
+    <ul>
+      <li>男性（特典目当て流入）</li>
+      <li>「投資×メルカリ」「生活防衛費・ローン返済」直接訴求で集まる経済余裕ゼロ層</li>
+      <li>受動的に「楽して稼ぐ」だけを期待する層</li>
+    </ul>
+  </section>
+
+  <!-- 9 戦略示唆 -->
+  <section id="strategy">
+    <h2><span class="num">9</span>6月再起動への戦略示唆（3点）</h2>
+
+    <h3>① 入口価格の3段階化と「ローン不要」明示</h3>
+    <p><strong>事実</strong>：3-4月の高額一括／分割設計が「ローン否決」「カード枠なし」で連続離脱を生んだ（Fさん・Dさん・離脱者C）。</p>
+    <div class="suggestion">
+      <div class="label">PROPOSAL</div>
+      <p>入門コース（少額帯）を「カード分割／ペイパル分割可」で前面に出し、勉強会冒頭で「ローン審査なしで始められます」と明言する。</p>
+      <ul>
+        <li>中位プラン：4ヶ月コース（中価格帯）</li>
+        <li>上位プラン：通常コース（中価格帯〜上位帯、買取保証付き）</li>
+        <li>→ Merone原則「最初に小さなYesを取る」を価格設計に適用</li>
+      </ul>
+    </div>
+
+    <h3>② 冒頭3秒「ママ・女性属性絞り込み」配信文設計</h3>
+    <p><strong>事実</strong>：Merone代表が「冒頭からママ・女性属性絞り込み、特典は文末控えめ」と明言。男性流入が3月までの売上を支えた一方、女性層の薄まりが4月以降のゼロ化の遠因（推測）。</p>
+    <div class="suggestion">
+      <div class="label">PROPOSAL</div>
+      <p>6月勉強会の配信文冒頭は「子育てしながら／保育園送迎の合間／お子さまが寝た後に」など、ママ属性しか反応しない言葉から開始。男性は最初の1文で離脱させる。</p>
+      <ul>
+        <li>クライアント側担当者（既存スクール卒業生）／データ提供者Z（スマセル単体で月数万円台の地方ママ）をゲスト登壇候補に</li>
+        <li>「胸を張れるママ五ヶ条」型のマインドコンテンツを差し込む（他クライアントでの勝ちパターン流用）</li>
+      </ul>
+    </div>
+
+    <h3>③ データ提供者Z 月数万円台実データを「読むだけで稼げる」教材化</h3>
+    <p><strong>事実</strong>：データ提供者Zの半年220件規模の仕入れ実績は「売れる商品傾向」「平均仕入れ単価2,700円台」「ユニクロ／ラルフローレン／フェイラー等のママ層親和ブランド」が読み取れる強力なエビデンス。Dさんも「読み込むだけで利益が出せる方」訴求が刺さると示唆。</p>
+    <div class="suggestion">
+      <div class="label">PROPOSAL</div>
+      <p>勉強会で「データ提供者Zの実データから判明した売れる10商品」を無料配布。</p>
+      <ul>
+        <li>配布物：「在宅ママのスマセル仕入れリスト Top10（社内データから抽出）」</li>
+        <li>配信文での訴求例：「地方の主婦・データ提供者Zがスマセル単体で月数万円台の利益を継続中。仕入れ実績220件規模の生データから、初心者でも売れる10商品を抜き出しました」</li>
+        <li>→ 「事例の生の言葉」（Merone原則）＋ 「読み込むだけで稼げる」（Dさん示唆）の二段攻め</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section id="sources">
+    <h2><span class="num">10</span>Sources</h2>
+    <ul>
+      <li><a class="src-link" href="https://www.smasell.jp/abouts/">SMASELL 公式 About</a></li>
+      <li><a class="src-link" href="https://www.smasell.jp/sp/user_b">SMASELL 公式 ユーザー向けLP</a></li>
+      <li><a class="src-link" href="https://www.wefabrik.jp/">WEFABRIK 公式</a></li>
+      <li><a class="src-link" href="https://prtimes.jp/main/html/rd/p/000000058.000071637.html">プレスリリース 7億5,000万円調達</a></li>
+      <li><a class="src-link" href="https://ayouth.co.jp/ec-media/report/smasell/">SMASELL評判 EC MEDIA</a></li>
+      <li><a class="src-link" href="https://maru01.com/smasell-9548">SMASELL 優良卸検証 maru01.com</a></li>
+      <li><a class="src-link" href="https://ktkm.net/p/smasell/">SMASELL クチコミネット</a></li>
+      <li><a class="src-link" href="https://oresedo.com/smasell-resale/">SMASELL せどり活用 oresedo.com</a></li>
+      <li>LINEトーク抜粋（社内専用・パブリック版未公開）</li>
+      <li>仕入れ実績データ（社内専用・パブリック版未公開）</li>
+    </ul>
+  </section>
+
+  <footer>
+    Merone Promotion Division ／ 2026-06-03<br>
+    Research by Merone AI（社内向け戦略土台）<br>
+    <span style="font-size:11px;">パブリックサンプル版 — 実名・実数値は匿名化済み</span>
+  </footer>
+
+</div>
+</body>
+</html>

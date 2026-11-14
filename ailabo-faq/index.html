@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>よくあるご質問｜Merone AI活用ラボ</title>
+<style>
+:root{
+  --bg:#f6f1f9; --navy:#26405f; --navy2:#1d3149;
+  --pink:#cf8f9c; --pink2:#bd7886; --pinkbg:#fbeef1; --text:#4a4446;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Yu Gothic","YuGothic","游ゴシック","Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; background:linear-gradient(168deg,#f1eaf7 0%,#faf7fb 46%,#fbeef1 100%); color:var(--text); line-height:1.95; -webkit-font-smoothing:antialiased; padding-bottom:40px;}
+.wrap{max-width:680px; margin:0 auto; padding:0 18px;}
+header{background:var(--navy2); color:#fff; padding:14px 18px; text-align:center;}
+header .lg{font-size:13px; font-weight:800; letter-spacing:.14em; color:#f3cdd7;}
+header .lg i{font-style:normal; color:#cfdcea; font-weight:700; margin-left:6px; letter-spacing:.08em;}
+.hero{text-align:center; padding:34px 0 10px;}
+.hero img{width:120px;}
+.hero h1{font-size:clamp(20px,5.6vw,26px); color:var(--navy2); margin-top:6px;}
+.hero p{font-size:12.5px; color:#8a97a5; margin-top:4px;}
+.search{position:sticky; top:0; z-index:10; background:rgba(250,247,251,.96); backdrop-filter:blur(6px); padding:12px 0;}
+.search input{width:100%; border:2px solid #e2d7ec; border-radius:999px; padding:13px 20px; font-size:15px; font-family:inherit; color:var(--navy2); background:#fff;}
+.search input:focus{outline:none; border-color:var(--pink);}
+#hitcnt{font-size:11px; color:#9aa7b4; text-align:center; margin-top:6px; display:none;}
+.cats{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:14px 0 6px;}
+.cats a{background:#fff; border:1px solid #e2d7ec; color:var(--navy); border-radius:999px; padding:7px 14px; font-size:12px; font-weight:700; text-decoration:none;}
+h2.sec{font-size:16.5px; color:var(--navy2); margin:34px 0 10px; padding-left:12px; border-left:5px solid var(--pink2); scroll-margin-top:80px;}
+details{background:#fff; border-radius:14px; margin-top:10px; box-shadow:0 4px 14px rgba(38,64,95,.06); overflow:hidden;}
+summary{list-style:none; cursor:pointer; padding:15px 42px 15px 16px; font-size:14.5px; font-weight:800; color:var(--navy2); position:relative; line-height:1.8;}
+summary::-webkit-details-marker{display:none;}
+summary::before{content:"Q"; color:var(--pink2); font-weight:800; margin-right:8px;}
+summary::after{content:"＋"; position:absolute; right:16px; top:15px; color:var(--pink); font-weight:700;}
+details[open] summary::after{content:"−";}
+.a{padding:0 16px 16px; font-size:13.5px; border-top:1px dashed #f0e6ee; padding-top:12px;}
+.a b{color:var(--pink2);}
+.a a{color:var(--navy); font-weight:700;}
+.aikcard{background:linear-gradient(135deg,#fff,#fdf4f7); border:1.5px solid #f0d9df; border-radius:18px; padding:18px; margin-top:36px; display:flex; gap:14px; align-items:center; box-shadow:0 8px 24px rgba(38,64,95,.08);}
+.aikcard img{width:64px; height:64px; border-radius:50%; object-fit:cover; object-position:50% 6%; background:#fde7ee; flex:none; border:2px solid #fff;}
+.aikcard p{font-size:13px; line-height:1.8;}
+.aikcard .btn{display:inline-block; background:linear-gradient(135deg,#c76e85,#cf8f9c); color:#fff; text-decoration:none; border-radius:999px; padding:9px 20px; font-size:12.5px; font-weight:800; margin-top:8px;}
+footer{text-align:center; font-size:11px; color:#9aa7b4; margin-top:44px; letter-spacing:.06em;}
+.noresult{display:none; text-align:center; font-size:13px; color:#8a97a5; padding:30px 0;}
+</style>
+</head>
+<body>
+
+<header><span class="lg">Merone<i>AI活用ラボ</i></span></header>
+
+<div class="wrap">
+  <div class="hero">
+    <img src="https://lp.merone.jp/kumiko-illust/lab-peace.png" alt="" onerror="this.style.display='none'">
+    <h1>よくあるご質問</h1>
+    <p>困ったときは、まずここを見てくださいね</p>
+  </div>
+
+  <div class="search">
+    <input type="search" id="q" placeholder="キーワードで探す（例：振込・URL・勉強会）">
+    <div id="hitcnt"></div>
+  </div>
+
+  <div class="cats">
+    <a href="#c1">お申込み・お支払い</a>
+    <a href="#c2">オープンチャット</a>
+    <a href="#c3">AIカルテ</a>
+    <a href="#c4">AIくみこ</a>
+    <a href="#c5">勉強会・学び方</a>
+    <a href="#c6">うまくいかない時</a>
+  </div>
+
+  <h2 class="sec" id="c1">お申込み・お支払い</h2>
+  <details><summary>いつまで申し込めますか？</summary><div class="a"><b style="color:#c62828;">お申込みは8月3日（月）までです。以降の募集はありません。</b>また、期日前でも100名に達した時点で締め切りとなります。迷っている方は、お早めにどうぞ。</div></details>
+  <details><summary>受講料はいくらですか？</summary><div class="a">クレジットカード（PayPal）の場合は<b>45,900円（税込）</b>、銀行振込の場合は<b>43,500円（税込）</b>です。分割払いはありません。銀行振込の振込手数料はご負担をお願いします。</div></details>
+  <details><summary>申込みの流れを教えてください</summary><div class="a">①申込ページでお支払い（PayPalまたは銀行振込）→②お支払い完了画面のスクリーンショットをアップ→③自動で金額を確認（10〜30秒）→④受講規約を読んで同意→⑤オープンチャットに参加、で完了です。<br><a href="https://kumiko0814.github.io/merone-ai-labo/" target="_blank" rel="noopener">申込ページはこちら</a></div></details>
+  <details><summary>銀行振込のあて先はどこですか？</summary><div class="a">申込ページの<b>「銀行振込」タブ</b>に振込先が表示されます。お振込みが終わったら、振込完了画面（金額が見えるもの）のスクショをそのままアップしてください。</div></details>
+  <details><summary>スクショが「確認できませんでした」と出ます</summary><div class="a"><b>金額（45,900円または43,500円）がはっきり写っている完了画面</b>をもう一度送ってください。金額が切れていたり、途中の画面だと自動確認ができません。何度やってもダメな場合は、画面下の「うまくいかない方はこちら」からLINEでご連絡ください。</div></details>
+  <details><summary>決済でエラーが出ました</summary><div class="a">あわてなくて大丈夫です。<b>どんなエラーが出たか</b>（スクショがあると助かります）を、AI勉強会のLINEに送ってください。確認して個別にご案内します。<br><a href="https://fv9f75lk.autosns.app/line" target="_blank" rel="noopener">AI勉強会のLINEを開く</a></div></details>
+  <details><summary>受付番号は何に使いますか？</summary><div class="a">お支払い確認ができると「受付番号」が表示されます。<b>スクショやメモで控えておいてください</b>。お問い合わせのときに伝えていただけると、確認がとても早くなります。</div></details>
+  <details><summary>キャンセル・返金はできますか？</summary><div class="a">ごめんなさい。役務（コンサルティング・デジタルコンテンツ）という性質上、<b>お支払い後のキャンセル・返金はできません</b>（受講規約 第5条）。ご不安な点は、お申込み前に解消してくださいね。</div></details>
+  <details><summary>領収書はもらえますか？</summary><div class="a">個別の発行は行っていません。<b>PayPalの完了メールや振込明細</b>が、お支払いの証明としてお使いいただけます。どうしても必要な場合はLINEでご相談ください。</div></details>
+
+  <h2 class="sec" id="c2">オープンチャット</h2>
+  <details><summary>オープンチャットにはどうやって入りますか？</summary><div class="a">お支払いの確認ができた画面で、受講規約を最後まで読んで同意すると、<b>「Merone生限定🫶🏻 AI活用らぼ」に参加する</b>ボタンが緑色になります。それを押すと参加できます。</div></details>
+  <details><summary>参加ボタンが押せません</summary><div class="a">受講規約を<b>いちばん下までスクロール</b>すると、同意チェックが押せるようになります。チェックを入れるとボタンが緑色に変わります。</div></details>
+  <details><summary>オープンチャットの名前はどうすればいいですか？</summary><div class="a">オープンチャットでは、LINE本体とは別の名前を自由につけられます。<b>お申込みのお名前とわかる名前</b>にしていただけると、ご案内がスムーズです。</div></details>
+  <details><summary>まちがえて退会してしまいました</summary><div class="a">大丈夫です。申込完了画面をもう一度開けば再参加できます。開けない場合は、受付番号を添えてLINEでご連絡ください。</div></details>
+
+  <h2 class="sec" id="c3">あなた専用AIカルテ</h2>
+  <details><summary>AIカルテとは何ですか？</summary><div class="a">あなた専用の相談ページです。「日常で困ったこと」と「AIでどう解決したいか」の<b>2つを書いて送るだけ</b>（1分）。くみこが読んで、あなたに合うAIの使い方を直接お返しします。悩みの傾向や思考のくせの自動分析もついています。</div></details>
+  <details><summary>専用ページはどうやって作りますか？</summary><div class="a">開講後にお送りする<b>入口ページ</b>で、お名前とお申込みのメールアドレスを入れるだけです（30秒）。作ったページは必ず<b>ブックマーク（ホーム画面に追加）</b>してくださいね。</div></details>
+  <details><summary>名前をニックネームで登録してしまいました。変えられますか？</summary><div class="a">変えられます。専用ページの<b>「設定」タブ</b>を開くと「呼ばれたい名前の変更」があります。新しい名前を入れて変更ボタンを押すだけで、<b>これまでに書いたカルテはそのまま</b>で名前だけ変わります。</div></details>
+  <details><summary>専用ページのURLがわからなくなりました</summary><div class="a">大丈夫です。<b>入口ページでもう一度同じメールアドレスを入れる</b>と、まったく同じページに戻れます。書いた内容もすべて残っています。</div></details>
+  <details><summary>メールアドレスを間違えて作ってしまいました</summary><div class="a">正しいメールアドレスで、もう一度作り直せば大丈夫です。以前のページはそのまま放っておいて問題ありません。ご心配ならカルテからひとことお知らせください。</div></details>
+  <details><summary>カルテは何回でも送れますか？</summary><div class="a">はい、<b>毎日でも、1日に何回でも</b>送れます。小さな困りごとほど大歓迎です。</div></details>
+  <details><summary>返事はいつ届きますか？</summary><div class="a">くみこが読んで、あなたの専用ページの「アドバイス」に順番にお返しします。1人ずつ読んでいるので、少しお時間をいただくことがあります。</div></details>
+  <details><summary>書いた内容はほかの人に見えますか？</summary><div class="a">見えません。あなたの専用URLを知っているのは<b>あなたとくみこだけ</b>です。だからこそ、専用URLはほかの方に教えないでくださいね。</div></details>
+  <details><summary>「分析」には何が出ますか？</summary><div class="a">カルテを送るほど、<b>あなたの悩みの傾向・思考のくせ・くみこがくり返し伝えていること・あなたに合うAI活用プラン</b>が自動で更新されていきます。自分を知る材料にしてください。</div></details>
+
+  <h2 class="sec" id="c4">AIくみこ</h2>
+  <details><summary>AIくみことは何ですか？</summary><div class="a">くみこの考え方を学習したAIチャットです。カルテ画面の<b>右下の丸いアイコン</b>からいつでも話せます。夜中の不安も、朝のモヤモヤも、24時間そばにいます。</div></details>
+  <details><summary>AIくみこと本人のくみこ、どちらに相談すればいいですか？</summary><div class="a">すぐ聞きたいこと・ちょっとした相談は<b>AIくみこ</b>へ。じっくり見てほしい悩みは<b>AIカルテ</b>に書いてください。カルテは本人のくみこが読んでお返しします。</div></details>
+
+  <h2 class="sec" id="c5">勉強会・学び方</h2>
+  <details><summary>開講はいつですか？</summary><div class="a"><b>8月8日（土）開講</b>です。最初の1週間は講義ではなく、AIカルテであなたの課題を一緒に整理するところから始まります。</div></details>
+  <details><summary>勉強会の日程を教えてください</summary><div class="a">全3回で、<b>8月11日（火）・8月16日（日）・8月28日（金）</b>です。すべて<b>アーカイブ（録画）つき</b>なので、当日参加できなくても大丈夫です。参加方法はオープンチャットでご案内します。</div></details>
+  <details><summary>当日参加できません。アーカイブはありますか？</summary><div class="a">あります。全3回すべて録画をお届けするので、あとから何度でも見返せます。</div></details>
+  <details><summary>スマホだけでも受講できますか？</summary><div class="a">はい、<b>スマホ中心で大丈夫</b>です。アプリづくりなど一部はパソコンがあると快適ですが、なくても進められるように設計しています。</div></details>
+  <details><summary>パソコンで「ご利用には有料プランが必要です」と出ました</summary><div class="a">ご安心ください、<b>Claudeは無料で使えます</b>。その表示は「Claude in Chrome」という、ブラウザに組み込むための別機能のご案内です（そちらだけ有料）。今回の講座では使いません。パソコンでは <b>claude.ai</b> をそのまま開いて、スマホアプリと同じメールアドレスでログインすればOKです。</div></details>
+  <details><summary>AIは無料プランのままでいいですか？</summary><div class="a">はい、<b>まずは無料プランでOK</b>です。有料プランが必要になる場面があれば、講座の中でタイミングと理由をご案内します。</div></details>
+  <details><summary>忙しくて時間がとれるか不安です</summary><div class="a"><b>週1時間から</b>進められる設計です。期間は1ヶ月半。オープンチャットは期限がないので、自分のペースで大丈夫です。</div></details>
+  <details><summary>初心者ですが、ついていけますか？</summary><div class="a">大丈夫です。このラボは<b>初級の方に合わせて</b>作っています。「プロンプトって何？」の状態から、正しい順番でひとつずつ進みます。</div></details>
+  <details><summary>最終ミッションとは何ですか？</summary><div class="a">自分のためのアプリを1つ、大切な誰かのためのアプリを1つ、<b>合計2つ作ったら卒業</b>です。作り方は順番にお伝えするので、いまは作れなくて大丈夫です。</div></details>
+
+  <h2 class="sec" id="c6">うまくいかない時</h2>
+  <details><summary>ページがうまく開きません</summary><div class="a">①一度閉じてもう一度開く ②再読み込みする ③LINEの中ではなく<b>SafariやChromeで開く</b>、の順にお試しください。それでもダメなら画面左下の「不具合を報告」から教えてください。</div></details>
+  <details><summary>画像がアップできません</summary><div class="a">通信環境の良いところで、<b>写真を選び直して</b>もう一度お試しください。サイズが大きすぎる場合は、スクショを撮り直すとうまくいくことが多いです。</div></details>
+  <details><summary>不具合を見つけました</summary><div class="a">ありがとうございます！各ページの左下にある<b>「不具合を報告」</b>から送ってください。くみこにすぐ届きます。</div></details>
+  <details><summary>ここに載っていない質問があります</summary><div class="a">まずは下の<b>AIくみこ</b>に聞いてみてください。24時間いつでも答えます。それでも解決しないときだけ、<a href="https://fv9f75lk.autosns.app/line" target="_blank" rel="noopener">AI勉強会のLINE</a>へどうぞ。</div></details>
+
+  <div class="noresult" id="noresult">見つかりませんでした。言葉を変えてみるか、下のAIくみこに聞いてみてください☺️</div>
+
+  <div class="aikcard">
+    <img src="https://lp.merone.jp/kumiko-illust/lab-typing.png" alt="AIくみこ">
+    <div>
+      <p><b style="color:var(--navy2);">解決しませんでしたか？</b><br>AIくみこが24時間、いつでもお答えします。</p>
+      <a class="btn" href="https://kumiko0814.github.io/ai-kumiko/" target="_blank" rel="noopener">AIくみこに聞いてみる</a>
+    </div>
+  </div>
+
+  <footer>Merone AI活用ラボ｜AIの力で、あなたの毎日をもっと豊かに。</footer>
+</div>
+
+<script>
+(function(){
+var q=document.getElementById("q");
+var items=[].slice.call(document.querySelectorAll("details"));
+var secs=[].slice.call(document.querySelectorAll("h2.sec"));
+var hit=document.getElementById("hitcnt"), nores=document.getElementById("noresult");
+q.addEventListener("input",function(){
+  var v=q.value.trim().toLowerCase();
+  if(!v){
+    items.forEach(function(d){ d.style.display="block"; d.open=false; });
+    secs.forEach(function(s){ s.style.display="block"; });
+    hit.style.display="none"; nores.style.display="none"; return;
+  }
+  var n=0;
+  items.forEach(function(d){
+    var ok=d.textContent.toLowerCase().indexOf(v)>=0;
+    d.style.display=ok?"block":"none"; d.open=ok;
+    if(ok) n++;
+  });
+  secs.forEach(function(s){
+    var el=s.nextElementSibling, any=false;
+    while(el && el.tagName==="DETAILS"){ if(el.style.display!=="none") any=true; el=el.nextElementSibling; }
+    s.style.display=any?"block":"none";
+  });
+  hit.textContent=n+"件見つかりました"; hit.style.display="block";
+  nores.style.display=n?"none":"block";
+});
+})();
+</script>
+
+<!-- バグ報告ツール -->
+<style>
+#bugL{position:fixed; left:12px; bottom:16px; z-index:59; background:rgba(255,255,255,.92); border:1px solid #dfe7ee; color:#8a97a5; font-size:10.5px; font-weight:800; border-radius:999px; padding:5px 12px; cursor:pointer; letter-spacing:.04em;}
+#bugM{position:fixed; inset:0; background:rgba(29,49,73,.55); display:none; align-items:center; justify-content:center; z-index:70; padding:24px;}
+#bugM.on{display:flex;}
+#bugM .bx{background:#fff; border-radius:20px; padding:22px 20px; max-width:360px; width:100%;}
+#bugM h3{font-size:14.5px; color:#1d3149; margin-bottom:8px;}
+#bugM textarea{width:100%; border:1.5px solid #e3e9f0; border-radius:12px; padding:11px 13px; font-size:14px; line-height:1.8; color:#1d3149; font-family:inherit; min-height:100px; resize:vertical;}
+#bugM .bb{display:flex; gap:8px; margin-top:12px;}
+#bugM button{flex:1; border:none; border-radius:999px; padding:11px; font-size:13px; font-weight:800; cursor:pointer; font-family:inherit;}
+#bugM .s{background:linear-gradient(135deg,#c76e85,#cf8f9c); color:#fff;}
+#bugM .c{background:#eef2f6; color:#26405f;}
+#bugM .done{display:none; font-size:12.5px; color:#bd7886; font-weight:800; margin-top:8px; text-align:center;}
+</style>
+<div id="bugL">不具合を報告</div>
+<div id="bugM"><div class="bx">
+  <h3>不具合・気になったことを教えてください</h3>
+  <textarea id="bugT" placeholder="例）検索しても何も出てきませんでした（iPhone/Safari）"></textarea>
+  <div class="bb"><button class="c" id="bugC">閉じる</button><button class="s" id="bugS">送信する</button></div>
+  <div class="done" id="bugD">届きました。ありがとうございます。すぐ確認します。</div>
+</div></div>
+<script>
+(function(){
+var U="https://inrvprlyobghviklulcv.supabase.co/rest/v1/ailab_notes";
+var K="sb_publishable_ZrCNcsRHMci-l7Fns8QtIA_X22XZGJp";
+var M=document.getElementById("bugM");
+document.getElementById("bugL").onclick=function(){ M.classList.add("on"); };
+document.getElementById("bugC").onclick=function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; };
+document.getElementById("bugS").onclick=function(){
+  var t=document.getElementById("bugT").value.trim();
+  if(!t){ document.getElementById("bugT").focus(); return; }
+  var btn=this; btn.disabled=true;
+  fetch(U,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},
+    body:JSON.stringify({member_id:"bug_FAQ",member_name:"FAQ｜guest",mood:"バグ報告",worry:t,want:location.href.slice(0,180)+" ／ "+navigator.userAgent.slice(0,140)})})
+    .then(function(){
+      document.getElementById("bugD").style.display="block";
+      document.getElementById("bugT").value=""; btn.disabled=false;
+      setTimeout(function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; },1800);
+    }).catch(function(){ btn.disabled=false; alert("送信できませんでした。通信環境をご確認ください。"); });
+};
+})();
+</script>
+</body>
+</html>

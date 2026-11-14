@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>ONSと成約の関係（モック）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#D9A69C; --rose-d:#C08B80; --rose-soft:#F6EAE6;
+    --slate:#6E8F97; --slate-d:#4C6B73; --slate-soft:#E9F0F1;
+    --cream:#FAF7F4; --ink:#3A4449; --muted:#93A0A6; --line:#E7E2DD;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);
+    font-family:"游ゴシック","Yu Gothic",YuGothic,"Hiragino Kaku Gothic ProN",sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 0 70px;line-height:1.7;}
+  .hero{background:linear-gradient(135deg,#E8BFB5 0%,#EFD7CF 30%,#C5D2D4 62%,#5F7F88 100%);
+    padding:44px 18px 38px;text-align:center;color:#fff;}
+  .hero .en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.22em;opacity:.95;}
+  .hero h1{font-size:21px;font-weight:800;letter-spacing:.02em;margin:9px 0 6px;text-shadow:0 1px 8px rgba(60,80,90,.25);}
+  .hero .sub{font-size:12.5px;opacity:.95;}
+  .wrap{max-width:560px;margin:-22px auto 0;padding:0 14px;}
+
+  /* 大結論バナー */
+  .verdict{background:#fff;border-radius:18px;box-shadow:0 8px 26px rgba(76,107,115,.14);
+    padding:20px 20px;text-align:center;border-top:5px solid var(--rose);}
+  .verdict .q{font-size:12.5px;color:var(--muted);font-weight:700;}
+  .verdict .a{font-size:19px;font-weight:800;color:var(--rose-d);line-height:1.5;margin-top:8px;}
+  .verdict .a em{font-style:normal;background:linear-gradient(transparent 60%, #F3D9CF 60%);}
+
+  .sec-title{font-size:12px;font-weight:800;letter-spacing:.03em;color:#fff;background:var(--slate);
+    display:inline-block;border-radius:20px;padding:5px 15px;margin:30px 0 4px;}
+  .sec-title.rose{background:var(--rose);}
+  .lead{font-size:14px;font-weight:700;color:var(--slate-d);margin:6px 2px 12px;}
+  .card{background:#fff;border-radius:16px;box-shadow:0 5px 18px rgba(76,107,115,.09);padding:18px;margin-bottom:14px;}
+
+  /* 漏斗 */
+  .funnel{display:flex;flex-direction:column;align-items:center;gap:4px;margin:6px 0;}
+  .fstep{border-radius:10px;padding:11px 10px;text-align:center;color:#fff;position:relative;}
+  .fstep .lbl{font-size:12px;font-weight:700;opacity:.95;}
+  .fstep .n{font-size:20px;font-weight:800;line-height:1.1;}
+  .fdrop{font-size:11px;color:var(--rose-d);font-weight:800;margin:1px 0;}
+  .f1{width:100%;background:var(--slate);}
+  .f2{width:62%;background:#7fa0a6;}
+  .f3{width:34%;background:var(--rose);}
+  .f4{width:20%;background:var(--rose-d);}
+  .funnel-note{font-size:12px;color:var(--muted);text-align:center;margin-top:8px;}
+  .funnel-note b{color:var(--rose-d);}
+
+  /* 対比 */
+  .versus{display:flex;gap:10px;align-items:stretch;text-align:center;}
+  .versus .box{flex:1;border-radius:14px;padding:16px 10px;}
+  .versus .line{background:var(--rose-soft);border:1px solid var(--rose);}
+  .versus .ons{background:var(--slate-soft);border:1px solid #CBD8DB;}
+  .versus .big{font-size:30px;font-weight:800;line-height:1;}
+  .versus .line .big{color:var(--rose-d);}
+  .versus .ons .big{color:var(--slate-d);}
+  .versus .cap{font-size:12px;font-weight:700;margin-top:6px;}
+  .versus .sub{font-size:11px;color:var(--muted);margin-top:3px;}
+  .vs-mid{display:flex;align-items:center;font-size:13px;font-weight:800;color:var(--muted);}
+
+  /* 理由カード */
+  .reason{display:flex;gap:11px;background:#fff;border-radius:14px;padding:14px 15px;margin-bottom:10px;
+    box-shadow:0 3px 12px rgba(76,107,115,.07);}
+  .reason .no{width:26px;height:26px;border-radius:50%;background:var(--slate);color:#fff;font-weight:800;font-size:13px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .reason .t{font-size:13px;}
+  .reason .t b{color:var(--slate-d);}
+
+  /* 打ち手 */
+  .rx{display:flex;gap:11px;background:#fff;border-radius:14px;padding:14px 15px;margin-bottom:10px;
+    box-shadow:0 3px 12px rgba(76,107,115,.07);}
+  .rx .no{width:26px;height:26px;border-radius:50%;background:var(--rose);color:#fff;font-weight:800;font-size:13px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .rx .t{font-size:13px;}
+  .rx .t b{color:var(--rose-d);}
+
+  .note{font-size:12px;color:var(--muted);margin:8px 2px 0;}
+  .goal{background:var(--slate-soft);border-radius:14px;padding:15px 16px;margin-top:8px;font-size:13px;color:var(--slate-d);}
+  .goal b{color:var(--rose-d);}
+  .foot{max-width:560px;margin:14px auto 0;padding:0 16px;font-size:11px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="en">ONS &amp; Conversion</div>
+  <h1>ONSを増やせば、成約は増える？</h1>
+  <div class="sub">面談（ONS）と成約の関係を、数字でほどく｜Merone</div>
+</div>
+
+<div class="wrap">
+
+  <!-- 大結論 -->
+  <div class="verdict">
+    <div class="q">ONSの予約を増やす＝成約が増える？</div>
+    <div class="a"><em>そう単純には、言えません。</em></div>
+    <div class="note" style="margin-top:10px;">ONS参加者の成約率が高いのは事実です。ただ「予約を増やせば成約も増える」には、3つの落とし穴があります🌷</div>
+  </div>
+
+  <!-- 漏斗 -->
+  <div class="sec-title rose">まず、8月の流れを見てください</div>
+  <div class="lead">返信をもらってから、面談で成約するまで。</div>
+  <div class="card">
+    <div class="funnel">
+      <div class="fstep f1"><div class="lbl">返信をもらえた人</div><div class="n">205人</div></div>
+      <div class="fdrop">▼ このうち予約したのは15.6%</div>
+      <div class="fstep f2"><div class="lbl">ONS（面談）を予約</div><div class="n">32人</div></div>
+      <div class="fdrop">▼ 予約しても来たのは37.5%</div>
+      <div class="fstep f3"><div class="lbl">ONSに実際に参加</div><div class="n">12人</div></div>
+      <div class="fdrop">▼ 参加して成約したのは33%</div>
+      <div class="fstep f4"><div class="lbl">ONSで成約</div><div class="n">4人</div></div>
+    </div>
+    <p class="funnel-note">返信をくれた205人のうち、面談まで来たのは<b>たった12人（6%）</b>。ここが本当に細くなっているところです。</p>
+  </div>
+
+  <!-- LINE vs ONS -->
+  <div class="sec-title rose">そして、見落とされていること</div>
+  <div class="lead">実は、成約の多くは面談を通っていません。</div>
+  <div class="card">
+    <div class="versus">
+      <div class="box line"><div class="big">10件</div><div class="cap">LINEで成約🌸</div><div class="sub">面談を通さず</div></div>
+      <div class="vs-mid">vs</div>
+      <div class="box ons"><div class="big">4件</div><div class="cap">ONSで成約</div><div class="sub">面談を通って</div></div>
+    </div>
+    <p class="note">8月の成約14件のうち、面談経由は4件だけ。<b style="color:var(--rose-d)">残り10件（約7割）は、LINEのやり取りだけで決まっています。</b>先日の入会者ヒアリングの方も、面談ではなくチャットで決めていました。</p>
+  </div>
+
+  <!-- 3つの理由 -->
+  <div class="sec-title">「予約を増やす＝成約増」と言えない3つの理由</div>
+  <div class="reason"><div class="no">1</div><div class="t"><b>予約を増やしても、参加で漏れます。</b>予約した32人のうち、実際に来たのは12人（37.5%）。予約を増やしても、来ない人が増えるだけになりがちです。</div></div>
+  <div class="reason"><div class="no">2</div><div class="t"><b>面談に来る人は、もともと決めやすい人です。</b>成約率が高いのは「面談のおかげ」ではなく「もともと意欲が高い人だけが来ているから」かもしれません。無理に人数を増やすと、この高い成約率は保てません。</div></div>
+  <div class="reason"><div class="no">3</div><div class="t"><b>成約の主戦場は、そもそもLINEです。</b>7割がLINEで決まっているのに、面談だけを増やそうとすると、いちばん成約が起きている場所を見落とします。</div></div>
+
+  <!-- 打ち手 -->
+  <div class="sec-title rose">じゃあ、どうする？（打ち手3つ）</div>
+  <div class="lead">「増やす」より「取りこぼさない＋主戦場を伸ばす」です。</div>
+  <div class="rx"><div class="no">1</div><div class="t"><b>面談を「壁打ち・整理の場」として誘う。</b>「面談」だと身構えられます。「頭の整理を一緒にする時間」として、日程を2択で出すと予約率が上がります。</div></div>
+  <div class="rx"><div class="no">2</div><div class="t"><b>予約後の「来ない」を防ぐ。</b>予約から当日までに、前日・当日の一声を入れます。予約したのに来ない37.5%を守るのが、面談成約を増やす近道です。</div></div>
+  <div class="rx"><div class="no">3</div><div class="t"><b>LINEでの成約を、もっと強くする。</b>7割が起きている主戦場です。懸念に合った文面と、料金の目安（時間×月謝）を材料として渡し、LINEの中で決められるよう支えます。</div></div>
+
+  <!-- まとめ -->
+  <div class="sec-title">まとめ</div>
+  <div class="goal">
+    ONSは「増やす」より、<b>①来た人を取りこぼさない ②乗せるべき人を見極める</b>。<br>
+    そして<b>成約の7割が起きているLINEを、並行して伸ばす</b>。<br>
+    この両輪が、成約数を積む近道です🌸
+  </div>
+
+</div>
+<div class="foot">Merone｜ONSと成約の関係 分析（社内共有用モック）｜数値は2026年8月・全体追客</div>
+</body>
+</html>

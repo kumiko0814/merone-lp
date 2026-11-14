@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Re:sellerチェッカー仕様書｜スマセル6月プロモーション（パブリック版）｜Merone</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --sub: #5a5a5a;
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --line: #e6e3dc;
+    --accent: #c25b3f;
+    --accent2: #1f6f5e;
+    --soft: #f3efe7;
+    --hot-bg: #fff8f4;
+    --hot-border: #f0d6c8;
+    --warn: #b8412a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Yu Gothic", "YuGothic", "游ゴシック", "Hiragino Kaku Gothic ProN", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.01em;
+  }
+
+  .navbar {
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    font-size: 12px;
+  }
+  .nav-brand {
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .nav-inner a {
+    color: var(--sub);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .nav-inner a:hover { background: var(--soft); color: var(--accent); }
+  .nav-inner a.current { background: var(--accent); color: var(--card); }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  .hero {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 40px 28px;
+    margin-bottom: 32px;
+  }
+  .hero::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 18px;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--sub);
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+  .hero-sub {
+    color: var(--sub);
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+  .hero-summary {
+    background: var(--soft);
+    border-left: 3px solid var(--accent);
+    padding: 18px 20px;
+    border-radius: 2px;
+  }
+  .hero-summary strong { color: var(--accent); }
+
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    scroll-margin-top: 70px;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  h2 .num {
+    color: var(--accent);
+    margin-right: 10px;
+    font-weight: 800;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 22px 0 10px;
+    border-left: 3px solid var(--accent2);
+    padding-left: 10px;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 16px 0 8px;
+    color: var(--accent);
+  }
+  p { margin-bottom: 10px; }
+  .muted { color: var(--sub); font-size: 13px; }
+  ul, ol { margin-left: 1.4em; margin-bottom: 10px; }
+  ul li, ol li { margin-bottom: 6px; }
+
+  .tbl-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 13.5px;
+  }
+  th, td {
+    border-bottom: 1px solid var(--line);
+    padding: 10px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--soft);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  tbody tr:nth-child(even) td { background: #fbfaf6; }
+  tbody tr:hover td { background: var(--hot-bg); }
+  table.center td:nth-child(n+3) { text-align: right; }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--soft);
+    color: var(--sub);
+    margin-right: 4px;
+    letter-spacing: 0.05em;
+  }
+  .tag-accent { background: var(--accent); color: var(--card); }
+  .tag-forest { background: var(--accent2); color: var(--card); }
+  .tag-warn { background: var(--warn); color: var(--card); }
+  .chip {
+    display: inline-block;
+    background: var(--hot-bg);
+    border: 1px solid var(--hot-border);
+    color: var(--accent);
+    padding: 1px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  .grade-A { color: var(--accent2); font-weight: 800; }
+  .grade-B { color: var(--accent); font-weight: 800; }
+  .grade-C { color: #b58a3a; font-weight: 800; }
+  .grade-D { color: var(--sub); font-weight: 800; }
+
+  /* Mock card */
+  .mock {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin: 14px 0;
+    font-family: "Yu Gothic", sans-serif;
+  }
+  .mock-q {
+    color: var(--sub);
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .mock-title {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .mock-score {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .mock-grade {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent2);
+  }
+  .mock-points {
+    font-size: 14px;
+    color: var(--sub);
+  }
+  .mock-row {
+    display: flex;
+    gap: 10px;
+    padding: 4px 0;
+    font-size: 13px;
+  }
+  .mock-row .k { color: var(--sub); min-width: 140px; }
+  .mock-row .v { font-weight: 700; }
+  .mock-best {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+  }
+  .mock-hint {
+    margin-top: 10px;
+    background: var(--hot-bg);
+    border-left: 3px solid var(--accent);
+    padding: 10px 12px;
+    font-size: 13px;
+    border-radius: 2px;
+  }
+
+  /* chat bubble for LINE samples */
+  .chat {
+    background: #f0e9df;
+    border-radius: 8px;
+    padding: 18px 14px;
+    margin: 12px 0 18px;
+  }
+  .bubble {
+    background: var(--card);
+    padding: 14px 16px;
+    border-radius: 14px;
+    border-top-left-radius: 4px;
+    margin-bottom: 8px;
+    max-width: 92%;
+    font-size: 14px;
+    line-height: 1.7;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    white-space: pre-wrap;
+  }
+  .bubble-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .law {
+    background: var(--soft);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 12px 0;
+    border-radius: 2px;
+  }
+  .law-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .law-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--sub);
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 14px 60px; }
+    .hero { padding: 28px 20px; }
+    .hero h1 { font-size: 22px; }
+    section { padding: 22px 16px; }
+    h2 { font-size: 18px; }
+    table { font-size: 12px; }
+    th, td { padding: 8px 6px; }
+    .nav-inner { font-size: 11px; gap: 8px; }
+    .mock-grade { font-size: 28px; }
+    .mock-row .k { min-width: 110px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <span class="nav-brand">MERONE</span>
+    <a href="index.html">index</a>
+    <a href="SUMMARY.html">サマリー</a>
+    <a href="strategy_proposal.html">戦略提案</a>
+    <a href="research_smasell_and_voices.html">リサーチ</a>
+    <a href="tool_spec_seller_checker.html" class="current">ツール仕様</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-label">TOOL SPEC ／ RE:SELLER CHECKER</div>
+    <h1>Re:sellerチェッカー仕様書</h1>
+    <p class="hero-sub">スマセル6月プロモーション 勉強会登録特典ツール仕様 ／ 作成 2026-06-03 ／ Merone データ分析担当<br>データ出典：データ提供者Z（地方在住・在宅ママ）の仕入れ実績データ（2025/11〜2026/4・全221件）<br><span style="color:var(--warn);font-size:11px;">※ 本書はMerone社内提案書のパブリック公開サンプル。実名は匿名化済み。</span></p>
+
+    <div class="hero-summary">
+      <p><strong>結論</strong>：MVPは<strong>案1（静的JSON＋JS／GitHub Pages or Vercel無料枠）</strong>。CTO稼働2日で6月本番に間に合う。Phase2でLIFF＋GAS化、Phase3でClaude API拡張。</p>
+      <p>スコア4軸（実績件数40点／月幅20点／価格レンジ20点／カテゴリ強度20点）で <strong>A〜D</strong> 判定し、初心者がブランド名を入れた瞬間「迷わず仕入れOK／時期注意／避ける」が一目でわかる体験を提供する。</p>
+    </div>
+  </header>
+
+  <!-- 1 統計分析 -->
+  <section id="stats">
+    <h2><span class="num">1</span>仕入れデータ統計分析（データ提供者Z）</h2>
+
+    <h3>1-0 サマリ（最初に押さえる事実）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>指標</th><th>値</th></tr></thead>
+      <tbody>
+        <tr><td>分析対象期間</td><td>2025/11/2 〜 2026/4/28（6ヶ月）</td></tr>
+        <tr><td>総仕入れ件数</td><td><span class="chip">221件</span></td></tr>
+        <tr><td>総仕入れ金額</td><td><span class="chip">数十万円台</span>（平均 約2,744円/件）</td></tr>
+        <tr><td>月平均仕入れ件数</td><td>約37件（最少16件/2月、最多73件/3月）</td></tr>
+        <tr><td>主力販路</td><td>smasell.USED（208件・94%）</td></tr>
+        <tr><td>サブ販路</td><td>M.Second（10件・4.5%）、INAF（3件・1.4%）</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted">備考：データ提供者Zは「月数万円台の利益」を達成。仕入れ総額数十万円÷6ヶ月＝月仕入れ約10万円規模。利益率を月数万円台から逆算すると約100%（仕入れと同額の利益）が想定される（推測）。</p>
+
+    <h3>1-1 ブランド別頻度ランキングTOP20</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>順位</th><th>ブランド</th><th>件数</th><th>平均仕入れ値</th><th>最低</th><th>最高</th><th>出現月パターン</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>ユニクロ</td><td>35</td><td>1,317円</td><td>545</td><td>2,541</td><td>全月（特に3月20件）</td></tr>
+        <tr><td>2</td><td>ラルフローレン系</td><td>14</td><td>2,325円</td><td>908</td><td>4,538</td><td>全月</td></tr>
+        <tr><td>3</td><td>コーチ</td><td>5</td><td>3,055円</td><td>2,178</td><td>4,455</td><td>11/12/3月</td></tr>
+        <tr><td>3</td><td>ラコステ</td><td>5</td><td>2,069円</td><td>1,634</td><td>2,831</td><td>1/3/4月</td></tr>
+        <tr><td>3</td><td>モンベル</td><td>5</td><td>1,232円</td><td>726</td><td>1,452</td><td>1/3/4月</td></tr>
+        <tr><td>3</td><td>アディダス</td><td>5</td><td>1,561円</td><td>1,162</td><td>1,997</td><td>1/2/3/4月</td></tr>
+        <tr><td>7</td><td>ナイキ</td><td>4</td><td>944円</td><td>654</td><td>1,271</td><td>3/4月</td></tr>
+        <tr><td>7</td><td>アグ(UGG)</td><td>4</td><td>5,057円</td><td>2,904</td><td>8,415</td><td>11/4月（秋冬）</td></tr>
+        <tr><td>7</td><td>ソウルベリー</td><td>4</td><td>1,406円</td><td>908</td><td>1,815</td><td>4月集中</td></tr>
+        <tr><td>7</td><td>ザ・ノースフェイス</td><td>4</td><td>2,859円</td><td>908</td><td>5,445</td><td>1/3/4月</td></tr>
+        <tr><td>11</td><td>ビューティアンドユース</td><td>3</td><td>1,501円</td><td>1,271</td><td>1,634</td><td>3/4月</td></tr>
+        <tr><td>11</td><td>エムズグレイシー</td><td>3</td><td>2,599円</td><td>1,271</td><td>3,993</td><td>12/2/3月</td></tr>
+        <tr><td>11</td><td>フレッドペリー</td><td>3</td><td>2,831円</td><td>1,779</td><td>3,630</td><td>3月集中</td></tr>
+        <tr><td>11</td><td>マリメッコ</td><td>3</td><td>1,639円</td><td>1,386</td><td>1,897</td><td>1/3月</td></tr>
+        <tr><td>11</td><td>ペレボルサ</td><td>3</td><td>3,146円</td><td>1,815</td><td>4,538</td><td>1/3月</td></tr>
+        <tr><td>11</td><td>エトロ</td><td>3</td><td>2,799円</td><td>1,815</td><td>3,449</td><td>11/12/1月</td></tr>
+        <tr><td>11</td><td>ハズキルーペ</td><td>3</td><td>1,875円</td><td>1,815</td><td>1,997</td><td>1/11月</td></tr>
+        <tr><td>18</td><td>パタゴニア</td><td>2</td><td>2,504円</td><td>2,105</td><td>2,904</td><td>12/4月</td></tr>
+        <tr><td>18</td><td>フルラ</td><td>2</td><td>6,212円</td><td>5,990</td><td>6,435</td><td>11/4月</td></tr>
+        <tr><td>18</td><td>キタムラ</td><td>2</td><td>4,265円</td><td>3,086</td><td>5,445</td><td>3月</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted">鉄板ブランドはユニクロ（圧倒的1位）＋ラルフローレン系（POLOブランドの安定感）＋アウトドア3兄弟（ノースフェイス・モンベル・パタゴニア）＋POLOスポーツ系（ラコステ・ナイキ・アディダス）。</p>
+
+    <h3>1-2 カテゴリ別分析</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>カテゴリ</th><th>件数</th><th>平均仕入れ値</th><th>最低</th><th>最高</th><th>ピーク月</th></tr></thead>
+      <tbody>
+        <tr><td>ダウン/中綿/コート</td><td>46</td><td>1,988円</td><td>545</td><td>6,270</td><td>3月（20件）</td></tr>
+        <tr><td>トップス（T/ニット/ブラウス/カーディガン）</td><td>42</td><td>2,269円</td><td>545</td><td>6,897</td><td>3月（23件）</td></tr>
+        <tr><td>バッグ/財布/ウォレット</td><td>40</td><td>4,061円</td><td>1,271</td><td>19,784</td><td>1月（16件）</td></tr>
+        <tr><td>スニーカー/シューズ/サンダル</td><td>25</td><td>2,956円</td><td>1,053</td><td>8,415</td><td>11月（7件）・4月（6件）</td></tr>
+        <tr><td>帽子/ストール/小物</td><td>17</td><td>3,091円</td><td>1,815</td><td>7,187</td><td>11月（5件）・1月（6件）</td></tr>
+        <tr><td>ボトムス（パンツ/スカート）</td><td>15</td><td>2,228円</td><td>545</td><td>9,240</td><td>3月（8件）</td></tr>
+        <tr><td>ジャケット/ブルゾン（春秋アウター）</td><td>14</td><td>2,982円</td><td>908</td><td>9,240</td><td>4月（5件）</td></tr>
+        <tr><td>ワンピース/サロペット</td><td>7</td><td>1,988円</td><td>1,162</td><td>2,904</td><td>3月・4月（各3件）</td></tr>
+        <tr><td>化粧品</td><td>3</td><td>3,690円</td><td>2,783</td><td>5,203</td><td>4月のみ（INAF販路）</td></tr>
+        <tr><td>その他（食器/時計/雑貨）</td><td>10</td><td>2,768円</td><td>1,271</td><td>5,363</td><td>12月（4件）</td></tr>
+        <tr><td>セットアップ/その他衣類</td><td>2</td><td>1,465円</td><td>1,017</td><td>1,914</td><td>11月・3月</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted">ポイント：金額的にはバッグ系（4,061円平均）がトップ。件数最多はダウン（46件）。客単価×回転で稼ぐツートップ構造。</p>
+
+    <h3>1-3 季節性分析（月別主力カテゴリ件数）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>カテゴリ</th><th>11月</th><th>12月</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th></tr></thead>
+      <tbody>
+        <tr><td>ダウン/中綿/コート</td><td>6</td><td>3</td><td>4</td><td>4</td><td>20</td><td>9</td></tr>
+        <tr><td>トップス</td><td>2</td><td>1</td><td>6</td><td>1</td><td>23</td><td>9</td></tr>
+        <tr><td>バッグ/財布</td><td>6</td><td>4</td><td>16</td><td>2</td><td>9</td><td>3</td></tr>
+        <tr><td>スニーカー/シューズ</td><td>7</td><td>1</td><td>4</td><td>5</td><td>2</td><td>6</td></tr>
+        <tr><td>帽子/ストール</td><td>5</td><td>2</td><td>6</td><td>2</td><td>2</td><td>0</td></tr>
+        <tr><td>ボトムス</td><td>2</td><td>0</td><td>2</td><td>2</td><td>8</td><td>1</td></tr>
+        <tr><td>春秋ジャケット</td><td>2</td><td>3</td><td>1</td><td>0</td><td>3</td><td>5</td></tr>
+        <tr><td>ワンピース</td><td>0</td><td>0</td><td>1</td><td>0</td><td>3</td><td>3</td></tr>
+        <tr><td>化粧品</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>3</td></tr>
+        <tr><td><strong>月合計件数</strong></td><td><strong>32</strong></td><td><strong>18</strong></td><td><strong>41</strong></td><td><strong>16</strong></td><td><strong>73</strong></td><td><strong>41</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h4>読み取れる季節パターン</h4>
+    <ul>
+      <li><strong>11月</strong>＝スニーカー・バッグ・帽子小物が中心（秋〜初冬準備）</li>
+      <li><strong>12〜1月</strong>＝バッグ/財布が爆増（1月16件はバッグ目的の年明け仕入れラッシュ）。ダウンも継続</li>
+      <li><strong>2月</strong>＝閑散期（16件）。仕入れを絞り3月の山に備える（推測）</li>
+      <li><strong>3月</strong>＝最大山場（73件）。ダウン20件＋トップス23件＝春物切替前の冬物処分の安値仕入れタイミング</li>
+      <li><strong>4月</strong>＝春物ジャケット・春トップス・サンダル/モカシン・春ワンピへ移行。化粧品（INAF）も4月から開始</li>
+    </ul>
+
+    <h3>1-4 仕入れ値レンジ分布</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>価格帯</th><th>件数</th><th>構成比</th></tr></thead>
+      <tbody>
+        <tr><td>〜1,000円</td><td>17件</td><td>7%</td></tr>
+        <tr><td>1,000〜2,000円</td><td>89件</td><td><span class="chip">40%</span></td></tr>
+        <tr><td>2,000〜3,000円</td><td>51件</td><td><span class="chip">23%</span></td></tr>
+        <tr><td>3,000〜5,000円</td><td>41件</td><td>18%</td></tr>
+        <tr><td>5,000〜10,000円</td><td>21件</td><td>9%</td></tr>
+        <tr><td>10,000円超</td><td>2件</td><td>1%</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted">メインゾーン：<strong>1,000〜3,000円帯が63%を占める「中価格帯コツコツ型」</strong>。1万円超の高額仕入れは2件のみ（ワイルドスワンズ メモカバー10,709円／アルフレッドベレッタ ハンドバッグ19,784円）。在宅主婦にとって資金リスクを抑える設計が見える。</p>
+
+    <h3>1-5 販売先（仕入れ先）の使い分け</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>販路</th><th>件数</th><th>平均仕入れ値</th><th>特徴</th><th>使うタイミング</th></tr></thead>
+      <tbody>
+        <tr><td><strong>smasell.USED</strong></td><td>208件（94%）</td><td>2,739円</td><td>古着の主戦場。ブランド名＋アイテム明記の標準的なリユース在庫</td><td><strong>常時</strong>：基本ここで仕入れる</td></tr>
+        <tr><td><strong>M.Second</strong></td><td>10件（4.5%）</td><td>2,554円</td><td>商品名が英語表記多め（A.P.C／RALPH LAUREN／ARC'TERYX等）。デザイナーズ・アウトドア系の品揃え</td><td>3月集中。新規ブランド出会いの場として活用</td></tr>
+        <tr><td><strong>INAF</strong></td><td>3件（1.4%）</td><td>3,690円</td><td>化粧品専門（アルビオン／DHC／ブリリアージュ）</td><td>4月以降の新カテゴリ展開時</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h4>使い分け基準（推測込み）</h4>
+    <ul>
+      <li>9割以上はsmasell.USEDで回す＝判断軸を1個に絞ることで在宅時間を効率化</li>
+      <li>M.Secondは「smasell.USEDに飽きた頃」や「アウトドア・デザイナーズの掘り出し物探し」で月数件</li>
+      <li>INAFは化粧品＝劣化しない・サイズ問わない・在庫リスク低い、を4月から実験中</li>
+    </ul>
+  </section>
+
+  <!-- 2 7法則 -->
+  <section id="laws">
+    <h2><span class="num">2</span>売れる商品の発見：7法則（データから帰納）</h2>
+    <p class="muted">なぜデータ提供者Zは月数万円台稼げるのか。221件のパターンから抽出した原理。</p>
+
+    <div class="law">
+      <div class="law-num">LAW 01</div>
+      <div class="law-title">1,000〜3,000円帯で63%回す（資金リスク最小化）</div>
+      <p>1件あたりの平均仕入れ2,744円。3件売れば1万円分の仕入れが回収。<strong>「小ロット高回転」が在宅主婦の正解</strong>。</p>
+    </div>
+
+    <div class="law">
+      <div class="law-num">LAW 02</div>
+      <div class="law-title">ユニクロは「ダウン」と「ベスト」で買い溜める</div>
+      <p>ユニクロ35件中、ダウン系は22件以上（推測）。1着545〜2,541円。<strong>冬物オフシーズン（3月）にまとめ買い→次の秋冬に備える</strong>動きが見える。</p>
+    </div>
+
+    <div class="law">
+      <div class="law-num">LAW 03</div>
+      <div class="law-title">ラルフローレン系は通年売れる「鉄板ブランド」</div>
+      <p>14件が11月〜4月の全月にバラけて出現。POLOロゴはメルカリ需要が安定。<strong>初心者の最初の練習ブランド</strong>として最適。</p>
+    </div>
+
+    <div class="law">
+      <div class="law-num">LAW 04</div>
+      <div class="law-title">バッグは1月に仕込む</div>
+      <p>1月のバッグ/財布16件は突出。<strong>年明けセール時期＋確定申告前の出品者放出</strong>を狙う動き（推測）。客単価が高いため利益貢献度大。</p>
+    </div>
+
+    <div class="law">
+      <div class="law-num">LAW 05</div>
+      <div class="law-title">アウトドア3兄弟（ノースフェイス・モンベル・パタゴニア）はキッズも含めて全部買う</div>
+      <p>モンベル中綿ジャケット110サイズ、ポロバイラルフローレン中綿ジャケットキッズなど、<strong>キッズサイズも積極仕入れ</strong>。育児層×アウトドアの強いニーズを掴んでいる。</p>
+    </div>
+
+    <div class="law">
+      <div class="law-num">LAW 06</div>
+      <div class="law-title">3月の冬物投げ売りを逃さない</div>
+      <p>3月の73件は他月の倍以上。<strong>シーズン切替時の値崩れを買い、次シーズンに売る</strong>「タイムマシン仕入れ」。在宅主婦が時間裁量を活かせる戦略。</p>
+    </div>
+
+    <div class="law">
+      <div class="law-num">LAW 07</div>
+      <div class="law-title">高額品（5,000円超）は「ブランドバッグ」のみに集中</div>
+      <p>1万円超2件、5,000〜1万円帯21件のうち、多くはフルラ・コーチ・アグ・キタムラ等の<strong>ブランドバッグ＆ブランドブーツ</strong>。「金額が大きい時はバッグだけ」という判断軸の明快さ。</p>
+    </div>
+  </section>
+
+  <!-- 3 ツール仕様 -->
+  <section id="spec">
+    <h2><span class="num">3</span>ツール仕様</h2>
+
+    <h3>3-1 入出力定義</h3>
+    <h4>入力（3パターン対応）</h4>
+    <ol>
+      <li>ブランド名（例：「ユニクロ」「フルラ」）</li>
+      <li>カテゴリ名（例：「ダウン」「バッグ」）</li>
+      <li>商品名フリーテキスト（例：「ユニクロ ダウンジャケット M」）</li>
+    </ol>
+
+    <h4>出力（カードUI想定）</h4>
+    <div class="mock">
+      <div class="mock-q">検索：「ユニクロ ダウンジャケット」</div>
+      <div class="mock-title">ユニクロ × ダウンジャケット</div>
+      <div class="mock-score">
+        <div class="mock-grade">A</div>
+        <div class="mock-points">売れる確率スコア　92点 / 100点中</div>
+      </div>
+      <div class="mock-row"><span class="k">データ提供者Z過去実績</span><span class="v">22件</span></div>
+      <div class="mock-row"><span class="k">平均仕入れ値</span><span class="v">1,365円</span></div>
+      <div class="mock-row"><span class="k">推奨仕入れレンジ</span><span class="v">800円〜2,200円</span></div>
+      <div class="mock-row"><span class="k">推奨販売先</span><span class="v">smasell.USED</span></div>
+      <div class="mock-row"><span class="k">ベストシーズン</span><span class="v">3月（オフ仕入れ）</span></div>
+      <div class="mock-best">
+        <strong>同カテゴリの売れ筋ベスト3：</strong>
+        <ol style="margin-top:6px;">
+          <li>ユニクロ ウルトラライトダウン</li>
+          <li>ザ・ノースフェイス 中綿ジャケット</li>
+          <li>モンベル 中綿ジャケット（キッズも◎）</li>
+        </ol>
+      </div>
+      <div class="mock-hint">
+        <strong>ひとこと</strong>：このカテゴリは初心者の鉄板。サイズ違いを5着買い溜めて、3月以降の値下げを待つのが王道。
+      </div>
+    </div>
+
+    <h3>3-2 確率スコア算出ロジック（A/B/C/D）</h3>
+    <p>100点満点の合計点で4段階判定。</p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>評価軸</th><th>配点</th><th>算出方法</th></tr></thead>
+      <tbody>
+        <tr><td>データ提供者Z仕入れ実績件数</td><td>40点</td><td>10件以上=40 / 5-9件=30 / 2-4件=20 / 1件=10 / 0件=0</td></tr>
+        <tr><td>出現月の幅（リスクの低さ）</td><td>20点</td><td>4ヶ月以上=20 / 2-3ヶ月=12 / 1ヶ月=5</td></tr>
+        <tr><td>仕入れ値の中央レンジ適合</td><td>20点</td><td>1,000-3,000円帯=20 / 3,000-5,000=15 / 〜1,000または5,000-10,000=10 / それ以外=5</td></tr>
+        <tr><td>カテゴリ平均件数（ジャンル強度）</td><td>20点</td><td>カテゴリ件数30以上=20 / 15-29=15 / 5-14=10 / 4以下=5</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h4>スコア帯</h4>
+    <ul>
+      <li><span class="grade-A">A（80-100点）</span>：迷わず仕入れOK。データ提供者Zが繰り返し買っているブランド／カテゴリ</li>
+      <li><span class="grade-B">B（60-79点）</span>：仕入れ値レンジを守れば◎。例：フルラ／アグなど高単価ブランド</li>
+      <li><span class="grade-C">C（40-59点）</span>：シーズン要注意。3月の冬物・4月のサンダルなど時期限定</li>
+      <li><span class="grade-D">D（〜39点）</span>：データなし or 例外的（高額品・1件のみ）。初心者は避ける</li>
+    </ul>
+  </section>
+
+  <!-- 4 実装3案 -->
+  <section id="impl">
+    <h2><span class="num">4</span>実装3案比較</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>軸</th><th>案1：静的JSON+JS</th><th>案2：LIFF+GAS</th><th>案3：Claude API</th></tr></thead>
+      <tbody>
+        <tr><td>技術</td><td>HTML/CSS/JS、データJSONベタ書き、GitHub Pages or Vercel無料枠</td><td>LIFF（LINE Mini App）+ GAS + スプシ</td><td>Vercel/Next.js + Claude API（Haiku中心）</td></tr>
+        <tr><td>開発期間</td><td>1-2日</td><td>5-7日</td><td>10-14日</td></tr>
+        <tr><td>月額コスト</td><td>0円</td><td>0円</td><td>月3,000円〜（API使用量次第）</td></tr>
+        <tr><td>データ更新</td><td>手動でJSON差し替え→git push</td><td>スプシ更新→GAS自動反映</td><td>スプシ→API→ベクトル検索（中長期）</td></tr>
+        <tr><td>拡張性</td><td>低（検索ワードマッチのみ）</td><td>中（LINE ID紐付け・行動ログ取得可）</td><td>高（ブランド表記揺れ・曖昧検索OK）</td></tr>
+        <tr><td>在宅ママの使いやすさ</td><td>◎（ブラウザで開くだけ・ログイン不要）</td><td>◎（LINE内で完結・親しみある）</td><td>△（別ブラウザ起動・初見ハードル）</td></tr>
+        <tr><td>ユーザー集計</td><td>×</td><td>◎（誰がどう使ったか取得可）</td><td>○（API側ログ）</td></tr>
+        <tr><td>6月本番（残4週間）に間に合うか</td><td>◎</td><td>○（要LINE Developers設定）</td><td>△（QAリスク高）</td></tr>
+        <tr><td>男性流入排除</td><td>UI色味＋訴求文で対応</td><td>LINE登録時点でフィルタ可</td><td>UI次第</td></tr>
+        <tr><td>おすすめ度</td><td><strong>◎ MVP最適</strong></td><td>○ Phase2展開向け</td><td>△ Phase3将来</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>各案の機能詳細</h3>
+
+    <h4>案1：静的JSON+JS</h4>
+    <ul>
+      <li>UI：シンプル1ページ。検索ボックス＋カード表示</li>
+      <li>データ：<code>seller_data.json</code>（221件構造化済み）＋<code>brand_master.json</code>＋<code>category_master.json</code></li>
+      <li>検索：ブランド名・カテゴリ名の部分一致＋スコア計算をJSで実行</li>
+      <li>更新フロー：担当者→Slackで「新データ追加して」→Claude Codeがjson更新→git push（5分作業）</li>
+      <li>ホスティング：Vercel無料枠でPC・スマホ両対応</li>
+      <li>課題：ユーザー行動データは取れない（Google Analytics補完）</li>
+    </ul>
+
+    <h4>案2：LIFF+GAS</h4>
+    <ul>
+      <li>UI：LINEのトーク画面から起動する「ミニアプリ」</li>
+      <li>データ：スプシ（仕入れデータ・マスタ）をGAS APIで配信</li>
+      <li>検索：GAS doGet()でブランド/カテゴリ検索→JSON返却→LIFFが描画</li>
+      <li>更新フロー：担当者がスプシ直接編集→即反映</li>
+      <li>利点：LINEログイン情報で「誰が何を検索したか」全部取得。次回配信のセグメント精度UP</li>
+      <li>課題：LINE Developers設定＋channel ID取得＋LIFF URL発行＋LINE公式アカウント連携が要る</li>
+    </ul>
+
+    <h4>案3：Claude API</h4>
+    <ul>
+      <li>UI：Next.js製の本格Webアプリ。検索だけでなく「ノースフェイスの中綿ジャケット女性用Lサイズ」みたいな自然文に対応</li>
+      <li>検索：Claude Haikuが商品名から意図抽出→ベクトルDB（Supabase pgvector）or BM25で検索</li>
+      <li>更新フロー：スプシ→Vercel Cron→Embedding再生成</li>
+      <li>利点：表記ゆれ完全吸収（「TNF」「ノースフェイス」「The North Face」全部同一視）</li>
+      <li>課題：QA期間が必要。6月本番に間に合わない可能性大</li>
+    </ul>
+  </section>
+
+  <!-- 5 推奨案 -->
+  <section id="plan">
+    <h2><span class="num">5</span>推奨案＋6月までのスケジュール</h2>
+
+    <h3>推奨：案1（静的JSON+JS）を6月特典として配布、Phase2で案2へ拡張</h3>
+    <ol>
+      <li><strong>6月勉強会まで残り約4週間（推測：6月下旬開催前提）</strong>。確実に間に合うのは案1のみ</li>
+      <li>リソース＝Merone代表（戦略・LP）＋CTO（実装）＋社内スタッフ（コンテンツ）。CTOの稼働を案1なら2日で済ませられる</li>
+      <li><strong>6月の目的は「特典としての訴求力」と「データ取得」ではない。まずツール体験を提供→満足度を測る</strong></li>
+      <li>案2（LIFF）の本価値である「行動ログ取得」は、まず<strong>ツール価値検証後に上乗せ</strong>が筋。最初からLIFFだと「LINE登録ハードル」がツール価値検証を邪魔する</li>
+    </ol>
+
+    <h3>6月までのスケジュール（案1ベース）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>期間</th><th>タスク</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>W1（〜6/10）</td><td>仕様書最終確定／JSONデータ構造定義／UI ラフ</td><td>代表承認＋社内スタッフ</td></tr>
+        <tr><td>W1-W2（6/8〜6/15）</td><td>フロント実装（HTML/CSS/JS）／JSONマスタ作成</td><td>CTO</td></tr>
+        <tr><td>W2（6/12〜6/16）</td><td>LP組み込み＋特典訴求文／申込フォーム導線設計</td><td>社内スタッフ＋代表</td></tr>
+        <tr><td>W3（6/16〜6/22）</td><td>QA（PC/iPhone/Android）／文言・色味調整</td><td>全員</td></tr>
+        <tr><td>W3末（6/22〜）</td><td>勉強会告知配信開始（特典あり）</td><td>代表</td></tr>
+        <tr><td>W4</td><td>勉強会本番＋特典配布フォロー</td><td>全員</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>コンティンジェンシー</h3>
+    <ul>
+      <li>CTO稼働が取れない場合：社内スタッフがClaude Codeでフロント実装、4-5日で完成可</li>
+      <li>データ追加が間に合わない場合：221件のままリリース→7月に追加データで強化</li>
+    </ul>
+  </section>
+
+  <!-- 6 LP組み込み -->
+  <section id="lp">
+    <h2><span class="num">6</span>LP組み込み案＋特典訴求文</h2>
+
+    <h3>6-1 訴求文（LP用ヘッドコピー3案）</h3>
+
+    <h4>案A（オススメ・データ訴求）</h4>
+    <blockquote style="border-left:3px solid var(--accent);padding:10px 14px;background:var(--hot-bg);border-radius:2px;">
+      「ある在宅ママが半年で221件、月数万円台の利益を稼いだ<br>
+      全仕入れリストを、検索できる無料ツールにしました。」
+    </blockquote>
+
+    <h4>案B（共感訴求）</h4>
+    <blockquote style="border-left:3px solid var(--accent);padding:10px 14px;background:var(--hot-bg);border-radius:2px;">
+      「『何を仕入れたらいいかわからない』を一発で解決。<br>
+      在宅ママが本当に売れた商品データ、まるごと特典。」
+    </blockquote>
+
+    <h4>案C（ハードル下げ）</h4>
+    <blockquote style="border-left:3px solid var(--accent);padding:10px 14px;background:var(--hot-bg);border-radius:2px;">
+      「ユニクロのダウン1着でも売れる。<br>
+      売れた人の実データから、あなたの『最初の1点』が見つかります。」
+    </blockquote>
+
+    <p class="muted">→ 男性流入を防ぐため<strong>全案で「在宅ママ」「育児しながら」を本文に必ず入れる</strong>。</p>
+
+    <h3>6-2 特典設計：「ツールアクセス権＋7日間無料」</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>要素</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>配布物</td><td>Re:sellerチェッカー Web URL（パスワード保護）</td></tr>
+        <tr><td>期間</td><td>勉強会終了から7日間無料</td></tr>
+        <tr><td>7日後</td><td>「継続して使うにはRe:cheスクール体験へ」誘導</td></tr>
+        <tr><td>パスワード配布</td><td>LINE登録→勉強会参加→終了後LINEで自動配信</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>6-3 申込フォーム→特典配布の動線</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>ステップ</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>LPでフォーム入力（名前・メール・LINE登録ボタン）</td></tr>
+        <tr><td>2</td><td>LINE公式に登録（ここで男性/年齢層スクリーニング）</td></tr>
+        <tr><td>3</td><td>勉強会日時選択</td></tr>
+        <tr><td>4</td><td>前日リマインド（Meroneナーチャリング基準で）</td></tr>
+        <tr><td>5</td><td>勉強会参加</td></tr>
+        <tr><td>6</td><td>終了後30分以内に特典URL+パスワードLINE配信</td></tr>
+        <tr><td>7</td><td>配信3日後：「使ってみてどうでしたか？」スタンプ回収</td></tr>
+        <tr><td>8</td><td>7日後：「もっと深く学ぶならRe:cheへ」誘導</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>6-4 配布後フォローLINE案（3通）</h3>
+
+    <div class="chat">
+      <div class="bubble-title">Day 0（特典配布直後）</div>
+      <div class="bubble">○○さん、勉強会のご参加ありがとうございました！
+
+特典の「Re:sellerチェッカー」、お送りしますね☺️
+
+▼アクセスはこちら
+https://reseller-checker.merone.jp
+パスワード：（個別配布）
+
+まずは「ユニクロ ダウン」で検索してみてください。
+ある在宅ママが半年で22件仕入れた、定番中の定番です。
+
+7日間ご自由に触ってみてくださいね。</div>
+    </div>
+
+    <div class="chat">
+      <div class="bubble-title">Day 3（スタンプ回収）</div>
+      <div class="bubble">○○さん、ツールの調子はどうですか？
+
+「思ったより使い方わからない」「ブランド名が出てこない」
+よかったら下のスタンプで教えてください◎
+
+1：使ってる、楽しい
+2：開いたけど何検索したらいいか迷う
+3：まだ開けてない</div>
+    </div>
+
+    <div class="chat">
+      <div class="bubble-title">Day 7（Re:che誘導）</div>
+      <div class="bubble">○○さん、特典の7日間が今日までです。
+
+ツールで「売れる商品」がわかっても、
+実際に1個売るには「写真」「タイトル」「価格設定」のコツが要ります。
+
+先輩在宅ママがどうやって写真撮ってるか、どんな文面で出品してるか…
+Re:cheの体験会で全部お見せしています。
+
+ご興味あればこちらから↓
+（Re:che体験会URL）
+
+押し付けではないので、合いそうな方だけで大丈夫です◎</div>
+    </div>
+  </section>
+
+  <!-- 7 開発タスク -->
+  <section id="tasks">
+    <h2><span class="num">7</span>開発タスク一覧（推奨案1ベース）</h2>
+
+    <h3>7-1 データ準備（W1）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>タスク</th><th>完了基準</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>D1</td><td>仕入れ実績データ → 構造化JSON変換</td><td>221件全件JSON化、ブランド/カテゴリ/価格/月タグ付け</td><td>社内スタッフ</td></tr>
+        <tr><td>D2</td><td>ブランドマスタJSON作成</td><td>25ブランド×平均値/出現月/おすすめ度</td><td>社内スタッフ</td></tr>
+        <tr><td>D3</td><td>カテゴリマスタJSON作成</td><td>11カテゴリ×件数/平均値/季節タグ</td><td>社内スタッフ</td></tr>
+        <tr><td>D4</td><td>スコア計算ロジック仕様書</td><td>100点満点・4軸の閾値表確定</td><td>社内スタッフ＋代表承認</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>7-2 フロント実装（W1-W2）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>タスク</th><th>完了基準</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>F1</td><td>UI ラフ（Figma or 紙）</td><td>代表承認</td><td>代表＋社内スタッフ</td></tr>
+        <tr><td>F2</td><td>HTML/CSS構築</td><td>スマホファースト、Merone カラー（Terracotta/Deep Forest）準拠</td><td>CTO</td></tr>
+        <tr><td>F3</td><td>検索ロジック（部分一致＋スコア計算）</td><td>入力→該当データ抽出→スコア表示</td><td>CTO</td></tr>
+        <tr><td>F4</td><td>カード表示（ベスト3・ひとこと含む）</td><td>UI確認</td><td>CTO</td></tr>
+        <tr><td>F5</td><td>パスワード保護（簡易Basic認証 or JS）</td><td>URL知ってても認証必要</td><td>CTO</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>7-3 ホスティング（W2）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>タスク</th><th>完了基準</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>H1</td><td>ドメイン設定（reseller-checker.merone.jp等）</td><td>DNS反映</td><td>CTO</td></tr>
+        <tr><td>H2</td><td>Vercel本番デプロイ</td><td>URLアクセス可</td><td>CTO</td></tr>
+        <tr><td>H3</td><td>アクセス解析（GA4 or Vercel Analytics）</td><td>来訪数・検索ワード取得可</td><td>CTO</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>7-4 LP・LINE連携（W2-W3）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>タスク</th><th>完了基準</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>L1</td><td>LP内 特典訴求セクション追加</td><td>訴求文案A確定→反映</td><td>代表＋社内スタッフ</td></tr>
+        <tr><td>L2</td><td>申込フォーム→LINE登録動線</td><td>既存LP動線と統合</td><td>社内スタッフ</td></tr>
+        <tr><td>L3</td><td>配布LINE 3通（Day0/3/7）設定</td><td>Lステップ予約配信完了</td><td>社内スタッフ</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>7-5 QA（W3）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>タスク</th><th>完了基準</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>Q1</td><td>iPhone Safari動作確認</td><td>全機能OK</td><td>社内スタッフ</td></tr>
+        <tr><td>Q2</td><td>Android Chrome動作確認</td><td>全機能OK</td><td>社内スタッフ</td></tr>
+        <tr><td>Q3</td><td>PC Chrome/Safari動作確認</td><td>全機能OK</td><td>社内スタッフ</td></tr>
+        <tr><td>Q4</td><td>代表チェック（在宅ママ視点）</td><td>「主婦が本当に使えるか」OK</td><td>代表</td></tr>
+        <tr><td>Q5</td><td>スコア計算検証（10ブランド抜き取り）</td><td>期待値と一致</td><td>社内スタッフ</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>7-6 リリース後</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>タスク</th><th>タイミング</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>R1</td><td>勉強会参加者へ特典配布</td><td>勉強会終了30分以内</td><td>自動（Lステップ）</td></tr>
+        <tr><td>R2</td><td>利用データ集計（検索ワードTOP30）</td><td>配布1週間後</td><td>社内スタッフ</td></tr>
+        <tr><td>R3</td><td>7月以降のデータ追加判断</td><td>配布2週間後</td><td>代表</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- 8 補足 -->
+  <section id="role">
+    <h2><span class="num">8</span>補足：このツールの戦略的役割</h2>
+    <p><strong>ターゲット男性流入を防ぎ女性ママ層を引き寄せる仕掛け</strong>：</p>
+    <ol>
+      <li>データソースが「地方の在宅主婦・データ提供者Z」という具体的人物（推測でも、属性が女性で確定）</li>
+      <li>検索結果に「キッズサイズも◎」「育児層向け」等のキーワードが頻出</li>
+      <li>UIカラー＝Merone Terracotta/Deep Forest（赤強調なし・脅し系排除）</li>
+      <li>訴求文に「在宅ママ」「育児しながら」を必ず入れる</li>
+      <li>LINE登録時に「お子さまの年齢」を聞くフィルタリング（男性は離脱）</li>
+    </ol>
+    <p>このツール体験は「Re:cheスクールに入ったら、こういう仕入れ判断が日常的にできるようになる」のプロトタイプ体験。<strong>特典＝販売前の試用版</strong>として機能する。</p>
+  </section>
+
+  <footer>
+    Merone Promotion Division ／ 2026-06-03<br>
+    Tool spec by Merone データ分析担当（社内の仕入れ実績データから設計）<br>
+    <span style="font-size:11px;">パブリックサンプル版 — 実名は匿名化済み</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スマセル6月プロモーション 最終戦略提案（パブリック版）| Merone</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --sub: #5a5a5a;
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --line: #e6e3dc;
+    --accent: #c25b3f;       /* Terracotta */
+    --accent2: #1f6f5e;      /* Deep Forest */
+    --soft: #f3efe7;
+    --hot-bg: #fff8f4;
+    --hot-border: #f0d6c8;
+    --warn: #b8412a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Yu Gothic", "YuGothic", "游ゴシック", "Hiragino Kaku Gothic ProN", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.01em;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+  /* Hero */
+  .hero {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 40px 28px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 18px;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--sub);
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .hero-sub {
+    color: var(--sub);
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+  .hero-summary {
+    background: var(--soft);
+    border-left: 3px solid var(--accent);
+    padding: 18px 20px;
+    border-radius: 2px;
+  }
+  .hero-summary strong { color: var(--accent); font-weight: 700; }
+  .hero-summary p + p { margin-top: 10px; }
+
+  /* Section */
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+  }
+  h2 .num {
+    color: var(--accent);
+    margin-right: 10px;
+    font-weight: 800;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 22px 0 10px;
+    color: var(--ink);
+    border-left: 3px solid var(--accent2);
+    padding-left: 10px;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 16px 0 8px;
+    color: var(--accent);
+  }
+  p { margin-bottom: 10px; color: var(--ink); }
+  .muted { color: var(--sub); font-size: 13px; }
+  ul { margin-left: 1.2em; }
+  ul li { margin-bottom: 4px; }
+
+  /* Table */
+  .tbl-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 14px;
+  }
+  th, td {
+    border-bottom: 1px solid var(--line);
+    padding: 10px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--soft);
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .reco {
+    background: var(--hot-bg);
+  }
+  .reco strong { color: var(--accent); }
+
+  /* Tag / Badge */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--soft);
+    color: var(--sub);
+    margin-right: 4px;
+    letter-spacing: 0.05em;
+  }
+  .tag-accent { background: var(--accent); color: var(--card); }
+  .tag-forest { background: var(--accent2); color: var(--card); }
+  .tag-warn { background: var(--warn); color: var(--card); }
+
+  /* Funnel */
+  .funnel { margin: 18px 0; }
+  .funnel-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    gap: 12px;
+  }
+  .funnel-bar {
+    height: 36px;
+    background: var(--accent);
+    color: var(--card);
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    border-radius: 2px;
+    min-width: 80px;
+  }
+  .funnel-bar.b2 { background: #cc7355; }
+  .funnel-bar.b3 { background: #d68b6f; }
+  .funnel-bar.b4 { background: #dea48a; }
+  .funnel-bar.b5 { background: #e6bda5; color: var(--ink); }
+  .funnel-bar.b6 { background: var(--accent2); }
+  .funnel-bar.b7 { background: #4a8e7e; }
+  .funnel-meta {
+    font-size: 13px;
+    color: var(--sub);
+    white-space: nowrap;
+  }
+
+  /* LINE chat preview */
+  .chat {
+    background: #f0e9df;
+    border-radius: 8px;
+    padding: 20px 14px;
+    margin: 14px 0 20px;
+  }
+  .chat-date {
+    text-align: center;
+    font-size: 11px;
+    color: var(--sub);
+    margin-bottom: 14px;
+    background: rgba(255,255,255,0.6);
+    padding: 4px 10px;
+    border-radius: 12px;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .bubble {
+    background: var(--card);
+    padding: 14px 16px;
+    border-radius: 14px;
+    border-top-left-radius: 4px;
+    margin-bottom: 8px;
+    max-width: 92%;
+    font-size: 14px;
+    line-height: 1.7;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    white-space: pre-wrap;
+  }
+  .bubble + .bubble { margin-top: 12px; }
+  .lt-meta {
+    font-size: 12px;
+    color: var(--sub);
+    margin-bottom: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  .lt-sub {
+    background: var(--soft);
+    padding: 10px 14px;
+    border-left: 3px solid var(--accent2);
+    font-size: 13px;
+    margin-top: 10px;
+    border-radius: 2px;
+  }
+  .lt-sub-title {
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 4px;
+  }
+
+  /* Cards */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  @media (min-width: 600px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+  }
+  .card-item {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 18px;
+    border-radius: 3px;
+  }
+  .card-item h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: var(--accent);
+  }
+  .card-item.featured {
+    background: var(--hot-bg);
+    border-color: var(--hot-border);
+  }
+
+  /* Timeline */
+  .timeline {
+    border-left: 2px solid var(--line);
+    padding-left: 16px;
+    margin: 18px 0;
+  }
+  .tl-item { margin-bottom: 16px; position: relative; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -22px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .tl-item.major::before { background: var(--accent2); width: 10px; height: 10px; top: 5px; }
+  .tl-date {
+    font-size: 12px;
+    color: var(--sub);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .tl-title { font-size: 14px; color: var(--ink); }
+
+  /* Quote */
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 8px 14px;
+    background: var(--hot-bg);
+    margin: 10px 0;
+    font-size: 14px;
+    color: var(--sub);
+    border-radius: 2px;
+  }
+
+  /* Risk table emphasis */
+  .risk-h { color: var(--warn); font-weight: 700; }
+  .risk-m { color: var(--accent); font-weight: 700; }
+  .risk-l { color: var(--accent2); font-weight: 700; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    color: var(--sub);
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 14px 60px; }
+    .hero { padding: 28px 20px; }
+    .hero h1 { font-size: 24px; }
+    section { padding: 22px 16px; }
+    h2 { font-size: 19px; }
+    table { font-size: 12px; }
+    th, td { padding: 8px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-label">MERONE × SMASELL ／ JUNE 2026</div>
+    <h1>スマセル6月プロモーション<br>最終戦略提案</h1>
+    <p class="hero-sub">作成 2026-06-03 ／ 提案先 スマセル運営担当者<br><span style="color:var(--warn);font-size:11px;">※ 本書はMerone社内提案書のパブリック公開サンプル。実名・実数値はすべて匿名化済み。</span></p>
+
+    <div class="hero-summary">
+      <p><strong>推し案：ハイブリッド型。</strong>平日夜「1日60分ライブ」を2回流して在宅ママを集め、本気度の高い方だけを翌週末の「3日連続ブートキャンプ」へ昇格させる二段ロケット。3月実績（登録90／月手数料数十万円）を、6月は<strong>登録180名・成約7名・月手数料数百万円規模</strong>まで引き上げる設計です（推測）。</p>
+      <p>訴求軸は「家族のため」「リスクは小さく／買取保証あり」「同じ場所にいた在宅ママの生の声」の3本柱。LINEトーク実証（成約者A・B、離脱者C、データ提供者Z）から逆算しています。</p>
+      <p>4月以降の沈黙の根本原因は「量から質への切替」遅れと判断。<strong>3層フィルタ</strong>（配信文／LP／プロLINE移行）で男性・特典目当て・受け身層を入口で削り、面談の質を担保します。差別化の中心に置くのは<strong>無料ツール「Re:sellerチェッカー」</strong>（データ提供者Zの月数万円台実績データから生まれた他社にない武器）。</p>
+    </div>
+  </header>
+
+  <!-- 1. 日程 -->
+  <section>
+    <h2><span class="num">1</span>日程：3案比較と推し案</h2>
+
+    <h3>過去実績（社内LINEログから抽出・数値は丸めて表示）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>月</th><th>紹介料</th><th>アフィ料</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr><td>1月</td><td>数十万円台</td><td>十数万円台</td><td>安定</td></tr>
+        <tr><td>3月</td><td>数十万円台</td><td>数万円台</td><td>登録90名・安定</td></tr>
+        <tr><td>4月</td><td>0円</td><td>0円</td><td><span class="tag tag-warn">沈黙</span></td></tr>
+        <tr><td>5月</td><td>0円</td><td>0円</td><td><span class="tag tag-warn">沈黙</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted">4月沈黙の原因仮説：男性・特典目当て流入で面談の質が落ちた／ローン審査NG層の混入／配信トーンの圧。<br>→ 6月の本質は「量から質へ」の組み替え。歩留まりを2倍にすれば登録維持でも売上倍。</p>
+
+    <h3>3案比較</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>観点</th><th>(a) 1日×複数回</th><th>(b) 3日連続のみ</th><th class="reco">(c) ハイブリッド <span class="tag tag-accent">推し</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>構成</td><td>1日60分×3回</td><td>3日連続×1セット</td><td class="reco">入口2回 → 3日ブートキャンプ</td></tr>
+        <tr><td>登録KPI（推測）</td><td>120〜180</td><td>60〜90</td><td class="reco"><strong>180名</strong></td></tr>
+        <tr><td>面談率（推測）</td><td>20%</td><td>50%</td><td class="reco"><strong>38%</strong></td></tr>
+        <tr><td>成約率（推測）</td><td>5%</td><td>12%</td><td class="reco"><strong>10%</strong></td></tr>
+        <tr><td>月手数料（推測）</td><td>3月実績×1.5倍</td><td>3月実績×2倍</td><td class="reco"><strong>3月実績×2.3倍</strong></td></tr>
+        <tr><td>男性流入リスク</td><td>高</td><td>低</td><td class="reco">中→3層Fで低</td></tr>
+        <tr><td>運営コスト</td><td>高（7日相当）</td><td>中（4日）</td><td class="reco">中（5日）</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>推し案 詳細スケジュール</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>区分</th><th>日付</th><th>時刻</th><th>役割</th></tr></thead>
+      <tbody>
+        <tr><td>入口①</td><td>6/15(火)</td><td>21:00-22:00</td><td>在宅ママ60分ライブ</td></tr>
+        <tr><td>入口②</td><td>6/18(金)</td><td>21:00-22:00</td><td>同上（火曜引いた人を回収）</td></tr>
+        <tr><td>Day1</td><td>6/26(金)</td><td>21:00-22:00</td><td>Re:sellerチェッカー実演</td></tr>
+        <tr><td>Day2</td><td>6/27(土)</td><td>10:00-11:00</td><td>在宅ママ実例×Q&A</td></tr>
+        <tr><td>Day3</td><td>6/28(日)</td><td>21:00-22:00</td><td>90日プラン作成会＋面談誘導</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- 2. KPI Funnel -->
+  <section>
+    <h2><span class="num">2</span>KPIファネル（推し案・推測）</h2>
+    <div class="funnel">
+      <div class="funnel-row">
+        <div class="funnel-bar" style="width:100%;">LINE到達 3,500</div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-bar b2" style="width:62%;">入口①②登録 180</div>
+        <div class="funnel-meta">5.1%</div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-bar b3" style="width:48%;">入口参加 72</div>
+        <div class="funnel-meta">40%</div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-bar b4" style="width:35%;">ブート申込 36</div>
+        <div class="funnel-meta">50%</div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-bar b5" style="width:28%;">ブート着座 25</div>
+        <div class="funnel-meta">70%</div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-bar b6" style="width:22%;">面談 18</div>
+        <div class="funnel-meta">72%</div>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-bar b7" style="width:14%;">成約 7</div>
+        <div class="funnel-meta">39%</div>
+      </div>
+    </div>
+    <p class="muted">想定月手数料：紹介料 ＋ アフィ料 = <strong style="color:var(--accent);">3月実績の約2.3倍</strong>（数百万円規模・推測）。<br>※ コース構成比・報酬計算式は媒体側と要確認（推測前提）。</p>
+  </section>
+
+  <!-- 3. 訴求軸 -->
+  <section>
+    <h2><span class="num">3</span>訴求軸：在宅ママに刺さる3つの言葉</h2>
+
+    <h3>軸① 家族のため（情緒・自己肯定）</h3>
+    <blockquote>「お子さまの体調、大丈夫でしたか？」→ 返信率100%実証（離脱者Cへの共感フォロー）<br>「家族との雑談」を契機に温度が上がる（成約者Aの実例）</blockquote>
+    <p>配信文ワード：<span class="tag">子どもが寝た後の1時間</span> <span class="tag">家族の選択肢を増やす</span></p>
+
+    <h3>軸② リスクは小さく／買取保証あり（不安解消）</h3>
+    <blockquote>「売れなければ弊社で買取保証をつけています」←最後の一押し（成約者Aの決め手）<br>短期で利益達成の体験あり（成約者Bの言及）</blockquote>
+    <p>配信文ワード：<span class="tag">初月から赤字にならない仕組み</span> <span class="tag">失敗したらどうしようをなくす</span></p>
+
+    <h3>軸③ 同じ場所にいた在宅ママの生の声（社会的証明）</h3>
+    <blockquote>「地方在住・複数子のママ／スマセル単体で月数万円台の利益／1点平均仕入れ数千円」（データ提供者Z）</blockquote>
+    <p>配信文ワード：<span class="tag">同じ卒業生から聞ける1時間</span> <span class="tag">月数万円台の中身を全部見せます</span></p>
+  </section>
+
+  <!-- 4. 配信文 5通 -->
+  <section>
+    <h2><span class="num">4</span>5通配信文プレビュー（LT1〜LT5）</h2>
+
+    <!-- LT1 -->
+    <div class="lt-meta">
+      <span class="tag tag-accent">LT1</span>
+      <span>6/8(月) 21:00 ／ 認知 ／ 圧弱め</span>
+    </div>
+    <p class="muted">サムネ20字：「個別に失礼します。在宅ママ限定で…」</p>
+    <div class="chat">
+      <span class="chat-date">6月8日 月曜 21:00</span>
+      <div class="bubble">個別に失礼します🌷
+
+今回、在宅ママ専用の60分ライブを
+6月15日（火）夜21時に開催します。
+
+ーーーーー
+◯ 子どもを寝かしつけた後の1時間だけ、
+　家族の選択肢を増やしているお母さんの話
+◯ ABCash／Famm／SHElikes 卒業後の
+　"次のステップ"を探している方が対象
+ーーーーー
+
+「ローンを組んでまでは…」
+「副業で楽して稼ぎたい」
+そういう方には合いません🙇‍♀️
+
+逆に、家事育児の合間に
+コツコツ動ける方は
+たぶん、世代の上位2割の動ける方です☺️✨
+
+▶ お席のご確保はこちら（30秒）
+（URL）</div>
+    </div>
+    <div class="lt-sub">
+      <div class="lt-sub-title">圧強め版（ABテスト）</div>
+      冒頭を「在宅ママの方だけ、お読みください🌷」に置換／「動ける方は上位2割」を「上位2割の限られた方」に強める。
+    </div>
+
+    <!-- LT2 -->
+    <div class="lt-meta" style="margin-top:28px;">
+      <span class="tag tag-accent">LT2</span>
+      <span>6/12(金) 21:00 ／ 興味 ／ 圧弱め</span>
+    </div>
+    <p class="muted">サムネ20字：「地方の在宅ママ、月数万円台のリアル…」</p>
+    <div class="chat">
+      <span class="chat-date">6月12日 金曜 21:00</span>
+      <div class="bubble">6月15日（火）の60分ライブまで、
+あと3日になりました🌷
+
+少しだけ、ある方の話をさせてください。
+
+ーーーーー
+地方在住・複数子のママ
+スマセル単体で、月数万円台の利益
+1点あたりの仕入れは、平均数千円
+ーーーーー
+
+すごい数字に見えるけれど、
+中身は、ザ・ノースフェイス、ユニクロ、
+ラルフローレン、コーチ…
+皆さんもご存じの「定番ブランドだけ」です。
+
+「子どもの教育費を、自分の力で増やしたい」
+そう思って始めた1年前の彼女と
+今のあなたは、ほぼ同じ場所にいると思います☺️
+
+当日、データの中身を全部お見せします📖
+
+▶ ご参加はこちらから
+（URL）</div>
+    </div>
+    <div class="lt-sub">
+      <div class="lt-sub-title">圧強め版</div>
+      「皆さんもご存じの〜」を「皆さんも明日からマネできる定番ブランドだけ」と明示し、再現性を強調。
+    </div>
+
+    <!-- LT3 -->
+    <div class="lt-meta" style="margin-top:28px;">
+      <span class="tag tag-accent">LT3</span>
+      <span>6/15(月) 7:00 ／ 当日リマインド ／ 圧弱め</span>
+    </div>
+    <p class="muted">サムネ20字：「今夜21時、在宅ママ60分ライブ…」</p>
+    <div class="chat">
+      <span class="chat-date">6月15日 月曜 7:00</span>
+      <div class="bubble">おはようございます🌷
+
+今夜21時、
+在宅ママ60分ライブの当日です。
+
+ーーーーー
+◯ 21:00-22:00（60分）
+◯ Zoom（顔出し不要・スマホOK）
+ーーーーー
+
+今夜お話しすること：
+◯ 月数万円台の在宅ママの仕入れ実例
+◯ 失敗しないための3つの分かれ道
+◯ 「Re:sellerチェッカー」初公開
+
+ご参加できる方は、
+スタンプで教えてもらえると嬉しいです♡
+
+→ 楽しみ　❤️
+→ ちょっと不安　🌀
+→ 忘れかけてた　💡
+
+夜お話できるのを
+楽しみにしておりますっ！
+
+▶ Zoomリンクはこちら
+（URL）</div>
+    </div>
+    <div class="lt-sub">
+      <div class="lt-sub-title">圧強め版</div>
+      「ご参加できる方は」→「ご参加予定の方は、忘れず」と"確認の圧"を弱めに入れる。
+    </div>
+
+    <!-- LT4 -->
+    <div class="lt-meta" style="margin-top:28px;">
+      <span class="tag tag-accent">LT4</span>
+      <span>6/22(月) 21:00 ／ 欲求 ／ 圧弱め</span>
+    </div>
+    <p class="muted">サムネ20字：「3日間限定、Re:sellerチェッカー…」</p>
+    <div class="chat">
+      <span class="chat-date">6月22日 月曜 21:00</span>
+      <div class="bubble">個別に失礼します🌸
+
+先週ご参加くださった皆さま、
+本当にありがとうございました。
+
+「もっと深く聞きたい」というお声を
+たくさんいただいたので、
+3日間の集中ブートキャンプを開催します。
+
+ーーーーー
+◯ 6/26(金) 21:00 Re:sellerチェッカー実演
+◯ 6/27(土) 10:00 在宅ママ実例×Q&A
+◯ 6/28(日) 21:00 90日プラン作成会
+ーーーーー
+
+3日間続けて時間が取れる方だけ
+お申し込みください。
+
+途中参加はおすすめしません。
+1日目のロジックの上に
+2日目・3日目が積み上がる構成です📖
+
+「家族の選択肢を本気で広げたい方」
+にだけ、お届けする3日間です☺️
+
+▶ 3日間まとめてお申込み
+（URL）</div>
+    </div>
+    <div class="lt-sub">
+      <div class="lt-sub-title">圧強め版</div>
+      「3日間続けて時間が取れる方だけ」→「3日間最後まで参加できる方限定」と絞り込みを強化。
+    </div>
+
+    <!-- LT5 -->
+    <div class="lt-meta" style="margin-top:28px;">
+      <span class="tag tag-accent">LT5</span>
+      <span>6/25(木) 21:00 ／ 決断 ／ 圧弱め（2吹き出し）</span>
+    </div>
+    <p class="muted">サムネ20字：「明日から3日間、よろしくお願い…」</p>
+    <div class="chat">
+      <span class="chat-date">6月25日 木曜 21:00</span>
+      <div class="bubble">こんばんは🌸
+
+明日から3日間、
+いよいよブートキャンプが始まります。
+
+ーーーーー
+◯ 明日 6/26(金) 21:00 Day1
+◯ 明後日 6/27(土) 10:00 Day2
+◯ 6/28(日) 21:00 Day3
+ーーーーー
+
+ご準備いただくのは、ノート1冊だけ。
+スマホ1台で完結します📖
+
+最後に、明日の気持ちを
+スタンプで教えてもらえると嬉しいです。
+
+→ ワクワク　❤️
+→ 学ぶぞ　🌀
+→ がんばる　💡</div>
+      <div class="bubble">3日後の自分が、
+家族に何を渡せているか。
+
+その答え合わせを一緒にしましょうねっ！</div>
+    </div>
+    <div class="lt-sub">
+      <div class="lt-sub-title">圧強め版</div>
+      2吹き出し目を「3日後の家族の景色、明日から一緒に作りませんか。」と"今すぐ"性を匂わせる。
+    </div>
+
+    <h3 style="margin-top:30px;">配信文バリデーター（全LTクリア）</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>LT</th><th>1通1アクション</th><th>警告語なし</th><th>所要時間</th><th>なぜ</th><th>字数</th><th>同絵文字重複</th></tr></thead>
+      <tbody>
+        <tr><td>LT1</td><td>◯</td><td>◯</td><td>30秒</td><td>◯</td><td>240字</td><td>なし</td></tr>
+        <tr><td>LT2</td><td>◯</td><td>◯</td><td>60分</td><td>◯</td><td>270字</td><td>なし</td></tr>
+        <tr><td>LT3</td><td>◯</td><td>◯</td><td>60分</td><td>◯</td><td>250字</td><td>なし</td></tr>
+        <tr><td>LT4</td><td>◯</td><td>◯</td><td>60分×3</td><td>◯</td><td>290字</td><td>なし</td></tr>
+        <tr><td>LT5</td><td>◯</td><td>◯</td><td>60分</td><td>◯</td><td>275字</td><td>なし</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- 5. 特典 -->
+  <section>
+    <h2><span class="num">5</span>特典設計</h2>
+    <div class="cards">
+      <div class="card-item featured">
+        <h4>Re:sellerチェッカー（無料・全員）</h4>
+        <p>データ提供者Zの約250点の実購入データ ＋ Re:che卒業生実績データを学習した、利益判定の無料Webツール。「ブランド名 ＋ カテゴリ ＋ 仕入れ価格」を入れると、◎◯△✕の4段階判定と販売価格レンジ、過去類似事例3件が返る。<br><span class="muted">他社にこのデータセットは存在しない＝Merone固有の差別化。</span></p>
+      </div>
+      <div class="card-item">
+        <h4>完走特典：90日プラン</h4>
+        <p>家事・育児・仕事の生活時間に合わせて作る、個別カスタムの90日仕入れ→販売プラン（PDFテンプレート）。Day3完走者のみ。物品系プレゼントは特典目当てを呼ぶため学習素材に置換。</p>
+      </div>
+      <div class="card-item">
+        <h4>成約特典：Re:cheスタータパック（数万円相当）</h4>
+        <p>過去実証あり（中価格帯コース選択者）。「最初の30日で一定の利益が出なければ追加サポート」のリスク低減を再強調。</p>
+      </div>
+      <div class="card-item">
+        <h4>カルーセル抽選</h4>
+        <p>「在宅ママ実証コミュニティ30日トライアル」を1名／勉強会で抽選。物品系プレゼントは男女混合トリガーになるためNG。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 3層フィルタ -->
+  <section>
+    <h2><span class="num">6</span>男性流入排除の3層フィルタ</h2>
+
+    <h3>第1層：配信文層</h3>
+    <p>LT1冒頭2行で「在宅ママ専用」を明示。「ローン組んでまで」「副業で楽して稼ぎたい」を明文NGとして書き込む。<br><span class="muted">過去ABCashの「向いていない方」明示フィルタを準拠。男性開封率を1/3以下に削減（推測）。</span></p>
+
+    <h3>第2層：LP登録フォーム層</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>必須</th><th>F用途</th></tr></thead>
+      <tbody>
+        <tr><td>お名前（フルネーム）</td><td>必須</td><td>男性名は自動セグメント先送り</td></tr>
+        <tr><td>性別（女性／その他／答えたくない）</td><td>必須</td><td>「男性」項目なし＝暗黙F</td></tr>
+        <tr><td>年齢層（25-29/30-34/35-39/40-44/45+）</td><td>必須</td><td>25-44女性メイン抽出</td></tr>
+        <tr><td>お子さんの有無</td><td>任意</td><td>在宅ママスコアリング</td></tr>
+        <tr><td>「向いている方」3択</td><td>必須</td><td>「子が寝た1時間で動きたい」「ABCash等卒業後の次を探している」「ローン使わず始めたい」</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>第3層：プロLINE移行時層</h3>
+    <p>サンクスメッセで「在宅ママ向けの内容です」再宣言。プロLINE誘導は「在宅ママタグ付与済みの方のみ」に限定。男性タグはスマセル本体サービス案内のみ（Merone成果報酬対象外）。</p>
+  </section>
+
+  <!-- 7. リスク -->
+  <section>
+    <h2><span class="num">7</span>リスク・回避策</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>リスク</th><th>確率</th><th>回避策</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>4月以降の沈黙で開封率低下</td><td class="risk-h">高</td><td>サムネ20字最適化。6/8配信前に小規模テスト（30名）で開封率測定</td></tr>
+        <tr><td>2</td><td>ローン審査NG層の混入</td><td class="risk-m">中</td><td>LPフォームに「クレカor一括が可能」を軽く確認</td></tr>
+        <tr><td>3</td><td>男性が「在宅ママ」と書いてエントリー</td><td class="risk-m">中</td><td>プロLINE初回返信で穏やかに2重F</td></tr>
+        <tr><td>4</td><td>媒体側から報酬率交渉</td><td class="risk-m">中</td><td>「質を担保する代わり業界標準の報酬率維持」を主張</td></tr>
+        <tr><td>5</td><td>配信過多で本体LINE開封率低下</td><td class="risk-m">中</td><td>5通＋小休止設計を厳守。「6月だけテスト」合意を文書化</td></tr>
+        <tr><td>6</td><td>Re:sellerチェッカー間に合わない</td><td class="risk-m">中</td><td>Phase0=Spreadsheet簡易版を6/15に間に合わせる</td></tr>
+        <tr><td>7</td><td>他社（メルカリ教室系）広告増</td><td class="risk-h">高</td><td>無料ツール特典＝Merone固有を全LTで強調</td></tr>
+        <tr><td>8</td><td>媒体側との関係維持</td><td class="risk-m">中</td><td>6/5までに30分MTGで3案直接プレゼン</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- 8. Timeline -->
+  <section>
+    <h2><span class="num">8</span>6月本番までのタイムライン</h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-date">6/4(木)</div><div class="tl-title">提案書社内合意</div></div>
+      <div class="tl-item"><div class="tl-date">6/5(金)</div><div class="tl-title">媒体側にHTML送付＋MTG打診</div></div>
+      <div class="tl-item major"><div class="tl-date">6/6(土)</div><div class="tl-title">媒体側MTG（30分／3案提示）</div></div>
+      <div class="tl-item"><div class="tl-date">6/7(日)</div><div class="tl-title">LP雛形・登録フォーム制作開始</div></div>
+      <div class="tl-item major"><div class="tl-date">6/8(月) 21:00</div><div class="tl-title">LT1配信（認知）</div></div>
+      <div class="tl-item"><div class="tl-date">6/10(水)</div><div class="tl-title">Re:sellerチェッカー Phase0版 完成</div></div>
+      <div class="tl-item major"><div class="tl-date">6/12(金) 21:00</div><div class="tl-title">LT2配信（興味・生声）</div></div>
+      <div class="tl-item major"><div class="tl-date">6/15(月) 7:00</div><div class="tl-title">LT3配信（当日朝リマインド）</div></div>
+      <div class="tl-item major"><div class="tl-date">6/15(火) 21:00</div><div class="tl-title">入口①ライブ実施</div></div>
+      <div class="tl-item major"><div class="tl-date">6/18(金) 21:00</div><div class="tl-title">入口②ライブ実施</div></div>
+      <div class="tl-item major"><div class="tl-date">6/22(月) 21:00</div><div class="tl-title">LT4配信（ブートキャンプ予告）</div></div>
+      <div class="tl-item major"><div class="tl-date">6/25(木) 21:00</div><div class="tl-title">LT5配信（前日／2吹き出し構成）</div></div>
+      <div class="tl-item major"><div class="tl-date">6/26-28</div><div class="tl-title">ブートキャンプ Day1-3</div></div>
+      <div class="tl-item"><div class="tl-date">6/29-30</div><div class="tl-title">プロLINE個別面談ラッシュ</div></div>
+      <div class="tl-item"><div class="tl-date">7/1-5</div><div class="tl-title">成約クロージング</div></div>
+      <div class="tl-item"><div class="tl-date">7/8</div><div class="tl-title">振り返り＋7月計画策定</div></div>
+    </div>
+  </section>
+
+  <!-- 9. 出典 -->
+  <section>
+    <h2><span class="num">9</span>データ前提と推測の区別</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>出典</th><th>確度</th></tr></thead>
+      <tbody>
+        <tr><td>3月90名登録／業界標準報酬率／コース価格</td><td>社内LINEログ</td><td><span class="tag tag-forest">確定</span></td></tr>
+        <tr><td>4月以降の沈黙</td><td>社内LINEログ</td><td><span class="tag tag-forest">確定</span></td></tr>
+        <tr><td>データ提供者Zの月数万円台利益・購入実績</td><td>社内仕入れデータ</td><td><span class="tag tag-forest">確定</span></td></tr>
+        <tr><td>3月の面談率33%／成約率6-10%</td><td>上記からの逆算</td><td><span class="tag tag-warn">推測</span></td></tr>
+        <tr><td>6月登録180名・成約7名・売上数百万円規模</td><td>シミュレーション</td><td><span class="tag tag-warn">推測</span></td></tr>
+        <tr><td>男性開封率1/3に削減</td><td>過去F実例</td><td><span class="tag tag-warn">推測</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <footer>
+    Merone Promotion Division ／ 2026-06-03<br>
+    Strategy by Merone代表 ＋ Merone AI<br>
+    <span style="font-size:11px;">パブリックサンプル版 — 実名・実数値は匿名化済み</span>
+  </footer>
+
+</div>
+</body>
+</html>

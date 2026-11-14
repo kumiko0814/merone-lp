@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>追客配信の進化案（モック）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#D9A69C; --rose-d:#C08B80; --rose-soft:#F6EAE6;
+    --slate:#6E8F97; --slate-d:#4C6B73; --slate-soft:#E9F0F1;
+    --cream:#FAF7F4; --ink:#3A4449; --muted:#93A0A6; --line:#E7E2DD;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);
+    font-family:"游ゴシック","Yu Gothic",YuGothic,"Hiragino Kaku Gothic ProN",sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 0 70px;line-height:1.7;}
+  .hero{background:linear-gradient(135deg,#E8BFB5 0%,#EFD7CF 30%,#C5D2D4 62%,#5F7F88 100%);
+    padding:46px 18px 40px;text-align:center;color:#fff;}
+  .hero .en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.22em;opacity:.95;}
+  .hero h1{font-size:22px;font-weight:800;letter-spacing:.02em;margin:9px 0 6px;text-shadow:0 1px 8px rgba(60,80,90,.25);}
+  .hero .sub{font-size:12.5px;opacity:.95;}
+  .wrap{max-width:560px;margin:-22px auto 0;padding:0 14px;}
+
+  .sec-title{font-size:12px;font-weight:800;letter-spacing:.03em;color:#fff;background:var(--slate);
+    display:inline-block;border-radius:20px;padding:5px 15px;margin:30px 0 4px;}
+  .sec-title.rose{background:var(--rose);}
+  .lead{font-size:14px;font-weight:700;color:var(--slate-d);margin:6px 2px 14px;}
+  .card{background:#fff;border-radius:16px;box-shadow:0 5px 18px rgba(76,107,115,.09);padding:18px;margin-bottom:14px;}
+
+  .nums{display:flex;gap:8px;flex-wrap:wrap;}
+  .num{flex:1;min-width:150px;background:var(--slate-soft);border-radius:12px;padding:12px;text-align:center;}
+  .num .big{font-size:19px;font-weight:800;color:var(--slate-d);}
+  .num .big em{font-style:normal;color:var(--rose-d);}
+  .num .lbl{font-size:11px;color:var(--muted);margin-top:2px;}
+
+  /* Before→After 大枠 */
+  .flow{display:flex;flex-direction:column;gap:9px;}
+  .flow-box{border-radius:14px;padding:14px 15px;}
+  .flow-before{background:#F3F1EF;border:1px dashed #C9C2BB;}
+  .flow-after{background:var(--rose-soft);border:1px solid var(--rose);}
+  .flow-lbl{font-size:11px;font-weight:800;letter-spacing:.03em;margin-bottom:5px;}
+  .flow-before .flow-lbl{color:#A79E96;}
+  .flow-after .flow-lbl{color:var(--rose-d);}
+  .flow-txt{font-size:13px;}
+  .flow-before .flow-txt{color:#8A837C;}
+  .flow-arrow{text-align:center;color:var(--rose);font-size:15px;}
+
+  /* 二層構え */
+  .layers{display:flex;gap:9px;}
+  .layer{flex:1;border-radius:13px;padding:13px 12px;text-align:center;font-size:12px;}
+  .layer.hit{background:var(--rose-soft);border:1px solid var(--rose);}
+  .layer.unk{background:var(--slate-soft);border:1px solid #CBD8DB;}
+  .layer .lt{font-weight:800;font-size:13px;margin-bottom:4px;}
+  .layer.hit .lt{color:var(--rose-d);}
+  .layer.unk .lt{color:var(--slate-d);}
+
+  /* 懸念カード */
+  .concern{background:#fff;border-radius:14px;padding:13px 15px;margin-bottom:10px;box-shadow:0 3px 12px rgba(76,107,115,.07);}
+  .concern .head{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+  .concern .pin{font-size:11px;font-weight:800;color:#fff;border-radius:10px;padding:2px 10px;}
+  .pin.a{background:var(--slate);}
+  .pin.b{background:var(--rose-d);}
+  .concern .name{font-size:14px;font-weight:800;color:var(--ink);}
+  .concern .eff{margin-left:auto;font-size:11px;font-weight:800;color:var(--rose-d);background:var(--rose-soft);border-radius:10px;padding:2px 9px;}
+  .concern .reply{background:var(--rose);color:#fff;border-radius:14px;border-bottom-right-radius:5px;
+    padding:10px 13px;font-size:13px;line-height:1.55;}
+  .concern .why{font-size:11.5px;color:var(--muted);margin-top:7px;}
+  .legend{display:flex;gap:14px;font-size:11.5px;color:var(--muted);margin:2px 2px 12px;flex-wrap:wrap;}
+  .legend b{color:var(--slate-d);}
+  .legend .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:3px;}
+
+  /* リッチメニュー */
+  .rm{background:#DCE7EA;border-radius:18px;padding:12px;margin:10px 0;}
+  .rm-head{text-align:center;font-size:11px;font-weight:700;color:var(--slate-d);margin-bottom:9px;}
+  .rm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+  .rm-btn{background:#fff;border-radius:12px;padding:12px 6px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.06);}
+  .rm-btn .ic{font-size:19px;}
+  .rm-btn .tx{font-size:11px;font-weight:700;color:var(--slate-d);margin-top:4px;line-height:1.3;}
+
+  /* LINEトーク */
+  .phone{background:#DCE7EA;border-radius:18px;padding:13px 12px 15px;margin:10px 0;}
+  .phone-top{text-align:center;font-size:11px;font-weight:700;color:var(--slate-d);margin-bottom:9px;}
+  .row{display:flex;margin:8px 0;align-items:flex-end;gap:6px;}
+  .row.right{justify-content:flex-end;}
+  .ava{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-size:12px;background:#fff;color:var(--slate-d);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+  .bub{max-width:80%;padding:9px 12px;border-radius:16px;font-size:13px;line-height:1.5;}
+  .bub.cust{background:#fff;color:#444;border-bottom-left-radius:5px;}
+  .bub.staff{background:var(--rose);color:#fff;border-bottom-right-radius:5px;}
+
+  .note{font-size:12px;color:var(--muted);margin:8px 2px 0;}
+  .goal{background:var(--slate-soft);border-radius:14px;padding:15px 16px;margin-top:8px;font-size:13px;color:var(--slate-d);}
+  .goal b{color:var(--rose-d);}
+  .foot{max-width:560px;margin:14px auto 0;padding:0 16px;font-size:11px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="en">Nurturing Evolution</div>
+  <h1>追客配信の進化案</h1>
+  <div class="sub">「懸念を聞く」から「もう分かっている前提」へ＋返信の入口を増やす｜Merone</div>
+</div>
+
+<div class="wrap">
+
+  <!-- 今の状況 -->
+  <div class="sec-title">今、どこにいるか</div>
+  <div class="lead">新案 vs 従来の伸びしろは、もう取り切りました🌸</div>
+  <div class="card">
+    <div class="nums">
+      <div class="num"><div class="big">新<em>27.5%</em></div><div class="lbl">返信率（従来19.7%）</div></div>
+      <div class="num"><div class="big">目標<em>37%</em></div><div class="lbl">あと+数ポイント</div></div>
+    </div>
+    <p class="note">次の+数ポイントは、新案の中の<b style="color:var(--slate-d)">「懸念にどれだけピタッと合わせるか」の精度</b>と、<b style="color:var(--slate-d)">そもそも返信の入口を増やすこと</b>でしか出ません。この2つを打ち手にします。</p>
+  </div>
+
+  <!-- レバー2 懸念前提配信 -->
+  <div class="sec-title rose">打ち手①　「聞く」から「分かっている前提」へ</div>
+  <div class="lead">お客様は、聞かれること自体を身構えます。</div>
+  <div class="card">
+    <div class="flow">
+      <div class="flow-box flow-before">
+        <div class="flow-lbl">今（懸念を聞いてから返す）</div>
+        <div class="flow-txt">まず「ぶっちゃけどれですか？」と聞く → 答えを待つ → やっと懸念に合った返信。ひと手間ぶん、離脱が生まれます。</div>
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-box flow-after">
+        <div class="flow-lbl">進化後（もう分かっている前提で寄り添う）</div>
+        <div class="flow-txt">体験後アンケート・カウンセリングサマリーで懸念はもう見えています。自社スタンドのタグで振り分け、最初から懸念に合った内容を直接お送りします🌷</div>
+      </div>
+    </div>
+    <p class="note">「また営業される」という身構えを、"もう分かってくれている"という安心に変えます。これが返信のハードルを下げます。</p>
+  </div>
+
+  <div class="lead">安全のため、二層構えにします。</div>
+  <div class="card">
+    <div class="layers">
+      <div class="layer hit"><div class="lt">懸念が分かる層</div>サマリで懸念が見えている方 → その懸念に直行</div>
+      <div class="layer unk"><div class="lt">まだ分からない層</div>懸念が不明な方 → 今まで通り6択で聞く</div>
+    </div>
+    <p class="note">6択で聞くやり方も勝ちパターンなので、全部はやめません。「分かっている人だけ直行」で、判定を間違えるリスクを避けます。</p>
+  </div>
+
+  <!-- 直行型文面 -->
+  <div class="sec-title rose">懸念別・直行型の文面（効く順）</div>
+  <div class="lead">冒頭で「伺っています」と伝えるのがポイントです。</div>
+  <div class="legend">
+    <span><span class="sw" style="background:var(--slate)"></span><b>A 寄り添って整理</b></span>
+    <span><span class="sw" style="background:var(--rose-d)"></span><b>B 材料を渡す</b></span>
+    <span>数字＝新案の返信率の伸び</span>
+  </div>
+
+  <div class="concern">
+    <div class="head"><span class="pin a">A</span><span class="name">サービスへの疑問</span><span class="eff">+22.7pt</span></div>
+    <div class="reply">体験レッスンで、サービスの内容が気になっていらっしゃると伺いました☺️ 実際のところをそのまま正直にお伝えしますね。いちばん気になっているのは、どんなところですか？</div>
+  </div>
+  <div class="concern">
+    <div class="head"><span class="pin a">A</span><span class="name">自分にできるか自信がない</span><span class="eff">+12.8pt</span></div>
+    <div class="reply">はじめてで不安なお気持ち、伺っています🌱 最初はみなさん同じところからのスタートでした。〇〇さんが「これならできそう」と思える形を一緒に見つけたいのですが、いま一番ひっかかるのはどこですか？</div>
+  </div>
+  <div class="concern">
+    <div class="head"><span class="pin a">A</span><span class="name">他のスクールと比べたい</span><span class="eff">+9.8pt</span></div>
+    <div class="reply">他のスクールとも比べていらっしゃると伺いました🌷 比べて決めるの、とても良い進め方だと思います。どちらとお迷いですか？違いを正直にお伝えしますね。</div>
+  </div>
+  <div class="concern">
+    <div class="head"><span class="pin a">A</span><span class="name">費用が気になる</span><span class="eff">+2.6pt</span></div>
+    <div class="reply">お金のこと、気になっていらっしゃると伺っています☕ 月々のお支払いを抑える方法もありますし、〇〇さんのペースだと1日◯分・習い事の月謝くらいのイメージです。どのくらいなら続けられそうですか？</div>
+  </div>
+  <div class="concern">
+    <div class="head"><span class="pin b">B</span><span class="name">自分のペースで持ち帰りたい</span></div>
+    <div class="reply">ご自身のペースで、と伺っています🍀 急かすご連絡はしませんのでご安心ください。考える材料として、月にどれくらいの時間で進められるかの目安をお送りしてもよろしいですか？</div>
+    <div class="why">→ 聞かれると逆効果な層。急かさず材料で支える。</div>
+  </div>
+  <div class="concern">
+    <div class="head"><span class="pin b">B</span><span class="name">家族に相談してから</span></div>
+    <div class="reply">ご家族とのご相談、と伺っています💐 お話しされる時にそのまま見せられる「まとめ1枚」をご用意できます。お渡ししましょうか？</div>
+    <div class="why">→ 本人を説得役にしない。材料を渡す。</div>
+  </div>
+
+  <!-- レバー3 返信の入口 -->
+  <div class="sec-title rose">打ち手②　返信の「入口」を増やす</div>
+  <div class="lead">配信文だけに頼らず、返信のきっかけを構造で増やします。</div>
+
+  <div class="card">
+    <div style="font-size:13px;font-weight:800;color:var(--slate-d);margin-bottom:6px;">1｜リッチメニューを「相談の入口」に</div>
+    <p class="note" style="margin-top:0;">LINEを開くたびに必ず目に入る常設のボタン。押すだけで会話が始まります。</p>
+    <div class="rm">
+      <div class="rm-head">追客中の方のリッチメニュー</div>
+      <div class="rm-grid">
+        <div class="rm-btn"><div class="ic">💰</div><div class="tx">料金の目安を見る</div></div>
+        <div class="rm-btn"><div class="ic">🌱</div><div class="tx">先輩の声</div></div>
+        <div class="rm-btn"><div class="ic">💭</div><div class="tx">よくある不安Q&A</div></div>
+        <div class="rm-btn"><div class="ic">📅</div><div class="tx">日程を見直す</div></div>
+        <div class="rm-btn"><div class="ic">☕</div><div class="tx">そのまま相談</div></div>
+        <div class="rm-btn"><div class="ic">🎁</div><div class="tx">特典を確認</div></div>
+      </div>
+    </div>
+    <p class="note">「料金の目安」「よくある不安」は、キャンセル理由でいちばん多かった"見えない不安"に先回りで答える入口です。押した時点で懸念が分かるので、そこから懸念別の会話につなげられます。</p>
+  </div>
+
+  <div class="card">
+    <div style="font-size:13px;font-weight:800;color:var(--slate-d);margin-bottom:6px;">2｜夜に来た返信を、放置しない「つなぎ返信」</div>
+    <p class="note" style="margin-top:0;">夜の返信を翌朝まで放置すると、会話の続く率が下がります（32%）。一言だけ先に返します。</p>
+    <div class="phone">
+      <div class="phone-top">夜22:30｜お客様から返信</div>
+      <div class="row"><div class="ava">😊</div><div class="bub cust">お返事ありがとうございます。少し考えてみますね。</div></div>
+      <div class="row right"><div class="bub staff">メッセージありがとうございます🌙 明日の朝いちばんに、〇〇さんに合わせてゆっくりお返事しますね。</div></div>
+    </div>
+    <p class="note">「読んでもらえた」という安心が、翌朝の返信までつなぎます。速さより、この一手間です。</p>
+  </div>
+
+  <!-- 狙い -->
+  <div class="sec-title">この2つで狙うこと</div>
+  <div class="goal">
+    <b>返信率 27.5% → 37%（あと+数ポイント）。</b><br>
+    打ち手①で「懸念にピタッと合わせる精度」を上げ、打ち手②で「返信のきっかけの数」を増やします。効いた懸念から毎週磨き込んでいけば、着実に近づけます🌸
+  </div>
+
+</div>
+<div class="foot">Merone｜追客配信の進化案（社内共有用モック）</div>
+</body>
+</html>

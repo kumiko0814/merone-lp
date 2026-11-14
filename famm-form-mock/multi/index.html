@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>複数の卒業生インタビューを1つの回答フォームに載せて感想まで一元化する作り方</title>
+<style>
+  :root{
+    --white:#fff; --ink:#2a2a2a; --muted:#8a97a3;
+    --mustard:#e8a24c; --mustard-d:#cf8a34;
+    --green:#8bab2f; --green-l:#b5d04e;
+    --teal:#7db8b8; --teal-d:#5e9d9d;
+    --pale:#fae8a0;
+    --bg:#f3f6f8; --line:#e7ecf1; --soft:#f7fafb;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;
+    font-family:"游ゴシック","Yu Gothic",YuGothic,"Hiragino Kaku Gothic ProN",sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 0 60px;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px;}
+
+  header{background:linear-gradient(135deg,#f7d98a,#e8a24c);color:#fff;padding:38px 16px 34px;}
+  header .inner{max-width:880px;margin:0 auto;}
+  .tagpill{display:inline-block;background:rgba(255,255,255,.28);color:#fff;font-size:12px;
+    font-weight:800;border-radius:30px;padding:4px 14px;margin-bottom:12px;letter-spacing:.03em;}
+  header h1{font-size:23px;margin:0 0 10px;font-weight:800;line-height:1.5;text-shadow:0 1px 2px rgba(0,0,0,.08);}
+  header p{margin:0;font-size:14px;opacity:.96;line-height:1.7;}
+
+  h2{color:var(--ink);font-size:20px;margin:42px 0 6px;font-weight:800;
+    border-left:7px solid var(--mustard);padding-left:13px;line-height:1.4;}
+  .h2sub{color:var(--muted);font-size:13px;margin:0 0 18px;padding-left:20px;}
+  p{font-size:14.5px;margin:0 0 13px;}
+  .card{background:var(--white);border-radius:16px;padding:22px 24px;margin-bottom:18px;
+    box-shadow:0 4px 18px rgba(90,110,130,.08);}
+  .muted{color:var(--muted);font-size:13px;}
+  b.hl{color:var(--mustard-d);}
+  .big{font-size:15.5px;font-weight:800;line-height:1.7;}
+
+  /* できる／できない */
+  .yn{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px;}
+  .yn .box{border-radius:14px;padding:16px 17px 14px;}
+  .yn .no{background:#f6efec;border:1px solid #ecdcd3;}
+  .yn .yes{background:#f0f7ee;border:1px solid #d8ecc9;}
+  .yn .lbl{font-size:12.5px;font-weight:800;border-radius:20px;padding:3px 12px;display:inline-block;margin-bottom:10px;}
+  .yn .no .lbl{background:#e6cfc4;color:#8a5638;}
+  .yn .yes .lbl{background:var(--green-l);color:#3d5216;}
+  .yn p{font-size:13.5px;margin:0 0 8px;line-height:1.7;}
+  @media(max-width:620px){.yn{grid-template-columns:1fr;}}
+
+  /* phone mock */
+  .mockwrap{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;align-items:flex-start;
+    background:linear-gradient(160deg,#eef4f5,#f7ede0);border-radius:18px;padding:26px 16px;}
+  .mockcol{display:flex;flex-direction:column;align-items:center;}
+  .phone{width:326px;background:#fff;border-radius:24px;overflow:hidden;flex:0 0 auto;
+    box-shadow:0 10px 34px rgba(0,0,0,.16);border:1px solid #eceff2;}
+  .p-url{background:#5a6b78;color:#cfe0e6;font-size:10.5px;text-align:center;padding:6px;
+    display:flex;align-items:center;justify-content:center;gap:5px;}
+  .p-url .dot{width:6px;height:6px;border-radius:50%;background:#9fd07d;display:inline-block;}
+  .p-hdr{background:#fff;border-bottom:1px solid var(--line);padding:11px 15px;display:flex;align-items:center;gap:8px;}
+  .p-logo{width:24px;height:24px;border-radius:50%;border:1.5px solid #e8a24c;color:#cf8a34;font-weight:800;
+    font-style:italic;font-size:12px;display:flex;align-items:center;justify-content:center;}
+  .p-hdr .t{font-size:12.5px;font-weight:800;}
+  .p-scroll{max-height:560px;overflow-y:auto;}
+  .p-body{padding:15px 15px 20px;}
+  .p-intro{font-size:12.5px;color:#55606b;line-height:1.7;margin:0 0 4px;}
+
+  /* インタビュー記事カード */
+  .artcard{border:1px solid var(--line);border-radius:15px;overflow:hidden;margin:13px 0;background:#fff;}
+  .art-photo{height:120px;position:relative;display:flex;align-items:flex-end;
+    background:linear-gradient(120deg,#c9de8a 0%,#c9de8a 42%,#f0c9c2 42%,#f0c9c2 100%);}
+  .art-photo .ava{position:absolute;right:14px;top:16px;width:76px;height:88px;border-radius:10px;
+    background:linear-gradient(160deg,#e7eef2,#cdd8de);display:flex;align-items:center;justify-content:center;
+    color:#8ba0ac;font-size:22px;box-shadow:0 3px 10px rgba(0,0,0,.12);}
+  .art-photo .htag{position:absolute;left:14px;top:14px;color:#5e7a25;font-size:10.5px;font-weight:800;}
+  .art-photo .hchip{position:absolute;left:14px;top:34px;background:var(--teal);color:#fff;font-size:12px;
+    font-weight:800;border-radius:7px;padding:4px 11px;}
+  .art-photo .hsub{position:absolute;left:14px;bottom:11px;color:#4a5a2a;font-size:10px;font-weight:700;}
+  .art-in{padding:13px 14px 14px;}
+  .art-type{display:inline-block;font-size:10.5px;font-weight:800;color:var(--teal-d);
+    background:#eef5f5;border-radius:14px;padding:3px 10px;margin:0 0 8px;}
+  .art-q{font-size:12.5px;font-weight:800;margin:0 0 5px;color:var(--ink);}
+  .art-tx{font-size:11.5px;color:#5b6670;line-height:1.75;margin:0 0 7px;}
+  .art-more{font-size:11px;font-weight:800;color:var(--mustard-d);margin:0;}
+  .p-div{border:none;border-top:2px dashed #e2e7ec;margin:16px 2px;}
+
+  .p-q{font-size:13px;font-weight:800;margin:2px 0 3px;}
+  .p-qs{font-size:11px;color:var(--muted);margin:0 0 9px;}
+  .p-ta{border:1.5px solid var(--line);border-radius:11px;background:#fbfcfd;padding:11px;
+    font-size:12px;color:#b6bfc8;line-height:1.7;min-height:60px;}
+  .p-chips{display:flex;gap:7px;margin:11px 0 2px;flex-wrap:wrap;}
+  .p-chip{font-size:11px;border:1.5px solid #e4d6bd;background:#fff;color:#8a7a5c;
+    border-radius:20px;padding:5px 12px;font-weight:700;}
+  .p-chip.on{background:var(--pale);border-color:var(--mustard);color:#7a5e2a;}
+  .p-cta{display:block;text-align:center;background:var(--mustard);color:#fff;font-weight:800;font-size:14px;
+    border-radius:26px;padding:13px;margin-top:15px;box-shadow:0 3px 0 var(--mustard-d);}
+  .p-note{font-size:10.5px;color:var(--muted);text-align:center;margin:10px 0 0;}
+  .mock-cap{font-size:12px;color:var(--muted);text-align:center;width:326px;margin:11px auto 0;line-height:1.6;}
+  .mock-step{font-size:11px;font-weight:800;color:var(--mustard-d);background:#fffaf0;border:1px solid #efd6ab;
+    border-radius:16px;padding:3px 12px;margin:0 0 9px;}
+
+  /* structure diagram */
+  .stack{max-width:430px;margin:0 auto;}
+  .blk{border-radius:11px;padding:11px 14px;margin-bottom:8px;font-size:13px;font-weight:700;
+    display:flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;}
+  .blk .bi{font-size:11px;font-weight:800;color:#fff;border-radius:7px;padding:3px 9px;flex:0 0 auto;}
+  .blk.person{background:#fbfcf6;border-color:#dbe6bf;}
+  .blk.person .bi{background:var(--green);}
+  .blk.kanso{background:#fff8ee;border-color:#f0dcb6;}
+  .blk.kanso .bi{background:var(--mustard);}
+  .blk .rep{margin-left:auto;font-size:10.5px;font-weight:800;color:var(--muted);background:#eef1f4;
+    border-radius:12px;padding:2px 9px;}
+  .stack .arw{text-align:center;color:#c3ccd4;font-size:14px;margin:1px 0 3px;}
+
+  /* steps */
+  .step-card{background:#fff;border-radius:15px;padding:20px 22px 18px;margin-bottom:14px;
+    box-shadow:0 4px 16px rgba(90,110,130,.07);position:relative;border-left:6px solid var(--teal);}
+  .step-card .num{position:absolute;top:-13px;left:18px;background:var(--teal);color:#fff;font-weight:800;
+    font-size:13px;border-radius:20px;padding:4px 14px;box-shadow:0 2px 6px rgba(94,157,157,.35);}
+  .step-card h4{font-size:16px;margin:8px 0 7px;font-weight:800;color:var(--ink);}
+  .step-card p{font-size:13.5px;margin:0 0 8px;}
+  .btnpath{display:inline-block;background:#eef5f5;color:var(--teal-d);font-weight:700;font-size:12.5px;
+    border-radius:8px;padding:3px 9px;margin:1px 2px;}
+  .kids{background:#fffaf0;border:1px dashed var(--mustard);border-radius:10px;padding:9px 13px;
+    font-size:12.5px;color:#8a6a35;margin-top:8px;line-height:1.7;}
+  .kids b{color:var(--mustard-d);}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0;background:#fff;border-radius:10px;overflow:hidden;}
+  th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top;}
+  th{background:#eef5f5;color:var(--teal-d);font-weight:800;}
+  td .part{font-weight:800;color:var(--mustard-d);}
+  tr.x td{background:#faf2f0;color:#9a6b58;}
+  tr.x td .part{color:#b06a3c;text-decoration:line-through;}
+
+  .cheer{background:linear-gradient(135deg,#f0f7ee,#fdf6e6);border-radius:16px;padding:22px 24px;
+    border:1px solid #e2ecd4;margin-top:10px;}
+  .cheer p{margin:0 0 8px;font-size:14.5px;}
+  .cheer .pt{font-weight:800;color:var(--green);}
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <span class="tagpill">Famm ／ Lステップ回答フォーム（卒業生インタビュー・複数人＋感想 一元化）</span>
+    <h1>複数の卒業生インタビューを1つの回答フォームに載せて、<br>感想提出まで“1画面で完結”させる作り方</h1>
+    <p>森川素案（木野内さんのフォーム）と同じ<b>「画像＋テキストのインタビュー記事」</b>を、<br>人数ぶん縦に並べるだけ。動画は使いません。もちろん外部サイトもHTMLも不要です。</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 0. できる／できない -->
+  <h2>① 結論：動画は載りませんが、「記事＋感想の一元化」はできます</h2>
+  <p class="h2sub">回答フォームのブロックに「動画埋め込み」は無いので、森川素案と同じ“記事形式”で作ります</p>
+  <div class="card">
+    <p class="big">Lステップの回答フォームは「ブロックを上から積む」作り。使えるブロックは決まっています。</p>
+    <div class="yn">
+      <div class="box no">
+        <span class="lbl">✕ できないこと</span>
+        <p><b>動画をフォーム内で再生する</b>（「動画埋め込み」ブロックが存在しない）</p>
+        <p style="margin:0;">カードを押すと<b>その人だけに切り替わる</b>ような分岐表示</p>
+      </div>
+      <div class="box yes">
+        <span class="lbl">◯ できること</span>
+        <p><b>画像＋テキストのインタビュー記事</b>を、人数ぶん縦に並べる</p>
+        <p style="margin:0;">その下に<b>共通の感想欄（複数行入力）</b>を置いて、同じフォームで提出</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:12px;">※ つまり森川素案（木野内さんの記事＋「感想を一文でも送りましょう」）を、<b>人数ぶん増やすだけ</b>。来た方は自分に近い先輩の記事を読んで、そのまま一番下の感想欄で提出できます。</p>
+  </div>
+
+  <!-- 2. 構造図 -->
+  <h2>② 1つのフォームの中身（設計図）</h2>
+  <p class="h2sub">「1人＝画像＋記事」を3セット並べて、最後に感想欄を1つ。これで一元化です</p>
+  <div class="card">
+    <div class="stack">
+      <div class="blk"><span class="bi" style="background:#8ba0ac">見出し</span>あいさつ「自分に近い先輩の記事を読んでみましょう☺」</div>
+      <div class="arw">▼</div>
+      <div class="blk person"><span class="bi">1人目</span>画像＋テキスト（木野内さんの記事）<span class="rep">画像+テキスト</span></div>
+      <div class="arw">▼</div>
+      <div class="blk person"><span class="bi">2人目</span>画像＋テキスト（育休中タイプの記事）<span class="rep">画像+テキスト</span></div>
+      <div class="arw">▼</div>
+      <div class="blk person"><span class="bi">3人目</span>画像＋テキスト（在宅・副業タイプの記事）<span class="rep">画像+テキスト</span></div>
+      <div class="arw">▼</div>
+      <div class="blk kanso"><span class="bi">感想</span>複数行入力「読んだ感想を一文でも送りましょう！」<span class="rep">共通1つ</span></div>
+    </div>
+    <p class="muted" style="margin-top:14px;text-align:center;">感想欄は<b>全員ぶんで1つだけ</b>。誰の記事を読んでも、最後は同じ欄に書いて提出＝<b>1フォームで完結</b>します。</p>
+  </div>
+
+  <!-- 3. モック -->
+  <h2>③ 来た方が実際に見る画面（完成イメージ）</h2>
+  <p class="h2sub">1本のフォームを上から下へ。記事を読む → 一番下の感想欄で提出、まで同じ画面です</p>
+  <div class="mockwrap">
+
+    <!-- 記事一覧 -->
+    <div class="mockcol">
+      <span class="mock-step">上半分：先輩の記事が並ぶ</span>
+      <div class="phone">
+        <div class="p-url"><span class="dot"></span>lstep.form / famm-interview</div>
+        <div class="p-hdr"><div class="p-logo">F</div><div class="t">卒業生インタビュー</div></div>
+        <div class="p-scroll">
+        <div class="p-body">
+          <p class="p-intro">自分に近い先輩の記事を、ひとつ読んでみましょう☺<br>読んだら一番下の感想欄でひとこと送ってね。</p>
+
+          <div class="artcard">
+            <div class="art-photo">
+              <span class="htag">#受賞者インタビュー</span>
+              <span class="hchip">木野内由香さん</span>
+              <span class="hsub">2025年 ママ 動画クリエイター講座 卒業生</span>
+              <span class="ava">👩‍💻</span>
+            </div>
+            <div class="art-in">
+              <span class="art-type">未経験・元IT業界から</span>
+              <p class="art-q">ー 受講前の仕事・家庭環境について</p>
+              <p class="art-tx">以前はIT業界でSEとして働いていました。好きな配信動画を毎日見るうちに「推しの動画編集に加われたら最高！」と思ったのがきっかけで…</p>
+              <p class="art-more">続きを読む ＋</p>
+            </div>
+          </div>
+
+          <div class="artcard">
+            <div class="art-photo" style="background:linear-gradient(120deg,#a9d3d3 0%,#a9d3d3 42%,#f2ddb0 42%,#f2ddb0 100%);">
+              <span class="htag" style="color:#3d6d6d;">#卒業生インタビュー</span>
+              <span class="hchip" style="background:#8bab2f;">あやのさん</span>
+              <span class="hsub" style="color:#4a5a2a;">育休中に受講 卒業生</span>
+              <span class="ava">🍼</span>
+            </div>
+            <div class="art-in">
+              <span class="art-type">育休中／復帰前に受講</span>
+              <p class="art-q">ー 育休中に始めた理由</p>
+              <p class="art-tx">復帰後の働き方に不安がありました。時短でも自分のペースで続けられる仕事を探していて…</p>
+              <p class="art-more">続きを読む ＋</p>
+            </div>
+          </div>
+
+          <div class="artcard">
+            <div class="art-photo" style="background:linear-gradient(120deg,#d7e59a 0%,#d7e59a 42%,#e8c7cf 42%,#e8c7cf 100%);">
+              <span class="htag" style="color:#5e7a25;">#卒業生インタビュー</span>
+              <span class="hchip" style="background:#cf8a34;">かおりさん</span>
+              <span class="hsub" style="color:#4a5a2a;">在宅ワーク 卒業生</span>
+              <span class="ava">🏠</span>
+            </div>
+            <div class="art-in">
+              <span class="art-type">在宅・副業から少しずつ</span>
+              <p class="art-q">ー 子育てと両立できていますか</p>
+              <p class="art-tx">子どもの隣で少しずつ。最初は月数万円からでしたが、今は自分の裁量で受けられるように…</p>
+              <p class="art-more">続きを読む ＋</p>
+            </div>
+          </div>
+          <p class="muted" style="text-align:center;font-size:10.5px;margin:4px 0 0;">▼ このまま下へスクロールすると感想欄</p>
+        </div>
+        </div>
+      </div>
+      <p class="mock-cap">1フォームに先輩3人の記事。<br>自分に近い人のを読めばOK</p>
+    </div>
+
+    <!-- 感想 -->
+    <div class="mockcol">
+      <span class="mock-step">下半分：共通の感想欄で提出</span>
+      <div class="phone">
+        <div class="p-url"><span class="dot"></span>lstep.form / famm-interview</div>
+        <div class="p-hdr"><div class="p-logo">F</div><div class="t">卒業生インタビュー</div></div>
+        <div class="p-body">
+          <hr class="p-div">
+          <p class="p-q">この記事を読んだ感想を、<br>一文でも良いので送りましょう！</p>
+          <p class="p-qs">ひとことでも大丈夫です☺</p>
+          <div class="p-ta">例）自分と近い先輩だったので、私にもできるかもと前向きになれました…</div>
+
+          <p class="p-q" style="margin-top:15px;">どの先輩が一番近かったですか？</p>
+          <div class="p-chips">
+            <span class="p-chip on">木野内さん</span>
+            <span class="p-chip">あやのさん</span>
+            <span class="p-chip">かおりさん</span>
+          </div>
+
+          <p class="p-q" style="margin-top:15px;">今の気持ちに近いのは？</p>
+          <div class="p-chips">
+            <span class="p-chip on">楽しみになった</span>
+            <span class="p-chip">少し不安</span>
+            <span class="p-chip">まだ迷ってる</span>
+          </div>
+
+          <span class="p-cta">この内容で送信する</span>
+          <p class="p-note">記事を読む → 感想を書く → 送信、まで同じ画面で完結</p>
+        </div>
+      </div>
+      <p class="mock-cap">感想欄は全員ぶんで1つ。<br>「どの先輩が近かった？」で誰が刺さったか集計も可</p>
+    </div>
+
+  </div>
+
+  <!-- 4. 作り方 -->
+  <h2>④ 作り方 ― 森川素案に「人を足していく」だけ</h2>
+  <p class="h2sub">スクショの「ブロックを追加」に出てくる部品だけで作れます</p>
+
+  <div class="step-card">
+    <span class="num">STEP 1</span>
+    <h4>いちばん上に「あいさつ」を置く</h4>
+    <p><span class="btnpath">見出し</span>＋<span class="btnpath">テキスト</span> で「自分に近い先輩の記事を読んでみましょう☺ 読んだら下で感想をひとこと送ってね」と書きます。</p>
+  </div>
+
+  <div class="step-card">
+    <span class="num">STEP 2</span>
+    <h4>1人目の記事を置く（＝森川素案そのまま）</h4>
+    <p><span class="btnpath">画像</span>（顔写真つきのバナー）＋<span class="btnpath">テキスト</span>（インタビュー本文）。これが木野内さんの記事＝いま出来ている素案です。</p>
+    <div class="kids"><b>コツ：</b>記事の先頭に「未経験・元IT業界から」など<b>タイプ名</b>を一言入れると、来た方が「私はこの人だ」と選びやすくなります。</div>
+  </div>
+
+  <div class="step-card">
+    <span class="num">STEP 3</span>
+    <h4>区切り線をはさんで、2人目・3人目を同じ形で足す</h4>
+    <p><span class="btnpath">区切り線</span>（テキストの「＝＝＝」でも可）で区切って、<b>2人目・3人目も「画像＋テキスト」で同じように</b>置くだけ。ブロックの<span class="btnpath">複製</span>を使えば、1人目をコピーして中身を差し替えるだけで作れます。</p>
+    <div class="kids"><b>ここが全部：</b>「複数人載せる」＝<b>この1人ぶんのセットを繰り返す</b>だけ。むずかしい分岐設定はありません。</div>
+  </div>
+
+  <div class="step-card">
+    <span class="num">STEP 4</span>
+    <h4>いちばん下に「共通の感想欄」を1つ置く</h4>
+    <p><span class="btnpath">複数行入力</span> で感想欄を1つ（「この記事を読んだ感想を一文でも良いので送りましょう！」）。＋<span class="btnpath">ラジオボタン</span>で「どの先輩が一番近かった？」「今の気持ち（楽しみ／少し不安／迷ってる）」の3択を付けると、書くのが苦手な人もタップで答えられます。</p>
+    <div class="kids"><b>ポイント：</b>回答の登録先を<b>友だち情報／個別メモ</b>にしておくと、送られた感想がその人のカルテに自動で残ります。</div>
+  </div>
+
+  <div class="step-card">
+    <span class="num">STEP 5</span>
+    <h4>フォームを保存して、URLを配信文のボタンに貼る</h4>
+    <p><span class="btnpath">フォームを保存</span> → できたURLを<b>1本コピー</b>して、いつもの配信文のボタンに貼るだけ。ボタン → 記事を読む → 感想を送信、まで全部このフォーム1枚で完結します。</p>
+  </div>
+
+  <!-- 5. 部品対応表 -->
+  <h2>⑤ 「やりたいこと → 使うブロック」早見表</h2>
+  <p class="h2sub">スクショの「ブロックを追加」メニューにある部品と対応しています</p>
+  <div class="card" style="padding:16px 18px;">
+    <table>
+      <tr><th>やりたいこと</th><th>使うブロック</th></tr>
+      <tr><td>あいさつ・見出しを書く</td><td><span class="part">見出し／テキスト</span></td></tr>
+      <tr><td>先輩の顔写真バナーを出す</td><td><span class="part">画像</span></td></tr>
+      <tr><td>インタビュー記事の本文</td><td><span class="part">テキスト</span></td></tr>
+      <tr><td>先輩と先輩を区切る</td><td><span class="part">区切り線</span>（テキストの＝＝＝でも可）</td></tr>
+      <tr><td>感想を自由に書いてもらう</td><td><span class="part">複数行入力</span>（共通で1つ）</td></tr>
+      <tr><td>近かった先輩・気持ちを3択で</td><td><span class="part">ラジオボタン</span></td></tr>
+      <tr class="x"><td>動画をフォーム内で再生する</td><td><span class="part">動画埋め込み</span> → <b>ブロックが無く不可</b>。記事（画像＋テキスト）で代替</td></tr>
+    </table>
+    <p class="muted" style="margin:10px 0 0;">※ どうしても動画を見せたい場合は、画像やボタンに<b>YouTubeのリンクを貼って外部で開く</b>形になります（フォーム内再生はできません）。まずは記事形式が素案どおりでおすすめです。</p>
+  </div>
+
+  <!-- 6. 締め -->
+  <h2>⑥ ひとことでまとめると</h2>
+  <div class="cheer">
+    <p><span class="pt">複数人の掲載＋感想の一元化は、回答フォーム1枚でできます。</span></p>
+    <p>やることは、森川素案（木野内さんの記事）に<b>先輩をもう2人足すだけ</b>。<br>
+    ・1人ぶん＝「画像＋テキストの記事」をワンセットで置く<br>
+    ・区切り線で区切って、複製して人数ぶん並べる<br>
+    ・いちばん下に共通の感想欄（複数行入力）を1つ置く<br>
+    これで、来た方は<b>自分に近い先輩の記事を読んで、そのまま同じ画面で感想を送れる</b>フォームになります。</p>
+    <p style="margin-bottom:0;">動画は使いません。<b>記事を人数ぶん増やすだけ</b>です☺</p>
+  </div>
+
+  <footer>Merone ／ Famm 卒業生インタビュー回答フォーム 設計指南書（複数人・記事形式）</footer>
+</div>
+</body>
+</html>

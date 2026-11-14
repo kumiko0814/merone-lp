@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>ONS 入口と出口の型ブック（モック）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#D9A69C; --rose-d:#C08B80; --rose-soft:#F6EAE6;
+    --slate:#6E8F97; --slate-d:#4C6B73; --slate-soft:#E9F0F1;
+    --cream:#FAF7F4; --ink:#3A4449; --muted:#93A0A6; --line:#E7E2DD;
+    --ok:#6E9E7E; --ng:#C0554E;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);
+    font-family:"游ゴシック","Yu Gothic",YuGothic,"Hiragino Kaku Gothic ProN",sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 0 70px;line-height:1.7;}
+  .hero{background:linear-gradient(135deg,#E8BFB5 0%,#EFD7CF 30%,#C5D2D4 62%,#5F7F88 100%);
+    padding:44px 18px 38px;text-align:center;color:#fff;}
+  .hero .en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.22em;opacity:.95;}
+  .hero h1{font-size:21px;font-weight:800;letter-spacing:.02em;margin:9px 0 6px;text-shadow:0 1px 8px rgba(60,80,90,.25);}
+  .hero .sub{font-size:12.5px;opacity:.95;}
+  .wrap{max-width:560px;margin:-22px auto 0;padding:0 14px;}
+
+  /* 数字カード */
+  .why{background:#fff;border-radius:18px;box-shadow:0 8px 26px rgba(76,107,115,.14);padding:17px;border-top:5px solid var(--rose);}
+  .why .t{font-size:12.5px;color:var(--muted);font-weight:700;text-align:center;}
+  .holes{display:flex;gap:8px;margin-top:11px;}
+  .hole{flex:1;border-radius:12px;padding:11px 8px;text-align:center;}
+  .hole.in{background:var(--slate-soft);}
+  .hole.out{background:var(--rose-soft);}
+  .hole .n{font-size:19px;font-weight:800;line-height:1.2;}
+  .hole.in .n{color:var(--slate-d);}
+  .hole.out .n{color:var(--rose-d);}
+  .hole .l{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.4;}
+  .proof{font-size:12px;color:var(--slate-d);background:var(--slate-soft);border-radius:10px;padding:9px 12px;margin-top:10px;text-align:center;}
+  .proof b{color:var(--rose-d);}
+
+  .sec-title{font-size:12px;font-weight:800;letter-spacing:.03em;color:#fff;background:var(--slate);
+    display:inline-block;border-radius:20px;padding:5px 15px;margin:28px 0 4px;}
+  .sec-title.rose{background:var(--rose);}
+  .lead{font-size:14px;font-weight:700;color:var(--slate-d);margin:6px 2px 12px;}
+  .card{background:#fff;border-radius:16px;box-shadow:0 5px 18px rgba(76,107,115,.09);padding:15px 16px;margin-bottom:12px;}
+
+  /* 見極めサイン */
+  .signs{display:flex;flex-direction:column;gap:8px;}
+  .sign{display:flex;gap:10px;border-radius:13px;padding:12px 14px;font-size:12.5px;align-items:flex-start;background:#fff;box-shadow:0 3px 12px rgba(76,107,115,.07);}
+  .sign .ic{font-size:15px;flex-shrink:0;}
+  .sign b{color:var(--slate-d);}
+  .ngbox{background:#F6EAE8;border:1px solid #E3C4BF;border-radius:14px;padding:12px 15px;font-size:12.5px;color:#8A5B54;}
+  .ngbox b{color:var(--ng);}
+
+  /* Before/After */
+  .ba-col{border-radius:14px;padding:13px 14px;margin-top:9px;}
+  .ba-before{background:#F3F1EF;border:1px dashed #C9C2BB;}
+  .ba-after{background:var(--rose-soft);border:1px solid var(--rose);}
+  .ba-lbl{font-size:11px;font-weight:800;margin-bottom:5px;}
+  .ba-before .ba-lbl{color:#A79E96;}
+  .ba-after .ba-lbl{color:var(--rose-d);}
+  .ba-msg{font-size:12.5px;line-height:1.6;}
+  .ba-before .ba-msg{color:#8A837C;}
+  .add-line{background:#fff;border:2px solid var(--rose-d);border-radius:12px;padding:9px 12px;font-size:12.5px;margin-bottom:7px;}
+  .arrow-c{text-align:center;color:var(--rose);font-size:15px;margin:3px 0;}
+
+  /* トーク */
+  .talk-tag{display:inline-block;font-size:10.5px;font-weight:800;color:#fff;background:var(--slate);border-radius:10px;padding:2px 10px;margin-bottom:7px;}
+  .talk-t{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:8px;}
+  .bub{background:var(--rose);color:#fff;border-radius:16px;border-bottom-right-radius:5px;
+    padding:11px 13px;font-size:13px;line-height:1.6;}
+  .talk-why{font-size:11.5px;color:var(--muted);margin-top:7px;}
+  .talk-why b{color:var(--rose-d);}
+  .foot{max-width:560px;margin:14px auto 0;padding:0 16px;font-size:11px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="en">ONS Playbook</div>
+  <h1>ONS「入口」と「出口」の型ブック</h1>
+  <div class="sub">誘うタイミングの見極め＋面談後の返信3型｜Merone</div>
+</div>
+
+<div class="wrap">
+
+  <div class="why" style="margin-top:0;">
+    <div class="t">8月の数字が教えてくれた、2つの穴</div>
+    <div class="holes">
+      <div class="hole in"><div class="n">11.84%</div><div class="l">ONS予約率<br>（入口の穴＝誘えていない）</div></div>
+      <div class="hole out"><div class="n">13人</div><div class="l">面談後その場で決めず持ち越し<br>（出口の穴＝その後の型がない）</div></div>
+    </div>
+    <div class="proof">でも希望もあります🌸 8月は<b>月跨ぎ成約が4件</b>。持ち越した方も、正しく追えば翌月に決まる証明です。</div>
+  </div>
+
+  <!-- 入口：見極め -->
+  <div class="sec-title rose">入口①　誘うタイミングの見極め</div>
+  <div class="lead">この3つのサインが出たら、ONSに誘うチャンスです。</div>
+  <div class="signs">
+    <div class="sign"><span class="ic">🌷</span><span><b>サイン1｜人生の話が出たとき。</b>離婚・転職・ワーホリ・ご家族のことなど、深い事情を打ち明けてくださった方は、誘いに応えてくださる率が高いです（直近の誘導成功例は全員このパターンでした）。</span></div>
+    <div class="sign"><span class="ic">🌱</span><span><b>サイン2｜懸念が2つ以上からんだとき。</b>費用×自信、時期×家族など。1問1答のLINEでは何日もかかる状態こそ、「話した方が早い」が本当に成立する相手です。</span></div>
+    <div class="sign"><span class="ic">☕</span><span><b>サイン3｜3往復以上ラリーが続いたとき。</b>会話が続いている＝温度が上がっているサイン。切れないうちにお誘いします。</span></div>
+  </div>
+  <div class="ngbox" style="margin-top:9px;">
+    <b>誘わない方：</b>懸念が1つだけで材料（分割のご案内・比較表・まとめ1枚）で解決できる方／「自分のペースで」「見送ります」の方（きれいに引いて扉だけ開けておきます）
+  </div>
+
+  <!-- 入口：文面 -->
+  <div class="sec-title rose">入口②　誘い文面は「1行足す」だけ</div>
+  <div class="lead">今のテンプレは活かして、頭に「その方の文脈」を1行。</div>
+  <div class="card">
+    <div class="ba-col ba-before" style="margin-top:0;">
+      <div class="ba-lbl">今のテンプレ（このまま使えます）</div>
+      <div class="ba-msg">〇〇さんよろしければZoomで少しお話ししませんか？LINEだと何日もかかってしまったものも、話したらすぐ解決した！ということもありますので…（以下同）</div>
+    </div>
+    <div class="arrow-c">▼ 頭にこの1行を差し込む</div>
+    <div class="add-line">【〇〇さんが気にされていた◯◯のこと】を一緒に整理して、〇〇さんに合った進め方を考えられたらと思うのですが、いかがですか？☺️</div>
+    <div class="ba-col ba-after">
+      <div class="ba-lbl">グッド事例で実際に効いた形（そのまま型に）</div>
+      <div class="ba-msg">「〇〇さんがどうやったら理想の働き方を叶えられるか、<b>ロードマップを一緒に</b>考えられたらと思うのですが、いかがですか？もしよければ再度Zoomで<b>少しだけ</b>お話しできたらうれしいです！」→ 即「ぜひお願いします」のご返信でした。</div>
+    </div>
+    <div class="talk-why">→ ポイントは<b>「あなたのための時間」だと伝わること</b>。汎用の誘いを、その方の懸念・理想を入れた誘いに変えるだけで乗りやすくなります。※💡✨の絵文字は🌷🌿などへ差し替え推奨です。</div>
+  </div>
+
+  <!-- 出口 -->
+  <div class="sec-title">出口　面談後の返信・3つの型</div>
+  <div class="lead">「会話内容を送って終わり」から、「次の一歩」まで。</div>
+
+  <div class="card">
+    <span class="talk-tag">共通｜面談後24時間以内の1通</span>
+    <div class="talk-t">今のサマリ送付に、最後の2行を足す</div>
+    <div class="bub">（今お送りしている、お話の内容・大事にしたい判断軸のまとめ）<br>＋<br>〇〇さんの次の一歩は「◯◯」がよさそうですね🌸 いつ頃までにできそうか、〇〇さんのペースで教えていただけますか？</div>
+    <div class="talk-why">→ サマリ共有はすでに素敵な対応なので、そのまま活かします。足すのは<b>次の一歩1つ＋期日を本人に決めてもらう</b>の2行だけ。ここから下の3型に分岐します。</div>
+  </div>
+
+  <div class="card">
+    <span class="talk-tag">型A｜「時期はもう少し先」の方へ</span>
+    <div class="talk-t">復帰日を、本人に決めてもらう</div>
+    <div class="bub">〇〇さんのペースで大丈夫ですよ🌷 目安として、◯月頃にもう一度お話しできたらうれしいです。その頃に、こちらからひとことご連絡してもよろしいですか？</div>
+    <div class="talk-why">→ 「再連絡の許可」をもらうのがコツ。許可をもらえた方を<b>月跨ぎリスト</b>で管理して、約束の月にそっと1通。8月の月跨ぎ成約4件は、この動きを型にすれば増やせます。</div>
+  </div>
+
+  <div class="card">
+    <span class="talk-tag">型B｜「家族に相談してから」の方へ</span>
+    <div class="talk-t">説得役にせず、材料を渡して応援する</div>
+    <div class="bub">ご家族にお話しされる時にそのまま見せられる「まとめ1枚」（月々のお支払い・スケジュール・サポート内容入り）をお送りしますね💐 お話しされてみて、ご家族が気にされていた点があれば、遠慮なく教えてください。</div>
+    <div class="talk-why">→ 家族相談中の方に期限のご案内は逆効果（冷めてしまいます）。<b>応援スタンス＋具体的な数字の1枚</b>で、ご本人を孤独な説得役にしません。</div>
+  </div>
+
+  <div class="card">
+    <span class="talk-tag">型C｜「費用がやっぱり気になる」方へ</span>
+    <div class="talk-t">分割の事実を渡して、本音を確かめる</div>
+    <div class="bub">お支払いは24回の分割ですと、初回のお引き落としが約1.5ヶ月後・月々3,800円ほどです（総額◯円を分けた形です）☕ もし月々のご負担がこの大きさだとして、ほかに引っかかっていることはありそうですか？</div>
+    <div class="talk-why">→ 分割トーク集の型5と同じ考え方。金額の壁を小さくして、<b>本当の懸念（自信・時期・家族）を確かめる</b>診断の1通です。</div>
+  </div>
+
+  <div class="sec-title rose">この型で狙う数字</div>
+  <div class="card" style="font-size:13px;color:var(--slate-d);">
+    ・入口：予約率11.84%→見極めサイン＋文脈1行で<b style="color:var(--rose-d)">まず15%台へ</b>（返信300人なら予約+10人）<br>
+    ・出口：月跨ぎ成約4件→復帰日の約束＋月跨ぎリストで<b style="color:var(--rose-d)">積み上げ</b><br>
+    どちらも新しい仕組みは不要で、今の運用に「1行」と「1リスト」を足すだけです🕊
+  </div>
+
+</div>
+<div class="foot">Merone｜ONS 入口と出口の型ブック（マニュアル組み込み用モック）</div>
+</body>
+</html>

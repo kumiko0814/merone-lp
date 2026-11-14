@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>あなたの未来を、3分で見える化</title>
+<meta property="og:title" content="あなたの未来を、3分で見える化" />
+<meta property="og:description" content="副業を始めた自分と、何もしなかった自分。65歳までの差を、自分の数字で確かめてみてください。" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --pink: #C77F75;
+    --blue: #7AA8C2;
+    --pink-soft: #FBF0EE;
+    --blue-soft: #EDF3F7;
+    --pink-bg: #F5DBD9;
+    --blue-bg: #DEEAEF;
+    --ink: #2C3E50;
+    --sub: #6B7A8F;
+    --bg: #FAFBFC;
+    --card: #FFFFFF;
+    --line: #E0E5EC;
+    --yellow: #FFF8DC;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.7;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:24px 18px 80px}
+
+  .hero{text-align:center;padding:32px 12px 24px}
+  .hero .kicker{font-size:11px;letter-spacing:.18em;color:var(--pink);font-weight:700}
+  .hero h1{font-size:clamp(22px,5vw,28px);margin:10px 0 10px;letter-spacing:.02em;line-height:1.5;font-weight:700}
+  .hero .lead{color:var(--sub);font-size:14px;line-height:1.8}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin:16px 0;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+  .card h2{margin:0 0 8px;font-size:17px;letter-spacing:.02em;font-weight:700}
+  .card .sub{color:var(--sub);font-size:13px;margin-bottom:14px;line-height:1.7}
+
+  .form-row{margin:14px 0}
+  .form-row label{display:block;font-size:13px;color:var(--ink);font-weight:600;margin-bottom:6px}
+  .form-row input, .form-row select{
+    width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;
+    font-size:16px;background:var(--yellow);color:var(--ink);font-weight:600;
+    -webkit-appearance:none;appearance:none;
+    transition:border-color .15s;
+  }
+  .form-row input:focus, .form-row select:focus{
+    outline:none;border-color:var(--pink);
+  }
+  .form-row .hint{font-size:11px;color:var(--sub);margin-top:4px;line-height:1.6}
+  .form-row select{
+    background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3e%3cpath fill='%236B7A8F' d='M6 8L0 0h12z'/%3e%3c/svg%3e");
+    background-repeat:no-repeat;
+    background-position:right 16px center;
+    padding-right:38px;
+  }
+
+  .btn{
+    display:block;width:100%;margin-top:8px;padding:16px;border:none;
+    background:var(--pink);color:#fff;font-size:16px;font-weight:700;
+    border-radius:12px;cursor:pointer;letter-spacing:.05em;
+    transition:background .15s, transform .1s;
+  }
+  .btn:hover{background:#A86A60}
+  .btn:active{transform:translateY(1px)}
+
+  #result{display:none}
+
+  .stat-hero{
+    text-align:center;padding:24px 16px;
+    background:linear-gradient(180deg,var(--pink-soft),#fff);
+    border-radius:14px;margin:8px 0;
+    border:1px solid var(--pink-bg);
+  }
+  .stat-hero .label{font-size:13px;color:var(--sub);font-weight:600}
+  .stat-hero .value{font-size:clamp(28px,7vw,40px);color:var(--pink);font-weight:800;letter-spacing:-.02em;margin:6px 0;line-height:1.1}
+  .stat-hero .note{font-size:12px;color:var(--sub)}
+
+  .stat-blue{
+    background:linear-gradient(180deg,var(--blue-soft),#fff);
+    border:1px solid var(--blue-bg);
+  }
+  .stat-blue .value{color:var(--blue)}
+
+  table.compare{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+  table.compare th{
+    background:var(--blue-soft);color:var(--ink);font-weight:600;
+    padding:10px 8px;border-bottom:1px solid var(--line);text-align:center;font-size:12px;
+  }
+  table.compare td{
+    padding:10px 8px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;
+  }
+  table.compare td:first-child{text-align:center;font-weight:700;color:var(--ink)}
+  table.compare td.no{background:var(--pink-soft);color:var(--pink);font-weight:600}
+  table.compare td.yes{background:var(--blue-soft);color:var(--blue);font-weight:700}
+  table.compare td.diff{background:var(--yellow);color:var(--pink);font-weight:800}
+
+  .chart-box{position:relative;height:300px;margin-top:14px}
+
+  .closing-soft{
+    background:var(--blue-soft);border-radius:14px;padding:24px 22px;margin-top:24px;
+    border-left:3px solid var(--blue);
+  }
+  .closing-soft p{margin:6px 0;font-size:14px;color:var(--ink);line-height:1.85}
+  .closing-soft .lead{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:10px}
+  .closing-list{
+    margin:8px 0 8px 0;padding-left:24px;color:var(--ink);
+  }
+  .closing-list li{
+    font-size:14px;line-height:1.85;margin:4px 0;
+  }
+  .closing-list li::marker{
+    color:var(--blue);font-weight:700;
+  }
+
+  .reche-fact{
+    background:var(--pink-soft);border-radius:10px;padding:14px 16px;margin:12px 0;
+    font-size:13px;color:var(--ink);
+  }
+  .reche-fact .ttl{font-weight:700;color:var(--pink);font-size:12px;margin-bottom:6px;letter-spacing:.05em}
+  .reche-fact ul{margin:0;padding-left:18px}
+  .reche-fact li{margin:3px 0;line-height:1.7}
+
+  .repay-msg{
+    background:var(--blue-soft);border-radius:10px;padding:14px 16px;margin:12px 0;
+    font-size:14px;color:var(--ink);text-align:center;line-height:1.8;
+  }
+  .repay-msg .big{
+    color:var(--blue);font-weight:800;font-size:18px;
+  }
+
+  footer{margin-top:40px;text-align:center;font-size:11px;color:var(--sub);line-height:1.8}
+  footer a{color:var(--sub);text-decoration:underline}
+
+  .scroll-hint{
+    text-align:center;color:var(--sub);font-size:11px;margin:8px 0 2px;
+    letter-spacing:.1em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">FUTURE SIMULATOR</div>
+    <h1>あなたの未来を、3分で見える化</h1>
+    <p class="lead">副業を始めた自分と、何もしなかった自分。<br>借金や貯金が、65歳までにどう変わるか。<br>あなたの数字で確かめてみてください。</p>
+  </header>
+
+  <div class="card">
+    <h2>6つの質問に答えるだけ</h2>
+    <p class="sub">数字はあくまで概算です。正確じゃなくても大丈夫。</p>
+
+    <div class="form-row">
+      <label for="age">①現在の年齢</label>
+      <input id="age" type="number" inputmode="numeric" value="38" min="20" max="65" />
+    </div>
+
+    <div class="form-row">
+      <label for="income">②本業の年収（額面）</label>
+      <input id="income" type="number" inputmode="numeric" value="3500000" step="100000" />
+      <div class="hint">パート・会社員・フリーランスの合計</div>
+    </div>
+
+    <div class="form-row">
+      <label for="savings">③現在の貯金額</label>
+      <input id="savings" type="number" inputmode="numeric" value="800000" step="100000" />
+      <div class="hint">預金・現金の合計</div>
+    </div>
+
+    <div class="form-row">
+      <label for="debt">④現在の借金・ローン残高</label>
+      <input id="debt" type="number" inputmode="numeric" value="2000000" step="100000" />
+      <div class="hint">住宅・車・奨学金・スクールローン・カードリボなどの合計（なければ0）</div>
+    </div>
+
+    <div class="form-row">
+      <label for="goal">⑤副業の月収目標（純利益・経費控除後）</label>
+      <select id="goal">
+        <option value="30000">3万円</option>
+        <option value="50000" selected>5万円</option>
+        <option value="100000">10万円</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="expense">⑥経費計上できる年間支出</label>
+      <input id="expense" type="number" inputmode="numeric" value="800000" step="100000" />
+      <div class="hint">スクール代・コンサル代・教材費・通信費など、副業のために使った金額の合計</div>
+    </div>
+
+    <button class="btn" onclick="run()">未来を見てみる</button>
+  </div>
+
+  <div id="result">
+
+    <p class="scroll-hint">— あなたの結果 —</p>
+
+    <!-- 1. 今年すぐ -->
+    <div class="card">
+      <h2>今年すぐ</h2>
+      <p class="sub">副業を始めて、確定申告で経費計上したら…</p>
+      <div class="stat-hero">
+        <div class="label">今年の手元に戻る金額</div>
+        <div class="value" id="taxBack">+0円</div>
+        <div class="note">経費計上による節税効果（1年目の確定申告ボーナス）</div>
+      </div>
+    </div>
+
+    <!-- 2. 借金完済 -->
+    <div class="card">
+      <h2>借金・ローンの返済シミュレーション</h2>
+      <p class="sub">副業した場合と、しなかった場合で、いつ完済できるか</p>
+      <div class="chart-box"><canvas id="debtChart"></canvas></div>
+      <div class="repay-msg" id="repayMsg"></div>
+    </div>
+
+    <!-- 3. 65歳までの推移 -->
+    <div class="card">
+      <h2>65歳までの貯金推移</h2>
+      <p class="sub">副業しなかった場合（ピンク）と、副業した場合（ブルー）</p>
+      <div class="chart-box"><canvas id="chart"></canvas></div>
+    </div>
+
+    <!-- 4. 年齢別テーブル -->
+    <div class="card">
+      <h2>年齢ごとの貯金の差</h2>
+      <p class="sub">5年・10年・20年・65歳の時点で、貯金にこれだけ差が出ます</p>
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>年齢</th>
+            <th>副業しない</th>
+            <th>副業する</th>
+            <th>差額</th>
+          </tr>
+        </thead>
+        <tbody id="ageTable"></tbody>
+      </table>
+    </div>
+
+    <!-- 5. Re:che 実数値 -->
+    <div class="card">
+      <div class="reche-fact">
+        <div class="ttl">参考：在宅で取り組むスクール卒業生62名のデータ</div>
+        <ul>
+          <li>6割が毎月15〜20万円以上の利益</li>
+          <li>6割が初月7〜10万円以上の利益</li>
+          <li>6割が半年以内にスクール代をペイ</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- クロージング -->
+    <div class="closing-soft">
+      <p class="lead">税金ってなかなか難しいですよね。。。</p>
+      <p>でも、ここでしっかりと現状を把握することがとても大事です☝️</p>
+      <p style="margin-top:14px">以下の内容については、それぞれのご状況に合わせて個別のトレーニングでサポートさせていただきます：</p>
+      <ol class="closing-list">
+        <li>節税の細かい中身について</li>
+        <li>今の借金の最短の返済をどう進めていくべきか</li>
+        <li>何が経費計上になり、いくら分戻ってくるのか</li>
+        <li>副業で現実的にどのように収入を立てていくのか</li>
+      </ol>
+      <p style="margin-top:14px">ぜひお気軽にお越しください。<br>枠は埋まりやすいので、早めに日程を押さえていただくことをお勧めします✨</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>計算根拠：国税庁・財務省・厚労省・総務省 公表値<br>
+    （物価上昇 +2.5%/年・社保料率 段階上昇・2027防衛増税+1% を反映）</p>
+    <p>※本ツールは教育目的の試算です。実際の数字は個人の状況により異なります。</p>
+  </footer>
+
+</div>
+
+<script>
+let chartInstance = null;
+let debtChartInstance = null;
+
+function fmt(n) {
+  if (n === 0) return '0円';
+  const sign = n > 0 ? '+' : '−';
+  const abs = Math.abs(Math.round(n));
+  return sign + abs.toLocaleString() + '円';
+}
+
+function fmtPlain(n) {
+  if (n < 0) return '▲' + Math.abs(Math.round(n)).toLocaleString() + '円';
+  return Math.round(n).toLocaleString() + '円';
+}
+
+function socialRate(year) {
+  if (year >= 2030) return 0.1620;
+  if (year >= 2028) return 0.1580;
+  if (year >= 2027) return 0.1545;
+  if (year >= 2026) return 0.1523;
+  return 0.1500;
+}
+
+function incomeTax(taxable) {
+  if (taxable <= 0) return 0;
+  let rate, deduction;
+  if (taxable <= 1950000) { rate = 0.0510; deduction = 0; }
+  else if (taxable <= 3300000) { rate = 0.1021; deduction = 97500; }
+  else if (taxable <= 6950000) { rate = 0.2042; deduction = 427500; }
+  else if (taxable <= 9000000) { rate = 0.2348; deduction = 636000; }
+  else if (taxable <= 18000000) { rate = 0.3369; deduction = 1536000; }
+  else if (taxable <= 40000000) { rate = 0.4084; deduction = 2796000; }
+  else { rate = 0.4595; deduction = 4796000; }
+  return Math.max(0, taxable * rate - deduction);
+}
+
+// 1年目の節税効果：経費計上による本業税減少
+function taxBackY1(income, expense) {
+  // 経費なしの場合
+  const taxableNo = Math.max(0, income - income * 0.1523 - 480000);
+  const taxNo = incomeTax(taxableNo) + Math.round(taxableNo * 0.10);
+  // 経費ありの場合（青色控除65万＋経費）
+  const taxableYes = Math.max(0, income - income * 0.1523 - 650000 - 480000 - expense);
+  const taxYes = incomeTax(taxableYes) + Math.round(taxableYes * 0.10);
+  return Math.max(0, taxNo - taxYes);
+}
+
+function run() {
+  const age = parseInt(document.getElementById('age').value) || 38;
+  const income = parseInt(document.getElementById('income').value) || 3500000;
+  const savings = parseInt(document.getElementById('savings').value) || 800000;
+  const debt = parseInt(document.getElementById('debt').value) || 0;
+  const goal = parseInt(document.getElementById('goal').value) || 50000;
+  const expense = parseInt(document.getElementById('expense').value) || 0;
+  const subAnnual = goal * 12;
+
+  // 1年目節税効果（経費を反映）
+  const taxBack = taxBackY1(income, expense);
+
+  // 65歳までシミュレーション
+  const yearsTo65 = 65 - age;
+  const labels = [];
+  const noArr = [];
+  const yesArr = [];
+  const debtNoArr = [];
+  const debtYesArr = [];
+
+  let cumNo = savings;
+  let cumYes = savings;
+  let debtNo = debt;
+  let debtYes = debt;
+
+  // 借金返済ロジック
+  // 副業しない場合：年収の5%を返済（残高残る限り）
+  // 副業する場合：年収の5%＋副業手取りの50%を返済
+  const annualRepayBase = income * 0.05;
+  const annualRepayBoost = subAnnual * 0.5;
+
+  let completionNo = null;
+  let completionYes = null;
+
+  for (let n = 0; n <= yearsTo65; n++) {
+    const yr = 2026 + n;
+    const ageN = age + n;
+    labels.push(ageN + '歳');
+
+    const sr = socialRate(yr);
+    const salaryTakeHome = income * Math.pow(1.015, n) * (1 - sr) * (yr >= 2027 ? 0.99 : 1) * 0.85;
+    const cost = income * 0.65 * Math.pow(1.025, n);
+
+    // 借金返済（金利3%/年複利）
+    if (debtNo > 0) {
+      debtNo = debtNo * 1.03 - annualRepayBase;
+      if (debtNo < 0) debtNo = 0;
+    }
+    if (debtNo === 0 && completionNo === null) completionNo = ageN;
+
+    if (debtYes > 0) {
+      debtYes = debtYes * 1.03 - (annualRepayBase + annualRepayBoost);
+      if (debtYes < 0) debtYes = 0;
+    }
+    if (debtYes === 0 && completionYes === null) completionYes = ageN;
+
+    debtNoArr.push(Math.round(debtNo));
+    debtYesArr.push(Math.round(debtYes));
+
+    // 貯金推移
+    // 副業しない場合：手取り - 生活費 - 返済
+    const surplusNo = salaryTakeHome - cost - (debtNoArr[n] > 0 || n === 0 ? annualRepayBase : 0);
+    // 副業する場合：手取り + 副業手取り + 1年目節税 - 生活費 - 返済（ブースト分）
+    const subTakeHome = subAnnual * 0.80;
+    const surplusYes = salaryTakeHome + subTakeHome + (n === 0 ? taxBack : 0) - cost - (debtYesArr[n] > 0 || n === 0 ? annualRepayBase + annualRepayBoost : 0);
+
+    cumNo += surplusNo;
+    cumYes += surplusYes;
+    noArr.push(Math.round(cumNo));
+    yesArr.push(Math.round(cumYes));
+  }
+
+  // 表示
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('taxBack').textContent = '+' + Math.round(taxBack).toLocaleString() + '円';
+
+  // 完済メッセージ
+  const repayMsg = document.getElementById('repayMsg');
+  if (debt === 0) {
+    repayMsg.innerHTML = '<p>借金がない場合、このシミュレーションはスキップされます。</p>';
+  } else {
+    let msg = '';
+    if (completionYes && completionNo) {
+      const diff = completionNo - completionYes;
+      msg = `<p>副業しない場合、完済は <span class="big">${completionNo}歳</span></p>` +
+            `<p>副業した場合、完済は <span class="big">${completionYes}歳</span></p>` +
+            (diff > 0 ? `<p style="margin-top:10px;font-weight:700">— ${diff}年早く、借金から自由になれます</p>` : '');
+    } else if (completionYes && !completionNo) {
+      msg = `<p>副業した場合、<span class="big">${completionYes}歳</span> で完済できます。</p>` +
+            `<p>副業しない場合、65歳までに完済しきれません。</p>`;
+    } else {
+      msg = '<p>このペースだと、65歳までに完済が難しい計算になります。</p>';
+    }
+    repayMsg.innerHTML = msg;
+  }
+
+  // 借金チャート
+  if (debtChartInstance) debtChartInstance.destroy();
+  if (debt > 0) {
+    debtChartInstance = new Chart(document.getElementById('debtChart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: '副業しない場合',
+            data: debtNoArr,
+            borderColor: '#C77F75',
+            backgroundColor: 'rgba(199,127,117,0.10)',
+            fill: false,
+            tension: 0.3,
+            borderWidth: 2.5,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+          },
+          {
+            label: '副業する場合',
+            data: debtYesArr,
+            borderColor: '#7AA8C2',
+            backgroundColor: 'rgba(122,168,194,0.15)',
+            fill: false,
+            tension: 0.3,
+            borderWidth: 3,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+          }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        interaction: { intersect: false, mode: 'index' },
+        plugins: {
+          legend: { position: 'bottom', labels: { color: '#2C3E50', font: { size: 12 } } },
+          tooltip: { callbacks: { label: (c) => c.dataset.label + ': ' + c.parsed.y.toLocaleString() + '円' } }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: '#6B7A8F',
+              callback: (v) => {
+                if (Math.abs(v) >= 10000) return Math.round(v / 10000) + '万';
+                return v;
+              }
+            },
+            grid: { color: '#E0E5EC' }
+          },
+          x: { ticks: { color: '#6B7A8F', maxTicksLimit: 8 }, grid: { display: false } }
+        }
+      }
+    });
+  } else {
+    document.getElementById('debtChart').parentElement.style.display = 'none';
+  }
+
+  // 年齢別テーブル
+  const checkpoints = [5, 10, 20, yearsTo65];
+  const tbody = document.getElementById('ageTable');
+  tbody.innerHTML = '';
+  checkpoints.forEach(yrAdd => {
+    if (yrAdd >= labels.length) yrAdd = labels.length - 1;
+    const idx = yrAdd;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${age + idx}歳</td>
+      <td class="no">${fmtPlain(noArr[idx])}</td>
+      <td class="yes">${fmtPlain(yesArr[idx])}</td>
+      <td class="diff">${fmt(yesArr[idx] - noArr[idx])}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // 貯金推移チャート
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: '副業しない',
+          data: noArr,
+          borderColor: '#C77F75',
+          backgroundColor: 'rgba(199,127,117,0.10)',
+          fill: false,
+          tension: 0.3,
+          borderWidth: 2.5,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+        },
+        {
+          label: '副業する',
+          data: yesArr,
+          borderColor: '#7AA8C2',
+          backgroundColor: 'rgba(122,168,194,0.15)',
+          fill: 'origin',
+          tension: 0.3,
+          borderWidth: 3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { intersect: false, mode: 'index' },
+      plugins: {
+        legend: { position: 'bottom', labels: { color: '#2C3E50', font: { size: 12 } } },
+        tooltip: { callbacks: { label: (c) => c.dataset.label + ': ' + c.parsed.y.toLocaleString() + '円' } }
+      },
+      scales: {
+        y: {
+          ticks: {
+            color: '#6B7A8F',
+            callback: (v) => {
+              if (Math.abs(v) >= 10000000) return (v / 10000000).toFixed(1) + '千万';
+              if (Math.abs(v) >= 10000) return Math.round(v / 10000) + '万';
+              return v;
+            }
+          },
+          grid: { color: '#E0E5EC' }
+        },
+        x: { ticks: { color: '#6B7A8F', maxTicksLimit: 8 }, grid: { display: false } }
+      }
+    }
+  });
+
+  setTimeout(() => {
+    document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>ONSの数字と成約目標の関係（モック）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#D9A69C; --rose-d:#C08B80; --rose-soft:#F6EAE6;
+    --slate:#6E8F97; --slate-d:#4C6B73; --slate-soft:#E9F0F1;
+    --cream:#FAF7F4; --ink:#3A4449; --muted:#93A0A6; --line:#E7E2DD;
+    --alert:#C0554E;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);
+    font-family:"游ゴシック","Yu Gothic",YuGothic,"Hiragino Kaku Gothic ProN",sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 0 70px;line-height:1.7;}
+  .hero{background:linear-gradient(135deg,#E8BFB5 0%,#EFD7CF 30%,#C5D2D4 62%,#5F7F88 100%);
+    padding:44px 18px 38px;text-align:center;color:#fff;}
+  .hero .en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:14px;letter-spacing:.22em;opacity:.95;}
+  .hero h1{font-size:20px;font-weight:800;letter-spacing:.01em;margin:9px 0 6px;text-shadow:0 1px 8px rgba(60,80,90,.25);line-height:1.4;}
+  .hero .sub{font-size:12.5px;opacity:.95;}
+  .wrap{max-width:560px;margin:-22px auto 0;padding:0 14px;}
+
+  .verdict{background:#fff;border-radius:18px;box-shadow:0 8px 26px rgba(76,107,115,.14);
+    padding:20px;text-align:center;border-top:5px solid var(--alert);}
+  .verdict .q{font-size:12.5px;color:var(--muted);font-weight:700;}
+  .verdict .a{font-size:20px;font-weight:800;color:var(--alert);line-height:1.5;margin-top:8px;}
+
+  .sec-title{font-size:12px;font-weight:800;letter-spacing:.03em;color:#fff;background:var(--slate);
+    display:inline-block;border-radius:20px;padding:5px 15px;margin:28px 0 4px;}
+  .sec-title.rose{background:var(--rose);}
+  .sec-title.alert{background:var(--alert);}
+  .lead{font-size:14px;font-weight:700;color:var(--slate-d);margin:6px 2px 12px;}
+  .card{background:#fff;border-radius:16px;box-shadow:0 5px 18px rgba(76,107,115,.09);padding:18px;margin-bottom:14px;}
+
+  /* 矛盾の天秤 */
+  .contradiction{display:flex;align-items:center;gap:8px;margin:12px 0;}
+  .cbox{flex:1;border-radius:14px;padding:15px 10px;text-align:center;}
+  .cbox.part{background:var(--slate-soft);border:2px solid var(--slate);}
+  .cbox.whole{background:var(--rose-soft);border:2px solid var(--rose);}
+  .cbox .num{font-size:30px;font-weight:800;line-height:1;}
+  .cbox.part .num{color:var(--slate-d);}
+  .cbox.whole .num{color:var(--rose-d);}
+  .cbox .lbl{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.4;}
+  .gt{font-size:30px;font-weight:800;color:var(--alert);}
+  .cmt{text-align:center;font-size:13px;font-weight:800;color:var(--alert);margin-top:4px;}
+  .month-tag{font-size:11px;font-weight:800;color:var(--slate-d);background:var(--slate-soft);border-radius:10px;padding:2px 10px;display:inline-block;margin-bottom:6px;}
+
+  /* 計算式 */
+  .calc{background:var(--slate-soft);border-radius:12px;padding:12px 14px;font-size:12.5px;margin:8px 0;}
+  .calc .r{padding:4px 0;color:var(--slate-d);}
+  .calc .r b{color:var(--rose-d);}
+  .calc .r.split{border-top:1px dashed #C5D2D4;margin-top:6px;padding-top:8px;}
+
+  /* ルート内訳 */
+  .versus{display:flex;gap:10px;text-align:center;}
+  .versus .box{flex:1;border-radius:14px;padding:15px 8px;}
+  .versus .line{background:var(--rose-soft);border:1px solid var(--rose);}
+  .versus .ons{background:var(--slate-soft);border:1px solid #CBD8DB;}
+  .versus .big{font-size:26px;font-weight:800;line-height:1;}
+  .versus .line .big{color:var(--rose-d);}
+  .versus .ons .big{color:var(--slate-d);}
+  .versus .cap{font-size:11.5px;font-weight:700;margin-top:5px;}
+  .versus .sub{font-size:10.5px;color:var(--muted);margin-top:2px;}
+
+  /* KPIツリー */
+  .tree{text-align:center;}
+  .tree .top{background:var(--rose);color:#fff;border-radius:12px;padding:12px;font-weight:800;font-size:14px;display:inline-block;}
+  .tree .branch{display:flex;gap:10px;margin-top:10px;}
+  .tree .leaf{flex:1;border-radius:12px;padding:12px 10px;font-size:12.5px;}
+  .tree .leaf.a{background:var(--slate-soft);border:1px solid #CBD8DB;}
+  .tree .leaf.b{background:var(--rose-soft);border:1px solid var(--rose);}
+  .tree .leaf .h{font-weight:800;font-size:13px;color:var(--slate-d);margin-bottom:4px;}
+  .tree .leaf .s{font-size:11px;color:var(--muted);}
+  .tree .stem{font-size:16px;color:var(--rose);margin:4px 0;}
+
+  .note{font-size:12px;color:var(--muted);margin:8px 2px 0;}
+  .goal{background:var(--slate-soft);border-radius:14px;padding:15px 16px;margin-top:8px;font-size:13px;color:var(--slate-d);}
+  .goal b{color:var(--rose-d);}
+  .foot{max-width:560px;margin:14px auto 0;padding:0 16px;font-size:11px;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="en">KPI Check</div>
+  <h1>ONSの数字を全部達成したら、<br>成約目標に届く？</h1>
+  <div class="sub">スタアシの月次成約目標との関係を検算する｜Merone</div>
+</div>
+
+<div class="wrap">
+
+  <div class="verdict">
+    <div class="q">ONSの数字が全部達成されたら、月の成約目標は届く？</div>
+    <div class="a">いいえ。そもそもKPIが<br>噛み合っていません。</div>
+    <div class="note" style="margin-top:10px;">データを検算すると、ONSの目標と全体の成約目標が、別々の計算で作られていて矛盾していました。</div>
+  </div>
+
+  <!-- 矛盾の可視化 -->
+  <div class="sec-title alert">見つけた矛盾</div>
+  <div class="lead">ONS"だけ"の目標が、全体の目標を超えています。</div>
+  <div class="card">
+    <div class="month-tag">8月</div>
+    <div class="contradiction">
+      <div class="cbox part"><div class="num">34</div><div class="lbl">ONSだけの<br>成約目標</div></div>
+      <div class="gt">&gt;</div>
+      <div class="cbox whole"><div class="num">19</div><div class="lbl">追客ぜんたいの<br>成約目標</div></div>
+    </div>
+    <div class="cmt">部分が、全体より大きい＝あり得ない設定</div>
+  </div>
+  <div class="card">
+    <div class="month-tag">7月</div>
+    <div class="contradiction">
+      <div class="cbox part"><div class="num">26</div><div class="lbl">ONSだけの<br>成約目標</div></div>
+      <div class="gt">&gt;</div>
+      <div class="cbox whole"><div class="num">15</div><div class="lbl">追客ぜんたいの<br>成約目標</div></div>
+    </div>
+    <div class="cmt">7月も同じ逆転。偶然ではありません</div>
+  </div>
+
+  <!-- なぜ -->
+  <div class="sec-title rose">なぜ、こうなるのか</div>
+  <div class="lead">2つの目標が、別々の計算式で作られているからです。</div>
+  <div class="card">
+    <div class="calc">
+      <div class="r"><b>ONS成約の目標 34</b>（8月）</div>
+      <div class="r">＝ 返信376人 × 予約25% × 参加60% × 成約60%</div>
+      <div class="r split"><b>全体成約の目標 19</b>（8月）</div>
+      <div class="r">＝ 返信376人 × 返信者成約率5.12%</div>
+    </div>
+    <p class="note">この2つは、お互いを見ずに別々に決められています。だから「ONSを全部達成すること」と「全体の成約目標を達成すること」は、そもそも結びついていません。ONSを100%達成しても、全体目標に届く保証はどこにもないのです。</p>
+  </div>
+
+  <!-- 実績の真実 -->
+  <div class="sec-title rose">そして、実績が示すこと</div>
+  <div class="lead">成約の多くは、ONSを通っていません。</div>
+  <div class="card">
+    <div class="versus">
+      <div class="box line"><div class="big">10件</div><div class="cap">LINEで成約🌸</div><div class="sub">面談を通さず・71%</div></div>
+      <div class="box ons"><div class="big">4件</div><div class="cap">ONSで成約</div><div class="sub">面談を通って・29%</div></div>
+    </div>
+    <p class="note">8月の成約14件のうち、ONS経由は4件（29%）だけ。<b style="color:var(--rose-d)">ONSは全体成約の3割弱の貢献</b>です。だから、ONS参加率をいくら追っても、残り7割のLINE完結成約はカバーできません。</p>
+  </div>
+
+  <!-- 正しいKPIツリー -->
+  <div class="sec-title">追うべきは、この形です</div>
+  <div class="lead">全体成約を頂点に、2つのルートを両方見る。</div>
+  <div class="card">
+    <div class="tree">
+      <div class="top">月次の全体成約数 ← これが主目標</div>
+      <div class="stem">┈┈┈┬┈┈┈</div>
+      <div class="branch">
+        <div class="leaf a"><div class="h">ONSルート</div><div class="s">返信→予約→参加→成約<br>（今の3割弱）</div></div>
+        <div class="leaf b"><div class="h">LINE完結ルート</div><div class="s">返信→LINEで成約<br>（今の7割・主戦場）</div></div>
+      </div>
+    </div>
+    <p class="note">ONS参加率は、この左側「ONSルート」の中の一指標にすぎません。今のKPIはONSばかりが数字になっていて、<b style="color:var(--rose-d)">成約の7割を生むLINE完結ルートが、主要な目標として見えていません</b>（推測。返信者成約率という形では入っていますが、ルート別には分かれていません）。</p>
+  </div>
+
+  <!-- まとめ -->
+  <div class="sec-title">まとめ</div>
+  <div class="goal">
+    <b>ONSの数字を全部達成しても、月の成約目標が達成できるとは言えません。</b><br>
+    理由は3つ。①ONSの目標と全体の目標が別計算で矛盾している ②ONSは全体成約の3割弱 ③成約の7割はLINE完結。<br>
+    追うべきは「全体成約」を頂点にした<b>ONS＋LINE完結の両輪</b>です🌸
+  </div>
+
+</div>
+<div class="foot">Merone｜KPI整合性の検証（社内共有用モック）｜数値は2026年7〜8月・全体追客</div>
+</body>
+</html>

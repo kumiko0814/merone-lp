@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>エグゼクティブサマリー｜スマセル6月プロモーション（パブリック版）｜Merone</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --sub: #5a5a5a;
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --line: #e6e3dc;
+    --accent: #c25b3f;
+    --accent2: #1f6f5e;
+    --soft: #f3efe7;
+    --hot-bg: #fff8f4;
+    --hot-border: #f0d6c8;
+    --warn: #b8412a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Yu Gothic", "YuGothic", "游ゴシック", "Hiragino Kaku Gothic ProN", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.01em;
+  }
+
+  /* Nav */
+  .navbar {
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    font-size: 12px;
+  }
+  .nav-brand {
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .nav-inner a {
+    color: var(--sub);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .nav-inner a:hover { background: var(--soft); color: var(--accent); }
+  .nav-inner a.current { background: var(--accent); color: var(--card); }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 40px 28px;
+    margin-bottom: 32px;
+  }
+  .hero::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 18px;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--sub);
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+  .hero-sub {
+    color: var(--sub);
+    font-size: 13px;
+    margin-bottom: 22px;
+  }
+  .hero-summary {
+    background: var(--soft);
+    border-left: 3px solid var(--accent);
+    padding: 18px 20px;
+    border-radius: 2px;
+  }
+  .hero-summary strong { color: var(--accent); font-weight: 700; }
+  .hero-summary li { margin-bottom: 8px; }
+
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    scroll-margin-top: 70px;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  h2 .num {
+    color: var(--accent);
+    margin-right: 10px;
+    font-weight: 800;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 22px 0 10px;
+    border-left: 3px solid var(--accent2);
+    padding-left: 10px;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 16px 0 8px;
+    color: var(--accent);
+  }
+  p { margin-bottom: 10px; }
+  .muted { color: var(--sub); font-size: 13px; }
+  ul, ol { margin-left: 1.4em; margin-bottom: 10px; }
+  ul li, ol li { margin-bottom: 6px; }
+
+  .tbl-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 14px;
+  }
+  th, td {
+    border-bottom: 1px solid var(--line);
+    padding: 10px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--soft);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  tbody tr:nth-child(even) td { background: #fbfaf6; }
+  tbody tr:hover td { background: var(--hot-bg); }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: var(--soft);
+    color: var(--sub);
+    margin-right: 4px;
+    letter-spacing: 0.05em;
+  }
+  .tag-accent { background: var(--accent); color: var(--card); }
+  .tag-forest { background: var(--accent2); color: var(--card); }
+  .tag-warn { background: var(--warn); color: var(--card); }
+  .chip {
+    display: inline-block;
+    background: var(--hot-bg);
+    border: 1px solid var(--hot-border);
+    color: var(--accent);
+    padding: 1px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  .conc {
+    background: var(--hot-bg);
+    border: 1px solid var(--hot-border);
+    padding: 18px 20px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .conc-num {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--card);
+    width: 24px; height: 24px;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 13px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .next-list {
+    background: var(--soft);
+    border-left: 3px solid var(--accent2);
+    padding: 16px 20px;
+    margin: 14px 0;
+    border-radius: 2px;
+  }
+  .next-list ol { margin: 0; padding-left: 20px; }
+  .next-list li { margin-bottom: 6px; }
+
+  a.file-link {
+    color: var(--accent2);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent2);
+  }
+  a.file-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  footer {
+    text-align: center;
+    color: var(--sub);
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 14px 60px; }
+    .hero { padding: 28px 20px; }
+    .hero h1 { font-size: 24px; }
+    section { padding: 22px 16px; }
+    h2 { font-size: 19px; }
+    table { font-size: 12px; }
+    th, td { padding: 8px 6px; }
+    .nav-inner { font-size: 11px; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <span class="nav-brand">MERONE</span>
+    <a href="index.html">index</a>
+    <a href="SUMMARY.html" class="current">サマリー</a>
+    <a href="strategy_proposal.html">戦略提案</a>
+    <a href="research_smasell_and_voices.html">リサーチ</a>
+    <a href="tool_spec_seller_checker.html">ツール仕様</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-label">EXECUTIVE SUMMARY ／ SMASELL JUNE 2026</div>
+    <h1>スマセル6月プロモーション戦略<br>エグゼクティブサマリー</h1>
+    <p class="hero-sub">作成 2026-06-03 ／ Merone AIマネージャー（社内向け）<br><span style="color:var(--warn);font-size:11px;">※ 本書はMerone社内提案書のパブリック公開サンプル。実名・実数値は匿名化済み。</span></p>
+
+    <div class="hero-summary">
+      <p><strong>結論</strong>：日程は<strong>(c) ハイブリッド型</strong>推奨。6/15・6/18 入口60分ライブ×2回 → 6/26-28 3日連続ブートキャンプ。3月実績ベース → 6月で<strong>売上2倍超</strong>を狙う（推測）。</p>
+      <p>訴求3軸＝<strong>家族のため／リスク低減（買取保証あり）／同じ場所にいた在宅ママの生の声</strong>。差別化の決定打は<strong>無料ツール「Re:sellerチェッカー」</strong>（地方在住ママの月数万円台実績データ）。</p>
+    </div>
+  </header>
+
+  <!-- 結論3行 -->
+  <section id="conclusion">
+    <h2><span class="num">1</span>結論3行</h2>
+
+    <div class="conc">
+      <p><span class="conc-num">1</span><strong>日程は (c) ハイブリッド型推奨</strong>：6/15・6/18に60分の入口ライブ×2回 → 6/26-28に3日連続ブートキャンプ。<br>3月実績ベース → 6月で <span class="chip">売上2倍超</span> を狙う（推測）</p>
+    </div>
+    <div class="conc">
+      <p><span class="conc-num">2</span><strong>訴求3軸</strong>：①家族のため ②リスク低減（買取保証あり） ③同じ場所にいた在宅ママの生の声（データ提供者Zの月数万円台実績データを実演）</p>
+    </div>
+    <div class="conc">
+      <p><span class="conc-num">3</span><strong>差別化の決定打＝Re:sellerチェッカー（無料ツール）</strong>：データ提供者Zの半年220件規模の仕入れ実績をDB化。「読むだけで稼げる中身」を可視化する特典。これがメルマガ他社広告との明確な差を作る</p>
+    </div>
+  </section>
+
+  <!-- 成果物一覧 -->
+  <section id="files">
+    <h2><span class="num">2</span>成果物一覧</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>ファイル</th><th>役割</th><th>形式</th></tr></thead>
+      <tbody>
+        <tr><td><a class="file-link" href="research_smasell_and_voices.html">research_smasell_and_voices.html</a></td><td>媒体リサーチ＋ユーザー声分析</td><td>HTML</td></tr>
+        <tr><td><a class="file-link" href="tool_spec_seller_checker.html">tool_spec_seller_checker.html</a></td><td>Re:sellerチェッカー仕様書＋データ統計</td><td>HTML</td></tr>
+        <tr><td><a class="file-link" href="strategy_proposal.html">strategy_proposal.html</a></td><td>戦略提案書（社内＋媒体側提示用）</td><td>HTML</td></tr>
+        <tr><td>（社内のみ）</td><td>仕入れ実績データ（インプット）</td><td>Markdown</td></tr>
+        <tr><td>（社内のみ）</td><td>LINEトーク重要抜粋（インプット）</td><td>Markdown</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- 各タスクの核心発見 -->
+  <section id="findings">
+    <h2><span class="num">3</span>各タスクの核心発見</h2>
+
+    <h3>Task1：媒体リサーチ＋ユーザー声分析</h3>
+    <ul>
+      <li><strong>スマセルは会員<span class="chip">28.17万人</span></strong>・在宅副業向け公式LP保有の最大手。Merone勉強会のターゲット層と完全一致</li>
+      <li><strong>4月以降ゼロ化の真因</strong>：「ローン否決層／カード枠なし層」の連続離脱（複数の離脱者発言で実証）。高額一括/ローン分割中心の設計が経済余裕ゼロ層を取りこぼした</li>
+      <li><strong>6月再起動の最強武器</strong>：データ提供者Zの仕入れ実績<span class="chip">220件規模</span>。「読むだけで稼げる」訴求×「実例の生の声」（Merone原則）の組み合わせ</li>
+    </ul>
+
+    <h3>Task2：データ分析＋ツール仕様書</h3>
+    <h4>統計（221件全件分析）</h4>
+    <ul>
+      <li>総仕入れ <span class="chip">数十万円規模</span>・平均 <span class="chip">2,700円台/件</span>、月平均 <span class="chip">約37件</span></li>
+      <li>主力販路 smasell.USED 94% ／ サブ M.Second 4.5% ／ INAF 1.4%</li>
+      <li>TOP3ブランド：ユニクロ 35件、ラルフローレン系 14件、コーチ/ラコステ/モンベル/アディダス 各5件</li>
+      <li>カテゴリTOP3：ダウン 46件・トップス 42件・バッグ 40件</li>
+      <li>季節パターン：3月の73件（冬物投げ売り）が最大山場、1月はバッグ16件特化</li>
+      <li><strong>1,000〜3,000円帯が63%</strong>を占める「中価格帯コツコツ型」</li>
+    </ul>
+    <h4>ツール推奨実装</h4>
+    <p>案1（静的JSON+JS／GitHub Pages）でMVP → Phase2でLIFF拡張</p>
+    <ul>
+      <li>理由：6月本番に確実に間に合うのは案1のみ。CTO稼働2日で済む</li>
+      <li>スコア4軸（実績件数40点／月幅20点／価格レンジ20点／ジャンル強度20点）でA-D判定</li>
+    </ul>
+
+    <h3>Task3：戦略提案（メイン成果物）</h3>
+    <h4>推し案＝(c)ハイブリッド型の根拠</h4>
+    <ul>
+      <li>(a) 1日のみ：本気度低い層も拾える反面、面談率・成約率が下がる過去傾向</li>
+      <li>(b) 3日連続：高密度で本気度MAXだが、初回露出での母数が稼げない</li>
+      <li>(c) <strong>入口を低くして広く拾い（6/15・18）→ 興味ある層だけ3日コース（6/26-28）に絞り込む</strong> ＝ 過去ボトルネックの両方を解決</li>
+    </ul>
+    <h4>5通配信文設計（Meroneナーチャリング16原則完全準拠）</h4>
+    <ul>
+      <li>LT1：6/8（前週日）冒頭「個別に失礼します」＋在宅ママ宣言</li>
+      <li>LT2〜LT5：認知→興味→欲求→決断→アクションで250-300字</li>
+      <li>圧弱め／圧強めABテスト案あり</li>
+      <li>配信文バリデーター8項目全クリア</li>
+    </ul>
+    <h4>男性流入排除 3層フィルタ</h4>
+    <ol>
+      <li>LT1冒頭「在宅ママ専用」明示</li>
+      <li>LP登録フォーム属性タグ自動分岐</li>
+      <li>プロLINE移行時に再フィルタ</li>
+    </ol>
+  </section>
+
+  <!-- アクション -->
+  <section id="actions">
+    <h2><span class="num">4</span>6月までのアクション（優先順）</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>タスク</th><th>期限</th><th>担当</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>社内レビュー（HTML確認）</td><td>2026-06-04</td><td>Merone代表</td></tr>
+        <tr><td>2</td><td>Re:sellerチェッカー MVP開発</td><td>2026-06-08</td><td>CTO</td></tr>
+        <tr><td>3</td><td>スマセル運営担当者へHTML提示・合意</td><td>2026-06-05</td><td>Merone代表</td></tr>
+        <tr><td>4</td><td>配信文5通最終化（バリデーター通し）</td><td>2026-06-08</td><td>Merone AI</td></tr>
+        <tr><td>5</td><td>LP・登録フォーム構築</td><td>2026-06-10</td><td>Merone AI</td></tr>
+        <tr><td>6</td><td>LT1配信</td><td>2026-06-08 21時</td><td>スマセル運営</td></tr>
+        <tr><td>7</td><td>入口ライブ実施</td><td>2026-06-15・18</td><td>Merone代表</td></tr>
+        <tr><td>8</td><td>ブートキャンプ実施</td><td>2026-06-26-28</td><td>Merone代表</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- リスク -->
+  <section id="risks">
+    <h2><span class="num">5</span>リスク・要決断事項</h2>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>項目</th><th>内容</th><th>判断者</th></tr></thead>
+      <tbody>
+        <tr><td>スマセル媒体合意</td><td>媒体側への提案承認</td><td>Merone代表</td></tr>
+        <tr><td>Re:sellerチェッカー開発リソース</td><td>CTOの稼働確保（2日）</td><td>Merone代表・CTO</td></tr>
+        <tr><td>中価格帯／入門コースの押し方</td><td>ローン否決層を切るか拾うか</td><td>Merone代表</td></tr>
+        <tr><td>男性流入排除の徹底度</td><td>LP属性タグの強制度</td><td>Merone代表</td></tr>
+        <tr><td>クライアント側担当者登壇可否</td><td>（過去名義配信NGだが対談形式は別）</td><td>Merone代表</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- KPI -->
+  <section id="kpi">
+    <h2><span class="num">6</span>想定KPI（推測値・要検証）</h2>
+    <p class="muted">過去3月実績（登録規模・成約数名・売上数十万円台）を基線に、(c)ハイブリッド型での予測：</p>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>ファネル</th><th>数値</th><th>出典</th></tr></thead>
+      <tbody>
+        <tr><td>LT1配信→登録</td><td><span class="chip">130名</span></td><td>3月実績×1.4倍（無料ツール特典効果・推測）</td></tr>
+        <tr><td>入口ライブ参加</td><td><span class="chip">78名</span></td><td>登録の60%（推測）</td></tr>
+        <tr><td>ブートキャンプ移行</td><td><span class="chip">35名</span></td><td>参加の45%（在宅ママ層フィルタ後・推測）</td></tr>
+        <tr><td>個別面談</td><td><span class="chip">18名</span></td><td>移行の50%（推測）</td></tr>
+        <tr><td>成約</td><td><span class="chip">5-6名</span></td><td>面談の30%（過去実績ベース）</td></tr>
+        <tr><td>売上想定</td><td><span class="chip">数百万円規模</span></td><td>中価格帯コース×数名＋入門コース×1-2名（推測）</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <!-- 次の一手 -->
+  <section id="next">
+    <h2><span class="num">7</span>次の一手（社内向け）</h2>
+    <div class="next-list">
+      <ol>
+        <li><strong>HTML確認</strong>：<a class="file-link" href="strategy_proposal.html">strategy_proposal.html</a> をブラウザで開いて、ファーストインプレッションをチェック</li>
+        <li><strong>配信文5通</strong>：LT1冒頭の「在宅ママ宣言」だけ先に決めれば後続が走る</li>
+        <li><strong>Re:sellerチェッカー</strong>：CTOへ稼働確保依頼（2日分）</li>
+        <li><strong>媒体側提示</strong>：HTMLそのまま見せれば話が早い</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    Merone Promotion Division ／ 2026-06-03<br>
+    Strategy by Merone代表 ＋ Merone AI<br>
+    <span style="font-size:11px;">パブリックサンプル版 — 実名・実数値は匿名化済み</span>
+  </footer>
+
+</div>
+</body>
+</html>

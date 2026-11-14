@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>森川くみこ｜株式会社Merone 自己紹介資料</title>
+<meta name="description" content="株式会社Merone 代表取締役 森川くみこの自己紹介資料。女性マーケティングと2,700人のスクールで企業を支援します。">
+<style>
+:root{
+  --bg:#F7FBFE; --navy:#1F2A44; --ink:#2A3550; --gray:#7A8499;
+  --pink:#E07AAA; --pink-deep:#D2679A; --pink-soft:#F6DCE8;
+  --lav:#8F9FD8; --blue-soft:#DCE9F6; --line:#E4D3E0;
+  --grad:linear-gradient(120deg,#E07AAA 0%,#A98FD8 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#EDF3FA;font-family:"游ゴシック体",YuGothic,"Yu Gothic","Hiragino Kaku Gothic ProN","Helvetica Neue",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.stage{width:100%;overflow:hidden;margin:0 auto 18px}
+.slide{width:1280px;height:720px;background:var(--bg);position:relative;overflow:hidden;transform-origin:top left;box-shadow:0 6px 24px rgba(31,42,68,.10)}
+/* 装飾ドット */
+.dots{position:absolute;width:220px;height:220px;background-image:radial-gradient(var(--pink-soft) 3px,transparent 3px);background-size:18px 18px;opacity:.9;pointer-events:none}
+.dots.b{background-image:radial-gradient(#CBD9EE 3px,transparent 3px)}
+/* 共通パーツ */
+.badge{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--pink);color:var(--navy);font-weight:700;font-size:20px;letter-spacing:.14em;padding:8px 22px;border-radius:999px;background:#fff}
+.badge::before{content:"✦";color:var(--pink);font-size:16px}
+.logo-tr{position:absolute;top:34px;right:44px;height:30px}
+.pageno{position:absolute;right:44px;bottom:28px;font-weight:700;font-size:18px;color:var(--gray);letter-spacing:.08em}
+.pageno b{color:var(--pink-deep);font-size:22px}
+.band{display:inline-block;background:var(--grad);color:#fff;font-weight:700;font-size:26px;letter-spacing:.05em;padding:12px 30px;border-radius:14px;box-shadow:0 4px 14px rgba(224,122,170,.30)}
+.h-big{font-weight:900;color:var(--navy);letter-spacing:.02em;line-height:1.22}
+.stat{background:#fff;border:2px solid var(--line);border-radius:16px;padding:22px 26px;text-align:center}
+.stat .l{font-size:19px;font-weight:700;color:var(--navy);letter-spacing:.06em}
+.stat .l::after{content:"";display:block;width:46px;height:3px;background:var(--grad);margin:10px auto 12px;border-radius:2px}
+.stat .n{font-size:52px;font-weight:900;color:var(--pink-deep);line-height:1.1;letter-spacing:.01em}
+.stat .n small{font-size:26px;font-weight:800}
+.stat .f{margin-top:10px;font-size:14px;color:var(--gray)}
+.lead{font-size:21px;line-height:1.75;color:var(--ink)}
+.char{position:absolute;pointer-events:none;filter:drop-shadow(0 6px 12px rgba(31,42,68,.14))}
+/* ===== S1 表紙 ===== */
+.s1 .inner{position:absolute;inset:0;padding:44px 44px 60px}
+.s1 .tagline{margin:26px 0 6px;font-size:21px;font-weight:700;color:var(--pink-deep);letter-spacing:.08em}
+.s1 h1{font-size:84px;font-weight:900;color:var(--navy);letter-spacing:.04em;line-height:1.05}
+.s1 .romaji{font-size:15px;letter-spacing:.42em;color:var(--gray);margin-top:6px;font-weight:600}
+.s1 .role{margin-top:14px;font-size:29px;font-weight:800;color:var(--pink-deep)}
+.s1 .band{margin-top:20px;font-size:23px}
+.s1 .stats{display:flex;gap:16px;margin-top:26px;width:760px}
+.s1 .stat{flex:1;padding:18px 12px}
+.s1 .stat .num{font-size:22px;font-weight:900;color:var(--pink);letter-spacing:.06em}
+.s1 .stat .l{font-size:17px}.s1 .stat .l::after{margin:8px auto 10px}
+.s1 .stat .n{font-size:30px}.s1 .stat .n small{font-size:18px}
+.s1 .stat .f{font-size:12.5px;margin-top:6px}
+.s1 .foot{position:absolute;left:44px;bottom:26px;display:flex;gap:14px;align-items:center;background:#fff;border:2px solid var(--line);border-radius:999px;padding:11px 22px;font-size:15px;font-weight:700;color:var(--navy)}
+.s1 .foot span{display:flex;align-items:center;gap:8px}
+.s1 .foot span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pink)}
+.s1 .foot i{color:var(--line);font-style:normal}
+.s1 .photo{position:absolute;right:44px;top:80px;width:330px;height:430px;object-fit:cover;object-position:center top;border-radius:22px;border:4px solid #fff;box-shadow:0 10px 30px rgba(31,42,68,.18)}
+.s1 .mecard{position:absolute;right:88px;top:524px;background:#fff;border:2px solid var(--pink-soft);border-radius:14px;padding:10px 18px;font-size:15px;font-weight:700;color:var(--navy);box-shadow:0 6px 16px rgba(31,42,68,.12);z-index:3}
+.s1 .mecard b{display:block;font-size:18px}
+.s1 .char{right:346px;top:52px;width:120px;z-index:2}
+/* ===== S2 ミッション ===== */
+.s2 .inner{position:absolute;inset:0;padding:60px 70px}
+.s2 h2{font-size:76px;margin-top:34px}
+.s2 h2 .p{color:var(--pink-deep)}
+.s2 .sub{margin-top:26px;font-size:25px;font-weight:700;color:var(--ink);line-height:1.7}
+.s2 .areas{position:absolute;left:70px;bottom:58px}
+.s2 .areas .t{font-size:18px;font-weight:800;color:var(--pink-deep);letter-spacing:.1em;margin-bottom:12px}
+.s2 .chips{display:flex;gap:10px;flex-wrap:wrap;max-width:840px}
+.s2 .chip{border:2px solid var(--navy);border-radius:999px;padding:8px 18px;font-size:16.5px;font-weight:700;color:var(--navy);background:#fff}
+.s2 .char{right:80px;bottom:36px;width:238px}
+/* ===== S3 サービス一覧 ===== */
+.s3 .inner{position:absolute;inset:0;padding:48px 60px}
+.s3 h2{font-size:56px;margin-top:16px}
+.s3 h2 .p{color:var(--pink-deep)}
+.s3 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px}
+.s3 .card{background:#fff;border:2px solid var(--line);border-radius:16px;padding:20px 22px;min-height:150px;position:relative}
+.s3 .card .no{font-size:26px;font-weight:900;color:var(--pink);letter-spacing:.04em}
+.s3 .card .ic{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:10px;background:var(--pink-soft);display:flex;align-items:center;justify-content:center;color:var(--pink-deep);font-size:17px;font-weight:900}
+.s3 .card h3{font-size:21px;color:var(--navy);margin-top:8px;line-height:1.35}
+.s3 .card .d{margin-top:10px;padding-top:10px;border-top:2px solid var(--pink-soft);font-size:15.5px;font-weight:700;color:var(--pink-deep)}
+.s3 .char{right:52px;bottom:14px;width:120px}
+/* ===== サービス個別（共通） ===== */
+.sv .inner{position:absolute;inset:0;padding:52px 70px}
+.sv h2{font-size:64px;margin-top:18px}
+.sv .band{margin-top:20px}
+.sv .lead{margin-top:22px;max-width:900px}
+.sv .stats{display:flex;gap:18px;margin-top:30px;width:930px}
+.sv .stat{flex:1}
+.sv .note{position:absolute;left:70px;bottom:30px;font-size:14px;color:var(--gray)}
+.sv .char{right:56px;bottom:52px;width:220px}
+.sv .more{display:inline-block;margin-top:18px;background:var(--grad);color:#fff;font-weight:800;font-size:19px;padding:11px 28px;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(224,122,170,.35)}
+/* ===== 実績 ===== */
+.s9 .inner{position:absolute;inset:0;padding:60px 70px}
+.s9 h2{font-size:64px;margin-top:22px}
+.s9 h2 .p{color:var(--pink-deep)}
+.s9 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px;width:820px}
+.s9 .stat .n{font-size:56px}
+.s9 .asof{margin-top:22px;font-size:16px;color:var(--gray);font-weight:700}
+.s9 .char{right:70px;bottom:44px;width:230px}
+/* ===== 人柄 ===== */
+.s10 .inner{position:absolute;inset:0;padding:56px 70px}
+.s10 h2{font-size:58px;margin-top:20px}
+.s10 h2 .p{color:var(--pink-deep)}
+.s10 .band{margin-top:20px}
+.s10 .cards{margin-top:30px;width:760px;display:flex;flex-direction:column;gap:14px}
+.s10 .pcard{background:#fff;border:2px solid var(--line);border-radius:14px;padding:16px 22px;font-size:19px;font-weight:700;color:var(--ink);display:flex;gap:14px;align-items:center}
+.s10 .pcard::before{content:"";flex:0 0 10px;height:10px;border-radius:50%;background:var(--grad)}
+.s10 .photo{position:absolute;right:70px;top:120px;width:300px;border-radius:22px;border:4px solid #fff;box-shadow:0 10px 30px rgba(31,42,68,.18)}
+.s10 .char{right:290px;bottom:36px;width:140px}
+/* ===== ご案内 ===== */
+.s11 .inner{position:absolute;inset:0;padding:60px 70px}
+.s11 h2{font-size:50px;margin-top:26px;white-space:nowrap}
+.s11 h2 .p{color:var(--pink-deep)}
+.s11 .sub{margin-top:18px;font-size:23px;font-weight:700;line-height:1.7}
+.s11 .qrs{display:flex;gap:26px;margin-top:34px}
+.s11 .qr{background:#fff;border:2px solid var(--line);border-radius:18px;padding:20px 26px;text-align:center}
+.s11 .qr .t{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:12px}
+.s11 .qr img{width:170px;height:170px}
+.s11 .qr .u{margin-top:10px;font-size:13.5px;color:var(--gray);font-weight:600}
+.s11 .close{position:absolute;left:70px;bottom:44px;font-size:30px;font-weight:900;color:var(--navy)}
+.s11 .close .p{color:var(--pink-deep)}
+.s11 .char{right:76px;bottom:44px;width:230px}
+/* バグ報告 */
+#bugL{position:fixed;left:10px;bottom:10px;z-index:50;font-size:12px;color:#98A3B8;background:rgba(255,255,255,.85);border:1px solid #E1E7F0;border-radius:999px;padding:5px 12px;cursor:pointer}
+#bugM{position:fixed;inset:0;background:rgba(31,42,68,.45);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
+#bugM.on{display:flex}
+#bugM .bx{background:#fff;border-radius:16px;padding:22px;width:min(440px,94vw)}
+#bugM h3{font-size:16px;color:var(--navy);margin-bottom:12px}
+#bugM textarea{width:100%;height:110px;border:2px solid #E1E7F0;border-radius:10px;padding:10px;font-size:15px;font-family:inherit}
+#bugM .bb{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+#bugM button{border:none;border-radius:999px;padding:9px 20px;font-size:14px;font-weight:700;cursor:pointer}
+#bugM .c{background:#EEF2F8;color:var(--ink)}
+#bugM .s{background:var(--grad);color:#fff}
+#bugM .done{display:none;margin-top:10px;color:var(--pink-deep);font-weight:700;font-size:14px}
+/* 印刷＝PDF書き出し */
+@media print{
+  body{background:#fff}
+  .stage{margin:0;overflow:visible}
+  .slide{transform:none !important;box-shadow:none;page-break-after:always}
+  #bugL{display:none}
+  @page{size:1280px 720px;margin:0}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 01 表紙 ================= -->
+<div class="stage"><section class="slide s1">
+  <div class="dots" style="right:-60px;bottom:-60px"></div>
+  <div class="dots b" style="left:-80px;top:-80px;opacity:.5"></div>
+  <div class="inner">
+    <span class="badge">自己紹介</span>
+    <div class="tagline">女性のこころが動く仕組みを、数字でつくる。</div>
+    <h1>森川 くみこ</h1>
+    <div class="romaji">KUMIKO MORIKAWA</div>
+    <div class="role">株式会社Merone 代表取締役CEO</div>
+    <div><span class="band">「女性マーケティング」と「2,700人のスクール」で、企業を支援</span></div>
+    <div class="stats">
+      <div class="stat"><div class="num">01</div><div class="l">ナーチャリング支援</div><div class="n">大手5<small>社</small></div><div class="f">数万人規模のスクール</div></div>
+      <div class="stat"><div class="num">02</div><div class="l">スクール現役生</div><div class="n">2,700<small>人</small></div><div class="f">現役生のみ（2026年8月現在）</div></div>
+      <div class="stat"><div class="num">03</div><div class="l">福利厚生サービス</div><div class="n">500<small>種類</small></div><div class="f">Re:Well・月額3万円〜</div></div>
+    </div>
+    <div class="foot">
+      <span>情報経営イノベーション専門職大学 客員准教授</span><i>／</i>
+      <span>日経X WOMAN アンバサダー</span><i>／</i>
+      <span>日本最大級 女性向け物販スクール「Re:che」主宰</span>
+    </div>
+  </div>
+  <div class="mecard"><b>森川 くみこ</b>株式会社Merone 代表取締役</div>
+  <img class="photo" src="img/kumiko.jpg" alt="森川くみこ">
+  <img class="char" src="img/char-peace.png" alt="">
+  <div class="pageno"><b>01</b> / 10</div>
+</section></div>
+
+<!-- ================= 02 ミッション ================= -->
+<div class="stage"><section class="slide s2">
+  <img class="logo-tr" src="img/merone-logo.png" alt="Merone">
+  <div class="dots" style="left:-70px;bottom:-70px;opacity:.6"></div>
+  <div class="inner">
+    <span class="badge">ミッション</span>
+    <h2 class="h-big">「<span class="p">私にもできた</span>」を、<br>この世に増やす。</h2>
+    <div class="sub">動けない理由を数字と心理でほどいて、最初の一歩を設計する。<br>それが、弊社のマーケティングです。</div>
+    <div class="areas">
+      <div class="t">主な支援領域</div>
+      <div class="chips">
+        <span class="chip">スクール内での勉強会販促</span><span class="chip">福利厚生の導入</span><span class="chip">LINEナーチャリング</span><span class="chip">セールス組織づくり</span>
+      </div>
+    </div>
+  </div>
+  <img class="char" src="img/char-peace.png" alt="">
+  <div class="pageno"><b>02</b> / 10</div>
+</section></div>
+
+<!-- ================= 03 サービス一覧 ================= -->
+<div class="stage"><section class="slide s3">
+  <img class="logo-tr" src="img/merone-logo.png" alt="Merone">
+  <div class="dots b" style="right:-80px;top:-80px;opacity:.5"></div>
+  <div class="inner">
+    <span class="badge">提供サービス</span>
+    <h2 class="h-big"><span class="p">4つのサービス</span>で、企業を支援</h2>
+    <div class="grid">
+      <div class="card"><div class="no">01</div><div class="ic">★</div><h3>Merone Partner Program</h3><div class="d">2,700人スクールに貴社サービスを導入</div></div>
+      <div class="card"><div class="no">02</div><div class="ic">♡</div><h3>福利厚生サービス「Re:Well」</h3><div class="d">500サービス・月額3万円〜</div></div>
+      <div class="card"><div class="no">03</div><div class="ic">◎</div><h3>女性特化LINEナーチャリング</h3><div class="d">面談参加率 50%→67%</div></div>
+      <div class="card"><div class="no">04</div><div class="ic">✓</div><h3>セールス組織の構築・育成</h3><div class="d">評価設計×ダッシュボード</div></div>
+    </div>
+  </div>
+  <img class="char" src="img/char-typing.png" alt="">
+  <div class="pageno"><b>03</b> / 10</div>
+</section></div>
+
+<!-- ================= 04 サービス01 Partner Program ================= -->
+<div class="stage"><section class="slide sv">
+  <img class="logo-tr" src="img/merone-logo.png" alt="Merone">
+  <div class="dots" style="right:-70px;top:-70px;opacity:.55"></div>
+  <div class="inner">
+    <span class="badge">提供サービス 01</span>
+    <h2 class="h-big">Merone Partner Program</h2>
+    <div><span class="band">貴社サービスを、2,700人の女性スクールへ</span></div>
+    <p class="lead">弊社が運営する日本最大級の女性向け物販スクールの現役生2,700人に、パートナー企業様のサービスを福利厚生として導入し、スクール内の勉強会でご紹介します。広告ではなく「信頼している場」で届くから、決まります。</p>
+    <div class="stats">
+      <div class="stat"><div class="l">ご契約</div><div class="n">25<small>名</small></div><div class="f">ダイエットサービス・売上800万円</div></div>
+      <div class="stat"><div class="l">ご購入</div><div class="n">210<small>名</small></div><div class="f">小顔クリームの勉強会</div></div>
+      <div class="stat"><div class="l">継続購入</div><div class="n">110<small>名</small></div><div class="f">210名のうち半数以上が定期継続</div></div>
+    </div>
+    <div class="note">※いずれも美容・健康サービスのパートナー企業様との実績です（勉強会はスクール内で開催）</div>
+  </div>
+  <img class="char" src="img/char-peace.png" alt="">
+  <div class="pageno"><b>04</b> / 10</div>
+</section></div>
+
+<!-- ================= 05 サービス02 Re:Well ================= -->
+<div class="stage"><section class="slide sv">
+  <img class="logo-tr" src="img/merone-logo.png" alt="Merone">
+  <div class="dots b" style="left:-70px;bottom:-70px;opacity:.5"></div>
+  <div class="inner">
+    <span class="badge">提供サービス 02</span>
+    <h2 class="h-big">福利厚生サービス「Re:Well」</h2>
+    <div><span class="band">500の福利厚生を、月額3万円から</span></div>
+    <p class="lead">税務・法務の専門家相談からベビーシッターまで、500の福利厚生サービスをひとつのパッケージでご提供します。導入企業様の生徒さま・スタッフさまは、無期限でご利用いただけます。</p>
+    <div class="stats">
+      <div class="stat"><div class="l">サービス数</div><div class="n">500</div><div class="f">税務・法務〜ベビーシッターまで</div></div>
+      <div class="stat"><div class="l">導入費用</div><div class="n" style="white-space:nowrap">月額3<small>万円〜</small></div><div class="f">企業単位でご導入</div></div>
+      <div class="stat"><div class="l">利用期限</div><div class="n">無期限</div><div class="f">生徒・スタッフの皆さまが対象</div></div>
+    </div>
+    <a class="more" href="rewell.html">フライト優待など、くわしい内容を見る ▶</a>
+  </div>
+  <img class="char" src="img/char-think.png" alt="">
+  <div class="pageno"><b>05</b> / 10</div>
+</section></div>
+
+<!-- ================= 06 サービス03 LINEナーチャリング ================= -->
+<div class="stage"><section class="slide sv">
+  <img class="logo-tr" src="img/merone-logo.png" alt="Merone">
+  <div class="dots" style="right:-70px;top:-70px;opacity:.5"></div>
+  <div class="inner">
+    <span class="badge">提供サービス 03</span>
+    <h2 class="h-big">女性特化LINEナーチャリング</h2>
+    <div><span class="band">圧をかけずに、人が動く配信設計</span></div>
+    <p class="lead">女性の読者は「熱量の高すぎる売り込み」で静かに離れていきます。警告ゼロ・共感型のシナリオで、登録から面談までの温度を丁寧に上げていきます。定性調査や顧客のヒアリングなど、手を動かして「メンバーの一員」として実装します。大手スクール5社で継続支援中。</p>
+    <div class="stats">
+      <div class="stat"><div class="l">面談参加率</div><div class="n">50<small>%</small>→67<small>%</small></div><div class="f">リッチメニュー・配信改善</div></div>
+      <div class="stat"><div class="l">掘り起こし実績</div><div class="n" style="white-space:nowrap">3<small>件</small>→40<small>件</small></div><div class="f">毎月40件を3ヶ月連続</div></div>
+      <div class="stat"><div class="l">キャンセル後の返信率</div><div class="n">100<small>%</small></div><div class="f">共感型フォロー配信</div></div>
+    </div>
+    <div class="note">※いずれも支援先での計測値です（守秘のため社名は非公開）</div>
+  </div>
+  <img class="char" src="img/char-think.png" alt="">
+  <div class="pageno"><b>06</b> / 10</div>
+</section></div>
+
+<!-- ================= 09 自社事業 Re:che ================= -->
+<div class="stage"><section class="slide sv">
+  <img class="logo-tr" src="img/merone-logo.png" alt="Merone">
+  <div class="dots" style="right:-70px;top:-70px;opacity:.5"></div>
+  <div class="inner">
+    <span class="badge">自社事業</span>
+    <h2 class="h-big">女性向け物販スクール「Re:che」</h2>
+    <div><span class="band">日本最大級の、女性向け物販スクール</span></div>
+    <p class="lead">日本最大級の女性向け物販スクール「Re:che（リッシュ）」を自社で運営しています。Partner Programの勉強会も、このスクールの信頼関係の中で開催しています。</p>
+    <div class="stats">
+      <div class="stat"><div class="l">現役生</div><div class="n">2,700<small>人</small></div><div class="f">現役生のみ（2026年8月現在）</div></div>
+      <div class="stat"><div class="l">運営</div><div class="n">2022<small>年〜</small></div><div class="f">リブランドして現体制に</div></div>
+      <div class="stat"><div class="l">受講生の利益実例</div><div class="n">10<small>万円超</small></div><div class="f">在宅・すきま時間で</div></div>
+    </div>
+  </div>
+  <img class="char" src="img/char-think.png" alt="">
+  <div class="pageno"><b>07</b> / 10</div>
+</section></div>
+
+<!-- ================= 10 実績 ================= -->
+<div class="stage"><section class="slide s9">
+  <img class="logo-tr" src="img/merone-logo.png" alt="Merone">
+  <div class="dots b" style="left:-80px;top:-80px;opacity:.5"></div>
+  <div class="inner">
+    <span class="badge">会社実績</span>
+    <h2 class="h-big">数字で見る、<span class="p">Merone</span>。</h2>
+    <div class="stats">
+      <div class="stat"><div class="l">ナーチャリング支援</div><div class="n">大手5<small>社</small></div><div class="f">数万人規模のスクール</div></div>
+      <div class="stat"><div class="l">月額顧問</div><div class="n" style="white-space:nowrap">100<small>万円</small>×4<small>社</small></div><div class="f">継続中</div></div>
+      <div class="stat"><div class="l">スクール現役生</div><div class="n">2,700<small>人</small></div><div class="f">日本最大級・女性向け物販スクール</div></div>
+      <div class="stat"><div class="l">勉強会販促の実例</div><div class="n">800<small>万円</small></div><div class="f">パートナー企業様の売上</div></div>
+    </div>
+    <div class="asof">2026年8月現在</div>
+  </div>
+  <img class="char" src="img/char-peace.png" alt="">
+  <div class="pageno"><b>08</b> / 10</div>
+</section></div>
+
+<!-- ================= 11 人柄 ================= -->
+<div class="stage"><section class="slide s10">
+  <img class="logo-tr" src="img/merone-logo.png" alt="Merone">
+  <div class="dots" style="left:-70px;bottom:-70px;opacity:.55"></div>
+  <div class="inner">
+    <span class="badge">人柄</span>
+    <h2 class="h-big">この世の「<span class="p">知りたい</span>」を、<br>知り尽くしたい。</h2>
+    <div><span class="band">素顔は、せんべろとナチュールワイン</span></div>
+    <div class="cards">
+      <div class="pcard">前職は大手損害保険会社。リユースでの起業から、いまの会社になりました</div>
+      <div class="pcard">個人経営の飲み屋さんめぐりが趣味で、大事な情報はだいたいお店で拾っています</div>
+      <div class="pcard">ジョジョとポケモンと日本酒がすき。甘いものは食べられません</div>
+    </div>
+  </div>
+  <img class="photo" src="img/kumiko.jpg" alt="森川くみこ">
+  <img class="char" src="img/char-think.png" alt="">
+  <div class="pageno"><b>09</b> / 10</div>
+</section></div>
+
+<!-- ================= 12 ご案内 ================= -->
+<div class="stage"><section class="slide s11">
+  <img class="logo-tr" src="img/merone-logo.png" alt="Merone">
+  <div class="dots" style="right:-60px;top:-60px;opacity:.6"></div>
+  <div class="dots b" style="left:-80px;bottom:-80px;opacity:.5"></div>
+  <div class="inner">
+    <span class="badge">ご案内</span>
+    <h2 class="h-big">ご興味ある方は、<span class="p">お声がけ</span>ください！</h2>
+    <div class="sub">Partner Programも、Re:Wellも、マーケのご相談も。<br>その場でざっくばらんにお話しします。</div>
+    <div class="qrs">
+      <div class="qr"><div class="t">会社サイト・お問い合わせ</div><img src="img/qr-site.png" alt="会社サイトQR"><div class="u">merone.co.jp</div></div>
+      <div class="qr"><div class="t">この資料のURL</div><img src="img/qr-deck.png" alt="資料QR"><div class="u">kumiko0814.github.io/merone-profile</div></div>
+    </div>
+    <div class="close">ご縁を、<span class="p">お待ちしています</span>。</div>
+  </div>
+  <img class="char" src="img/char-peace.png" alt="">
+  <div class="pageno"><b>10</b> / 10</div>
+</section></div>
+
+<!-- バグ報告ツール -->
+<div id="bugL">不具合を報告</div>
+<div id="bugM"><div class="bx">
+  <h3>不具合・気になったことを教えてください</h3>
+  <textarea id="bugT" placeholder="例）スマホでページの一部が切れて見えます（iPhone/Safari）"></textarea>
+  <div class="bb"><button class="c" id="bugC">閉じる</button><button class="s" id="bugS">送信する</button></div>
+  <div class="done" id="bugD">届きました。ありがとうございます。すぐ確認します。</div>
+</div></div>
+
+<script>
+// スライドを画面幅にフィット
+function fit(){
+  var scale=Math.min(1,(window.innerWidth-16)/1280);
+  document.querySelectorAll('.stage').forEach(function(st){
+    var sl=st.querySelector('.slide');
+    sl.style.transform='scale('+scale+')';
+    st.style.height=(720*scale)+'px';
+    st.style.width=(1280*scale)+'px';
+  });
+}
+window.addEventListener('resize',fit); fit();
+window.addEventListener('beforeprint',function(){
+  document.querySelectorAll('.stage').forEach(function(st){
+    st.querySelector('.slide').style.transform='none';
+    st.style.height='720px'; st.style.width='1280px';
+  });
+});
+window.addEventListener('afterprint',fit);
+// バグ報告
+(function(){
+var U="https://inrvprlyobghviklulcv.supabase.co/rest/v1/ailab_notes";
+var K="sb_publishable_ZrCNcsRHMci-l7Fns8QtIA_X22XZGJp";
+var M=document.getElementById("bugM");
+document.getElementById("bugL").onclick=function(){M.classList.add("on")};
+document.getElementById("bugC").onclick=function(){M.classList.remove("on");document.getElementById("bugD").style.display="none"};
+document.getElementById("bugS").onclick=function(){
+  var t=document.getElementById("bugT").value.trim();
+  if(!t){document.getElementById("bugT").focus();return}
+  var btn=this;btn.disabled=true;
+  fetch(U,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},
+    body:JSON.stringify({member_id:"bug_merone-profile",member_name:"自己紹介資料",mood:"バグ報告",worry:t,want:location.href.slice(0,180)+" ／ "+navigator.userAgent.slice(0,140)})})
+    .then(function(){
+      document.getElementById("bugD").style.display="block";
+      document.getElementById("bugT").value="";btn.disabled=false;
+      setTimeout(function(){M.classList.remove("on");document.getElementById("bugD").style.display="none"},1800);
+    }).catch(function(){btn.disabled=false;alert("送信できませんでした。通信環境をご確認ください。")});
+};
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スマセル6月プロモーション 戦略提案パッケージ（パブリックサンプル）｜Merone</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --sub: #5a5a5a;
+    --bg: #fafaf7;
+    --card: #ffffff;
+    --line: #e6e3dc;
+    --accent: #c25b3f;
+    --accent2: #1f6f5e;
+    --soft: #f3efe7;
+    --hot-bg: #fff8f4;
+    --hot-border: #f0d6c8;
+    --warn: #b8412a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Yu Gothic", "YuGothic", "游ゴシック", "Hiragino Kaku Gothic ProN", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.01em;
+  }
+
+  .navbar {
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    font-size: 12px;
+  }
+  .nav-brand {
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .nav-inner a {
+    color: var(--sub);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .nav-inner a:hover { background: var(--soft); color: var(--accent); }
+  .nav-inner a.current { background: var(--accent); color: var(--card); }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 48px 32px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 22px;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--sub);
+    margin-bottom: 10px;
+  }
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .hero-sub {
+    color: var(--sub);
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  /* Next-action card (big at top) */
+  .next-box {
+    background: var(--hot-bg);
+    border: 1px solid var(--hot-border);
+    border-radius: 6px;
+    padding: 28px 28px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .next-label {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--card);
+    padding: 4px 12px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .next-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 16px;
+    letter-spacing: 0.01em;
+  }
+  .next-list {
+    counter-reset: nextcounter;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .next-list li {
+    counter-increment: nextcounter;
+    padding: 12px 12px 12px 48px;
+    position: relative;
+    border-bottom: 1px solid var(--hot-border);
+    font-size: 15px;
+  }
+  .next-list li:last-child { border-bottom: none; }
+  .next-list li::before {
+    content: counter(nextcounter);
+    position: absolute;
+    left: 8px;
+    top: 12px;
+    background: var(--accent);
+    color: var(--card);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 800;
+    font-size: 13px;
+  }
+  .next-list .when {
+    display: inline-block;
+    font-size: 11px;
+    background: var(--card);
+    border: 1px solid var(--hot-border);
+    color: var(--accent);
+    padding: 1px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    font-weight: 700;
+  }
+
+  /* Section */
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 28px 28px;
+    margin-bottom: 24px;
+  }
+  h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    padding-bottom: 12px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  h2 .num {
+    color: var(--accent);
+    margin-right: 10px;
+    font-weight: 800;
+  }
+  p { margin-bottom: 10px; }
+  .muted { color: var(--sub); font-size: 13px; }
+
+  /* Deliverable cards */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 6px;
+  }
+  @media (min-width: 720px) {
+    .cards { grid-template-columns: 1fr 1fr; }
+    .cards .card.main { grid-column: 1 / -1; }
+  }
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 22px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .card.main {
+    background: var(--hot-bg);
+    border-color: var(--hot-border);
+  }
+  .card.main:hover { border-color: var(--accent); }
+  .card-num {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--sub);
+    font-weight: 700;
+  }
+  .card.main .card-num { color: var(--accent); }
+  .card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--sub);
+    flex-grow: 1;
+    line-height: 1.7;
+  }
+  .card-meta {
+    font-size: 11px;
+    color: var(--sub);
+    letter-spacing: 0.04em;
+  }
+  .card-meta .tag {
+    display: inline-block;
+    background: var(--soft);
+    padding: 1px 8px;
+    border-radius: 2px;
+    margin-right: 4px;
+  }
+  .card.main .card-meta .tag {
+    background: var(--card);
+    color: var(--accent);
+    border: 1px solid var(--hot-border);
+  }
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--card);
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-align: center;
+    transition: background 0.15s;
+    align-self: flex-start;
+  }
+  .btn:hover { background: #a44a32; }
+  .btn.forest { background: var(--accent2); }
+  .btn.forest:hover { background: #185b4d; }
+  .btn.ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+  .btn.ghost:hover { background: var(--accent); color: var(--card); }
+
+  /* Conclusions */
+  .conc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  @media (min-width: 600px) {
+    .conc-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  .conc-item {
+    background: var(--soft);
+    border-left: 3px solid var(--accent2);
+    padding: 16px 18px;
+    border-radius: 2px;
+    font-size: 14px;
+  }
+  .conc-num {
+    display: inline-block;
+    background: var(--accent2);
+    color: var(--card);
+    width: 22px; height: 22px;
+    text-align: center;
+    line-height: 22px;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 12px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--sub);
+    font-size: 12px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 20px 14px 60px; }
+    .hero { padding: 32px 22px; }
+    .hero h1 { font-size: 24px; }
+    .next-box { padding: 22px 18px; }
+    .next-title { font-size: 18px; }
+    section { padding: 22px 18px; }
+    h2 { font-size: 19px; }
+    .card { padding: 18px 18px; }
+    .card h3 { font-size: 16px; }
+    .nav-inner { font-size: 11px; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <span class="nav-brand">MERONE</span>
+    <a href="index.html" class="current">index</a>
+    <a href="SUMMARY.html">サマリー</a>
+    <a href="strategy_proposal.html">戦略提案</a>
+    <a href="research_smasell_and_voices.html">リサーチ</a>
+    <a href="tool_spec_seller_checker.html">ツール仕様</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-label">MERONE × SMASELL ／ JUNE 2026 STRATEGY PACKAGE</div>
+    <h1>スマセル6月プロモーション<br>戦略提案パッケージ</h1>
+    <p class="hero-sub">作成 2026-06-03 ／ Merone プロモーション事業部<br>提案先：スマセル運営担当者 ／ 全成果物はブラウザで完結<br><span style="color:var(--warn);font-size:11px;">※本書はMerone社内提案書のパブリック公開サンプルです。実名・実数値はすべて匿名化しています。</span></p>
+  </header>
+
+  <!-- Next action box -->
+  <div class="next-box">
+    <div class="next-label">NEXT ACTION ／ 社内向け</div>
+    <div class="next-title">迷ったらこの順で動く</div>
+    <ol class="next-list">
+      <li><strong>HTML確認</strong>：このパッケージの戦略提案・サマリー・リサーチ・ツール仕様を一通りブラウザで読む<span class="when">〜 6/4</span></li>
+      <li><strong>配信文LT1冒頭決定</strong>：LT1「在宅ママ宣言」の言い回しだけ確定すれば、LT2-5は連動して走る<span class="when">〜 6/5</span></li>
+      <li><strong>Re:sellerチェッカー開発</strong>：CTOへ稼働2日分を確保依頼。MVPは案1（静的JSON+JS）<span class="when">〜 6/8</span></li>
+      <li><strong>媒体側提示</strong>：戦略提案HTMLをそのまま見せる。30分MTGで3案直接プレゼン<span class="when">〜 6/6</span></li>
+    </ol>
+  </div>
+
+  <!-- Conclusion 3 lines -->
+  <section>
+    <h2><span class="num">1</span>結論3行</h2>
+    <div class="conc-grid">
+      <div class="conc-item"><span class="conc-num">1</span><strong>(c) ハイブリッド型推奨</strong>。6/15・6/18 入口60分ライブ×2 → 6/26-28 3日連続ブートキャンプ。3月実績ベース → 6月で売上2倍超を狙う（推測）</div>
+      <div class="conc-item"><span class="conc-num">2</span><strong>訴求3軸</strong>＝家族のため／リスク低減（買取保証）／同じ場所にいた在宅ママの生の声（データ提供者Zの月数万円台実績）</div>
+      <div class="conc-item"><span class="conc-num">3</span><strong>差別化＝Re:sellerチェッカー</strong>。データ提供者Zの半年220件規模の仕入れ実績を無料Webツール化。他社にこのデータセットは存在しない</div>
+    </div>
+  </section>
+
+  <!-- Deliverables -->
+  <section>
+    <h2><span class="num">2</span>5つの成果物</h2>
+    <p class="muted">「まず読む順」で並べています。①サマリーで全体像を5分で把握 → ②戦略提案で意思決定 → ③リサーチ・④ツール仕様は必要に応じて深掘り。</p>
+
+    <div class="cards">
+
+      <a class="card" href="SUMMARY.html" style="text-decoration:none;color:inherit;">
+        <div class="card-num">01　まず最初に</div>
+        <h3>エグゼクティブサマリー</h3>
+        <div class="card-desc">結論3行／成果物一覧／各タスクの核心発見／6月までのアクション／想定KPI／次の一手。3並列実行（opus×3）で出した全体像を5分でつかめる凝縮版です。</div>
+        <div class="card-meta"><span class="tag">5分</span><span class="tag">全体像</span></div>
+        <span class="btn">読む →</span>
+      </a>
+
+      <a class="card main" href="strategy_proposal.html" style="text-decoration:none;color:inherit;">
+        <div class="card-num">02　メイン成果物</div>
+        <h3>戦略提案書（最終）</h3>
+        <div class="card-desc">日程3案比較（推し＝ハイブリッド）／KPIファネル／訴求3軸／配信文5通プレビュー＋圧弱め圧強めABテスト／特典設計／3層フィルタ／リスク表／タイムライン／出典区別。媒体側にそのまま見せる用。</div>
+        <div class="card-meta"><span class="tag">提案メイン</span><span class="tag">媒体側提示用</span></div>
+        <span class="btn forest">読む →</span>
+      </a>
+
+      <a class="card" href="research_smasell_and_voices.html" style="text-decoration:none;color:inherit;">
+        <div class="card-num">03　戦略の土台</div>
+        <h3>媒体リサーチ＋ユーザー声分析</h3>
+        <div class="card-desc">スマセル媒体プロファイル／競合5社比較／LINE実発言から抽出した「刺さるフレーズTOP10」「離脱トリガーTOP5」「決断トリガーTOP5」／成約者・離脱者ペルソナ／在宅ママ総合プロファイル／6月再起動への戦略示唆3点。</div>
+        <div class="card-meta"><span class="tag">リサーチ</span><span class="tag">生の声</span></div>
+        <span class="btn ghost">読む →</span>
+      </a>
+
+      <a class="card" href="tool_spec_seller_checker.html" style="text-decoration:none;color:inherit;">
+        <div class="card-num">04　差別化の武器</div>
+        <h3>Re:sellerチェッカー仕様書</h3>
+        <div class="card-desc">データ提供者Z 約220件統計／ブランド・カテゴリ・季節・価格レンジ分析／7法則／ツール入出力・スコア算出ロジック（A-D判定）／実装3案比較（案1推奨）／LP組み込み案＋配布LINE3通／開発タスク一覧。CTO向けの実装可能なレベル。</div>
+        <div class="card-meta"><span class="tag">ツール仕様</span><span class="tag">CTO向け</span></div>
+        <span class="btn ghost">読む →</span>
+      </a>
+
+      <div class="card">
+        <div class="card-num">05　参考・入力データ</div>
+        <h3>入力データ（社内のみ）</h3>
+        <div class="card-desc">全分析の元データは社内専用。仕入れ実績データ（約220件規模）とLINEトーク重要抜粋を匿名化前提で参照。本パブリック版では元データは公開していません。</div>
+        <div class="card-meta"><span class="tag">社内専用</span><span class="tag">エビデンス</span></div>
+        <span class="btn ghost" style="opacity:0.55;cursor:default;">公開なし</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 運用メモ -->
+  <section>
+    <h2><span class="num">3</span>このパッケージの読み方</h2>
+    <p>すべての成果物は<strong>単体HTMLで完結</strong>しています。外部CSS依存なし・このフォルダごとUSBやDriveに入れて持ち歩けます。</p>
+    <p>各ページ上部のナビバーから他ページへ即移動できるので、<strong>「戦略提案」ページを軸に、根拠が気になったら「リサーチ」、ツールをCTOに渡す時は「ツール仕様」</strong>という回り方が想定動線です。</p>
+    <p>媒体側への提示は <a href="strategy_proposal.html" style="color:var(--accent);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--accent);">戦略提案書HTML</a> をそのままブラウザで開いて画面共有 → 1ページずつスクロールで説明、が最速です。</p>
+  </section>
+
+  <footer>
+    Merone Promotion Division ／ 2026-06-03<br>
+    Strategy by Merone代表 ＋ Merone AI<br>
+    <span style="font-size:11px;">パブリックサンプル版 — 実名・実数値は匿名化済み</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>COEL お試しパック お申込み | Merone</title>
+<meta name="description" content="限定30名さま・7/14(火)21:00まで。仕入れ1.5万円が2万円の利益に。COEL新品1着＋売れ筋ブランド品。定価90%OFF・新品タグ付き・リサーチ不要。">
+<style>
+:root{
+  --white:#fff;--bg-soft:#fbf6fa;--navy:#26405f;--navy2:#1d3149;
+  --pink:#F5A6C8;--pink-deep:#e07aaa;--pink-d2:#cf6f9c;
+  --purple:#9B5DE5;--purple-deep:#6A2C9A;--purple-light:#f0e6ff;--pink-light:#fce4f0;
+  --ink:#4a4446;--mid:#6b6570;--light:#9a94a0;--line:#eee0ea;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Yu Gothic","YuGothic","游ゴシック","Hiragino Kaku Gothic ProN",sans-serif;color:var(--ink);
+  background:linear-gradient(180deg,#fdf4f8 0%,#f6eef8 45%,#eef3fb 100%);line-height:1.75;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:440px;margin:0 auto;padding:0 20px;}
+@media(min-width:640px){.wrap{max-width:600px;}}
+section{padding:44px 0;}
+.eyebrow{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;font-size:.8rem;font-weight:800;color:var(--pink-d2);letter-spacing:.05em;margin-bottom:14px;}
+.eyebrow::before,.eyebrow::after{content:"";height:1.5px;width:26px;background:var(--pink);border-radius:2px;}
+
+/* header */
+.hd{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);}
+.hd .wrap{display:flex;align-items:center;justify-content:space-between;padding:9px 20px;}
+.hd .logo{font-weight:800;color:var(--navy);font-size:.95rem;letter-spacing:.04em;}
+.hd .mini{font-size:.66rem;font-weight:800;color:var(--pink-d2);text-align:right;line-height:1.35;}
+.hd .mini b{font-size:.82rem;}
+
+/* hero */
+.hero{background:linear-gradient(160deg,#fdeef4 0%,#f4ecfa 100%);text-align:center;padding:40px 0 44px;}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
+.badge{font-size:.78rem;font-weight:800;padding:6px 15px;border-radius:40px;}
+.badge-limit{background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;box-shadow:0 4px 14px rgba(155,93,229,.28);}
+.badge-deadline{background:#fff;border:1.5px solid var(--pink);color:var(--pink-d2);}
+.hero h1{font-size:2.35rem;font-weight:800;color:var(--navy);line-height:1.34;letter-spacing:.01em;margin-bottom:14px;}
+.hero h1 .hl{background:linear-gradient(transparent 58%,#fbe0ec 58%);padding:0 4px;}
+.hero h1 .profit{color:var(--pink-d2);}
+.hero .lead{font-size:.95rem;color:var(--mid);font-weight:700;line-height:1.75;margin-bottom:22px;}
+/* countdown */
+.cd-wrap{background:#fff;border-radius:18px;padding:16px 18px;margin:6px auto 22px;max-width:360px;box-shadow:0 6px 22px rgba(150,110,160,.12);}
+.cd-label{font-size:.74rem;font-weight:800;color:var(--pink-d2);margin-bottom:8px;letter-spacing:.03em;}
+.cd-timer{display:flex;justify-content:center;gap:8px;}
+.cd-cell{background:linear-gradient(160deg,#33456a,#22314c);color:#fff;border-radius:12px;padding:9px 4px;min-width:62px;}
+.cd-cell .num{font-size:1.5rem;font-weight:800;line-height:1;}
+.cd-cell .unit{font-size:.6rem;opacity:.8;margin-top:3px;}
+.cd-sep{align-self:center;color:var(--navy);font-weight:800;font-size:1.1rem;}
+.cd-end{font-size:.72rem;color:var(--light);margin-top:10px;}
+.cd-over{font-size:1rem;font-weight:800;color:var(--pink-d2);padding:8px;}
+
+/* CTA */
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:360px;margin:0 auto;
+  background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;font-weight:800;font-size:1.02rem;
+  padding:16px 24px;border-radius:50px;border:none;cursor:pointer;text-decoration:none;letter-spacing:.02em;
+  box-shadow:0 6px 20px rgba(155,93,229,.32);transition:transform .16s,box-shadow .16s;}
+.btn:active{transform:translateY(2px);}
+.hero .note{font-size:.7rem;color:var(--light);margin-top:12px;}
+
+/* pack items */
+.sec-ttl{text-align:center;font-size:1.5rem;font-weight:800;color:var(--navy);line-height:1.4;margin-bottom:8px;}
+.sec-sub{text-align:center;font-size:.86rem;color:var(--mid);font-weight:700;line-height:1.7;margin-bottom:22px;}
+.must{text-align:center;font-size:.85rem;font-weight:800;color:var(--purple-deep);margin-bottom:18px;}
+.must b{color:var(--pink-d2);}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:4px 0 22px;}
+.item{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(150,110,160,.08);}
+.thumb{position:relative;aspect-ratio:3/4;background:#efe6ef;overflow:hidden;}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.thumb .newtag{position:absolute;top:6px;left:6px;background:var(--pink-d2);color:#fff;font-size:.55rem;font-weight:800;padding:3px 7px;border-radius:5px;}
+.thumb .cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff;font-size:.56rem;text-align:center;padding:14px 4px 6px;line-height:1.3;}
+.thumb .cap b{display:block;font-size:.64rem;}
+.role{text-align:center;padding:8px 4px 11px;}
+.role .no{font-size:.7rem;font-weight:800;color:var(--pink-d2);}
+.role .nm{font-size:.8rem;font-weight:800;color:var(--navy);margin:2px 0;}
+.role .sb{font-size:.58rem;color:var(--light);line-height:1.4;}
+
+/* calc */
+.calc{background:linear-gradient(160deg,#33456a,#22314c);border-radius:18px;padding:22px 18px;margin:6px 0 18px;}
+.calc-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:14px;}
+.calc-cell{flex:1;text-align:center;}
+.calc-cell .l{font-size:.66rem;color:rgba(255,255,255,.78);margin-bottom:5px;}
+.calc-cell .v{font-weight:800;font-size:1.4rem;color:#e8cf95;line-height:1.1;}
+.calc-cell .v small{font-size:.8rem;}
+.calc-arrow{color:#8fa5c4;font-size:1rem;}
+.profit{background:rgba(255,255,255,.09);border-radius:12px;padding:14px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+.profit .pl{font-size:.9rem;font-weight:800;color:#e8cf95;}
+.profit .pv{font-weight:800;font-size:2rem;color:#fff;line-height:1;}
+.feats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0 6px;}
+.feat{background:#fff;border:1.5px solid var(--pink);color:var(--pink-d2);font-size:.72rem;font-weight:800;padding:6px 13px;border-radius:40px;}
+
+/* why / merit */
+.sec-merit{background:#fff;}
+.merit{display:flex;gap:12px;align-items:flex-start;background:var(--bg-soft);border-radius:14px;padding:15px 16px;margin-bottom:12px;}
+.merit .ck{flex:none;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;margin-top:2px;}
+.merit p{font-size:.88rem;color:var(--ink);line-height:1.65;}
+.merit p b{color:var(--pink-d2);}
+
+/* limited urgency */
+.sec-limit{background:linear-gradient(160deg,#fdeef4,#f4ecfa);text-align:center;}
+.limit-box{background:#fff;border:2px solid var(--pink);border-radius:18px;padding:24px 20px;box-shadow:0 6px 22px rgba(150,110,160,.12);}
+.limit-box .lt{font-size:.84rem;color:var(--mid);font-weight:700;}
+.limit-box .ln{font-size:2.4rem;font-weight:800;background:linear-gradient(90deg,var(--pink-d2),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;margin:4px 0;}
+.limit-box .ld{font-size:.82rem;color:var(--mid);font-weight:700;line-height:1.7;}
+.limit-box .ld b{color:var(--pink-d2);}
+
+/* form */
+.sec-form{background:#fff;}
+.form-card{background:var(--bg-soft);border-radius:20px;padding:26px 22px;box-shadow:0 4px 18px rgba(150,110,160,.08);}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:.85rem;font-weight:800;color:var(--navy);margin-bottom:7px;}
+.field label .req{color:var(--pink-d2);font-size:.72rem;margin-left:6px;}
+.field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;font-size:1rem;font-family:inherit;background:#fff;color:var(--ink);}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(245,166,200,.18);}
+.field textarea{resize:vertical;min-height:70px;line-height:1.6;}
+.field .hint{font-size:.7rem;color:var(--light);margin-top:5px;}
+.form-note{font-size:.72rem;color:var(--mid);line-height:1.7;margin:8px 0 16px;background:#fff;border-radius:10px;padding:12px 14px;border:1px solid var(--line);}
+.thanks{display:none;text-align:center;padding:20px 10px;}
+.thanks .ti{font-size:2.4rem;margin-bottom:8px;}
+.thanks h3{font-size:1.2rem;color:var(--navy);font-weight:800;margin-bottom:10px;line-height:1.5;}
+.thanks p{font-size:.86rem;color:var(--mid);line-height:1.8;}
+
+/* footer */
+footer{background:#2d2b30;color:rgba(255,255,255,.6);text-align:center;padding:26px 0 20px;}
+footer .fl{font-weight:800;color:rgba(255,255,255,.85);margin-bottom:8px;}
+footer .fc{font-size:.66rem;color:rgba(255,255,255,.35);}
+.reveal{opacity:0;transform:translateY(16px);transition:.55s;}
+.reveal.on{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="wrap">
+    <span class="logo">Merone</span>
+    <span class="mini">お申込みは<br><b>7/14(火) 21:00</b>まで</span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="badges">
+      <span class="badge badge-limit">限定 30名さま</span>
+      <span class="badge badge-deadline">7/14(火) 21:00 締切</span>
+    </div>
+    <h1>仕入れ<span class="hl">1.5万円</span>が、<br><span class="profit">2万円の利益</span>に。</h1>
+    <p class="lead">COEL新品1着＋売れ筋ブランド品が届く<br><b>「お試し仕入れパック」</b>のご案内です。</p>
+
+    <div class="cd-wrap">
+      <div class="cd-label">お申込み締切まで</div>
+      <div class="cd-timer" id="cd">
+        <div class="cd-cell"><div class="num" id="cd-d">--</div><div class="unit">日</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-cell"><div class="num" id="cd-h">--</div><div class="unit">時間</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-cell"><div class="num" id="cd-m">--</div><div class="unit">分</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-cell"><div class="num" id="cd-s">--</div><div class="unit">秒</div></div>
+      </div>
+      <div class="cd-end">2026年7月14日(火) 21:00 まで</div>
+    </div>
+
+    <a href="#apply" class="btn">今すぐお申込みする ▶</a>
+    <p class="note">※限定30名さま・先着順です</p>
+  </div>
+</section>
+
+<!-- PACK -->
+<section>
+  <div class="wrap reveal">
+    <div class="eyebrow">COEL お試しパック</div>
+    <div class="sec-ttl">届いたその日から、<br>売れる仕入れがそろう。</div>
+    <div class="sec-sub">定価90%OFF・新品タグ付き・回転1〜3日。<br>あなたは撮って・言葉にして・出品するだけ。</div>
+    <p class="must">こんな<b>2024〜2026年の近年モデルの新品</b>が必ず1着入ります</p>
+    <div class="grid">
+      <div class="item">
+        <div class="thumb"><span class="newtag">新品タグ付き</span><img src="img/skirt_sheer.jpg" alt="COEL 2025 シアー刺繍ブラウス" loading="lazy"><div class="cap">COEL 2025<b>シアー刺繍ブラウス</b></div></div>
+        <div class="role"><div class="no">01</div><div class="nm">COEL 1着</div><div class="sb">定価¥27,500〜35,200</div></div>
+      </div>
+      <div class="item">
+        <div class="thumb"><span class="newtag">新品タグ付き</span><img src="img/skirt_knit.jpg" alt="売れ筋ブランドネクタイ" loading="lazy"><div class="cap">売れ筋<b>ブランドネクタイ</b></div></div>
+        <div class="role"><div class="no">02</div><div class="nm">ネクタイ</div><div class="sb">売れ筋ブランド</div></div>
+      </div>
+      <div class="item">
+        <div class="thumb"><span class="newtag">新品タグ付き</span><img src="img/skirt_bijou.jpg" alt="売れ筋アパレル品" loading="lazy"><div class="cap">売れ筋<b>アパレル品</b></div></div>
+        <div class="role"><div class="no">03</div><div class="nm">アパレル品</div><div class="sb">売れ筋を厳選</div></div>
+      </div>
+    </div>
+
+    <div class="calc">
+      <div class="calc-row">
+        <div class="calc-cell"><div class="l">仕入れ（1パック）</div><div class="v"><small>¥</small>15,000</div></div>
+        <div class="calc-arrow">▶</div>
+        <div class="calc-cell"><div class="l">出品して回転</div><div class="v">約<small>¥</small>35,000</div></div>
+      </div>
+      <div class="profit"><span class="pl">手元に残る利益</span><span class="pv">+¥20,000</span></div>
+    </div>
+    <div class="feats">
+      <span class="feat">2024〜26年 近年モデル</span>
+      <span class="feat">売れ筋厳選・リサーチ不要</span>
+      <span class="feat">新品だからメンテ不要</span>
+    </div>
+  </div>
+</section>
+
+<!-- MERIT -->
+<section class="sec-merit">
+  <div class="wrap reveal">
+    <div class="eyebrow">こんな方におすすめ</div>
+    <div class="sec-ttl" style="margin-bottom:20px">"はじめての仕入れ"に<br>ちょうどいい理由</div>
+    <div class="merit"><div class="ck">✓</div><p><b>仕入れ先を探さなくていい。</b>売れ筋だけを厳選してお届けするので、リサーチの時間はいりません。</p></div>
+    <div class="merit"><div class="ck">✓</div><p><b>新品タグ付きだから安心。</b>クリーニングも検品も不要。届いたその日から出品できます。</p></div>
+    <div class="merit"><div class="ck">✓</div><p><b>回転1〜3日の売れ筋。</b>近年モデルの人気アイテムなので、在庫を抱えるストレスがありません。</p></div>
+    <div class="merit"><div class="ck">✓</div><p><b>まずは1パックから。</b>仕入れ¥15,000で、+2万円の利益を"自分の手"で体験できます。</p></div>
+  </div>
+</section>
+
+<!-- LIMIT -->
+<section class="sec-limit">
+  <div class="wrap reveal">
+    <div class="limit-box">
+      <div class="lt">今回のお届けは</div>
+      <div class="ln">限定 30名さま</div>
+      <div class="ld">お申込みは <b>7/14(火) 21:00</b> まで。<br>数に限りがあるため、先着順とさせていただきます。</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="sec-form" id="apply">
+  <div class="wrap reveal">
+    <div class="eyebrow">お申込みフォーム</div>
+    <div class="sec-ttl" style="margin-bottom:6px">COEL お試しパックに<br>お申込みする</div>
+    <div class="sec-sub">下記をご入力ください。<br>お届け先の確認のため、正確なご記入をお願いします。</div>
+
+    <div class="form-card">
+      <div id="form-area">
+        <div class="field">
+          <label>LINE名<span class="req">必須</span></label>
+          <input id="f-line" type="text" placeholder="例：くみこ" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>オープンチャット名<span class="req">必須</span></label>
+          <input id="f-opchat" type="text" placeholder="オプチャで使っているお名前" autocomplete="off">
+          <div class="hint">どなたのお申込みか確認するために使います</div>
+        </div>
+        <div class="field">
+          <label>氏名（本名）<span class="req">必須</span></label>
+          <input id="f-name" type="text" placeholder="例：森川 くみこ" autocomplete="name">
+        </div>
+        <div class="field">
+          <label>ご住所<span class="req">必須</span></label>
+          <textarea id="f-address" placeholder="〒000-0000　都道府県市区町村・番地・建物名・部屋番号まで" autocomplete="street-address"></textarea>
+          <div class="hint">パックのお届け先になります。建物名・部屋番号までご記入ください</div>
+        </div>
+        <div class="form-note">ご入力いただいた情報は、パックの発送とご連絡のみに使用します。締切後に順次ご案内いたします。</div>
+        <button class="btn" id="submitBtn" onclick="submitForm()">この内容でお申込みする ▶</button>
+      </div>
+      <div class="thanks" id="thanks">
+        <div class="ti">🎁</div>
+        <h3>お申込み<br>ありがとうございます！</h3>
+        <p>内容を受け付けました。<br>締切後、オープンチャット／LINEにて<br>お届けのご案内をお送りしますね。<br>楽しみにお待ちください♡</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fl">Merone</div>
+    <div class="fc">© Merone Inc.</div>
+  </div>
+</footer>
+
+<script>
+/* ===== 申込送信先GAS Web App URL（デプロイ後にexecを貼る） ===== */
+var GAS_URL = "https://script.google.com/macros/s/AKfycbwLNpxNqudmEGZz0AdOVOSU0jWegFq-Kt2O_Z3PsnMsLo2Caw7ARkm5sAN47YvW9XAq/exec";
+
+/* 締切カウントダウン（2026-07-14 21:00 JST） */
+var DEADLINE = new Date("2026-07-14T21:00:00+09:00").getTime();
+function tick(){
+  var now = Date.now(), diff = DEADLINE - now;
+  var cd = document.getElementById("cd");
+  if(diff <= 0){ cd.innerHTML = '<div class="cd-over">お申込みを締め切りました</div>'; return; }
+  var d = Math.floor(diff/86400000), h = Math.floor(diff%86400000/3600000),
+      m = Math.floor(diff%3600000/60000), s = Math.floor(diff%60000/1000);
+  document.getElementById("cd-d").textContent = d;
+  document.getElementById("cd-h").textContent = ("0"+h).slice(-2);
+  document.getElementById("cd-m").textContent = ("0"+m).slice(-2);
+  document.getElementById("cd-s").textContent = ("0"+s).slice(-2);
+}
+tick(); setInterval(tick,1000);
+
+function val(id){ return (document.getElementById(id).value||"").trim(); }
+function submitForm(){
+  var line=val("f-line"), opchat=val("f-opchat"), name=val("f-name"), address=val("f-address");
+  if(!line || !opchat || !name || !address){ alert("すべての項目をご入力くださいね☺"); return; }
+  var btn=document.getElementById("submitBtn"); btn.textContent="送信中…"; btn.style.opacity=".6";
+  var data={line:line, opchat:opchat, name:name, address:address};
+  fetch(GAS_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)})
+    .catch(function(){});
+  // no-corsのため成否は取れない。送信後は必ずサンクス表示（二重送信防止）
+  setTimeout(function(){
+    document.getElementById("form-area").style.display="none";
+    document.getElementById("thanks").style.display="block";
+    document.getElementById("thanks").scrollIntoView({behavior:"smooth",block:"center"});
+  }, 700);
+}
+
+/* reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add("on");});},{threshold:.1});
+document.querySelectorAll(".reveal").forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>

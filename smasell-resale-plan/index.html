@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スマセル 再販プラン 3案比較</title>
+<style>
+  :root{
+    --navy:#1f3b5c;
+    --navy-soft:#37567a;
+    --blue-bg:#eef4fa;
+    --blue-line:#cfe0ef;
+    --pink:#c98b96;
+    --pink-bg:#fbf1f3;
+    --ink:#2b3440;
+    --gray:#7a8794;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"游ゴシック体","YuGothic","游ゴシック","Yu Gothic",sans-serif;
+    background:linear-gradient(180deg,#f7fafd 0%,#fdf7f8 100%);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:44px 20px 80px;}
+
+  header{margin-bottom:34px;}
+  .eyebrow{
+    display:inline-block;font-size:12px;letter-spacing:.14em;color:var(--pink);
+    border:1px solid var(--pink);border-radius:999px;padding:4px 14px;margin-bottom:16px;
+  }
+  h1{font-size:30px;margin:0 0 10px;color:var(--navy);letter-spacing:.02em;font-weight:700;}
+  .sub{color:var(--gray);font-size:14px;margin:0;}
+
+  .premise{
+    background:var(--card);border:1px solid var(--blue-line);border-radius:14px;
+    padding:20px 24px;margin:28px 0 40px;
+  }
+  .premise h2{font-size:14px;color:var(--navy);margin:0 0 14px;letter-spacing:.06em;}
+  .premise-grid{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    background:var(--blue-bg);border-radius:8px;padding:8px 14px;font-size:13px;color:var(--navy-soft);
+  }
+  .chip b{color:var(--navy);font-size:15px;}
+
+  h2.section{font-size:19px;color:var(--navy);margin:44px 0 18px;letter-spacing:.03em;}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .card{
+    background:var(--card);border:1px solid var(--blue-line);border-radius:16px;
+    padding:24px 22px;position:relative;display:flex;flex-direction:column;
+  }
+  .card.rec{border:2px solid var(--navy);}
+  .badge{
+    position:absolute;top:-11px;left:22px;background:var(--navy);color:#fff;
+    font-size:11px;letter-spacing:.1em;padding:3px 12px;border-radius:999px;
+  }
+  .plan-name{font-size:12px;color:var(--gray);letter-spacing:.1em;margin-bottom:4px;}
+  .plan-title{font-size:20px;color:var(--navy);font-weight:700;margin:0 0 18px;}
+
+  .metric{border-top:1px solid #eef2f6;padding:13px 0;}
+  .metric:first-of-type{border-top:none;}
+  .metric-label{font-size:12px;color:var(--gray);margin-bottom:2px;}
+  .metric-value{font-size:26px;color:var(--navy);font-weight:700;line-height:1.3;}
+  .metric-value small{font-size:14px;font-weight:400;margin-left:3px;}
+  .metric-note{font-size:12px;color:var(--gray);margin-top:2px;}
+
+  .risk{margin-top:auto;padding-top:16px;}
+  .risk-bar{height:7px;border-radius:99px;background:#eef2f6;overflow:hidden;margin-bottom:7px;}
+  .risk-fill{height:100%;border-radius:99px;}
+  .r-low{width:22%;background:#8fb4d4;}
+  .r-mid{width:45%;background:#a9c4dc;}
+  .r-high{width:88%;background:var(--pink);}
+  .risk-label{font-size:12px;color:var(--gray);}
+  .risk-label b{color:var(--navy);}
+  .card.rec .risk-label b{color:var(--navy);}
+
+  table{width:100%;border-collapse:collapse;background:var(--card);
+    border:1px solid var(--blue-line);border-radius:14px;overflow:hidden;font-size:14px;}
+  th,td{padding:14px 16px;text-align:center;border-bottom:1px solid #eef2f6;}
+  th{background:var(--blue-bg);color:var(--navy);font-weight:700;font-size:13px;letter-spacing:.04em;}
+  td:first-child,th:first-child{text-align:left;color:var(--navy-soft);font-weight:700;background:#fafcfe;}
+  tr:last-child td{border-bottom:none;}
+  .col-rec{background:#f6faff;}
+  .strong{color:var(--navy);font-weight:700;}
+  .soft{color:var(--gray);font-size:12px;display:block;}
+
+  .tl{background:var(--card);border:1px solid var(--blue-line);border-radius:14px;padding:26px 24px;}
+  .tl-row{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+  .tl-row:last-child{margin-bottom:0;}
+  .tl-name{width:76px;flex:none;font-size:13px;font-weight:700;color:var(--navy);}
+  .tl-track{flex:1;position:relative;height:34px;background:#f4f8fc;border-radius:8px;}
+  .tl-seg{position:absolute;top:6px;height:22px;border-radius:6px;font-size:11px;color:#fff;
+    display:flex;align-items:center;justify-content:center;letter-spacing:.02em;}
+  .seg-send{background:var(--navy-soft);}
+  .seg-late{background:var(--pink);}
+  .tl-axis{display:flex;margin:0 0 8px 90px;font-size:11px;color:var(--gray);}
+  .tl-axis span{flex:1;text-align:center;}
+  .tl-end{width:96px;flex:none;font-size:12px;color:var(--gray);text-align:right;}
+  .cut{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--navy);opacity:.5;}
+
+  .why{background:var(--pink-bg);border:1px solid #f0dce0;border-radius:14px;padding:24px 26px;margin-top:18px;}
+  .why h3{margin:0 0 14px;font-size:15px;color:var(--navy);}
+  .why ol{margin:0;padding-left:20px;}
+  .why li{margin-bottom:12px;font-size:14px;}
+  .why li:last-child{margin-bottom:0;}
+  .why b{color:var(--pink);}
+
+  .verdict{
+    background:var(--navy);color:#fff;border-radius:16px;padding:28px 30px;margin-top:44px;
+  }
+  .verdict h3{margin:0 0 10px;font-size:18px;letter-spacing:.03em;}
+  .verdict p{margin:0;font-size:14px;line-height:1.9;color:#dce7f2;}
+  .verdict b{color:#fff;}
+
+  footer{margin-top:40px;font-size:12px;color:var(--gray);text-align:center;}
+
+  @media(max-width:820px){
+    .cards{grid-template-columns:1fr;}
+    .wrap{padding:28px 16px 60px;}
+    h1{font-size:23px;}
+    .tbl-scroll{overflow-x:auto;}
+    table{min-width:620px;}
+    .tl-axis{margin-left:0;}
+    .tl-name{width:56px;font-size:12px;}
+    .tl-end{width:70px;font-size:11px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">スマセル 4日間チャレンジ</div>
+  <h1>再販プラン 3案比較</h1>
+  <p class="sub">2026年7月20日（月）時点 ／ 着金締め 7月31日（金）</p>
+</header>
+
+<div class="premise">
+  <h2>共通の前提</h2>
+  <div class="premise-grid">
+    <div class="chip">参加者 <b>83人</b></div>
+    <div class="chip">決済完了 <b>4人</b></div>
+    <div class="chip">決済待ち <b>14人</b></div>
+    <div class="chip">未決定 <b>65人</b></div>
+    <div class="chip">再販開始 <b>7/23（木）</b></div>
+    <div class="chip">着金締め <b>7/31（金）</b></div>
+    <div class="chip">着金までの実務日数 <b>最短5日・標準7日</b></div>
+  </div>
+</div>
+
+<h2 class="section">3案の要点</h2>
+<div class="cards">
+
+  <div class="card">
+    <div class="plan-name">A案</div>
+    <div class="plan-title">ミニマム</div>
+    <div class="metric">
+      <div class="metric-label">配信通数（未決定65人）</div>
+      <div class="metric-value">1<small>通</small></div>
+      <div class="metric-note">7/23（木）21時のみ</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">リードタイム</div>
+      <div class="metric-value">6<small>日</small></div>
+      <div class="metric-note">7/23 配信 → 7/29（水）着金</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">月内着金 見込み</div>
+      <div class="metric-value">1〜2<small>人</small></div>
+    </div>
+    <div class="risk">
+      <div class="risk-bar"><div class="risk-fill r-low"></div></div>
+      <div class="risk-label">離脱リスク <b>低</b></div>
+    </div>
+  </div>
+
+  <div class="card rec">
+    <div class="badge">推奨</div>
+    <div class="plan-name">B案</div>
+    <div class="plan-title">2通</div>
+    <div class="metric">
+      <div class="metric-label">配信通数（未決定65人）</div>
+      <div class="metric-value">2<small>通</small></div>
+      <div class="metric-note">7/23（木）／7/26（日）21時</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">リードタイム</div>
+      <div class="metric-value">8<small>日</small></div>
+      <div class="metric-note">7/23 配信 → 7/31（金）着金</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">月内着金 見込み</div>
+      <div class="metric-value">2〜3<small>人</small></div>
+    </div>
+    <div class="risk">
+      <div class="risk-bar"><div class="risk-fill r-mid"></div></div>
+      <div class="risk-label">離脱リスク <b>低〜中</b></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="plan-name">C案</div>
+    <div class="plan-title">フル</div>
+    <div class="metric">
+      <div class="metric-label">配信通数（未決定65人）</div>
+      <div class="metric-value">4<small>通</small></div>
+      <div class="metric-note">7/23・7/25・7/28・7/30</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">リードタイム</div>
+      <div class="metric-value">11<small>日</small></div>
+      <div class="metric-note">最終配信 7/30 → 8/3（月）着金</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">月内着金 見込み</div>
+      <div class="metric-value">2〜4<small>人</small></div>
+      <div class="metric-note">後半2通の分は8月へずれる</div>
+    </div>
+    <div class="risk">
+      <div class="risk-bar"><div class="risk-fill r-high"></div></div>
+      <div class="risk-label">離脱リスク <b>高</b></div>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section">項目別の比較</h2>
+<div class="tbl-scroll">
+<table>
+  <tr>
+    <th></th>
+    <th>A案 ミニマム</th>
+    <th class="col-rec">B案 2通（推奨）</th>
+    <th>C案 フル</th>
+  </tr>
+  <tr>
+    <td>配信通数<span class="soft">未決定65人向け</span></td>
+    <td class="strong">1通</td>
+    <td class="col-rec strong">2通</td>
+    <td class="strong">4通</td>
+  </tr>
+  <tr>
+    <td>配信通数<span class="soft">決済待ち14人向け・個別</span></td>
+    <td class="strong">1通</td>
+    <td class="col-rec strong">1通</td>
+    <td class="strong">2通</td>
+  </tr>
+  <tr>
+    <td>1人あたり最大接触</td>
+    <td class="strong">1回</td>
+    <td class="col-rec strong">2回</td>
+    <td class="strong">4回<span class="soft">重複層は最大6回</span></td>
+  </tr>
+  <tr>
+    <td>配信間隔</td>
+    <td>—</td>
+    <td class="col-rec">3日</td>
+    <td>平均2日に1通</td>
+  </tr>
+  <tr>
+    <td>初回配信日</td>
+    <td>7/23（木）</td>
+    <td class="col-rec">7/23（木）</td>
+    <td>7/23（木）</td>
+  </tr>
+  <tr>
+    <td>最終配信日</td>
+    <td>7/23（木）</td>
+    <td class="col-rec">7/26（日）</td>
+    <td>7/30（木）</td>
+  </tr>
+  <tr>
+    <td>リードタイム<span class="soft">初回配信→着金</span></td>
+    <td class="strong">6日</td>
+    <td class="col-rec strong">8日</td>
+    <td class="strong">11日</td>
+  </tr>
+  <tr>
+    <td>着金完了の想定日</td>
+    <td>7/29（水）</td>
+    <td class="col-rec">7/31（金）</td>
+    <td>8/3（月）</td>
+  </tr>
+  <tr>
+    <td>月内着金に間に合うか</td>
+    <td class="strong">間に合う</td>
+    <td class="col-rec strong">ぎりぎり間に合う</td>
+    <td class="strong">後半2通は間に合わない</td>
+  </tr>
+  <tr>
+    <td>再販からの申込 見込み</td>
+    <td>2〜3人</td>
+    <td class="col-rec">3〜5人</td>
+    <td>4〜6人</td>
+  </tr>
+  <tr>
+    <td>うち月内着金 見込み</td>
+    <td class="strong">1〜2人</td>
+    <td class="col-rec strong">2〜3人</td>
+    <td class="strong">2〜4人</td>
+  </tr>
+  <tr>
+    <td>離脱リスク</td>
+    <td>低</td>
+    <td class="col-rec">低〜中</td>
+    <td>高</td>
+  </tr>
+</table>
+</div>
+
+<h2 class="section">着金までのタイムライン</h2>
+<div class="tl">
+  <div class="tl-axis">
+    <span>7/23木</span><span>7/25土</span><span>7/27月</span><span>7/29水</span><span>7/31金</span><span>8/2日</span>
+  </div>
+  <div class="tl-row">
+    <div class="tl-name">A案</div>
+    <div class="tl-track">
+      <div class="tl-seg seg-send" style="left:1%;width:11%;">配信</div>
+      <div class="tl-seg" style="left:13%;width:47%;background:#c3d7e8;color:#1f3b5c;">面談・検討・決済</div>
+      <div class="cut" style="left:84%;"></div>
+    </div>
+    <div class="tl-end">7/29 着金</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-name">B案</div>
+    <div class="tl-track">
+      <div class="tl-seg seg-send" style="left:1%;width:11%;">配信①</div>
+      <div class="tl-seg seg-send" style="left:26%;width:11%;">配信②</div>
+      <div class="tl-seg" style="left:38%;width:45%;background:#c3d7e8;color:#1f3b5c;">面談・検討・決済</div>
+      <div class="cut" style="left:84%;"></div>
+    </div>
+    <div class="tl-end">7/31 着金</div>
+  </div>
+  <div class="tl-row">
+    <div class="tl-name">C案</div>
+    <div class="tl-track">
+      <div class="tl-seg seg-send" style="left:1%;width:9%;">①</div>
+      <div class="tl-seg seg-send" style="left:17%;width:9%;">②</div>
+      <div class="tl-seg seg-send" style="left:42%;width:9%;">③</div>
+      <div class="tl-seg seg-late" style="left:59%;width:9%;">④</div>
+      <div class="tl-seg seg-late" style="left:69%;width:29%;">着金は8月へ</div>
+      <div class="cut" style="left:84%;"></div>
+    </div>
+    <div class="tl-end">8/3 着金</div>
+  </div>
+  <p style="font-size:12px;color:#7a8794;margin:18px 0 0;">縦線＝7/31（金）着金締め。ピンクの区間が締めをまたぐ部分。</p>
+</div>
+
+<div class="why">
+  <h3>C案の配信が多い、という見立てについて</h3>
+  <ol>
+    <li><b>接触が濃すぎる。</b>8日間で4通は平均2日に1通。決済待ちの14人にも同じ配信が届くと「催促されている」感覚に反転し、いま着金しかけている人を逆に止めてしまいます。取りにいった分より落とす分のほうが大きくなります。</li>
+    <li><b>後半2通が月内に効かない。</b>7/28・7/30の配信から動いた人の着金は8/3前後。月内着金を増やすという目的に対して、リスクだけ負って成果が翌月に流れます。</li>
+  </ol>
+</div>
+
+<div class="verdict">
+  <h3>結論：B案（2通・7/23と7/26）</h3>
+  <p>A案は安全だが取りこぼす。C案は取りにいって既存を落とす。<b>B案は7/31着金にぎりぎり間に合う最終ラインが7/26</b>で、そこに2通を置くのが取り分と離脱のバランスが最も良い形です。<br>あわせて、<b>決済待ち14人向けの配信は未決定65人向けと必ず分ける</b>こと。同じ文面が両方に届くのが、どの案でも一番の失点になります。</p>
+</div>
+
+<footer>Merone ／ スマセル 4日間チャレンジ 再販プラン</footer>
+
+</div>
+</body>
+</html>

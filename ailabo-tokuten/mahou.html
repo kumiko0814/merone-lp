@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>魔法の言葉｜Merone AI活用ラボ</title>
+<style>
+:root{ --navy:#26405f; --navy2:#1d3149; --pink:#cf8f9c; --pink2:#bd7886; --pinkbg:#fbeef1; --text:#4a4446; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Yu Gothic","YuGothic","游ゴシック","Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; background:linear-gradient(168deg,#f1eaf7 0%,#faf7fb 46%,#fbeef1 100%); color:var(--text); line-height:1.95; -webkit-font-smoothing:antialiased; padding-bottom:60px;}
+.wrap{max-width:640px; margin:0 auto; padding:0 18px;}
+header{background:var(--navy2); color:#fff; padding:14px 18px; text-align:center;}
+header .lg{font-size:13px; font-weight:800; letter-spacing:.14em; color:#f3cdd7;}
+header .lg i{font-style:normal; color:#cfdcea; font-weight:700; margin-left:6px; letter-spacing:.08em;}
+.hero{text-align:center; padding:30px 0 6px;}
+.hero img{width:110px;}
+.hero h1{font-size:clamp(20px,5.8vw,26px); color:var(--navy2); margin-top:4px;}
+.hero p{font-size:13px; color:#8a97a5; margin-top:6px;}
+.steps{background:#fff; border-radius:18px; padding:18px 18px 8px; margin-top:18px; box-shadow:0 6px 20px rgba(38,64,95,.07);}
+.steps h2{font-size:15px; color:var(--navy2); margin-bottom:10px;}
+.st{display:flex; gap:12px; margin-bottom:12px; font-size:13.5px; line-height:1.8;}
+.st i{flex:none; width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,#c76e85,#cf8f9c); color:#fff; font-style:normal; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:13px; margin-top:3px;}
+.st b{color:var(--pink2);}
+.card{background:#fff; border-radius:18px; padding:18px; margin-top:18px; box-shadow:0 6px 20px rgba(38,64,95,.07);}
+.card h2{font-size:15px; color:var(--navy2); margin-bottom:6px;}
+.card p.n{font-size:12px; color:#8a97a5; margin-bottom:10px;}
+pre{background:#fdf8fa; border:1.5px solid #f0d9df; border-radius:14px; padding:16px 14px; font-family:inherit; font-size:13px; line-height:1.9; white-space:pre-wrap; word-break:break-word; color:var(--navy2);}
+pre .blank{color:#c62828; font-weight:800;}
+.copy{display:block; width:100%; border:none; background:linear-gradient(135deg,#c76e85,#cf8f9c); color:#fff; border-radius:999px; padding:15px; font-size:15px; font-weight:800; cursor:pointer; font-family:inherit; margin-top:12px; box-shadow:0 8px 22px rgba(189,120,134,.35);}
+.ex{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+.ex span{background:var(--pinkbg); color:var(--navy2); border-radius:999px; padding:7px 14px; font-size:12px; font-weight:700;}
+footer{text-align:center; font-size:11px; color:#9aa7b4; margin-top:40px; letter-spacing:.06em;}
+</style>
+</head>
+<body>
+
+<header><span class="lg">Merone<i>AI活用ラボ</i></span></header>
+
+<div class="wrap">
+  <div class="hero">
+    <img src="https://lp.merone.jp/kumiko-illust/lab-peace.png" alt="" onerror="this.style.display='none'">
+    <h1>アプリづくりの魔法の言葉</h1>
+    <p>Claudeのチャットに貼るだけで、あなただけのアプリが1つできます</p>
+  </div>
+
+  <div class="steps">
+    <h2>使い方は3ステップ</h2>
+    <div class="st"><i>1</i>下の「魔法の言葉をコピー」を押す</div>
+    <div class="st"><i>2</i>Claudeアプリを開いて、チャットに貼り付ける</div>
+    <div class="st"><i>3</i><b>赤い【 】の2か所だけ</b>自分の言葉に書きかえて送信！あとは待つだけです</div>
+  </div>
+
+  <div class="card">
+    <h2>魔法の言葉</h2>
+    <p class="n">赤い【 】以外は、変えずにそのまま送ってください</p>
+    <pre id="mahou">あなたは、やさしいアプリづくりの先生です。
+私はプログラミングがまったくわからない初心者です。質問はしないで、おまかせで1つ作ってください。
+
+【作りたいもの】<span class="blank">ここに作りたいものをひとこと書く（例：毎日の献立を考えてくれるアプリ）</span>
+【使う人】<span class="blank">ここに使う人を書く（例：私／小学生の娘／家族みんな）</span>
+
+ここから下のお願いは、そのまま守ってください。
+・スマホで使う前提で、1つのHTMLファイルだけで動くアプリを作って、画面に表示してください
+・ボタンは大きく、字は読みやすく、やさしい色づかいのかわいいデザインにしてください
+・記録は端末の中に自動保存されるようにして、ログインや会員登録は不要にしてください
+・むずかしい設定は作らず、開いた瞬間に使えるシンプルさをいちばん大切にしてください
+・細かいことは質問せず、あなたのセンスでいちばん便利な形に決めて、最後まで完成させてください
+・完成したら「このアプリでできること」と「使い方」を、専門用語を使わずに3行ずつ教えてください
+・最後に、「こう頼めばもっと良くなる」という追加のお願いの例文を3つ、コピーできる形で教えてください</pre>
+    <button class="copy" id="cp">魔法の言葉をコピー</button>
+  </div>
+
+  <div class="card">
+    <h2>【作りたいもの】の記入例</h2>
+    <p class="n">迷ったら、ここから選んで書きかえてもOKです</p>
+    <div class="ex">
+      <span>毎日の献立を考えてくれるアプリ</span>
+      <span>買い物リスト</span>
+      <span>子どもの歯みがきがんばり表</span>
+      <span>今日の水分量を記録するアプリ</span>
+      <span>3分タイマーつきの片づけゲーム</span>
+      <span>推し活の予定と思い出メモ</span>
+      <span>毎日1つ自分をほめる日記</span>
+      <span>おこづかい帳</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>できあがったら</h2>
+    <p style="font-size:13.5px;">ぜひオープンチャットで披露してください。うまくいかなかった時は、出てきた画面をスクショして、AIカルテから送ってもらえたら私が見ます。</p>
+  </div>
+
+  <footer>Merone AI活用ラボ｜AIの力で、あなたの毎日をもっと豊かに。</footer>
+</div>
+
+<script>
+document.getElementById("cp").onclick=function(){
+  var t=document.getElementById("mahou").textContent, b=this;
+  function ok(){ b.textContent="コピーしました！Claudeに貼ってね"; setTimeout(function(){ b.textContent="魔法の言葉をコピー"; },2400); }
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok,fb); }else fb();
+  function fb(){ var ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(e){} ta.remove(); ok(); }
+};
+</script>
+
+<!-- バグ報告ツール -->
+<style>
+#bugL{position:fixed; left:12px; bottom:16px; z-index:59; background:rgba(255,255,255,.92); border:1px solid #dfe7ee; color:#8a97a5; font-size:10.5px; font-weight:800; border-radius:999px; padding:5px 12px; cursor:pointer; letter-spacing:.04em;}
+#bugM{position:fixed; inset:0; background:rgba(29,49,73,.55); display:none; align-items:center; justify-content:center; z-index:70; padding:24px;}
+#bugM.on{display:flex;}
+#bugM .bx{background:#fff; border-radius:20px; padding:22px 20px; max-width:360px; width:100%;}
+#bugM h3{font-size:14.5px; color:#1d3149; margin-bottom:8px;}
+#bugM textarea{width:100%; border:1.5px solid #e3e9f0; border-radius:12px; padding:11px 13px; font-size:14px; line-height:1.8; color:#1d3149; font-family:inherit; min-height:100px; resize:vertical;}
+#bugM .bb{display:flex; gap:8px; margin-top:12px;}
+#bugM button{flex:1; border:none; border-radius:999px; padding:11px; font-size:13px; font-weight:800; cursor:pointer; font-family:inherit;}
+#bugM .s{background:linear-gradient(135deg,#c76e85,#cf8f9c); color:#fff;}
+#bugM .c{background:#eef2f6; color:#26405f;}
+#bugM .done{display:none; font-size:12.5px; color:#bd7886; font-weight:800; margin-top:8px; text-align:center;}
+</style>
+<div id="bugL">不具合を報告</div>
+<div id="bugM"><div class="bx">
+  <h3>不具合・気になったことを教えてください</h3>
+  <textarea id="bugT" placeholder="例）コピーボタンを押しても反応しませんでした（iPhone/Safari）"></textarea>
+  <div class="bb"><button class="c" id="bugC">閉じる</button><button class="s" id="bugS">送信する</button></div>
+  <div class="done" id="bugD">届きました。ありがとうございます。すぐ確認します。</div>
+</div></div>
+<script>
+(function(){
+var U="https://inrvprlyobghviklulcv.supabase.co/rest/v1/ailab_notes";
+var K="sb_publishable_ZrCNcsRHMci-l7Fns8QtIA_X22XZGJp";
+var M=document.getElementById("bugM");
+document.getElementById("bugL").onclick=function(){ M.classList.add("on"); };
+document.getElementById("bugC").onclick=function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; };
+document.getElementById("bugS").onclick=function(){
+  var t=document.getElementById("bugT").value.trim();
+  if(!t){ document.getElementById("bugT").focus(); return; }
+  var btn=this; btn.disabled=true;
+  fetch(U,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},
+    body:JSON.stringify({member_id:"bug_mahou",member_name:"魔法の言葉ページ｜guest",mood:"バグ報告",worry:t,want:location.href.slice(0,180)+" ／ "+navigator.userAgent.slice(0,140)})})
+    .then(function(){
+      document.getElementById("bugD").style.display="block";
+      document.getElementById("bugT").value=""; btn.disabled=false;
+      setTimeout(function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; },1800);
+    }).catch(function(){ btn.disabled=false; alert("送信できませんでした。通信環境をご確認ください。"); });
+};
+})();
+</script>
+</body>
+</html>

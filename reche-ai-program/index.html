@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Merone AI活用ラボ｜AIの相棒を育成しよう</title>
+<style>
+:root{
+  --bg:#f6f1f9; --bg2:#f1eaf7; --card:#ffffff;
+  --navy:#26405f; --navy2:#1d3149;
+  --pink:#cf8f9c; --pink2:#bd7886; --pinkbg:#fbeef1;
+  --blue:#8f9fd8; --text:#4a4446;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  padding-bottom:72px;
+  font-family:"Yu Gothic","YuGothic","游ゴシック","Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif;
+  background:#fff; color:var(--text); line-height:2;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+.wrap{max-width:680px; margin:0 auto; padding:0 22px;}
+.mockbar{background:var(--navy2); color:#cfdcea; text-align:center; font-size:11px; padding:6px 12px; letter-spacing:.08em;}
+
+/* header */
+.siteheader{background:#fff; border-bottom:1px solid #e6eef5; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:20;}
+.siteheader .logo{font-weight:800; color:var(--navy2); letter-spacing:.06em; font-size:15px;}
+.siteheader .logo i{font-style:normal; color:var(--pink2);}
+.siteheader .tag{font-size:10.5px; color:#8a97a5; letter-spacing:.1em; font-weight:700;}
+
+/* hero */
+.hero{position:relative; overflow:hidden; background:linear-gradient(168deg,#f1eaf7 0%,#faf7fb 46%,#fbeef1 100%); padding:56px 0 70px; text-align:center;}
+.hero::before,.hero::after{content:""; position:absolute; border-radius:50%; z-index:0;}
+.hero::before{width:340px; height:340px; background:radial-gradient(circle,#e6dbf0,transparent 70%); top:-120px; left:-120px;}
+.hero::after{width:300px; height:300px; background:radial-gradient(circle,#f7dee5,transparent 70%); bottom:-110px; right:-100px;}
+.hero .wrap{position:relative; z-index:1;}
+.hero-badge{display:inline-block; background:var(--navy); color:#fff; border-radius:999px; padding:7px 22px; font-size:12.5px; font-weight:700; letter-spacing:.16em; margin-bottom:20px;}
+.hero-sub{font-size:clamp(14px,3.8vw,17px); color:var(--pink2); font-weight:800; letter-spacing:.24em; margin-bottom:6px;}
+h1{color:var(--navy2); font-size:clamp(34px,9vw,52px); line-height:1.35; letter-spacing:.02em; font-weight:800;}
+h1 .grad{background:linear-gradient(90deg,var(--pink2),var(--blue)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
+.hero-lead{margin-top:22px; font-size:clamp(14.5px,3.9vw,17px); line-height:2.1;}
+.hero-lead b{color:var(--pink2); background:none;}
+.chips{margin-top:26px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center;}
+.chip{background:rgba(255,255,255,.94); border:1px solid #e2d7ec; color:var(--navy); border-radius:999px; padding:7px 16px; font-size:12.5px; font-weight:700; display:inline-flex; align-items:center;}
+.scrollcue{margin-top:34px; font-size:10.5px; letter-spacing:.3em; color:#9aa7b4; font-weight:700;}
+.scrollcue::after{content:""; display:block; width:1px; height:34px; background:linear-gradient(var(--blue),transparent); margin:8px auto 0;}
+
+/* hero extras */
+.hero-chars{display:flex; justify-content:center; align-items:flex-end; gap:2px; margin-bottom:26px;}
+.hero-chars img{height:clamp(150px,36vw,196px); width:auto;}
+.hero-div{display:flex; align-items:center; justify-content:center; gap:14px; margin:18px auto 4px; max-width:340px;}
+.hero-div::before,.hero-div::after{content:""; flex:1; height:1px; background:linear-gradient(90deg,transparent,#c9b8d8);}
+.hero-div::after{background:linear-gradient(90deg,#c9b8d8,transparent);}
+.hero-div svg{width:26px; height:26px; stroke:var(--pink2); fill:none; stroke-width:1.8; opacity:.85;}
+.hero .dots{position:absolute; width:96px; height:96px; background-image:radial-gradient(#d9c9e4 2px,transparent 2.6px); background-size:20px 20px; z-index:0;}
+.hero .dots.tr{top:120px; right:36px;}
+.hero .dots.bl{bottom:130px; left:30px;}
+.chip svg{width:14px; height:14px; stroke:var(--pink2); fill:none; stroke-width:2; vertical-align:-2px; margin-right:5px;}
+
+/* sections */
+section{padding:72px 0;}
+section.alt{background:var(--bg);}
+section.altpink{background:var(--pinkbg);}
+.eyebrow{text-align:center; font-size:clamp(22px,6vw,28px); letter-spacing:.22em; color:var(--navy2); font-weight:800; font-family:inherit;}
+.eyebrow::after{content:""; display:block; width:52px; height:4px; border-radius:2px; margin:12px auto 0; background:linear-gradient(90deg,var(--pink2),var(--blue));}
+.sectitle{text-align:center; font-size:clamp(19px,5.2vw,25px); color:var(--navy2); font-weight:800; line-height:1.7; margin-top:18px;}
+.sectitle .em{color:var(--pink2);}
+.seclead{text-align:center; font-size:12.5px; color:#8a97a5; margin-top:6px; letter-spacing:.06em;}
+.secbody{margin-top:30px;}
+
+/* worries */
+.worry{background:#fff; border:1px solid #e3edf5; border-radius:14px; padding:14px 18px; margin-top:10px; display:flex; gap:12px; align-items:flex-start; font-size:14.5px; line-height:1.8; box-shadow:0 3px 12px rgba(38,64,95,.05);}
+.worry .chk{flex:none; width:24px; height:24px; border-radius:7px; background:var(--pinkbg); color:var(--pink2); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:14px; margin-top:4px;}
+.balloon{position:relative; background:var(--navy); color:#fff; border-radius:18px; padding:20px 22px; margin-top:28px; font-size:15px; line-height:2; text-align:center;}
+.balloon::before{content:""; position:absolute; top:-10px; left:50%; transform:translateX(-50%); border:10px solid transparent; border-bottom-color:var(--navy); border-top:none;}
+.balloon b{color:#f3cdd7;}
+
+/* quotes */
+.quote{background:#fff; border-left:5px solid var(--blue); border-radius:0 14px 14px 0; padding:16px 18px; margin-top:12px; font-size:14px; box-shadow:0 4px 16px rgba(38,64,95,.06); line-height:1.9;}
+.quote small{display:block; color:#9a9296; margin-top:6px; font-size:11.5px;}
+
+/* promise */
+.pcards{display:grid; gap:14px; margin-top:8px;}
+@media(min-width:600px){ .pcards{grid-template-columns:1fr 1fr 1fr;} }
+.pcard{background:#fff; border-radius:20px; padding:26px 20px; text-align:center; box-shadow:0 8px 26px rgba(38,64,95,.08);}
+.pcard .no{display:inline-flex; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--pink2),var(--pink)); color:#fff; font-weight:800; align-items:center; justify-content:center; font-size:18px; margin-bottom:12px;}
+.pcard h3{color:var(--navy2); font-size:16.5px; margin-bottom:8px; line-height:1.6;}
+.pcard p{font-size:13.5px; line-height:1.9; text-align:left;}
+
+/* curriculum timeline */
+.tl{position:relative; margin-top:6px; padding-left:26px;}
+.tl::before{content:""; position:absolute; left:8px; top:8px; bottom:8px; width:3px; border-radius:2px; background:linear-gradient(var(--blue),var(--pink));}
+.tlcard{position:relative; background:#fff; border-radius:16px; padding:20px 20px; margin-top:16px; box-shadow:0 6px 20px rgba(38,64,95,.07);}
+.tlcard::before{content:""; position:absolute; left:-24.5px; top:26px; width:14px; height:14px; border-radius:50%; background:#fff; border:4px solid var(--pink2);}
+.tlcard .stepno{display:inline-block; background:var(--navy); color:#fff; border-radius:8px; font-size:11.5px; font-weight:800; padding:3px 12px; letter-spacing:.08em; margin-bottom:8px;}
+.tlcard h3{color:var(--navy2); font-size:16.5px; line-height:1.6; margin-bottom:6px;}
+.tlcard p{font-size:13.5px; line-height:1.9;}
+.tlcard .goal{margin-top:10px; background:var(--bg2); border-radius:10px; padding:8px 14px; font-size:12.5px; color:var(--navy); line-height:1.8;}
+.tlcard .goal b{color:var(--pink2);}
+.tlcard.fin{background:var(--pinkbg);}
+
+/* support flow */
+.flow{counter-reset:fl; margin-top:6px;}
+.flow .fcard{position:relative; background:#fff; border-radius:16px; padding:20px 20px 20px 70px; margin-top:14px; box-shadow:0 6px 20px rgba(38,64,95,.07);}
+.flow .fcard::before{counter-increment:fl; content:"0" counter(fl); position:absolute; left:20px; top:20px; font-size:20px; font-weight:800; letter-spacing:.04em; color:var(--blue);}
+.flow .fcard h3{color:var(--navy2); font-size:15.5px; margin-bottom:4px; line-height:1.6;}
+.flow .fcard p{font-size:13.5px; line-height:1.9;}
+
+/* special band */
+.special{background:linear-gradient(150deg,var(--navy2),var(--navy)); color:#fff; text-align:center;}
+.special .eyebrow{color:#fff;}
+.special .sectitle{color:#fff;}
+.special .sectitle .em{color:#f3cdd7;}
+.special p.body{margin-top:22px; font-size:14.5px; line-height:2.1; color:#e6edf5; text-align:left;}
+.special p.body b{color:#f3cdd7;}
+.statrow{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:26px;}
+.stat{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); border-radius:16px; padding:18px 10px;}
+.stat .v{font-size:clamp(20px,5.6vw,26px); font-weight:800; color:#fff; line-height:1.4;}
+.stat .l{font-size:11.5px; color:#c7d4e2; margin-top:4px; letter-spacing:.06em;}
+
+/* overview */
+table.tbl{width:100%; border-collapse:separate; border-spacing:0; background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 6px 24px rgba(38,64,95,.07); margin-top:6px;}
+table.tbl td{padding:15px 16px; font-size:13.5px; border-top:1px solid #eef2f6; vertical-align:top; line-height:1.9;}
+table.tbl tr:first-child td{border-top:none;}
+table.tbl td:first-child{font-weight:800; color:var(--navy); width:41%; background:#f7fafc;}
+.startbox{background:#fff; border-radius:18px; padding:22px 22px; margin-top:16px; box-shadow:0 6px 20px rgba(38,64,95,.07);}
+.startbox h3{color:var(--navy2); font-size:16px; margin-bottom:6px; line-height:1.7;}
+.startbox p{font-size:13.5px; line-height:1.9;}
+
+/* speaker */
+.speaker{display:flex; gap:20px; align-items:flex-start; background:#fff; border-radius:20px; padding:26px 22px; box-shadow:0 8px 26px rgba(38,64,95,.08); margin-top:6px;}
+.avatar{flex:none; width:104px; height:104px; border-radius:50%; object-fit:cover; object-position:60% 35%; border:4px solid #fff; box-shadow:0 6px 18px rgba(38,64,95,.18);}
+.speaker h3{color:var(--navy2); font-size:17px; line-height:1.5;}
+.speaker .role{font-size:11.5px; color:var(--pink2); font-weight:800; letter-spacing:.08em; margin-bottom:8px;}
+.speaker p{font-size:13.5px; line-height:1.9;}
+@media(max-width:520px){ .speaker{flex-direction:column; align-items:center; text-align:center;} .speaker p{text-align:left;} }
+
+/* price */
+.price{background:linear-gradient(150deg,var(--navy2),var(--navy)); border-radius:24px; color:#fff; text-align:center; padding:44px 24px; margin-top:6px; position:relative; overflow:hidden;}
+.price::after{content:""; position:absolute; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(207,143,156,.35),transparent 70%); top:-80px; right:-70px;}
+.price .label{font-size:12px; letter-spacing:.3em; color:#cfdcea; font-weight:700;}
+.price .yen{font-size:clamp(44px,12vw,58px); font-weight:800; margin:10px 0 4px; position:relative; z-index:1;}
+.price .yen small{font-size:16px; font-weight:700;}
+.price p{font-size:13px; color:#cfdcea; position:relative; z-index:1; line-height:2;}
+
+/* fit */
+.vs{display:grid; gap:14px; margin-top:6px;}
+@media(min-width:600px){ .vs{grid-template-columns:1fr 1fr;} }
+.vcard{border-radius:18px; padding:22px 20px; background:#fff; box-shadow:0 6px 20px rgba(38,64,95,.07);}
+.vcard.ok{background:#fff; border-top:5px solid var(--pink2);}
+.vcard.ng{border-top:5px solid #c9d6e2;}
+.vcard h3{color:var(--navy2); font-size:15.5px; margin-bottom:10px;}
+.vcard li{list-style:none; font-size:13.5px; line-height:1.9; padding:4px 0 4px 26px; position:relative;}
+.vcard.ok li::before{content:"✓"; position:absolute; left:2px; color:var(--pink2); font-weight:800;}
+.vcard.ng li::before{content:"−"; position:absolute; left:2px; color:#9aa7b4; font-weight:800;}
+
+/* faq */
+details{background:#fff; border-radius:14px; margin-top:10px; box-shadow:0 4px 16px rgba(38,64,95,.06); overflow:hidden;}
+details summary{padding:16px 44px 16px 18px; font-weight:700; color:var(--navy); cursor:pointer; font-size:14px; list-style:none; position:relative; line-height:1.7;}
+details summary::before{content:"Q"; color:var(--pink2); font-weight:800; margin-right:10px;}
+details summary::after{content:"＋"; position:absolute; right:16px; top:14px; color:var(--pink2); font-weight:800;}
+details[open] summary::after{content:"−";}
+details .a{padding:0 18px 16px 18px; font-size:13.5px; line-height:1.9;}
+
+/* CTA */
+.ctabtn{display:inline-block; background:linear-gradient(135deg,#c76e85,#cf8f9c); color:#fff; text-decoration:none; border-radius:999px; padding:17px 40px; font-size:16.5px; font-weight:800; letter-spacing:.04em; box-shadow:0 12px 30px rgba(189,120,134,.42);}
+.ctabtn small{display:block; font-size:10.5px; font-weight:700; letter-spacing:.14em; opacity:.9; margin-bottom:2px;}
+.ctabtn .strike{text-decoration:line-through; text-decoration-thickness:2.5px; opacity:.72; margin-right:5px; font-size:.86em;}
+#ctaFix{position:fixed; left:50%; transform:translateX(-50%); bottom:14px; z-index:55; width:max-content; max-width:calc(100% - 24px);}
+#ctaFix .ctabtn{padding:13px 34px; font-size:14.5px; white-space:nowrap; box-shadow:0 10px 26px rgba(120,60,80,.4);}
+@media(max-width:600px){ #ctaFix{width:calc(100% - 24px);} #ctaFix .ctabtn{display:block; text-align:center; padding:14px 10px;} }
+
+/* closing */
+.closing{background:linear-gradient(180deg,#fff,var(--pinkbg)); text-align:center;}
+.closing .big{font-size:clamp(21px,5.8vw,28px); color:var(--navy2); font-weight:800; line-height:1.9;}
+.closing .big .em{color:var(--pink2);}
+.closing p.note{margin-top:18px; font-size:13.5px; color:var(--text);}
+
+footer{background:var(--navy2); color:#aebccb; text-align:center; font-size:11px; padding:26px 20px; line-height:2;}
+
+/* mypage phones */
+.phones{display:grid; gap:20px; margin-top:8px; justify-items:center;}
+@media(min-width:600px){ .phones{grid-template-columns:1fr 1fr;} }
+.phone{width:232px;}
+.plabel{text-align:center; font-size:12px; font-weight:800; color:var(--pink2); margin-bottom:8px;}
+.pscreen{border:7px solid var(--navy2); border-radius:26px; background:var(--bg); overflow:hidden; box-shadow:0 14px 30px rgba(38,64,95,.18);}
+.pshead{background:linear-gradient(150deg,#eaf3fa,#fbeef1); text-align:center; font-size:12px; font-weight:800; color:var(--navy2); padding:12px 8px 9px; line-height:1.5;}
+.pshead small{display:block; font-size:9px; color:var(--pink2); font-weight:800;}
+.psbody{padding:10px;}
+.psl{font-size:9px; font-weight:800; color:var(--navy); margin-bottom:4px;}
+.psta{background:#fff; border:1.5px solid #e3edf5; border-radius:9px; padding:7px 9px; font-size:9.5px; line-height:1.6; color:var(--navy2);}
+.pschips{display:flex; gap:5px; margin-top:7px;}
+.pschips span{border:1.5px solid #e3edf5; background:#fff; border-radius:999px; padding:3px 8px; font-size:8.5px; font-weight:800; color:var(--navy);}
+.pschips span.on{background:var(--pinkbg); border-color:var(--pink); color:var(--pink2);}
+.psbtn{margin-top:9px; background:linear-gradient(135deg,var(--pink2),var(--pink)); color:#fff; text-align:center; border-radius:999px; padding:8px; font-size:10px; font-weight:800;}
+.psadv{display:flex; gap:7px; background:#fff; border-radius:11px; padding:9px; box-shadow:0 3px 10px rgba(38,64,95,.08);}
+.psav{flex:none; width:22px; height:22px; border-radius:50%; background:linear-gradient(135deg,#f78ac0,var(--pink2)); color:#fff; font-size:10px; font-weight:800; display:flex; align-items:center; justify-content:center;}
+.psadv p{font-size:9.5px; line-height:1.7; color:var(--navy2); font-weight:600;}
+.demobtn{display:inline-block; background:var(--pink2); color:#fff; text-decoration:none; border-radius:999px; padding:13px 34px; font-size:14px; font-weight:800; box-shadow:0 8px 22px rgba(189,120,134,.35);}
+
+/* reveal */
+.rv{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+.rv.on{opacity:1; transform:none;}
+@media (prefers-reduced-motion: reduce){ .rv{opacity:1; transform:none; transition:none;} }
+</style>
+</head>
+<body>
+
+<header class="siteheader">
+  <span class="logo">Merone <i>AI活用ラボ</i></span>
+  <span class="tag">Re:che 生徒さん限定</span>
+</header>
+
+<div class="hero">
+  <div class="dots tr"></div><div class="dots bl"></div>
+  <div class="wrap">
+    <div class="hero-chars">
+      <img src="char-typing.png" alt="">
+      <img src="char-think.png" alt="">
+    </div>
+    <div class="hero-badge">一般募集なし・100名限定プログラム</div>
+    <p style="color:#c62828; font-weight:800; font-size:13.5px; letter-spacing:.04em; margin:-6px 0 14px;">お申込みは8月3日（月）まで／以降の募集はありません</p>
+    <p class="hero-sub">AIの相棒を育成しよう</p>
+    <h1>Merone<br><span class="grad">AI活用ラボ♡</span></h1>
+    <div class="hero-div"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.8 14.6c2.3.2 4.1 1.8 4.7 4.4"/></svg></div>
+    <p class="hero-lead">AIに使われる人にならない。<br>毎日の「めんどう」を任せられる<b>一生モノの相棒</b>を、<br>1ヶ月半かけて自分の手で育てます。</p>
+    <div class="chips">
+      <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>8月8日（土）開講</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>1ヶ月半</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/></svg>週1時間から</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>スマホ中心OK</span>
+      <span class="chip"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.5 5.2 5.7.7-4.2 4 1.1 5.6-5.1-2.8-5.1 2.8 1.1-5.6-4.2-4 5.7-.7z"/></svg>初級の方に合わせた設計</span>
+    </div>
+    <div class="scrollcue">SCROLL</div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">WORRIES</div>
+    <p class="sectitle">こんなお悩み、<span class="em">ありませんか？</span></p>
+    <div class="secbody">
+      <div class="worry"><span class="chk">✓</span>AIが気になるけれど、何から始めればいいのかわからない</div>
+      <div class="worry"><span class="chk">✓</span>「プロンプト」と聞くだけで、むずかしそうで手が止まる</div>
+      <div class="worry"><span class="chk">✓</span>使ってはいるけれど、答えの質が安定しない</div>
+      <div class="worry"><span class="chk">✓</span>出品や説明文、毎日の作業に時間がかかりすぎている</div>
+      <div class="worry"><span class="chk">✓</span>自己流で少し触って「私には無理かも」と思ったことがある</div>
+      <div class="worry"><span class="chk">✓</span>頼りすぎて、考える力が落ちていきそうで怖い</div>
+      <div class="balloon">そのお悩み、あなたのせいではありません。<br><b>「正しい順番」を、誰にも習っていないだけ</b>です。</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap rv">
+    <div class="eyebrow">VOICE</div>
+    <p class="sectitle">このラボは、<span class="em">みなさんの声</span>から生まれました。</p>
+    <p class="seclead">勉強会アンケート・約100名のご回答より</p>
+    <div class="secbody">
+      <div class="quote">「何から始めればいいのか、わかりません」<small>つまずき第1位</small></div>
+      <div class="quote">「上級まで行きたい。でも、使える時間は週30分〜2時間です」<small>ご回答の大多数</small></div>
+      <div class="quote">「AIに使われるのではなく、使いこなせる人間になりたいです」<small>事前課題のご感想より</small></div>
+      <p style="margin-top:24px; font-size:14.5px; text-align:center;">やる気はある。時間はない。何からやればいいかわからない。<br>それなら必要なのは、たくさんの情報ではなく<br><b style="color:var(--pink2);">「正しい順番」と「あなた専用の地図」</b>です。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">PROMISE</div>
+    <p class="sectitle">卒業するときの、<span class="em">あなたの状態。</span></p>
+    <div class="secbody pcards">
+      <div class="pcard"><span class="no">1</span><h3>任せ方がわかる</h3><p>任せてよいこと・いけないことを自分で仕分けられるようになります。主導権はいつも自分に。</p></div>
+      <div class="pcard"><span class="no">2</span><h3>毎日の時短が現実になる</h3><p>献立・予定・説明文・リサーチ。小さな「めんどう」をAIに渡せるようになります。</p></div>
+      <div class="pcard"><span class="no">3</span><h3>「作れる私」になる</h3><p>最終ミッションはアプリ2つ。自分のために1つ、大切な誰かのために1つ。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap rv">
+    <div class="eyebrow">CURRICULUM</div>
+    <p class="sectitle">1ヶ月半の階段<span class="em">（7つのSTEP）</span></p>
+    <p class="seclead">動画1本10分前後＋15分でできる宿題。カリキュラムサイトは今後も育ち続けます</p>
+    <div class="secbody tl">
+      <div class="tlcard"><span class="stepno">STEP 0｜最初の3日</span>
+        <h3>じゅんび</h3>
+        <p>3つのAI（ChatGPT・Gemini・Claude）の無料アカウントを整えて、音声入力を設定。最後に「AIカルテ」を提出します。</p>
+        <div class="goal">ゴール：<b>あなた専用のロードマップ</b>が手元に届く</div>
+      </div>
+      <div class="tlcard"><span class="stepno">STEP 1｜1週目</span>
+        <h3>仕分け術 — 主導権のまもり方</h3>
+        <p>合言葉は「あなたが社長、AIは秘書」。3つの質問で、わが家の仕分け表を作ります。</p>
+        <div class="goal">ゴール：任せる範囲を<b>自分で決められる</b></div>
+      </div>
+      <div class="tlcard"><span class="stepno">STEP 2｜2週目</span>
+        <h3>頼み方5点セット</h3>
+        <p>役割・目的・材料・形・直す前提。一発で完璧を求めず、往復して育てる頼み方を練習します。</p>
+        <div class="goal">ゴール：同じお願いの<b>ビフォーアフター</b>を自分で再現できる</div>
+      </div>
+      <div class="tlcard"><span class="stepno">STEP 3｜3週目</span>
+        <h3>3つのAIの使い分け</h3>
+        <p>画像とLPに強いChatGPT、Google連携のGemini、じっくり型のClaude。課金の目安もここで整理します。</p>
+        <div class="goal">ゴール：迷わず<b>「この作業はこの子」</b>と選べる</div>
+      </div>
+      <div class="tlcard"><span class="stepno">STEP 4｜4週目</span>
+        <h3>時短レシピ12（暮らし編・仕事編）</h3>
+        <p>献立と買い物リスト・予定の整理・学校への文書・説明文の下書き・リサーチのたたき台・画像・在庫や売上の整理など。コピペで使えるテンプレ50本つき。</p>
+        <div class="goal">ゴール：<b>週2時間分</b>の「めんどう」をAIに渡せている</div>
+      </div>
+      <div class="tlcard"><span class="stepno">STEP 5｜5週目</span>
+        <h3>仕組み化入門</h3>
+        <p>よく使う頼み方を「マイテンプレ帳」に。GeminiとGoogleの連携、Cowork（作業ごと任せる使い方）の入門まで。</p>
+        <div class="goal">ゴール：毎回ゼロから頼まない。<b>自分の型</b>ができている</div>
+      </div>
+      <div class="tlcard fin"><span class="stepno">STEP 6｜5〜6週目</span>
+        <h3>最終ミッション — マイアプリを2つ</h3>
+        <p>自分のためのアプリを1つ（例：献立表・在庫メモ・スケジュール帳）。そして、大切な誰かのためにもう1つ。オープンチャットでお披露目します。</p>
+        <div class="goal">ゴール：<b>「AI、毎日使っているよ」</b>と言える私になる</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">SUPPORT</div>
+    <p class="sectitle">一人ひとり違うから、<br><span class="em">あなた専用カルテ</span>で進めます。</p>
+    <p class="seclead">全員に同じ宿題を配る講座ではありません</p>
+    <div class="secbody flow">
+      <div class="fcard"><h3>AIカルテを提出</h3><p>質問はたった2つ。「日常で困ったこと」と「それをAIでどう解決したいか」。スマホで1分、毎日でも送れます。</p></div>
+      <div class="fcard"><h3>AIが自動で分析</h3><p>送るたびに、あなたの「悩みの傾向」「思考のくせ」「合うAI活用プラン」を専用ページで自動分析します。</p></div>
+      <div class="fcard"><h3>専用ロードマップをお届け</h3><p>どこでつまずいているかを森川くみこが直接判断して、「あなたはこの順番で」という専用の地図をお渡しします。</p></div>
+      <div class="fcard"><h3>オープンチャットで伴走</h3><p>質問・作ったもののお披露目の場。期限なく、卒業後もずっとご参加いただけます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="altpink">
+  <div class="wrap rv">
+    <div class="eyebrow">MYPAGE</div>
+    <p class="sectitle">あなた専用の<span class="em">「AIカルテ」画面</span>があります。</p>
+    <p class="seclead">ご入会後、あなただけのURLをお渡しします</p>
+    <div style="text-align:center; margin-top:4px;">
+      <img src="https://kumiko0814.github.io/ailabo-karte/assets/char-peace.png" alt="" style="width:112px;" onerror="this.style.display='none'">
+      <p style="font-size:12px; color:#d9899d; font-weight:800; letter-spacing:.12em; margin-top:2px;">今日も一緒にがんばろうね♪♡</p>
+    </div>
+    <div class="secbody phones">
+      <div class="phone">
+        <div class="plabel">① あなたの画面に書くだけ</div>
+        <div class="pscreen">
+          <div class="pshead">AIカルテ<small>ゆきさんの専用ページ</small></div>
+          <div class="psbody">
+            <div class="psl">① 日常で、困ったことはありましたか？</div>
+            <div class="psta">出品の説明文に毎回30分かかって、夜にはぐったりしています。</div>
+            <div class="psl">② それを、AIでどう解決したいですか？</div>
+            <div class="psta">説明文づくりをAIにお願いして、夜の30分を子どもとの時間にしたいです。</div>
+            <div class="psbtn">くみこに送る</div>
+          </div>
+        </div>
+      </div>
+      <div class="phone">
+        <div class="plabel">② くみこからアドバイスが届く</div>
+        <div class="pscreen">
+          <div class="pshead">くみこからのアドバイス</div>
+          <div class="psbody">
+            <div class="psadv"><span class="psav">く</span>
+              <p>ゆきさん、まずは説明文だけAIに渡しましょう。あなたに合う相棒はClaudeです。今夜、テンプレ②で1本だけ。5分で終わります。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:22px; font-size:14px; text-align:center;">書いた悩みは、そのまま<b style="color:var(--pink2);">くみこの管理画面</b>に届きます。<br>「どんなAIとの付き合い方がよいか」「どのAIが合うか」を、一人ずつお返しします。</p>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:16px;">
+      <span style="background:#fff; border:1px solid #ecd6dc; color:var(--navy2); border-radius:999px; padding:7px 15px; font-size:12px; font-weight:700;">悩みの傾向を自動分析</span>
+      <span style="background:#fff; border:1px solid #ecd6dc; color:var(--navy2); border-radius:999px; padding:7px 15px; font-size:12px; font-weight:700;">思考のくせも見える化</span>
+      <span style="background:#fff; border:1px solid #ecd6dc; color:var(--navy2); border-radius:999px; padding:7px 15px; font-size:12px; font-weight:700;">画面の右下にAIくみこが常駐</span>
+    </div>
+    <div style="text-align:center; margin-top:16px;">
+      <a class="demobtn" href="https://kumiko0814.github.io/ailabo-karte/?demo=1&name=%E3%83%87%E3%83%A2" target="_blank" rel="noopener">デモ画面をさわってみる</a>
+      <p style="font-size:11px; color:#9aa7b4; margin-top:8px;">※デモ画面です。ご入会後は専用URLをお渡しします。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">AI KUMIKO</div>
+    <p class="sectitle">24時間そばにいる、<span class="em">AIくみこ。</span></p>
+    <p class="seclead">くみこの考え方を学習したAIと、いつでも相談チャット</p>
+    <div class="secbody" style="max-width:420px; margin-left:auto; margin-right:auto;">
+      <div style="background:#fff; border-radius:18px; padding:16px; box-shadow:0 8px 26px rgba(38,64,95,.08);">
+        <div style="display:flex; gap:8px; align-items:flex-end;">
+          <img src="https://kumiko0814.github.io/ai-kumiko/img/char-typing.png" style="width:30px; height:30px; border-radius:50%; object-fit:cover; object-position:50% 4%; background:#fde7ee; flex:none;" alt="">
+          <div style="background:var(--bg); border-radius:4px 14px 14px 14px; padding:8px 12px; font-size:12.5px; line-height:1.8;">夜中の不安も、朝のモヤモヤも、いつでもどうぞ☺️</div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; margin-top:8px;">
+          <div style="background:var(--pinkbg); border-radius:14px 4px 14px 14px; padding:8px 12px; font-size:12.5px; font-weight:700; color:var(--navy2);">時間がなくて、焦ってばかりです…</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:flex-end; margin-top:8px;">
+          <img src="https://kumiko0814.github.io/ai-kumiko/img/char-typing.png" style="width:30px; height:30px; border-radius:50%; object-fit:cover; object-position:50% 4%; background:#fde7ee; flex:none;" alt="">
+          <div style="background:var(--bg); border-radius:4px 14px 14px 14px; padding:8px 12px; font-size:12.5px; line-height:1.8;">時間は「空く」ものではなく「作る」もの。まず15分だけ、AIに渡しましょ🔥</div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:16px;">
+        <a class="demobtn" href="https://kumiko0814.github.io/ai-kumiko/" target="_blank" rel="noopener">AIくみこと話してみる</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="special">
+  <div class="wrap rv">
+    <div class="eyebrow">SPECIAL</div>
+    <p class="sectitle">一般募集は、<span class="em">しません。</span></p>
+    <p class="body">くみこはふだん、数万人規模のスクール4社をマーケティング顧問として月額100万円でご支援しています。その現場で毎日使っているAI活用を、一般論ではなく<b>「くみこならこう頼む」という私の脳みそごと</b>お渡しするのがこのラボです。だからこそ一般には公開せず、生徒さん限定・最小限の金額でのご提供にしました。</p>
+    <div class="statrow">
+      <div class="stat"><div class="v">月額100万円</div><div class="l">スクール4社のマーケ顧問実績</div></div>
+      <div class="stat"><div class="v">100名限定</div><div class="l">一般募集なし・生徒さん限定のクローズド開催</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap rv">
+    <div class="eyebrow">OVERVIEW</div>
+    <p class="sectitle">含まれるもの・<span class="em">進め方</span></p>
+    <div class="secbody">
+      <table class="tbl">
+        <tr><td>定員</td><td>100名限定（Meroneの生徒さんのみ）</td></tr>
+        <tr><td>勉強会　全3回</td><td>8/11（火）・8/16（日）・8/28（金）。アーカイブつき</td></tr>
+        <tr><td>カリキュラムサイト</td><td>STEP0〜6の動画とテンプレ。今後も追加され、育ち続けます</td></tr>
+        <tr><td>あなた専用カルテ</td><td>毎日でも送れる相談ページ。くみこ本人が直接お返しし、悩みの傾向・思考のくせ・AI活用プランを自動分析。期限なくずっと使えます</td></tr>
+        <tr><td>AIくみこ</td><td>24時間いつでも相談できるチャット。カルテ画面の右下に常駐しています</td></tr>
+        <tr><td>頼み方テンプレ50本</td><td>暮らし編・仕事編。コピペしてそのまま使えます</td></tr>
+        <tr><td>オープンチャット</td><td>質問・お披露目の場。期限なくご参加いただけます</td></tr>
+        <tr><td>最終ミッション伴走</td><td>自分用1つ＋身近な人用1つ、アプリ2つの完成までサポート</td></tr>
+      </table>
+      <div class="startbox">
+        <h3>開講は8月8日（土）。最初にやるのは、講義ではありません。</h3>
+        <p>アンケートを全部読んで、はっきりわかったことがあります。みなさんの悩みは、一人ひとり本当に違います。だから最初の1週間は講義ではなく、AIカルテで「あなたの課題」と「AIに任せられること」を一緒に炙り出すことに使います。勉強会は8/11（火）・8/16（日）・8/28（金）の全3回、アーカイブもお届けします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">SPEAKER</div>
+    <p class="sectitle">教えるのは、<span class="em">森川くみこ</span>です。</p>
+    <div class="secbody speaker">
+      <img class="avatar" src="kumiko.jpg" alt="森川くみこ">
+      <div>
+        <div class="role">Merone 代表取締役CEO｜Re:che主宰</div>
+        <h3>森川くみこ</h3>
+        <p>情報経営イノベーション専門職大学 客員准教授。数万人規模のスクール4社をマーケティング顧問として支援し、企画・分析・ツール開発の現場で毎日AIとともに働いています。この4ヶ月でAIに頼んできた「実際の依頼文」と、その裏側の考え方を、このラボでそのままお渡しします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="altpink">
+  <div class="wrap rv">
+    <div class="eyebrow">PRICE</div>
+    <div class="secbody price">
+      <div style="margin-bottom:10px;"><span style="display:inline-block; background:#fff; color:var(--pink2); border-radius:999px; padding:6px 20px; font-size:12.5px; font-weight:800; letter-spacing:.14em;">100名限定・一般募集なし</span></div>
+      <div class="label">受講料</div>
+      <div class="yen">45,900<small>円（税込）</small></div>
+      <p style="margin-top:10px;"><span style="display:inline-block; background:rgba(255,255,255,.12); border:1px solid rgba(243,205,215,.5); border-radius:12px; padding:9px 22px; font-size:15.5px; font-weight:800; color:#f3cdd7;">銀行振込の場合：43,500円（税込）</span></p>
+      <p style="margin-top:12px;"><span style="display:inline-block; background:#fff; border-radius:12px; padding:9px 22px; font-size:14.5px; font-weight:800; color:#c62828;">お申込みは8月3日（月）まで。以降の募集はありません。</span></p>
+      <p>1ヶ月半の伴走つき。オープンチャットは期限なし、<br>週1時間からの設計です。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">CHECK</div>
+    <p class="sectitle">向いている方・<span class="em">向いていない方</span></p>
+    <div class="secbody vs">
+      <div class="vcard ok"><h3>向いている方</h3><ul>
+        <li>週1時間、手を動かせる方</li>
+        <li>家族との時間を増やしたい方</li>
+        <li>学んだことを仕事や暮らしにすぐ使いたい方</li>
+        <li>「作れる私」に憧れがある方</li>
+      </ul></div>
+      <div class="vcard ng"><h3>向いていない方</h3><ul>
+        <li>見ているだけで変われると考えている方</li>
+        <li>すべて自動でお金が増えると考えている方</li>
+        <li>AIに人生の決断まで任せたい方</li>
+      </ul></div>
+    </div>
+    <p style="margin-top:18px; font-size:13.5px; text-align:center;">主導権はいつも、あなたに持っていてほしいからです。</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap rv">
+    <div class="eyebrow">QUESTION</div>
+    <p class="sectitle">よくある<span class="em">ご質問</span></p>
+    <div class="secbody">
+      <details><summary>スマホだけでも受講できますか？</summary><div class="a">STEP4まではスマホ中心で進められます。最終ミッションはPCがあると理想ですが、スマホでの代替メニューもご用意します。</div></details>
+      <details><summary>AIは無料プランのままで大丈夫ですか？</summary><div class="a">基本は無料プランでOKです。毎日使うようになった段階で、必要な方にだけ課金の目安をお伝えします。</div></details>
+      <details><summary>初心者ですが、ついていけますか？</summary><div class="a">診断で「初級」だった方を基準に設計しています。さらに専用カルテで、一人ひとり順番を調整します。</div></details>
+      <details><summary>時間がとれるか不安です。</summary><div class="a">週1時間からの設計です。動画は1本10分前後、宿題は15分以内。アーカイブがあるので、ご自分のペースで進められます。</div></details>
+      <details><summary>物販以外にも役立ちますか？</summary><div class="a">はい。時短レシピは「暮らし編」と「仕事編」の2本立てです。献立・予定・学校の文書から、発信や家計の整理まで幅広く使えます。</div></details>
+      <p style="text-align:center; margin-top:20px;"><a href="https://lp.merone.jp/ailabo-faq/" target="_blank" rel="noopener" style="color:var(--pink2); font-weight:800; font-size:13.5px;">その他のご質問はこちら（よくあるご質問を全部見る）</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap rv">
+    <p class="big">迷っている時間が、<br>いちばん<span class="em">もったいない。</span></p>
+    <p style="margin-top:20px; color:#c62828; font-weight:800; font-size:15px;">お申込みは8月3日（月）まで。以降の募集はありません。</p>
+    <div style="margin-top:16px;"><a class="ctabtn" href="https://kumiko0814.github.io/merone-ai-labo/"><small>一般募集なし・8/3（月）締切</small><span class="strike">100名</span>残り2名！AIらぼに申込む</a></div>
+    <p class="note">100名に達した時点でも締め切りとなります。</p>
+  </div>
+</section>
+
+<footer>
+  Merone｜Re:che
+</footer>
+
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.rv').forEach(function(el){el.classList.add('on');});
+    return;
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+})();
+</script>
+<!-- バグ報告ツール -->
+<style>
+#bugL{position:fixed; left:12px; bottom:78px; z-index:59; background:rgba(255,255,255,.92); border:1px solid #dfe7ee; color:#8a97a5; font-size:10.5px; font-weight:800; border-radius:999px; padding:5px 12px; cursor:pointer; letter-spacing:.04em;}
+#bugM{position:fixed; inset:0; background:rgba(29,49,73,.55); display:none; align-items:center; justify-content:center; z-index:70; padding:24px;}
+#bugM.on{display:flex;}
+#bugM .bx{background:#fff; border-radius:20px; padding:22px 20px; max-width:360px; width:100%;}
+#bugM h3{font-size:14.5px; color:#1d3149; margin-bottom:8px;}
+#bugM textarea{width:100%; border:1.5px solid #e3e9f0; border-radius:12px; padding:11px 13px; font-size:14px; line-height:1.8; color:#1d3149; font-family:inherit; min-height:100px; resize:vertical;}
+#bugM .bb{display:flex; gap:8px; margin-top:12px;}
+#bugM button{flex:1; border:none; border-radius:999px; padding:11px; font-size:13px; font-weight:800; cursor:pointer; font-family:inherit;}
+#bugM .s{background:linear-gradient(135deg,#c76e85,#cf8f9c); color:#fff;}
+#bugM .c{background:#eef2f6; color:#26405f;}
+#bugM .done{display:none; font-size:12.5px; color:#bd7886; font-weight:800; margin-top:8px; text-align:center;}
+@media(max-width:900px){ #bugL{bottom:88px;} }
+</style>
+<div id="ctaFix"><a class="ctabtn" href="https://kumiko0814.github.io/merone-ai-labo/"><span class="strike">100名</span>残り2名！AIらぼに申込む</a></div>
+<div id="bugL">不具合を報告</div>
+<div id="bugM"><div class="bx">
+  <h3>不具合・気になったことを教えてください</h3>
+  <textarea id="bugT" placeholder="例）送信ボタンを押しても反応しませんでした（iPhone/Safari）"></textarea>
+  <div class="bb"><button class="c" id="bugC">閉じる</button><button class="s" id="bugS">送信する</button></div>
+  <div class="done" id="bugD">届きました。ありがとうございます。すぐ確認します。</div>
+</div></div>
+<script>
+(function(){
+var U="https://inrvprlyobghviklulcv.supabase.co/rest/v1/ailab_notes";
+var K="sb_publishable_ZrCNcsRHMci-l7Fns8QtIA_X22XZGJp";
+var P=new URLSearchParams(location.search);
+var uid=(P.get("u")||"guest").replace(/[^a-zA-Z0-9_\-]/g,"");
+var demo=P.get("demo")==="1";
+var M=document.getElementById("bugM");
+document.getElementById("bugL").onclick=function(){ M.classList.add("on"); };
+document.getElementById("bugC").onclick=function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; };
+document.getElementById("bugS").onclick=function(){
+  var t=document.getElementById("bugT").value.trim();
+  if(!t){ document.getElementById("bugT").focus(); return; }
+  var btn=this; btn.disabled=true;
+  function done(){
+    document.getElementById("bugD").style.display="block";
+    document.getElementById("bugT").value=""; btn.disabled=false;
+    setTimeout(function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; },1800);
+  }
+  if(demo){ done(); return; }
+  fetch(U,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},
+    body:JSON.stringify({member_id:"bug_LP",member_name:"LP｜"+uid,mood:"バグ報告",worry:t,want:location.href.slice(0,180)+" ／ "+navigator.userAgent.slice(0,140)})})
+    .then(function(){ done(); }).catch(function(){ btn.disabled=false; alert("送信できませんでした。通信環境をご確認ください。"); });
+};
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Re:Well 詳細｜福利厚生・応援投資プラン｜株式会社Merone</title>
+<meta name="description" content="Re:Well（リウェル）の詳細。500の福利厚生、JAL・ANAのフライト優待、応援投資プラン3種のご案内です。">
+<style>
+:root{
+  --bg:#F7FBFE; --navy:#1F2A44; --ink:#2A3550; --gray:#7A8499;
+  --pink:#E07AAA; --pink-deep:#D2679A; --pink-soft:#F6DCE8;
+  --line:#E4D3E0; --grad:linear-gradient(120deg,#E07AAA 0%,#A98FD8 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:"游ゴシック体",YuGothic,"Yu Gothic","Hiragino Kaku Gothic ProN","Helvetica Neue",sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.7}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px 80px}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 4px}
+header img{height:26px}
+.back{font-size:13.5px;font-weight:700;color:var(--pink-deep);text-decoration:none;border:2px solid var(--pink-soft);border-radius:999px;padding:7px 16px;background:#fff}
+.hero{text-align:center;padding:34px 10px 10px}
+.hero .badge{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--pink);color:var(--navy);font-weight:700;font-size:15px;letter-spacing:.14em;padding:6px 18px;border-radius:999px;background:#fff}
+.hero .badge::before{content:"✦";color:var(--pink)}
+.hero h1{font-size:clamp(34px,7vw,54px);font-weight:900;color:var(--navy);margin-top:16px;letter-spacing:.02em}
+.hero h1 span{color:var(--pink-deep)}
+.hero .tag{margin-top:8px;font-size:clamp(15px,3.4vw,19px);font-weight:700;color:var(--pink-deep);letter-spacing:.12em}
+.hero .lead{margin-top:16px;font-size:clamp(14.5px,3.4vw,17px);color:var(--ink);max-width:640px;margin-left:auto;margin-right:auto}
+.sec{margin-top:44px}
+.sec .h{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sec .h .n{font-size:22px;font-weight:900;color:var(--pink)}
+.sec .h h2{font-size:clamp(20px,4.6vw,27px);font-weight:900;color:var(--navy)}
+.card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:22px}
+/* フライト */
+.flight{background:linear-gradient(135deg,#fff 0%,#FDF3F8 100%);border:2px solid var(--pink);border-radius:20px;padding:26px 22px;text-align:center}
+.flight .t{display:inline-block;background:var(--grad);color:#fff;font-weight:800;font-size:15px;padding:7px 18px;border-radius:999px;letter-spacing:.08em}
+.flight .air{margin-top:14px;font-size:clamp(17px,4vw,21px);font-weight:900;color:var(--navy)}
+.flight .price{margin-top:4px;font-size:clamp(38px,9vw,58px);font-weight:900;color:var(--pink-deep);line-height:1.15}
+.flight .price small{font-size:.45em;font-weight:800}
+.flight .zei{font-size:13px;color:var(--gray);font-weight:700}
+.flight .pts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.flight .pt{background:#fff;border:2px solid var(--pink-soft);border-radius:999px;padding:7px 15px;font-size:13.5px;font-weight:700;color:var(--navy)}
+.flight .cap{margin-top:14px;font-size:12.5px;color:var(--gray)}
+/* できること */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.g .no{font-size:20px;font-weight:900;color:var(--pink)}
+.g h3{font-size:16.5px;font-weight:800;color:var(--navy);margin-top:4px}
+.g p{margin-top:8px;font-size:14px;color:var(--ink)}
+/* プラン */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.plan{background:#fff;border:2px solid var(--line);border-radius:18px;padding:22px 20px;text-align:center;position:relative}
+.plan.hot{border-color:var(--pink)}
+.plan .reco{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:12px;font-weight:800;padding:4px 14px;border-radius:999px;white-space:nowrap}
+.plan .nm{font-size:15px;font-weight:800;color:var(--pink-deep)}
+.plan .pr{margin-top:8px;font-size:40px;font-weight:900;color:var(--navy);line-height:1.1}
+.plan .pr small{font-size:16px;font-weight:800}
+.plan .yr{margin-top:2px;font-size:13px;color:var(--gray);font-weight:700}
+.plan ul{list-style:none;margin-top:14px;text-align:left}
+.plan li{font-size:13.5px;font-weight:700;color:var(--ink);padding:7px 0;border-top:1px solid #F0E4EC;display:flex;gap:8px}
+.plan li::before{content:"✓";color:var(--pink-deep);font-weight:900;flex:0 0 auto}
+.plan li.no{color:#B9C0CF}
+.plan li.no::before{content:"—";color:#D5DAE5}
+.note{margin-top:14px;font-size:12.5px;color:var(--gray)}
+/* オーナー制度 */
+.owner .big{font-size:clamp(18px,4.6vw,24px);font-weight:900;color:var(--navy);text-align:center}
+.owner .big span{color:var(--pink-deep)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+.step .n2{display:inline-block;background:var(--pink-soft);color:var(--pink-deep);font-weight:900;font-size:13px;border-radius:999px;padding:3px 12px}
+.step h3{font-size:16px;font-weight:800;color:var(--navy);margin-top:8px}
+.step p{margin-top:6px;font-size:13.5px}
+/* CTA */
+.cta{margin-top:52px;text-align:center;background:#fff;border:2px solid var(--line);border-radius:20px;padding:34px 20px}
+.cta .t{font-size:clamp(20px,5vw,28px);font-weight:900;color:var(--navy)}
+.cta .t span{color:var(--pink-deep)}
+.cta p{margin-top:10px;font-size:15px}
+.cta .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.cta a{text-decoration:none;font-weight:800;font-size:15px;border-radius:999px;padding:12px 26px}
+.cta .b1{background:var(--grad);color:#fff}
+.cta .b2{border:2px solid var(--navy);color:var(--navy);background:#fff}
+/* バグ報告 */
+#bugL{position:fixed;left:10px;bottom:10px;z-index:50;font-size:12px;color:#98A3B8;background:rgba(255,255,255,.85);border:1px solid #E1E7F0;border-radius:999px;padding:5px 12px;cursor:pointer}
+#bugM{position:fixed;inset:0;background:rgba(31,42,68,.45);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
+#bugM.on{display:flex}
+#bugM .bx{background:#fff;border-radius:16px;padding:22px;width:min(440px,94vw)}
+#bugM h3{font-size:16px;color:var(--navy);margin-bottom:12px}
+#bugM textarea{width:100%;height:110px;border:2px solid #E1E7F0;border-radius:10px;padding:10px;font-size:15px;font-family:inherit}
+#bugM .bb{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+#bugM button{border:none;border-radius:999px;padding:9px 20px;font-size:14px;font-weight:700;cursor:pointer}
+#bugM .c{background:#EEF2F8;color:var(--ink)}
+#bugM .s{background:var(--grad);color:#fff}
+#bugM .done{display:none;margin-top:10px;color:var(--pink-deep);font-weight:700;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="img/merone-logo.png" alt="Merone">
+    <a class="back" href="index.html">← 自己紹介資料にもどる</a>
+  </header>
+
+  <div class="hero">
+    <span class="badge">福利厚生・応援投資プラン</span>
+    <h1>Re:Well<span>（リウェル）</span></h1>
+    <div class="tag">｜わたしを生きる、選択肢。｜</div>
+    <p class="lead">税務・法務の専門家相談からベビーシッターまで、500の福利厚生をひとつのパッケージに。導入企業様の生徒さま・スタッフさまが、無期限でご利用いただけます。</p>
+  </div>
+
+  <div class="sec">
+    <div class="h"><span class="n">01</span><h2>フライトが、お安く取れます</h2></div>
+    <div class="flight">
+      <span class="t">Re:Wellビジネスパス｜移動コストをサポート</span>
+      <div class="air">JAL &amp; ANA　全国どこへでも一律料金</div>
+      <div class="price">片道 19,000<small>円〜</small></div>
+      <div class="zei">（税込20,900円）</div>
+      <div class="pts">
+        <span class="pt">前日・当日の予約OK</span>
+        <span class="pt">繁忙期でもOK</span>
+        <span class="pt">月4回（片道）まで</span>
+      </div>
+      <div class="cap">※空席があれば特別価格でチケットをご購入いただけます（「わたしを生きる」プランの特典です）</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="h"><span class="n">02</span><h2>Re:Wellでできること</h2></div>
+    <div class="grid4">
+      <div class="card g"><div class="no">A</div><h3>オーナーズクラブ</h3><p>隔月1回のオフ会・限定イベントへご招待。経営者同士のご縁がつながります。</p></div>
+      <div class="card g"><div class="no">B</div><h3>ビジネスパス</h3><p>実務・移動コストをサポート。JAL・ANAのフライト優待が使えます。</p></div>
+      <div class="card g"><div class="no">C</div><h3>ウェルビーイングパス</h3><p>会員制プラットフォーム「LUMINA」を自由に活用。専門家への無料相談も。</p></div>
+      <div class="card g"><div class="no">D</div><h3>コンテンツ掲載</h3><p>2万人以上のMerone経済圏に、貴社サービスを福利厚生コンテンツとして掲載・発信。</p></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="h"><span class="n">03</span><h2>応援投資プラン（3種）</h2></div>
+    <div class="plans">
+      <div class="plan">
+        <div class="nm">仲間とつながる</div>
+        <div class="pr">3<small>万円/月</small></div>
+        <div class="yr">36万円/年（税抜）</div>
+        <ul>
+          <li>オーナーズクラブ</li>
+          <li>Re:Wellへのコンテンツ掲載</li>
+          <li class="no">専門家への無料相談</li>
+          <li class="no">ウェルビーイングパス</li>
+          <li class="no">移動コストサポート</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <div class="nm">らしさ広がる</div>
+        <div class="pr">6<small>万円/月</small></div>
+        <div class="yr">72万円/年（税抜）</div>
+        <ul>
+          <li>オーナーズクラブ</li>
+          <li>Re:Wellへのコンテンツ掲載</li>
+          <li>専門家への無料相談</li>
+          <li>ウェルビーイングパス（1〜10人）</li>
+          <li class="no">移動コストサポート</li>
+        </ul>
+      </div>
+      <div class="plan hot">
+        <div class="reco">フライト優待つき</div>
+        <div class="nm">わたしを生きる</div>
+        <div class="pr">9<small>万円/月</small></div>
+        <div class="yr">108万円/年（税抜）</div>
+        <ul>
+          <li>オーナーズクラブ</li>
+          <li>Re:Wellへのコンテンツ掲載</li>
+          <li>専門家への無料相談</li>
+          <li>ウェルビーイングパス（11〜30人）</li>
+          <li>移動コストサポート（JAL・ANA優待）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">※すべて税抜価格です。別途、事務局運営費3,980円/月（税抜）を頂戴します。※「わたしを生きる」プラン以上の応援投資をご希望の方は、カスタマイズプランとして別途ご要望を承ります。</div>
+  </div>
+
+  <div class="sec">
+    <div class="h"><span class="n">04</span><h2>応援投資という考え方</h2></div>
+    <div class="card owner">
+      <div class="big">経営者なら誰でも応援できる、<br><span>会食1〜2回分</span>から応援投資を。</div>
+      <div class="steps">
+        <div class="card step"><span class="n2">たとえば</span><h3>100万円の応援</h3><p>社会起業家を応援するプロジェクトオーナー制度です。</p></div>
+        <div class="card step"><span class="n2">還元</span><h3>最大50%分の価値相当</h3><p>オーナーズプログラムとして還元。社長のお子さま・社員・お客様にも体験価値を届けられます。</p></div>
+        <div class="card step"><span class="n2">税負担</span><h3>損金算入で軽減</h3><p>会費等で会計処理した場合、損金算入により法人税の負担を軽減（最大33%※実際の税効果は企業ごとに異なります）。</p></div>
+      </div>
+      <p class="note">本活動は利益最大化を目的とせず、共助の仕組みとして透明性高く運営しています。参画する仲間は、顧客ではなく共創者です。</p>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="t">ご興味ある方は、<span>お声がけください！</span></div>
+    <p>プランのご相談も、資料のご請求も。その場でざっくばらんにお話しします。</p>
+    <div class="btns">
+      <a class="b1" href="https://merone.co.jp" target="_blank" rel="noopener">会社サイト・お問い合わせ</a>
+      <a class="b2" href="index.html">自己紹介資料にもどる</a>
+    </div>
+  </div>
+</div>
+
+<div id="bugL">不具合を報告</div>
+<div id="bugM"><div class="bx">
+  <h3>不具合・気になったことを教えてください</h3>
+  <textarea id="bugT" placeholder="例）スマホで表が切れて見えます（iPhone/Safari）"></textarea>
+  <div class="bb"><button class="c" id="bugC">閉じる</button><button class="s" id="bugS">送信する</button></div>
+  <div class="done" id="bugD">届きました。ありがとうございます。すぐ確認します。</div>
+</div></div>
+<script>
+(function(){
+var U="https://inrvprlyobghviklulcv.supabase.co/rest/v1/ailab_notes";
+var K="sb_publishable_ZrCNcsRHMci-l7Fns8QtIA_X22XZGJp";
+var M=document.getElementById("bugM");
+document.getElementById("bugL").onclick=function(){M.classList.add("on")};
+document.getElementById("bugC").onclick=function(){M.classList.remove("on");document.getElementById("bugD").style.display="none"};
+document.getElementById("bugS").onclick=function(){
+  var t=document.getElementById("bugT").value.trim();
+  if(!t){document.getElementById("bugT").focus();return}
+  var btn=this;btn.disabled=true;
+  fetch(U,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},
+    body:JSON.stringify({member_id:"bug_merone-profile",member_name:"Re:Well詳細",mood:"バグ報告",worry:t,want:location.href.slice(0,180)+" ／ "+navigator.userAgent.slice(0,140)})})
+    .then(function(){
+      document.getElementById("bugD").style.display="block";
+      document.getElementById("bugT").value="";btn.disabled=false;
+      setTimeout(function(){M.classList.remove("on");document.getElementById("bugD").style.display="none"},1800);
+    }).catch(function(){btn.disabled=false;alert("送信できませんでした。通信環境をご確認ください。")});
+};
+})();
+</script>
+</body>
+</html>

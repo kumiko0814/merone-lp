@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>物販の"当たり前"弾薬帳｜クローザー用トークガイド</title>
+<style>
+:root{
+  --bg:#fdf1f4; --bg2:#faf1f6; --pinkbg:#fbe7ef; --paper:#ffffff;
+  --plum:#574a58; --plum2:#463a48; --pink:#f0a2c5; --pinkd:#c66f96;
+  --blue:#8fbfe6; --blued:#5f97be; --ink:#4f454e; --sub:#9a8993; --line:#f3e3ec;
+  --gold:#d8a24a; --goldbg:#fbf1de; --mute:#6b5f68; --muteb:#f3eef1; --mutel:#e7dde4;
+  --grad:linear-gradient(135deg,#F5A6C8,#B98BEA);
+  --grad-r:linear-gradient(135deg,#F5A6C8,#C99BE8);
+  --grad-lav:linear-gradient(150deg,#C99BE8,#9E77D6);
+  --grad-blue:linear-gradient(135deg,#a9d0ef,#7fb2dd);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;}
+.page{
+  min-height:100vh;
+  background:linear-gradient(180deg,#fdf1f4 0%,#fbe9ee 55%,#f3f0f7 100%);
+  color:var(--ink);line-height:1.85;letter-spacing:.01em;
+  font-family:"Yu Gothic","YuGothic","游ゴシック","Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+  display:flex;justify-content:center;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.page img{max-width:100%;height:auto;}
+.app{width:100%;max-width:480px;position:relative;padding-bottom:40px;}
+
+/* header */
+.hud{display:flex;align-items:center;gap:10px;padding:13px 16px;background:var(--paper);
+  border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;
+  box-shadow:0 6px 18px -14px rgba(87,74,88,.35);}
+.hud .logo{font-weight:800;font-size:15px;color:var(--plum2);letter-spacing:.04em;}
+.hud .logo span{color:var(--pinkd);}
+.hud .who{margin-left:auto;font-size:10.5px;font-weight:800;color:#fff;background:var(--grad);
+  border-radius:999px;padding:6px 13px;letter-spacing:.04em;box-shadow:0 4px 12px rgba(185,139,234,.3);}
+
+/* hero */
+.hero{padding:18px 16px 4px;}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;
+  box-shadow:0 12px 28px -18px rgba(87,74,88,.35);}
+.hero .in{padding:20px 18px 16px;display:flex;gap:14px;align-items:flex-start;}
+.hero .ava{flex:none;width:66px;height:66px;border-radius:999px;overflow:hidden;
+  border:3px solid #fff;box-shadow:0 6px 16px rgba(198,111,150,.28);background:#fff;}
+.hero .ava img{width:100%;height:100%;object-fit:cover;}
+.hero .msg{flex:1;min-width:0;}
+.hero .name{font-size:15.5px;font-weight:800;color:var(--plum2);letter-spacing:.03em;line-height:1.5;}
+.hero .name i{font-style:normal;font-size:10.5px;color:#fff;background:var(--grad-lav);border-radius:999px;padding:2px 10px;margin-left:6px;vertical-align:2px;}
+.hero .msg p{font-size:12.5px;margin-top:7px;color:var(--ink);}
+.hero .from{font-size:10.5px;color:var(--sub);margin-top:7px;text-align:right;}
+
+/* how-to strip */
+.how{display:flex;gap:8px;padding:12px 16px 4px;}
+.how .f{flex:1;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 9px;text-align:center;
+  box-shadow:0 10px 22px -18px rgba(87,74,88,.35);}
+.how .n{width:24px;height:24px;margin:0 auto 6px;border-radius:999px;color:#fff;font-weight:800;font-size:12px;
+  display:flex;align-items:center;justify-content:center;background:var(--grad);}
+.how .f:nth-child(2) .n{background:var(--grad-r);}
+.how .f:nth-child(3) .n{background:var(--grad-lav);}
+.how b{display:block;font-size:11px;color:var(--plum2);line-height:1.5;}
+.how s{display:block;text-decoration:none;font-size:9px;color:var(--sub);margin-top:2px;}
+
+/* section header */
+.sec{padding:22px 16px 0;}
+.sec-h{display:flex;align-items:center;gap:9px;margin:4px 2px 10px;}
+.sec-h .ico{flex:none;width:32px;height:32px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;background:var(--pinkbg);}
+.sec-h .t b{display:block;font-size:14.5px;color:var(--plum2);letter-spacing:.03em;line-height:1.4;}
+.sec-h .t s{display:block;text-decoration:none;font-size:10.5px;color:var(--sub);font-weight:600;margin-top:1px;}
+
+/* ammo card */
+.ammo{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:15px 15px 14px;margin-top:10px;
+  box-shadow:0 12px 26px -20px rgba(87,74,88,.35);}
+.ammo-h{display:flex;align-items:flex-start;gap:8px;}
+.ammo-h b{flex:1;font-size:14px;font-weight:800;color:var(--plum2);line-height:1.55;}
+.pill{flex:none;font-size:9.5px;font-weight:800;letter-spacing:.03em;border-radius:999px;padding:3px 9px;white-space:nowrap;margin-top:1px;}
+.pill.fix{color:#fff;background:var(--grad);}
+.pill.exp{color:var(--blued);background:#eff6fc;border:1px solid #d5e8f6;}
+
+.say{display:flex;gap:7px;align-items:flex-start;margin-top:11px;background:var(--bg2);border:1px solid var(--line);
+  border-radius:12px;padding:9px 11px;}
+.say .lb{flex:none;font-size:9px;font-weight:800;color:var(--sub);letter-spacing:.08em;background:#fff;border:1px solid var(--line);
+  border-radius:7px;padding:2px 7px;margin-top:1px;}
+.say p{font-size:11.5px;color:var(--plum);line-height:1.7;}
+
+.fact{list-style:none;margin-top:11px;}
+.fact li{position:relative;padding-left:16px;font-size:12px;color:var(--ink);line-height:1.78;margin-top:6px;}
+.fact li::before{content:"";position:absolute;left:1px;top:.66em;width:7px;height:7px;border-radius:999px;background:var(--pink);}
+.fact li:first-child{margin-top:0;}
+
+.talk{margin-top:12px;border:1.5px solid var(--pink);border-radius:14px;background:#fffafc;padding:11px 13px;}
+.talk .l{font-size:9.5px;font-weight:800;letter-spacing:.18em;color:var(--pinkd);}
+.talk p{font-size:12.5px;color:var(--plum2);line-height:1.9;margin-top:5px;}
+.talk p + p{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);}
+.talk p .tag{display:inline-block;font-size:9px;font-weight:800;color:var(--pinkd);background:var(--pinkbg);border-radius:7px;padding:1px 7px;margin-right:6px;vertical-align:1px;letter-spacing:.04em;}
+
+.who{margin-top:10px;font-size:10.5px;font-weight:700;color:var(--blued);background:#f0f6fc;border:1px solid #dcebf7;
+  border-radius:10px;padding:6px 10px;display:inline-block;}
+.note{margin-top:9px;font-size:10px;color:var(--sub);line-height:1.7;padding-left:2px;}
+
+/* ===== 資料（図解）ラベル ===== */
+.res-h{display:flex;align-items:center;gap:7px;margin:2px 2px 9px;}
+.res-h .rl{font-size:9px;font-weight:800;letter-spacing:.14em;color:#fff;background:var(--grad-lav);border-radius:999px;padding:3px 11px;}
+.res-h b{font-size:13px;color:var(--plum2);letter-spacing:.02em;}
+.res-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:15px 14px 15px;margin-top:0;
+  box-shadow:0 12px 26px -20px rgba(87,74,88,.35);}
+.res-lead{font-size:11px;color:var(--mute);line-height:1.7;margin:-2px 2px 11px;}
+
+/* フェーズ */
+.phase{display:flex;flex-direction:column;gap:8px;}
+.ph{display:flex;gap:11px;align-items:flex-start;background:#fffdfe;border:1px solid var(--line);border-radius:14px;padding:12px 12px;}
+.ph .pn{flex:none;width:30px;height:30px;border-radius:10px;color:#fff;font-weight:800;font-size:14px;
+  display:flex;align-items:center;justify-content:center;background:var(--grad);}
+.ph:nth-child(2) .pn{background:var(--grad-r);}
+.ph:nth-child(3) .pn{background:var(--grad-lav);}
+.ph .tx{flex:1;min-width:0;}
+.ph .tx b{font-size:12.5px;color:var(--plum2);}
+.ph .tx b em{font-style:normal;font-size:10px;color:var(--sub);font-weight:700;margin-left:5px;}
+.ph .tx p{font-size:11px;color:var(--ink);margin-top:3px;line-height:1.7;}
+.ph .goal{font-size:9.5px;font-weight:800;color:var(--pinkd);background:var(--pinkbg);border-radius:8px;padding:2px 9px;margin-top:6px;display:inline-block;letter-spacing:.03em;}
+.ph .goal.b{color:var(--blued);background:#eff6fc;}
+
+/* カレンダー棒グラフ */
+.cal .bars{display:flex;align-items:flex-end;gap:3px;height:104px;padding:4px 0 0;}
+.cal .mo{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px;}
+.cal .mo .b{width:100%;border-radius:5px 5px 0 0;min-height:6px;}
+.cal .mo s{font-size:8px;color:var(--sub);text-decoration:none;font-weight:700;}
+.b.peak{background:var(--grad);}
+.b.next{background:var(--grad-lav);}
+.b.prep{background:var(--grad-blue);}
+.b.low{background:#ddd0d8;}
+.b.norm{background:#f2dbe7;}
+.cal .cnote{font-size:9.5px;color:var(--sub);margin-top:7px;text-align:center;}
+.cleg{display:flex;flex-wrap:wrap;gap:6px 10px;margin-top:9px;justify-content:center;}
+.cleg i{font-style:normal;font-size:9.5px;color:var(--plum);display:flex;align-items:center;gap:5px;font-weight:700;}
+.cleg i::before{content:"";width:11px;height:11px;border-radius:4px;}
+.cleg .lg-peak::before{background:var(--pink);}
+.cleg .lg-next::before{background:#b98bea;}
+.cleg .lg-prep::before{background:var(--blue);}
+.cleg .lg-low::before{background:#ddd0d8;}
+
+/* 資料スライド画像（くみこの完成スライドをそのまま掲載） */
+.slide{display:block;width:100%;border-radius:12px;border:1px solid var(--line);
+  box-shadow:0 8px 20px -14px rgba(87,74,88,.4);}
+.res-cap{font-size:10.5px;color:var(--sub);margin-top:8px;line-height:1.7;padding-left:2px;}
+.src{font-size:9px;color:var(--sub);text-align:right;margin-top:8px;}
+
+/* キャリアステップ */
+.career{display:flex;flex-direction:column;gap:8px;}
+.st{display:flex;gap:10px;align-items:flex-start;background:#fffdfe;border:1px solid var(--line);border-radius:14px;padding:11px 12px;}
+.st .k{flex:none;font-size:9px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--grad-lav);border-radius:999px;padding:3px 9px;margin-top:1px;}
+.st .tx b{font-size:12px;color:var(--plum2);}
+.st .tx p{font-size:10.5px;color:var(--ink);margin-top:2px;line-height:1.65;}
+.st.goal{border:1.5px solid var(--pink);background:#fffafc;}
+.st.goal .k{background:var(--grad);}
+.st.goal .tx b{color:var(--pinkd);}
+
+/* closing */
+.close{padding:22px 16px 4px;}
+.close .card{position:relative;overflow:hidden;text-align:center;padding:22px 18px 20px;}
+.close img{height:118px;width:auto;}
+.close b{display:block;font-size:14.5px;color:var(--plum2);margin-top:6px;letter-spacing:.03em;}
+.close p{font-size:12px;color:var(--ink);margin-top:6px;line-height:1.9;}
+.close .from{font-size:10.5px;color:var(--sub);margin-top:8px;}
+
+footer{text-align:center;padding:26px 16px 30px;}
+footer .logo{font-weight:800;font-size:13px;color:var(--plum2);letter-spacing:.06em;}
+footer .logo span{color:var(--pinkd);}
+footer p{font-size:10px;color:var(--sub);margin-top:6px;line-height:1.7;}
+</style>
+
+<div class="page">
+<div class="app">
+
+  <div class="hud">
+    <div class="logo">Re:<span>che</span> ｜ クローザー用</div>
+    <div class="who">社内トークガイド</div>
+  </div>
+
+  <div class="hero">
+    <div class="card">
+      <div class="in">
+        <div class="ava"><img src="kumiko-head-avatar.png" alt="森川くみこ"></div>
+        <div class="msg">
+          <div class="name">物販の“当たり前”弾薬帳<i>v2</i></div>
+          <p>私の中で当たり前になりすぎて、伝え忘れていた物販の常識をまとめました。物販の経験がないと知りようがないけれど、知っていれば強いプッシュ材料になるものばかりです。「お客様の一言 → 事実 → そのまま言える一言」で引ける形にして、くみこの資料スライドもそのまま掲載しています。面談前にサッと開いてくださいね。</p>
+          <p class="from">森川くみこ ＆ AIチーム</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="how">
+    <div class="f"><div class="n">1</div><b>一言を探す</b><s>お客様のセリフ</s></div>
+    <div class="f"><div class="n">2</div><b>事実を入れる</b><s>図解で理解</s></div>
+    <div class="f"><div class="n">3</div><b>そのまま言う</b><s>ピンクの枠</s></div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec">
+    <div class="sec-h">
+      <div class="ico">🗓️</div>
+      <div class="t"><b>タイミングの常識</b><s>いちばん効く。始める時期の逆算</s></div>
+    </div>
+
+    <!-- 資料：3フェーズ -->
+    <div class="res-card">
+      <div class="res-h"><span class="rl">資料</span><b>物販は「3つのフェーズ」でできている</b></div>
+      <p class="res-lead">いきなり利益は出ない。この順番を知っているだけで、「今やること」がブレなくなります。</p>
+      <div class="phase">
+        <div class="ph">
+          <div class="pn">1</div>
+          <div class="tx">
+            <b>評価を貯める<em>PHASE 1</em></b>
+            <p>まずは評価100までが「評価フェーズ」。評価がないと、そもそも買おうと思ってもらえません。自己流で増やそうとせず、最初は利益が取れなくても、とにかく販売して評価100以上をつくります。</p>
+            <span class="goal">目標：評価 100 まで</span>
+          </div>
+        </div>
+        <div class="ph">
+          <div class="pn">2</div>
+          <div class="tx">
+            <b>たくさん販売していく<em>PHASE 2</em></b>
+            <p>評価が100貯まったら、少しずつ仕入れをして扱える単価を上げます。最初からブランド品は扱えないので、アパレル品や自分の不要品を混ぜて売っていきます。</p>
+            <span class="goal b">目標：扱う単価を上げる</span>
+          </div>
+        </div>
+        <div class="ph">
+          <div class="pn">3</div>
+          <div class="tx">
+            <b>量より質・仕組み化<em>PHASE 3</em></b>
+            <p>ブランド品を取り入れます。週に3〜4回の作業でも、1個売れれば高い単価の利益が出るので、出品の労力をかけずに月5〜10万円の利益をつくれます。</p>
+            <span class="goal">到達：月 5〜10万円の利益</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>スタートは“逆算”。9〜10月の準備が12〜1月の利益になる</b><span class="pill fix">くみこ確定</span></div>
+      <div class="say"><span class="lb">お客様</span><p>「落ち着いてから、12月に始めたいです」</p></div>
+      <ul class="fact">
+        <li>年間で一番売れるのは<b>11月中旬〜1月後半</b>（最需要の3ヶ月）。ただし11月・12月からいきなり売れるわけではない</li>
+        <li>8〜9月に秋物を少しずつ並べ、10月に売れ始めて利益が出始める。メルカリは<b>“売れ始めているアカウント”をさらにブーストする</b>性質があるので、9〜10月の準備が12〜1月の大きな利益になる（最需要期は通常月の約1.5倍）</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「12月は一番売れる月です。でも12月に始めても、“売れ始めているアカウント”になっていないと、その波には乗れません。9月10月に準備した人だけが、12月1月で一気に伸びます。だから“今”なんです」</p>
+      </div>
+      <div class="who">効く相手：計画性・逆算思考の方（Li-Li層にドンピシャ）</div>
+    </article>
+
+    <!-- 資料：年間カレンダー -->
+    <div class="res-card" style="margin-top:10px;">
+      <div class="res-h"><span class="rl">資料</span><b>1年の「売れ方」カレンダー</b></div>
+      <div class="cal">
+        <div class="bars">
+          <div class="mo"><div class="b peak" style="height:96%"></div><s>1</s></div>
+          <div class="mo"><div class="b low" style="height:26%"></div><s>2</s></div>
+          <div class="mo"><div class="b next" style="height:70%"></div><s>3</s></div>
+          <div class="mo"><div class="b next" style="height:60%"></div><s>4</s></div>
+          <div class="mo"><div class="b norm" style="height:40%"></div><s>5</s></div>
+          <div class="mo"><div class="b norm" style="height:40%"></div><s>6</s></div>
+          <div class="mo"><div class="b norm" style="height:38%"></div><s>7</s></div>
+          <div class="mo"><div class="b low" style="height:24%"></div><s>8</s></div>
+          <div class="mo"><div class="b prep" style="height:52%"></div><s>9</s></div>
+          <div class="mo"><div class="b prep" style="height:74%"></div><s>10</s></div>
+          <div class="mo"><div class="b peak" style="height:88%"></div><s>11</s></div>
+          <div class="mo"><div class="b peak" style="height:100%"></div><s>12</s></div>
+        </div>
+        <div class="cleg">
+          <i class="lg-peak">最需要（11月中旬〜1月）</i>
+          <i class="lg-next">次に売れる（3〜4月）</i>
+          <i class="lg-prep">仕込み・売れ始め（9〜10月）</i>
+          <i class="lg-low">閑散＝準備（2月・8月）</i>
+        </div>
+        <p class="cnote">※縦棒の高さ＝その月の売れやすさのイメージ</p>
+      </div>
+    </div>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>閑散期の2月・8月は“準備期間”</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「今って売れない時期ですよね？始めても遅くないですか？」</p></div>
+      <ul class="fact">
+        <li>どんなに頑張っても売れにくいのは<b>2月と8月</b>。でも「不利」ではなく「準備期間」と捉える</li>
+        <li>2月 → 3〜4月（年末の次に売れる時期）に向けて仕込む。8月 → 10月以降のブースト期に向けて、評価貯め・仕入れの準備に充てる</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「2月と8月は、実は“仕込みの月”です。ここで評価と在庫を整えた人が、次の山でそのまま伸びます。売れない時期こそ、準備した人が差をつけるんです」</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec">
+    <div class="sec-h">
+      <div class="ico">⚖️</div>
+      <div class="t"><b>これは“転売”じゃない</b><s>通常物販との決定的な違い</s></div>
+    </div>
+
+    <!-- 資料：通常の転売 -->
+    <div class="res-card">
+      <div class="res-h"><span class="rl">資料</span><b>まず「通常の転売」とは</b></div>
+      <img class="slide" src="shiryo-tsujo-tenbai.png" alt="通常の転売：他サイトや店舗で安く仕入れ、相場の価格差で売るビジネスモデル。リサーチに一番時間がかかり、利益率10〜30%">
+      <p class="res-cap">世間の“転売”＝安く仕入れて価格差で売るモデル。リサーチに一番時間がかかり、利益率は10〜30%。この図を見せてから「うちは違う」に繋ぐと効きます。</p>
+    </div>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>“リスクが高い物販”は新品転売のこと</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「物販ってリスク高いんでしょう？」</p></div>
+      <ul class="fact">
+        <li>リスクが高いのは<b>新品転売</b>。仕入れ単価が高く（例：Switch 1台 約3.2万円、10台で32万円）、売れ残れば即赤字になる</li>
+        <li>中国輸入・アパレルせどりも、リサーチに1日2〜5時間かかり、しかも売れる保証がない（リサーチ期間の収入はゼロ）</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「“リスクが高い物販”はたしかにあります。上の図のような新品転売や中国輸入がそれです。でもうちは、焼却予定の商品をメーカーや卸から仕入れる中古の物販。仕組みがまったく違うんです」</p>
+      </div>
+    </article>
+
+    <!-- 資料：弊社の場合 -->
+    <div class="res-card" style="margin-top:10px;">
+      <div class="res-h"><span class="rl">資料</span><b>Re:che の場合（弊社の仕組み）</b></div>
+      <img class="slide" src="shiryo-heisha.png" alt="弊社の場合：卸やメーカーと独占契約・格安で卸してもらい、在宅バイヤーが焼却予定のアパレル・ブランド品をメーカーや卸から買い取る。高品質を格安で仕入れ、在宅で安定した収益">
+      <p class="res-cap">卸・メーカーと独占契約で格安仕入れ → 在宅バイヤーが焼却予定のアパレル・ブランド品を買い取り、必要な人へ。「格安で仕入れ、実売相場より高く売らなくていい」がひと目で伝わります。</p>
+    </div>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>これは“転売”ではなく、社会貢献</b><span class="pill exp">対・反論</span></div>
+      <div class="say"><span class="lb">お客様</span><p>「それって、結局“転売”ですよね？」</p></div>
+      <ul class="fact">
+        <li>世間がイメージする“転売”＝人気商品の買い占め・高値転売（悪質な一部）で、需要と供給のバランスを崩すもの</li>
+        <li>Re:cheは真逆。焼却予定のアパレル・ブランド品をメーカーや卸から買い取り、必要な人に循環させる。廃棄とCO2を減らす、メーカーも喜ぶサステナブルな仕組み</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「買い占めて高く売る“転売”とは正反対です。うちは、捨てられる予定だった良い物を、必要な人に届ける仕組み。むしろ廃棄を減らす社会貢献なんです」</p>
+      </div>
+    </article>
+
+    <!-- 資料：NOT転売・CO2 -->
+    <div class="res-card" style="margin-top:10px;">
+      <div class="res-h"><span class="rl">資料</span><b>NOT転売 ＝ CO2削減・社会貢献</b></div>
+      <img class="slide" src="shiryo-not-tenbai.png" alt="服一着が廃棄・焼却されなければ約0.5kgのCO2が削減。月間大量廃棄されるアパレルは不要品販売によってCO2削減になり社会貢献になる。NOT転売。メーカーも喜ぶサステナブルな循環が物販の本質">
+      <p class="res-cap">服1着で約0.5kgのCO2削減（環境省）。個人バイヤーがアパレル廃棄の鍵＝サステナブルな循環こそ物販の本質。「NOT転売」を一枚で言い切れます。</p>
+    </div>
+
+    <!-- 資料：廃棄の現実 -->
+    <div class="res-card" style="margin-top:10px;">
+      <div class="res-h"><span class="rl">資料</span><b>“廃棄”の現実</b></div>
+      <img class="slide" src="shiryo-haiki.png" alt="通常の場合：1日あたり1300トン、月間2億円あたりの焼却廃棄（環境省ホームページ参照）">
+      <p class="res-cap">1日あたり1,300トン・月間2億円ぶんが焼却廃棄（環境省）。この“もったいない”がRe:cheの仕入れ源になっている、と繋げられます。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec">
+    <div class="sec-h">
+      <div class="ico">💰</div>
+      <div class="t"><b>お金・税金の常識</b><s>リテラシーの高い方に刺さる</s></div>
+    </div>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>講座費も仕入れも“経費”になる</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「講座にお金をかける余裕が…」</p></div>
+      <ul class="fact">
+        <li>物販は事業として、仕入れ・送料・梱包材・手数料・通信費、そして講座費用まで経費に計上できる</li>
+        <li>タイミングで刺さる言い方が変わる（下の2パターン）</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p><span class="tag">年末が近い時期</span>「確定申告が近くて余裕がない時期こそ、一番売れる年末に売上を立てておきましょう。経費と合わせて、還付率を高められます」</p>
+        <p><span class="tag">申告直後（4〜5月）</span>「今から年末に向けてマイペースに売上を立てれば、年間100万円弱でも“売上ゼロ”より還付率が圧倒的に高くなります。だから、始めるなら今がベストです」</p>
+      </div>
+      <div class="who">効く相手：会社員・確定申告を意識している方</div>
+      <div class="note">※申告の要否・控除額は人により変わります。断言はせず「詳しくはご自身の状況次第」と添える／Re:cheは専用LINEで税務の無料相談ができる点も材料に。</div>
+    </article>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>有在庫は“リスク”じゃなく“財産”</b><span class="pill exp">誤解を解く</span></div>
+      <div class="say"><span class="lb">お客様</span><p>「在庫を抱えるのが怖いです」</p></div>
+      <ul class="fact">
+        <li>仕入れた在庫は資産。経費として計上すれば、確定申告で還付されて戻ってくる。むしろ在庫という“財産”を持つことで還付率が上がる</li>
+        <li>現金化したければ弊社（リセマネ）に送れば、最低でも資金になる。“売れなくて1円にもならない”にはならない仕組み</li>
+        <li>無在庫で利益率5%のために1日2時間・30品リサーチ出品するより、家で写真を撮って3品出す方が中長期は楽。物があるからこそ外注化もできる</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「在庫はリスクではなく“財産”です。経費として申告すれば戻ってきますし、現金化したいときは弊社で買い取れます。“売れなくてゼロ”にはならない仕組みなんです」</p>
+      </div>
+    </article>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>手持ちの不要品＝初期投資ほぼゼロで始められる</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「仕入れにお金が要るのが怖いです」</p></div>
+      <ul class="fact">
+        <li>最初は家にある不要品からスタートできる。仕入れゼロで、出品→発送→評価の流れを一周体験できる（PHASE 1にそのまま使える）</li>
+        <li>“売れる感覚”を掴んでから、少額の仕入れに進める</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「いきなり仕入れにお金を使う必要はありません。まずはお家の不要品から。初期投資ほぼゼロで“売れる体験”を一周できます」</p>
+      </div>
+      <div class="who">効く相手：金銭リスクが不安な方</div>
+    </article>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>投資と相性がいい（非課税で入金力が上がる）</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「将来のために、お金を増やしたいんです」</p></div>
+      <ul class="fact">
+        <li>短期の収入を増やす＝投資の“入金力”が上がるということ</li>
+        <li>自分の不要品販売なら、その売却益は原則非課税で手元に増やせる。NISAなどの元手に回せる</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「物販は投資とも相性がいいんです。まず不要品販売で元手をつくる。ここは原則非課税なので、NISAなどの“入金力”を上げる近道になります」</p>
+      </div>
+      <div class="note">※非課税は生活用の不要品売却が対象。事業としての仕入れ販売分は課税対象（経費計上で調整）。断言せず「原則」と添える。</div>
+    </article>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="sec">
+    <div class="sec-h">
+      <div class="ico">📈</div>
+      <div class="t"><b>“すぐ売れない”の構造</b><s>不安を「正しいやり方がある」に変える</s></div>
+    </div>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>出品数＝母数の法則</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「出しても売れなかったらどうしよう」</p></div>
+      <ul class="fact">
+        <li>売上は“出品数”にほぼ比例する。在庫が多いほど露出が増え、売れる確率が上がる</li>
+        <li>1点あたりの巧拙より、まず母数。“売れない”の多くは、出品数が足りないだけ</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「“売れない”の多くは、実は出品数が足りないだけなんです。だから最初は数を出す仕組みから作ります。ここは自己流ではなく、正しいやり方があります」</p>
+      </div>
+    </article>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>アカウントは“育てる”もの</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「初心者だと不利じゃないですか？」</p></div>
+      <ul class="fact">
+        <li>販売実績と評価が増えるほど、検索で上位に出やすく、信頼されて売れやすくなる（メルカリのブースト性質そのもの）</li>
+        <li>だから後半ほど楽に加速する。今日の1件が、3ヶ月後の“売れやすさ”になって返る</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「アカウントは育てるほど有利になります。最初は誰でもゼロからですが、今日の1件が3ヶ月後の“売れやすさ”になって返ってきます」</p>
+      </div>
+    </article>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>値段は“定価”じゃなく“実売相場”で決まる</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「値付けって難しそう／勘ですよね？」</p></div>
+      <ul class="fact">
+        <li>値付けの主役は定価ではなく「今いくらで売れているか」。売り切れ実績を見て相場で出すのが基本</li>
+        <li>高めに出して交渉で下げるのも当たり前。相場を読めると赤字がぐっと減る</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「値付けは勘ではなく、“今いくらで売れているか”を見て決めます。この相場の読み方が分かると、赤字がぐっと減ります。ここも学べば身につきます」</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="sec">
+    <div class="sec-h">
+      <div class="ico">🧭</div>
+      <div class="t"><b>収入の“性質”の常識</b><s>他の在宅ワークと迷う方に</s></div>
+    </div>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>物販は“自分だけのATM”になる</b><span class="pill fix">くみこの言葉</span></div>
+      <div class="say"><span class="lb">お客様</span><p>「忙しくて時間が取れないかも…」</p></div>
+      <ul class="fact">
+        <li>一見、労働集約型に見えるが、出品した物が売れれば、自分が動いていなくても収入になる</li>
+        <li>寝ている間にも売れて、朝に発送するだけ。働き続けなくても収入を生む“箱”になる</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「物販は“自分だけのATM”になります。出品さえしておけば、寝ている間に売れて、朝に発送するだけ。自分が動き続けなくても、収入が積み上がる仕組みです」</p>
+      </div>
+    </article>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>“目利き”は一度身につくと一生効く</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「流行りものの副業って、続くんですか？」</p></div>
+      <ul class="fact">
+        <li>リユースは1点ものが中心。相場と真贋を読む“目利き”は、一度身につくとどのプラットフォームでも長く使える</li>
+        <li>流行り廃りに左右されにくいスキルが手元に残る</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「一度身につけた“目利き”は、どこで売っても一生使えるスキルです。流行りで消える副業とは、そこが根本的に違います」</p>
+      </div>
+    </article>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>プロは「10〜1月だけ」で年商2,000万円も</b><span class="pill exp">実例</span></div>
+      <div class="say"><span class="lb">お客様</span><p>「本当に、そんなに伸びるんですか？」</p></div>
+      <ul class="fact">
+        <li>物販のプロには、1年のうち10月〜1月だけ動いて、年商2,000万円規模の売上をつくる女性プレイヤーもいる</li>
+        <li>最需要期に集中すれば、少ない作業月でも大きな成果が出る</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「プロの中には、10月から1月の4ヶ月だけ動いて、年商2,000万円をつくる女性もいます。“ずっと働き続ける”のではなく、“売れる時期に集中する”のがこの仕事です」</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="sec">
+    <div class="sec-h">
+      <div class="ico">🎯</div>
+      <div class="t"><b>キャリアの常識</b><s>「副業止まり」の不安に効く</s></div>
+    </div>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>EC運営は“国が注目”の資産スキル</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「副業で終わってしまいそうで…」</p></div>
+      <ul class="fact">
+        <li>ECサイト運営は、厚生労働省やIndeedの求人でも長期的に人気で、リスキリング支援の対象領域として国も後押ししている</li>
+        <li>AIに代替されにくい職種としても注目。やった分が“キャリア”として残る</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「これは副業で終わりません。EC運営は国が後押ししていて、AIにも代替されにくいスキルです。やった分が、そのまま“キャリア”として残ります」</p>
+      </div>
+      <div class="note">※補助金・支援制度は年度や条件で変わります。「対象になり得る領域」として案内し、断言はしない。</div>
+    </article>
+
+    <!-- 資料：キャリアの2ステップ -->
+    <div class="res-card" style="margin-top:10px;">
+      <div class="res-h"><span class="rl">資料</span><b>“職務経歴書に書ける”までの2ステップ</b></div>
+      <div class="career">
+        <div class="st">
+          <span class="k">FIRST</span>
+          <div class="tx"><b>通常のメルカリに出品</b><p>まずは練習として、ここが絶対に大事。売れる感覚と評価をつくる。</p></div>
+        </div>
+        <div class="st">
+          <span class="k">SECOND</span>
+          <div class="tx"><b>メルカリShops のアカウント運営</b><p>ここから“EC運営”の実績に。弊社の内部スタッフがしっかりサポートします。</p></div>
+        </div>
+        <div class="st goal">
+          <span class="k">GOAL</span>
+          <div class="tx"><b>職務経歴書にこう書ける</b><p>「ECサイトの運用経験あり／月商10万円を達成」。再就職・キャリアチェンジにそのまま効く。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <article class="ammo">
+      <div class="ammo-h"><b>まずは「メルカリShops開設」から</b></div>
+      <div class="say"><span class="lb">お客様</span><p>「今の仕事の先が、少し不安で…」</p></div>
+      <ul class="fact">
+        <li>EC運営は国自体が注目しており、AIに代替されにくい仕事だからこそ、今まさに求められている</li>
+        <li>目先の売上だけでなく、将来のキャリアアップ・キャリアチェンジにも役立つ</li>
+      </ul>
+      <div class="talk">
+        <div class="l">そのまま言える一言</div>
+        <p>「まずはメルカリShopsを開設してみましょう。ここは内部スタッフがサポートします。目先の売上だけでなく、将来のキャリアにも残る一歩になります」</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="close">
+    <div class="card">
+      <img src="kumiko-pink-peace.png" alt="森川くみこ">
+      <b>弾は、どんどん増やせます</b>
+      <p>現場で「この一言が効いた」があれば教えてください。<br>みんなの実戦から、この弾薬帳を育てていきましょう✨</p>
+      <p class="from">森川くみこ ＆ AIチーム｜Merone</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="logo">Re:<span>che</span> ｜ Merone</div>
+    <p>社内クローザー向け・トークガイド（v2）<br>お客様への提示資料ではありません。取り扱いにご注意ください。</p>
+  </footer>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>個別面談フィードバック｜8/24</title>
+<style>
+  :root{
+    --peri:#7D91C5; --violet:#967FC3; --deep:#6E63A6;
+    --pink:#E2AFD6; --blue:#A9B6E6; --olive:#C3AF88;
+    --bg:#F5F3FB; --ink:#3A3742; --card:#FFFFFF; --soft:#EDE9F7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    font-family:"Hiragino Maru Gothic ProN","BIZ UDGothic","Yu Gothic",sans-serif;
+    background:var(--bg); color:var(--ink);
+    line-height:1.9; font-size:15.5px;
+    overflow-wrap:break-word;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 18px 70px;}
+  h1,h2,h3{word-break:auto-phrase;line-height:1.5;}
+
+  /* header */
+  header{padding:44px 0 10px;text-align:center;}
+  .dots{display:flex;justify-content:center;gap:8px;margin-bottom:16px;}
+  .dots span{width:10px;height:10px;border-radius:50%;}
+  .dots span:nth-child(1){background:var(--pink);}
+  .dots span:nth-child(2){background:var(--blue);}
+  .dots span:nth-child(3){background:var(--olive);}
+  .eyebrow{font-size:12.5px;letter-spacing:.18em;color:var(--deep);font-weight:600;}
+  h1{font-size:24px;color:var(--deep);margin:10px 0 14px;font-weight:700;}
+  .meta{font-size:12.5px;color:#7A7488;line-height:1.8;}
+  .meta b{color:var(--deep);font-weight:600;}
+  .from{display:inline-block;margin-top:14px;font-size:12.5px;color:#fff;
+    background:linear-gradient(135deg,var(--peri),var(--violet));
+    padding:5px 18px;border-radius:999px;}
+
+  /* section base */
+  section{margin-top:34px;}
+  .sec-label{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .sec-label .bar{width:26px;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--pink),var(--blue));flex:none;}
+  .sec-label h2{font-size:18.5px;color:var(--deep);}
+  .card{background:var(--card);border-radius:18px;padding:22px 20px;
+    box-shadow:0 4px 18px rgba(110,99,166,.08);}
+  .card + .card{margin-top:14px;}
+  .note{font-size:12.5px;color:#8A8496;margin-top:10px;line-height:1.7;}
+
+  /* 総評 */
+  .lead{border-top:5px solid var(--peri);}
+  .lead p{margin-top:10px;}
+  .lead p:first-child{margin-top:0;}
+  .lead .point{color:var(--deep);font-weight:700;}
+
+  /* timeline */
+  .tl{margin-top:18px;}
+  .tl-bar{display:flex;height:16px;border-radius:8px;overflow:hidden;}
+  .tl-bar i{display:block;height:100%;}
+  .tl-list{list-style:none;margin-top:12px;font-size:12.5px;color:#6E6880;}
+  .tl-list li{display:flex;align-items:center;gap:8px;margin-top:5px;}
+  .tl-list .sw{width:11px;height:11px;border-radius:3px;flex:none;}
+  .tl-list .good{color:var(--deep);font-weight:600;margin-left:auto;flex:none;}
+  .tl-list .bad{color:#C4699F;font-weight:700;margin-left:auto;flex:none;}
+
+  /* 概要 grid */
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:560px){.facts{grid-template-columns:1fr;}}
+  .fact{background:var(--card);border-radius:14px;padding:16px;
+    box-shadow:0 3px 12px rgba(110,99,166,.07);}
+  .fact .t{font-size:11.5px;color:var(--violet);font-weight:700;letter-spacing:.08em;}
+  .fact .v{font-size:13.5px;margin-top:6px;line-height:1.75;}
+
+  /* 良かった点 */
+  .good-list{list-style:none;}
+  .good-list li{display:flex;gap:12px;padding:11px 0;border-bottom:1px dashed #E3DFF0;font-size:14px;}
+  .good-list li:last-child{border-bottom:none;}
+  .good-list .ic{flex:none;width:22px;height:22px;border-radius:50%;
+    background:var(--olive);color:#fff;font-size:13px;line-height:22px;text-align:center;margin-top:4px;}
+
+  /* 敗因カード */
+  .why .card{border-top:5px solid var(--violet);padding-top:20px;}
+  .why-head{display:flex;align-items:flex-start;gap:12px;}
+  .why-num{flex:none;width:34px;height:34px;border-radius:50%;color:#fff;
+    background:linear-gradient(135deg,var(--peri),var(--violet));
+    font-weight:700;font-size:16px;line-height:34px;text-align:center;margin-top:2px;}
+  .why-head h3{font-size:16.5px;color:var(--deep);}
+  .quote{background:var(--soft);border-left:4px solid var(--violet);
+    border-radius:0 12px 12px 0;padding:12px 14px;margin:14px 0 0;font-size:13.5px;line-height:1.85;}
+  .quote .who{display:block;font-size:11px;color:var(--violet);font-weight:700;margin-bottom:2px;letter-spacing:.06em;}
+  .quote + .quote{margin-top:8px;}
+  .why p.body{margin-top:14px;font-size:14px;}
+  .ba{margin-top:14px;display:flex;flex-direction:column;gap:8px;}
+  .ba .row{border-radius:12px;padding:10px 14px;font-size:13.5px;line-height:1.8;}
+  .ba .before{background:#F1EFF6;color:#77718A;}
+  .ba .after{background:linear-gradient(135deg,#EEF1FA,#F3EDF8);border:1.5px solid var(--peri);color:var(--ink);}
+  .ba .tag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:6px;padding:1px 8px;margin-right:8px;vertical-align:1px;}
+  .ba .before .tag{background:#D8D4E4;color:#5F5975;}
+  .ba .after .tag{background:var(--peri);color:#fff;}
+
+  /* 仮説 */
+  .hyp .card{padding:18px 20px;}
+  .hyp-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .hyp-head h3{font-size:15px;color:var(--ink);}
+  .verdict{flex:none;font-size:11.5px;font-weight:700;color:#fff;border-radius:999px;padding:3px 12px;}
+  .v-yes{background:var(--peri);}
+  .v-half{background:var(--olive);}
+  .v-no{background:var(--pink);color:#8A4E76;}
+  .hyp p{margin-top:8px;font-size:13.5px;}
+
+  /* 次の一手 */
+  .next .card{border-top:5px solid var(--olive);}
+  .next h3{font-size:16px;color:var(--deep);display:flex;align-items:center;gap:10px;}
+  .next h3 .abc{flex:none;width:26px;height:26px;border-radius:8px;background:var(--olive);
+    color:#fff;font-size:13px;line-height:26px;text-align:center;font-weight:700;}
+  .steps{list-style:none;margin-top:12px;}
+  .steps li{position:relative;padding:0 0 14px 26px;font-size:13.8px;}
+  .steps li::before{content:"";position:absolute;left:7px;top:9px;width:9px;height:9px;
+    border-radius:50%;background:var(--blue);}
+  .steps li::after{content:"";position:absolute;left:11px;top:22px;bottom:-2px;width:1.5px;background:#DDD8EC;}
+  .steps li:last-child{padding-bottom:0;}
+  .steps li:last-child::after{display:none;}
+  .steps b{color:var(--deep);}
+  .plain{margin-top:12px;font-size:13.8px;}
+  .plain b{color:var(--deep);}
+
+  footer{margin-top:50px;text-align:center;font-size:12px;color:#8A8496;line-height:2;}
+  footer .sig{color:var(--deep);font-weight:700;font-size:13px;}
+  .wheat{color:var(--olive);letter-spacing:.3em;margin-bottom:6px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="dots"><span></span><span></span><span></span></div>
+  <p class="eyebrow">lilisコンサル 個別面談 フィードバックレポート</p>
+  <h1>面談の質は高い。<br>決め手は「最後の7分」と<br>台本の外側にありました</h1>
+  <p class="meta">2026年8月24日(月)実施 ｜ famm経由のお客さまY様 ｜ <b>録画約105分を全文確認のうえ分析</b></p>
+  <span class="from">株式会社Merone 森川くみこ</span>
+</header>
+
+<section>
+  <div class="card lead">
+    <p>結論からお伝えします。<span class="point">この面談の完成度は非常に高いです。</span>いただいた台本の再現度は95%、信頼関係づくりは教科書にしたいレベルでした。</p>
+    <p>それでも決まらなかった要因は、担当の川井さんの力量ではなく、<span class="point">クロージング最後の7分の進め方と、台本の外側にある4つの構造</span>に集中しています。つまり、台本に4つの装置を足せば再現性をもって改善できる、というのが弊社の見立てです。</p>
+    <div class="tl">
+      <div class="tl-bar">
+        <i style="width:28%;background:#B9C4E4;"></i><i style="width:26%;background:#A7B0DC;"></i><i style="width:24%;background:#9C93CD;"></i><i style="width:14%;background:#8E82C0;"></i><i style="width:8%;background:var(--pink);"></i>
+      </div>
+      <ul class="tl-list">
+        <li><span class="sw" style="background:#B9C4E4;"></span>0〜30分 関係づくり・ヒアリング<span class="good">高水準</span></li>
+        <li><span class="sw" style="background:#A7B0DC;"></span>30〜60分 相場の分解・営業タイプ診断<span class="good">高水準</span></li>
+        <li><span class="sw" style="background:#9C93CD;"></span>60〜85分 サポート説明<span class="good">高水準</span></li>
+        <li><span class="sw" style="background:#8E82C0;"></span>85〜98分 料金・不安の深掘り<span class="good">惜しい</span></li>
+        <li><span class="sw" style="background:var(--pink);"></span>98〜105分 クロージング<span class="bad">ここで決着</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label"><span class="bar"></span><h2>面談の概要</h2></div>
+  <div class="facts">
+    <div class="fact"><p class="t">お客さま（Y様）</p><p class="v">元美容師・専業主婦・お子さま3人（末のお子さまは自宅保育）・famm 2026年5月期卒</p></div>
+    <div class="fact"><p class="t">お金の決まり方</p><p class="v">ご主人（建設業の経営者）が家計を管理。扶養内でいてほしいというご意向</p></div>
+    <div class="fact"><p class="t">Y様の目標</p><p class="v">扶養内で月5万円・来年春まで・平日2〜3時間の作業時間</p></div>
+    <div class="fact"><p class="t">結果</p><p class="v">見送り。「独学でポートフォリオを完成させてみます」で着地し、10月末に30分のフォロー面談を約束</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-label"><span class="bar"></span><h2>先に、良かった点</h2></div>
+  <div class="card">
+    <ul class="good-list">
+      <li><span class="ic">✓</span><span>冒頭の温度確認、面談の立て付けの共有が台本どおり丁寧に機能</span></li>
+      <li><span class="ic">✓</span><span>川井さんご自身がfamm卒→lilis卒。境遇が鏡写しで、共感の質と説得力が非常に高い</span></li>
+      <li><span class="ic">✓</span><span>単価相場×使える時間で月5万円への道筋を分解。Y様も「イメージわきました」と明言</span></li>
+      <li><span class="ic">✓</span><span>営業タイプ診断から「慎重・心配症・守りに入りやすい」という本音まで到達</span></li>
+      <li><span class="ic">✓</span><span>月1万円弱の分割まで具体化し、休会制度の案内など金額のハードル下げも実行</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="why">
+  <div class="sec-label"><span class="bar"></span><h2>それでも決まらなかった理由 4つ</h2></div>
+
+  <div class="card">
+    <div class="why-head"><span class="why-num">1</span><h3>決裁者であるご主人への備えがなかった</h3></div>
+    <div class="quote"><span class="who">Y様（面談序盤）</span>「（ご主人が）そういうのができるようになったら、会社のホームページ頼んでみようかな、とは最初言ってくれてた」</div>
+    <p class="body">家計はご主人が管理し、扶養内のご意向。この構造では、ご本人がその場で決めることは最初からほぼ不可能でした。序盤にご主人を動かす最大の材料（会社ホームページの内製化＝外注費の削減）が出ていたのに、話題は流れ、最後は「ご相談してみてください」だけの持ち帰りに。決裁者と戦わずに勝つ道具を、Y様に持たせないまま面談が終わっています。</p>
+    <div class="ba">
+      <div class="row before"><span class="tag">今回</span>「旦那さんに交渉も必要ですよね」→ 材料なしで持ち帰り</div>
+      <div class="row after"><span class="tag">置き換え</span>ヒアリングシートに「学費はどなたとご相談して決めますか」を追加。ご主人決裁と分かった時点で、面談のゴールを「即決」から「ご主人へのプレゼン一式を持たせる」に切り替える</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="why-head"><span class="why-num">2</span><h3>いちばん深い不安が、金額の話にすり替わった</h3></div>
+    <div class="quote"><span class="who">川井さん</span>「お支払いの捻出なのか、ここまでかけて自分にやりきれるのか、不安の大きさで言うとどちらが大きいですか」</div>
+    <div class="quote"><span class="who">Y様</span>「どっちもですけど、やっぱり後者ですかね。ここまでかけてやりきれるかな、みたいな」</div>
+    <p class="body">この質問は完璧でした。本丸は自信です。ところが30秒後の「やっぱり金額の面が大きいですかね」という揺り戻しに乗って分割の話へ流れ、本丸は未処理のまま終了。Y様は面談内で「見張られていないとダメ」「自力では甘えが出ちゃう」とご自身で明かしており、lilisの伴走はこの不安への正面の答えになれたはずでした。</p>
+    <div class="ba">
+      <div class="row before"><span class="tag">今回</span>「後者です」の直後に金額処理（分割・信販）へ移行</div>
+      <div class="row after"><span class="tag">置き換え</span>「やりきれるか不安、とおっしゃいましたよね。実はそれこそ、独学ではなくlilisを選ぶいちばんの理由になります」と、掘り当てた本音をその場で提案に接続する</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="why-head"><span class="why-num">3</span><h3>担当者自身が「今日決めること」を打ち消した</h3></div>
+    <div class="quote"><span class="who">川井さん（クロージング）</span>「焦って決めるのが一番良くないというのを実体験としてすごくあったので」「入る、入らないは、正直どちらでも良いというか」</div>
+    <p class="body">圧をかけない方針は正しいです（弊社実測でも、圧の排除だけでキャンセル率が14.9ポイント改善しています）。ただ「圧をかけない」と「決断を支えない」は別物です。ご自身の体験談で「即決＝良くないこと」と伝えた直後に「本日中の意思表示で最終価格」のご案内が来るため、お客さまの中で筋が通らず、いちばん楽な「まず見送り」を選びやすい状態になりました。ここで商談の張力が消えています。</p>
+    <div class="ba">
+      <div class="row before"><span class="tag">今回</span>「どちらでも良い」で締め、期限の意味が消滅</div>
+      <div class="row after"><span class="tag">置き換え</span>「今日決めていただくのは入会ではありません。①ご主人に何をどうお話しするか ②いつお話しするか ③その翌日に私からご連絡する——この3つだけ、今日決めましょう」（決めることを小さくして、決め切る）</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="why-head"><span class="why-num">4</span><h3>独学の地図を、無料で渡して終わった</h3></div>
+    <div class="quote"><span class="who">Y様（締めの言葉）</span>「道筋を示してくれたので、それを参考にしながら、まず自分でポートフォリオを完成させてみようかな」</div>
+    <p class="body">ロードマップ・相場・学習手順を面談内ですべて提供した結果、「独学でいけそう」という結論を後押しする形になりました。やり方を渡すほど独学に倒れるのは、勉強会の設計でも確認済みの法則です。Y様は「添削で直しが人より多かった」「自信がない」とも話しており、作りかけの現物を見る機会は面談中に作れました。</p>
+    <div class="ba">
+      <div class="row before"><span class="tag">今回</span>地図を渡し、答え合わせの機会なしで解散</div>
+      <div class="row after"><span class="tag">置き換え</span>「今作りかけのポートフォリオ、画面共有で一緒に見てみませんか。今のまま報酬をいただける水準か、プロの目で答え合わせしましょう」という現物診断を標準に。添削の価値がその場で体感でき、受講料の意味に直結する</div>
+    </div>
+  </div>
+</section>
+
+<section class="hyp">
+  <div class="sec-label"><span class="bar"></span><h2>はるかさんの3つの仮説の答え合わせ</h2></div>
+  <div class="card">
+    <div class="hyp-head"><h3>覚悟の決まり方が弱い</h3><span class="verdict v-yes">その通り</span></div>
+    <p>ただし覚悟はご本人の資質ではなく、面談設計の出力です。覚悟をつくる装置（現物診断・ご主人対策・条件つきのクロージング）を台本に足せば、担当者を問わず再現できます。</p>
+  </div>
+  <div class="card">
+    <div class="hyp-head"><h3>深層心理を突けていない</h3><span class="verdict v-half">半分だけ</span></div>
+    <p>実は突けていました。「慎重・心配症・守りに入る・自力では甘えが出る」まで到達しています。課題は掘り当てた本音がクロージングに接続されていないこと。掘る力ではなく、刺す位置の問題です。</p>
+  </div>
+  <div class="card">
+    <div class="hyp-head"><h3>収益イメージが明確についていない</h3><span class="verdict v-no">今回はほぼ手当て済み</span></div>
+    <p>相場×使える時間の分解にご本人も納得済みでした。欠けていたのは「私にやり切れる」という自己効力感と、「ご主人がYesと言ってくれる」イメージの2つです。</p>
+  </div>
+</section>
+
+<section class="next">
+  <div class="sec-label"><span class="bar"></span><h2>次の一手</h2></div>
+
+  <div class="card">
+    <h3><span class="abc">A</span>Y様の追客（今週から）</h3>
+    <ul class="steps">
+      <li><b>48時間以内</b>：お礼と一緒に「ご主人にお話しされる時に使えるよう、1枚にまとめました」を送付（会社ホームページ内製化の価値・月々の負担と回収の見通し）</li>
+      <li><b>1週間後</b>：「その後、おうちでお話しできましたか」の気づかい連絡（弊社実測で返信率100%の型）</li>
+      <li><b>9月中旬</b>：ポートフォリオ添削を1回プレゼント（添削がある世界を先に体感していただく）</li>
+      <li><b>10月の面談</b>：「進捗確認」ではなく「ポートフォリオ答え合わせ会」として案内</li>
+    </ul>
+    <p class="note">面談から成約までのリードタイムは実測で13〜20日。10月末まで接点ゼロは長すぎるため、間の3接点で温度を保ちます。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="abc">B</span>famm卒専用の台本改修（3点だけ）</h3>
+    <ul class="steps">
+      <li>ヒアリングシートに<b>決裁者の設問</b>を追加（「学費はどなたとご相談して決めますか」）</li>
+      <li><b>現物診断</b>（作りかけの制作物の答え合わせ）を面談の標準に</li>
+      <li>クロージングを<b>条件型</b>に（決めるのは入会ではなく、ご主人に話す内容・日取り・翌日の再連絡）</li>
+    </ul>
+    <p class="note">famm卒アンケート134件では、約9割が目標月20万円未満、「何から始めればいいか分からない」が71%。lilis本体のお客さまとは2段階違う層のため、専用の型が必要です。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="abc">C</span>川井さんへ</h3>
+    <p class="plain"><b>まずお伝えしたいこと</b>：関係づくり・構造の説明・共感の質はすでに高水準で、台本の再現度も95%。素質は間違いなくあります。今回の結果は力量の問題ではありません。</p>
+    <p class="plain"><b>直すのは1点だけ</b>：共感で受け止めた後、必ず質問で締めること。「どちらでも良い」は「Y様にとってのベストを、今日一緒に決め切りたいです」に置き換えてみてください。</p>
+    <p class="plain"><b>famm体験談は封印ではなく変換</b>：「焦って決めて後悔した。だからこそ材料を全部出し切って、納得して決めてほしい」と続ければ、同じ話がいちばんの武器のままです。</p>
+  </div>
+</section>
+
+<footer>
+  <p class="wheat">· · ·</p>
+  <p class="sig">株式会社Merone 森川くみこ</p>
+  <p>2026年8月24日</p>
+</footer>
+
+</div>
+</body>
+</html>

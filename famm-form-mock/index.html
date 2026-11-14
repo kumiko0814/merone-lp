@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lステップ回答フォームで「見て→そのまま感想」を作る方法</title>
+<style>
+  :root{
+    --white:#fff; --ink:#2a2a2a; --muted:#8a97a3;
+    --mustard:#e8a24c; --mustard-d:#cf8a34;
+    --green:#b5d04e; --green-d:#8bab2f;
+    --teal:#7db8b8; --teal-d:#5e9d9d;
+    --pale:#fae8a0;
+    --bg:#f3f6f8; --line:#e7ecf1; --soft:#f7fafb;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;
+    font-family:"游ゴシック","Yu Gothic",YuGothic,"Hiragino Kaku Gothic ProN",sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 0 60px;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 16px;}
+
+  header{background:linear-gradient(135deg,#f7d98a,#e8a24c);color:#fff;padding:38px 16px 34px;}
+  header .inner{max-width:860px;margin:0 auto;}
+  .tagpill{display:inline-block;background:rgba(255,255,255,.28);color:#fff;font-size:12px;
+    font-weight:800;border-radius:30px;padding:4px 14px;margin-bottom:12px;letter-spacing:.03em;}
+  header h1{font-size:24px;margin:0 0 10px;font-weight:800;line-height:1.5;text-shadow:0 1px 2px rgba(0,0,0,.08);}
+  header p{margin:0;font-size:14px;opacity:.96;line-height:1.7;}
+
+  h2{color:var(--ink);font-size:20px;margin:40px 0 6px;font-weight:800;
+    border-left:7px solid var(--mustard);padding-left:13px;line-height:1.4;}
+  .h2sub{color:var(--muted);font-size:13px;margin:0 0 18px;padding-left:20px;}
+  h3{color:var(--teal-d);font-size:16px;margin:24px 0 8px;font-weight:800;}
+  p{font-size:14.5px;margin:0 0 13px;}
+  .card{background:var(--white);border-radius:16px;padding:22px 24px;margin-bottom:18px;
+    box-shadow:0 4px 18px rgba(90,110,130,.08);}
+  .muted{color:var(--muted);font-size:13px;}
+  b.hl{color:var(--mustard-d);}
+  .big{font-size:15.5px;font-weight:800;line-height:1.7;}
+
+  /* Before / After */
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px;}
+  .ba .box{border-radius:14px;padding:16px 16px 14px;}
+  .ba .before{background:#f4f0ec;border:1px solid #e6ddd3;}
+  .ba .after{background:#f0f7ee;border:1px solid #d8ecc9;}
+  .ba .lbl{font-size:12px;font-weight:800;border-radius:20px;padding:3px 12px;display:inline-block;margin-bottom:10px;}
+  .ba .before .lbl{background:#dfd4c8;color:#6b5a45;}
+  .ba .after .lbl{background:var(--green);color:#3d5216;}
+  .flow{font-size:13px;line-height:1.6;color:#4a5560;}
+  .flow .step{display:block;padding:7px 11px;border-radius:9px;margin-bottom:6px;background:#fff;border:1px solid var(--line);}
+  .flow .leak{color:#b06a3c;font-weight:800;font-size:12px;}
+  .flow .safe{color:var(--green-d);font-weight:800;font-size:12px;}
+  @media(max-width:620px){.ba{grid-template-columns:1fr;}}
+
+  /* phone mock */
+  .mockwrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:flex-start;
+    background:linear-gradient(160deg,#eef4f5,#f7ede0);border-radius:18px;padding:26px 18px;}
+  .phone{width:330px;background:#fff;border-radius:24px;overflow:hidden;flex:0 0 auto;
+    box-shadow:0 10px 34px rgba(0,0,0,.16);border:1px solid #eceff2;}
+  .p-url{background:#5a6b78;color:#cfe0e6;font-size:10.5px;text-align:center;padding:6px;
+    display:flex;align-items:center;justify-content:center;gap:5px;}
+  .p-url .dot{width:6px;height:6px;border-radius:50%;background:#9fd07d;display:inline-block;}
+  .p-hdr{background:#fff;border-bottom:1px solid var(--line);padding:12px 15px;display:flex;align-items:center;gap:8px;}
+  .p-logo{width:24px;height:24px;border-radius:50%;border:1.5px solid #e8a24c;color:#cf8a34;font-weight:800;
+    font-style:italic;font-size:12px;display:flex;align-items:center;justify-content:center;}
+  .p-hdr .t{font-size:12.5px;font-weight:800;}
+  .p-body{padding:16px 15px 20px;}
+  .p-lead{font-size:14.5px;font-weight:800;line-height:1.55;margin:0 0 6px;}
+  .p-sub{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 14px;}
+
+  .video{position:relative;width:100%;height:186px;border-radius:14px;overflow:hidden;
+    background:linear-gradient(135deg,#3a4a52,#68868c);display:flex;align-items:center;justify-content:center;}
+  .video .play{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);
+    display:flex;align-items:center;justify-content:center;}
+  .video .play::after{content:"";border-left:16px solid var(--mustard-d);border-top:10px solid transparent;
+    border-bottom:10px solid transparent;margin-left:4px;}
+  .video .vname{position:absolute;left:11px;bottom:10px;color:#fff;font-size:11.5px;font-weight:700;
+    text-shadow:0 1px 3px rgba(0,0,0,.5);}
+  .video .vtime{position:absolute;right:10px;bottom:9px;background:rgba(0,0,0,.55);color:#fff;
+    font-size:10px;border-radius:5px;padding:1px 6px;}
+  .inform{text-align:center;font-size:10.5px;color:var(--teal-d);font-weight:700;margin:8px 0 2px;}
+
+  .p-sep{border:none;border-top:1px dashed #d8dfe5;margin:16px 0;}
+  .p-q{font-size:13.5px;font-weight:800;margin:0 0 3px;}
+  .p-qs{font-size:11px;color:var(--muted);margin:0 0 9px;}
+  .p-ta{border:1.5px solid var(--line);border-radius:11px;background:#fbfcfd;padding:11px;
+    font-size:12px;color:#b6bfc8;line-height:1.7;min-height:70px;}
+  .p-chips{display:flex;gap:7px;margin:11px 0 2px;flex-wrap:wrap;}
+  .p-chip{font-size:11px;border:1.5px solid #e4d6bd;background:#fff;color:#8a7a5c;
+    border-radius:20px;padding:5px 12px;font-weight:700;}
+  .p-chip.on{background:var(--pale);border-color:var(--mustard);color:#7a5e2a;}
+  .p-cta{display:block;text-align:center;background:var(--mustard);color:#fff;font-weight:800;font-size:14px;
+    border-radius:26px;padding:13px;margin-top:15px;box-shadow:0 3px 0 var(--mustard-d);}
+  .p-note{font-size:10.5px;color:var(--muted);text-align:center;margin:10px 0 0;}
+
+  /* done phone */
+  .p-done{padding:34px 20px;text-align:center;}
+  .p-dc{width:62px;height:62px;border-radius:50%;background:var(--green);margin:0 auto 15px;
+    display:flex;align-items:center;justify-content:center;}
+  .p-dc::after{content:"";width:15px;height:26px;border-right:4px solid #fff;border-bottom:4px solid #fff;
+    transform:rotate(42deg);margin-top:-6px;}
+  .p-dttl{font-size:16px;font-weight:800;margin:0 0 9px;}
+  .p-dtxt{font-size:12.5px;color:#55606b;line-height:1.85;margin:0;}
+  .mock-cap{font-size:12px;color:var(--muted);text-align:center;width:330px;margin:10px auto 0;line-height:1.6;}
+
+  /* steps */
+  .step-card{background:#fff;border-radius:15px;padding:20px 22px 18px;margin-bottom:14px;
+    box-shadow:0 4px 16px rgba(90,110,130,.07);position:relative;border-left:6px solid var(--teal);}
+  .step-card .num{position:absolute;top:-13px;left:18px;background:var(--teal);color:#fff;font-weight:800;
+    font-size:13px;border-radius:20px;padding:4px 14px;box-shadow:0 2px 6px rgba(94,157,157,.35);}
+  .step-card h4{font-size:16px;margin:8px 0 7px;font-weight:800;color:var(--ink);}
+  .step-card p{font-size:13.5px;margin:0 0 8px;}
+  .btnpath{display:inline-block;background:#eef5f5;color:var(--teal-d);font-weight:700;font-size:12.5px;
+    border-radius:8px;padding:3px 9px;margin:1px 2px;}
+  .kids{background:#fffaf0;border:1px dashed var(--mustard);border-radius:10px;padding:9px 13px;
+    font-size:12.5px;color:#8a6a35;margin-top:8px;line-height:1.7;}
+  .kids b{color:var(--mustard-d);}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0;background:#fff;border-radius:10px;overflow:hidden;}
+  th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top;}
+  th{background:#eef5f5;color:var(--teal-d);font-weight:800;}
+  td .part{font-weight:800;color:var(--mustard-d);}
+
+  .cheer{background:linear-gradient(135deg,#f0f7ee,#fdf6e6);border-radius:16px;padding:22px 24px;
+    border:1px solid #e2ecd4;margin-top:10px;}
+  .cheer p{margin:0 0 8px;font-size:14.5px;}
+  .cheer .pt{font-weight:800;color:var(--green-d);}
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:34px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <span class="tagpill">Famm ／ Lステップ カウンセリング準備フォーム</span>
+    <h1>配信文の中で「先輩の声を見て → そのまま感想」を<br>1つのフォームで完結させる方法</h1>
+    <p>外部サイトに飛ばさず、Lステップの<b>回答フォームだけ</b>で作れます。<br>特別なサイト制作もHTMLも要りません。「部品を上から積むだけ」です。</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 1. なぜ -->
+  <h2>① なぜ「フォームの中で完結」させるの？</h2>
+  <p class="h2sub">離脱するポイントを、2つから0にするためです</p>
+  <div class="card">
+    <p class="big">人は「別のサイトに移動」するたびに、少しずつ離れていきます。</p>
+    <p>いまは <b class="hl">配信 → 外部サイト → もう一度べつのリンクで感想フォーム</b>、と<b>移動が2回</b>あります。この移動のたびに「あとで見よう」で止まってしまう。<br>そこで、動画も感想欄も<b class="hl">1枚のフォームに全部のせて</b>、移動をゼロにします。</p>
+
+    <div class="ba">
+      <div class="box before">
+        <span class="lbl">いままで</span>
+        <div class="flow">
+          <span class="step">① 配信文を読む</span>
+          <span class="step">② ボタンを押して外部サイトへ　<span class="leak">▼ ここで離脱</span></span>
+          <span class="step">③ 動画を見る</span>
+          <span class="step">④ また別リンクで感想フォームへ　<span class="leak">▼ ここでも離脱</span></span>
+          <span class="step">⑤ 感想を書く</span>
+        </div>
+      </div>
+      <div class="box after">
+        <span class="lbl">これから</span>
+        <div class="flow">
+          <span class="step">① 配信文を読む</span>
+          <span class="step">② ボタンを押してフォームへ</span>
+          <span class="step">③ フォームの中で動画を見る</span>
+          <span class="step">④ そのまま下にスクロール</span>
+          <span class="step">⑤ 同じ画面で感想を書いて送信　<span class="safe">✓ 移動ゼロ</span></span>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:12px;">※ Lステップ公式も「動画埋め込みはフォーム内で再生されるので<b>離脱が軽減される</b>」と明記しています。これが今回の一番のポイントです。</p>
+  </div>
+
+  <!-- 2. モック -->
+  <h2>② 生徒が実際に見る画面（完成イメージ）</h2>
+  <p class="h2sub">1本のフォームを上から下にスクロールするだけ。左が入口、右が送信後です</p>
+  <div class="mockwrap">
+    <div>
+      <div class="phone">
+        <div class="p-url"><span class="dot"></span>lstep.form / famm-counseling</div>
+        <div class="p-hdr"><div class="p-logo">F</div><div class="t">カウンセリングの準備</div></div>
+        <div class="p-body">
+          <p class="p-lead">当日の前に、先輩ママの声を<br>ひとつだけ見てみましょう☺</p>
+          <p class="p-sub">未経験から一歩ふみ出したママの、3分インタビューです。</p>
+
+          <div class="video">
+            <div class="play"></div>
+            <span class="vname">みさきさん（32）2児のママ</span>
+            <span class="vtime">3:12</span>
+          </div>
+          <p class="inform">▲ この画面の中でそのまま再生されます</p>
+
+          <hr class="p-sep">
+
+          <p class="p-q">見終わった今の気持ちを、<br>ひとつだけ教えてください</p>
+          <p class="p-qs">ひとことでも大丈夫です☺</p>
+          <div class="p-ta">例）自分にもできるかも、と少し前向きになれました…</div>
+
+          <div class="p-chips">
+            <span class="p-chip on">楽しみになった</span>
+            <span class="p-chip">少し不安</span>
+            <span class="p-chip">まだ迷ってる</span>
+          </div>
+
+          <span class="p-cta">この内容で送信する</span>
+          <p class="p-note">所要時間：約4分（動画3分＋ひとこと）</p>
+        </div>
+      </div>
+      <p class="mock-cap">入口：動画 → 感想欄 → 送信ボタンが<br>ぜんぶ1画面に並んでいる</p>
+    </div>
+
+    <div>
+      <div class="phone">
+        <div class="p-url"><span class="dot"></span>lstep.form / famm-counseling</div>
+        <div class="p-hdr"><div class="p-logo">F</div><div class="t">カウンセリングの準備</div></div>
+        <div class="p-done">
+          <div class="p-dc"></div>
+          <p class="p-dttl">ありがとうございました☺</p>
+          <p class="p-dtxt">当日はこの気持ちを大切に、<br>いっしょに未来の話をしましょうね。<br>担当より前日にリマインドをお送りします。</p>
+        </div>
+      </div>
+      <p class="mock-cap">送信後：やさしいお礼画面。<br>裏側では自動でタグ付け・仕分けが走る</p>
+    </div>
+  </div>
+
+  <!-- 3. 作り方 -->
+  <h2>③ 作り方 ― はじめてでも迷わない6ステップ</h2>
+  <p class="h2sub">Lステップ管理画面で「部品を上から積むだけ」。むずかしい設定はありません</p>
+
+  <div class="step-card">
+    <span class="num">STEP 1</span>
+    <h4>フォームの箱を新しく作る</h4>
+    <p>Lステップ管理画面の左メニュー <span class="btnpath">回答フォーム</span> → <span class="btnpath">新規作成</span> を押します。まっさらな1枚が出てきます。ここに部品をのせていきます。</p>
+    <div class="kids"><b>たとえるなら：</b>まっさらな画用紙を1枚用意する。ここに上から順にシールを貼っていくイメージ。</div>
+  </div>
+
+  <div class="step-card">
+    <span class="num">STEP 2</span>
+    <h4>いちばん上に「あいさつ」を置く</h4>
+    <p>部品メニュー <span class="btnpath">項目・装飾</span> から <span class="btnpath">見出し</span> と <span class="btnpath">テキスト</span> を選んで、「当日の前に、先輩ママの声をひとつだけ見てみましょう☺」と書きます。</p>
+    <div class="kids"><b>ポイント：</b>圧をかけない。「〜してください！」ではなく「〜してみましょうね☺」のトーンで。</div>
+  </div>
+
+  <div class="step-card">
+    <span class="num">STEP 3</span>
+    <h4>【主役】「動画埋め込み」を置いて、YouTubeのURLを貼る</h4>
+    <p>部品メニューから <span class="btnpath">動画埋め込み</span> を選び、インタビュー動画の <b>YouTube（またはVimeo）のURLを貼るだけ</b>。これで「フォームの中で動画が見られるサイト」の完成です。</p>
+    <div class="kids"><b>ここが全部のカギ：</b>この部品があるから、<b>外部サイトを作らなくても</b>フォームの中で動画が再生できます。生徒は動画を見るために<b>どこにも移動しません</b>。URLをコピペするだけ、HTMLも要りません。</div>
+  </div>
+
+  <div class="step-card">
+    <span class="num">STEP 4</span>
+    <h4>その下に「感想を書く欄」をくっつける</h4>
+    <p><span class="btnpath">区切り線</span> で一度区切ってから、<span class="btnpath">長文回答</span>（自由記述）を1つ置きます。これが感想欄。さらに <span class="btnpath">単一選択（ラジオ）</span> で「今の気持ちに近いのは？（楽しみ／少し不安／まだ迷ってる）」の3択も付けると、書くのが苦手な人もタップ1回で答えられます。</p>
+    <div class="kids"><b>ポイント：</b>感想欄は動画の<b>すぐ下</b>に置く。見終わった余韻のまま、指を止めずに書けます。</div>
+  </div>
+
+  <div class="step-card">
+    <span class="num">STEP 5</span>
+    <h4>「送信されたら自動でこうする」を決める</h4>
+    <p>フォーム設定の <span class="btnpath">回答完了時アクション</span> で、送信した人に自動で <b>タグ付け・対応マーク・次のステップ配信</b> を設定します。「動画を見て感想までくれた人＝乗り気」として、自動で仕分け＆次の案内に進めます。</p>
+    <div class="kids"><b>たとえるなら：</b>感想を出した瞬間に、その人の名札に「乗り気シール」が自動で貼られる。あとで探す手間がゼロ。</div>
+  </div>
+
+  <div class="step-card">
+    <span class="num">STEP 6</span>
+    <h4>フォームのURLを1本コピーして、配信文のボタンに貼る</h4>
+    <p>できたフォームの <b>URLを1本コピー</b>して、いつもの配信文のボタン（リンク）に貼るだけ。生徒はそのボタンを押せば、動画も感想も入った「サイト」にそのまま入れます。</p>
+    <div class="kids"><b>これで完成：</b>配信のボタン → フォーム（動画＋感想）→ お礼画面。移動は0回。</div>
+  </div>
+
+  <!-- 4. 部品対応表 -->
+  <h2>④ 「やりたいこと → 使う部品」早見表</h2>
+  <p class="h2sub">先方が迷ったら、この表の部品名で探せば必ず見つかります</p>
+  <div class="card" style="padding:16px 18px;">
+    <table>
+      <tr><th>やりたいこと</th><th>Lステップで選ぶ部品</th></tr>
+      <tr><td>あいさつ文・見出しを書く</td><td><span class="part">見出し／テキスト</span></td></tr>
+      <tr><td>インタビュー動画を見せる</td><td><span class="part">動画埋め込み</span>（YouTube / Vimeo）</td></tr>
+      <tr><td>サムネや先輩の写真を出す</td><td><span class="part">画像</span>（登録メディア一覧からアップロード）</td></tr>
+      <tr><td>動画と感想欄を区切る</td><td><span class="part">区切り線</span></td></tr>
+      <tr><td>感想を自由に書いてもらう</td><td><span class="part">長文回答</span>（自由記述）</td></tr>
+      <tr><td>気持ちを3択でタップしてもらう</td><td><span class="part">単一選択</span>（ラジオボタン）</td></tr>
+      <tr><td>送信後に自動で仕分け・次の案内</td><td><span class="part">回答完了時アクション</span>（タグ／対応マーク／ステップ配信）</td></tr>
+      <tr><td>見た目をFammカラーに整える</td><td><span class="part">カラー／デザイン設定</span>（カスタムデザイン）</td></tr>
+    </table>
+  </div>
+
+  <!-- 5. 締め -->
+  <h2>⑤ 先方にひとことで伝えるなら</h2>
+  <div class="cheer">
+    <p><span class="pt">「サイトを作る」＝むずかしいことは何もありません。</span></p>
+    <p>Lステップの<b>回答フォームに、部品を上から積むだけ</b>です。<br>
+    ・動画は「動画埋め込み」部品にYouTubeのURLを貼るだけ<br>
+    ・感想欄はその下に「長文回答」を1つ置くだけ<br>
+    この2つを縦に並べれば、<b>「見て → そのまま書く」が1画面で完結するサイト</b>になります。</p>
+    <p style="margin-bottom:0;">HTMLも外部サイト制作も不要。<b>コピペとクリックだけ</b>で、今日から作れます☺</p>
+  </div>
+
+  <footer>Merone プロモーション事業部 ／ Famm カウンセリング準備フォーム 設計指南書</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>第1回 勉強会｜Merone AI活用ラボ</title>
+<style>
+:root{ --bg:#f6f1f9; --blue:#8f9fd8; --navy:#26405f; --navy2:#1d3149; --pink:#cf8f9c; --pink2:#bd7886; --pinkbg:#fbeef1; --text:#4a4446; --muted:#8a97a5; --line:#e8e0ef; }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Yu Gothic","YuGothic","游ゴシック","Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif; background:linear-gradient(168deg,#f1eaf7 0%,#faf7fb 46%,#fbeef1 100%); color:var(--text); line-height:1.9; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:920px; margin:0 auto; padding:0 20px 80px;}
+
+/* ナビ */
+.topbar{position:sticky; top:0; z-index:50; background:rgba(29,49,73,.96); backdrop-filter:blur(6px); color:#fff; padding:10px 16px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+.topbar .lg{font-size:13px; font-weight:800; letter-spacing:.12em; color:#f3cdd7; white-space:nowrap;}
+.topbar .lg i{font-style:normal; color:#cfdcea; margin-left:6px;}
+.topbar nav{display:flex; gap:6px; flex-wrap:wrap; margin-left:auto;}
+.topbar nav a{font-size:11.5px; font-weight:800; color:#e7ecf4; background:rgba(255,255,255,.1); border-radius:999px; padding:5px 11px; text-decoration:none;}
+.topbar nav a:hover{background:rgba(255,255,255,.22);}
+
+/* スライド */
+.slide{background:#fff; border-radius:24px; margin-top:26px; padding:36px 34px; box-shadow:0 12px 40px rgba(38,64,95,.09); scroll-margin-top:64px;}
+.slide.hero{background:linear-gradient(160deg,#fff 0%,#fbeef1 60%,#f1eaf7 100%); text-align:center; padding:44px 30px 34px;}
+.tbadge{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:800; color:var(--pink2); background:var(--pinkbg); border-radius:999px; padding:5px 14px;}
+.chapno{font-size:12px; font-weight:800; color:var(--blue); letter-spacing:.16em;}
+h1{font-size:clamp(26px,5vw,40px); color:var(--navy2); line-height:1.4;}
+h2{font-size:clamp(21px,4vw,30px); color:var(--navy2); line-height:1.45; margin-top:6px;}
+h3{font-size:clamp(16px,3vw,19px); color:var(--navy2); margin-top:2px;}
+.slide p{font-size:15.5px; margin-top:12px;}
+.slide p b{color:var(--navy2);}
+.lead{font-size:16px; line-height:2.1;}
+.big{font-size:clamp(19px,3.4vw,24px); font-weight:800; color:var(--pink2); line-height:1.6;}
+
+.hero img{width:190px; margin:6px auto 0;}
+.hero .sub{font-size:15px; color:var(--pink2); font-weight:800; margin-top:12px;}
+.hero .meta{font-size:13px; color:var(--muted); margin-top:14px;}
+
+ul.pts{list-style:none; margin-top:14px;}
+ul.pts li{font-size:15.5px; padding:11px 0 11px 34px; position:relative; border-top:1px solid #f1ecf5; line-height:1.85;}
+ul.pts li:first-child{border-top:none;}
+ul.pts li::before{content:"♡"; position:absolute; left:6px; top:11px; color:var(--pink2); font-weight:800;}
+ul.pts li b{color:var(--navy2);}
+
+.box{border-radius:16px; padding:18px 20px; margin-top:16px; font-size:15px; line-height:1.95;}
+.box.pink{background:var(--pinkbg);} .box.pink b{color:var(--pink2);}
+.box.blue{background:#eef2fb;} .box.blue b{color:var(--navy);}
+.box.warn{background:#fdf6ee; border-left:5px solid #e0b184;}
+.box .t{font-weight:800; color:var(--navy2); font-size:15.5px;}
+
+.prompt{background:#26334a; color:#eef3f8; border-radius:16px; padding:18px 20px; margin-top:14px; font-size:15px; line-height:2; white-space:pre-wrap; word-break:break-word; position:relative;}
+.prompt .ph{color:#f3cdd7; font-weight:800;}
+.copy{display:inline-block; margin-top:10px; border:none; background:linear-gradient(135deg,#c76e85,#cf8f9c); color:#fff; border-radius:999px; padding:11px 26px; font-size:14px; font-weight:800; cursor:pointer; font-family:inherit;}
+
+.two{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px;}
+.two .col{border-radius:16px; padding:18px; font-size:14.5px; line-height:1.9;}
+.two .bad{background:#f5f0f6; border:1.5px solid #e6ddef;}
+.two .good{background:#eef7f1; border:1.5px solid #cfe6d8;}
+.two .col .h{font-weight:800; font-size:15px; margin-bottom:6px;}
+.two .bad .h{color:#8a7f93;} .two .good .h{color:#3f7d63;}
+@media(max-width:640px){ .two{grid-template-columns:1fr;} }
+
+.cmp{width:100%; border-collapse:collapse; margin-top:16px; font-size:14px;}
+.cmp th,.cmp td{border:1px solid var(--line); padding:11px 12px; text-align:left; vertical-align:top; line-height:1.8;}
+.cmp th{background:#f6f1f9; color:var(--navy2); white-space:nowrap;}
+.cmp td b{color:var(--navy2);}
+.cmp .hi{background:#fbeef1;}
+
+.step{display:flex; gap:14px; align-items:flex-start; margin-top:14px;}
+.step .n{flex:none; width:30px; height:30px; border-radius:50%; background:var(--navy2); color:#fff; font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center;}
+.step .tx{font-size:15px; line-height:1.85;}
+.step .tx b{color:var(--navy2);}
+
+.hostnote{font-size:12.5px; color:var(--muted); background:#faf7fb; border-radius:12px; padding:11px 14px; margin-top:16px; line-height:1.8;}
+.hostnote::before{content:"🎤 進行メモ："; font-weight:800; color:var(--pink2);}
+
+.time{float:right; font-size:12px; font-weight:800; color:#fff; background:var(--blue); border-radius:999px; padding:4px 12px;}
+.char{float:right; width:118px; margin:0 0 8px 14px;}
+@media(max-width:560px){ .char{width:88px;} }
+
+footer{text-align:center; font-size:12px; color:#9aa7b4; margin-top:40px; line-height:2;}
+.toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%); opacity:0; background:var(--navy2); color:#fff; padding:10px 22px; border-radius:999px; font-size:13px; font-weight:800; z-index:200; transition:opacity .3s; pointer-events:none;}
+.toast.show{opacity:1;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="lg">Merone<i>AI活用ラボ</i></span>
+  <nav>
+    <a href="#s0">はじめに</a>
+    <a href="#s1">ワーク①メルカリ</a>
+    <a href="#s2">ワーク②献立</a>
+    <a href="#s3">毎日使う</a>
+    <a href="#s4">チャットとCode</a>
+    <a href="#s5">引き継ぎ書</a>
+    <a href="#s6">🎁引っ越し指示書</a>
+    <a href="#s7">まとめ</a>
+  </nav>
+</div>
+
+<div class="wrap">
+
+  <!-- ===== 0. HERO ===== -->
+  <section class="slide hero" id="s0">
+    <img src="https://lp.merone.jp/kumiko-illust/lab-typing.png" alt="" onerror="this.style.display='none'">
+    <span class="tbadge">第1回 勉強会 ・ 全60分</span>
+    <h1>AIを、あなた専用の<br>相棒に育てよう</h1>
+    <div class="sub">〜 話せば話すほど、AIはあなたのプロになる 〜</div>
+    <div class="box pink" style="text-align:left; max-width:640px; margin:22px auto 0;">
+      <div class="t">今日のゴール</div>
+      <p style="margin-top:6px;">①AIに<b>「自分のこと・自分のデータ」を渡す</b>と、答えがどれだけ変わるかを体験する<br>
+      ②<b>チャットとClaude Code</b>の違いを知って、次のステップが見える<br>
+      ③今日から<b>毎日AIに話しかける</b>習慣のきっかけをつくる</p>
+    </div>
+    <div class="meta">Zoomで画面共有しながら進めます。手元でも一緒に触ってくださいね☺️</div>
+  </section>
+
+  <!-- ===== きょうの流れ ===== -->
+  <section class="slide">
+    <span class="chapno">TODAY'S FLOW</span>
+    <h2>きょうの流れ（60分）</h2>
+    <table class="cmp">
+      <tr><th>時間</th><th>内容</th></tr>
+      <tr><td>0-5分</td><td>はじめに・今日のゴール</td></tr>
+      <tr class="hi"><td>5-20分</td><td><b>ワーク① メルカリ添削</b>（数字を入れて、AIに診断させる）</td></tr>
+      <tr class="hi"><td>20-30分</td><td><b>ワーク② 今夜の献立</b>（AIに任せる体験）</td></tr>
+      <tr><td>30-36分</td><td>毎日AIを使うことの大切さ</td></tr>
+      <tr><td>36-46分</td><td>Claudeチャット と Claude Code のちがい</td></tr>
+      <tr><td>46-54分</td><td>記憶は共有されない → 「引き継ぎ書」を作る</td></tr>
+      <tr><td>54-59分</td><td>🎁 ChatGPT→Claude 引っ越し指示書のプレゼント</td></tr>
+      <tr><td>59-60分</td><td>まとめ・今週の宿題</td></tr>
+    </table>
+  </section>
+
+  <!-- ===== 1. ワーク① メルカリ ===== -->
+  <section class="slide" id="s1">
+    <span class="time">15分</span>
+    <span class="tbadge">WORK ①</span>
+    <h2>メルカリの「売れない」を<br>AIに診断してもらう</h2>
+    <p class="lead">まず私（くみこ）のAIで見せます。<b>普段からたくさん相談していると、こんなに具体的な答えが返ってくる</b>んです。そのあと、みんなも自分のClaudeでやってみましょう！</p>
+
+    <div class="box blue">
+      <div class="t">STEP 1｜まず、これを自分のClaudeに打ってみる（全員一斉）</div>
+    </div>
+    <div class="prompt" id="p1">メルカリで服が売れないと悩む友達に、アドバイスを3つして</div>
+    <button class="copy" data-c="p1">この文をコピー</button>
+
+    <div class="two">
+      <div class="col bad"><div class="h">😐 まっさらなAI（多くの人）</div>写真をきれいに撮りましょう／説明を丁寧に／値段を見直しましょう…<br><b>＝ふわっとした一般論</b></div>
+      <div class="col good"><div class="h">✨ 育てたAI（くみこの画面）</div>①1枚目の写真を白背景・大きく・自然光で撮り直す ②タイトルを検索語で40字埋める ③"売り切れ"価格で見直して100円ずつ下げる…<br><b>＝プロの具体策</b></div>
+    </div>
+
+    <div class="box pink">
+      <div class="t">STEP 2｜自分の数字を入れると、もっと"自分専用"になる</div>
+      <p style="margin-top:6px;">下の3つを打ち込むだけで、あなたのボトルネックが見えてきます。</p>
+    </div>
+    <div class="prompt" id="p2">わたしのメルカリを診断して。
+・今月の出品数：<span class="ph">〇品</span>
+・そのうち売れた数：<span class="ph">〇品</span>
+・売上（または利益）：<span class="ph">〇円</span>
+販売率を出して、いま直すべきことを1つだけ教えて。</div>
+    <button class="copy" data-c="p2">この文をコピー</button>
+
+    <div class="box warn">
+      <b>大事な注意：</b>メルカリの<b>リンク（URL）を貼っても、AIは読めません</b>（アプリ版は"話すだけ"だから）。<b>数字か、出品画面のスクショ</b>を渡すのが正解です。「リンク貼れば分析してくれる」と思うと、みんな同じ失敗をします。
+    </div>
+    <div class="hostnote">まず自分の画面でSTEP1を見せる → 差にざわつく → 「なんでこんなに違うと思う？ずっと物販の話をAIに覚えさせてきたから」→ STEP2を全員でやる。数字が手元にない人は「30品中5品売れた」など仮の数字でOK、と伝える。</div>
+  </section>
+
+  <!-- ===== 2. ワーク② 献立 ===== -->
+  <section class="slide" id="s2">
+    <span class="time">10分</span>
+    <span class="tbadge">WORK ②</span>
+    <h2>今夜の献立を、AIに<br>まるっと任せてみる</h2>
+    <p class="lead">物販だけじゃありません。<b>「自分じゃなくても大丈夫なこと」こそ、AIに任せる</b>のがいちばんの時短です。全員で、今夜の献立を出してもらいましょう！</p>
+    <div class="prompt" id="p3">冷蔵庫にあるもので、今夜の晩ごはんを3つ提案して。
+・冷蔵庫にあるもの：<span class="ph">〇〇、〇〇、〇〇</span>
+・家族：<span class="ph">大人2人・子ども2人（辛いのが苦手）など</span>
+・条件：<span class="ph">30分以内で作れる／火を使いすぎない など</span>
+作り方も、かんたんな手順で教えて。</div>
+    <button class="copy" data-c="p3">この文をコピー</button>
+    <ul class="pts">
+      <li><b>ポイント①</b>：冷蔵庫の中身・家族・条件を"渡す"ほど、自分の家にぴったりの答えになります</li>
+      <li><b>ポイント②</b>：毎日ゼロから考えるのをやめて、「週1回まとめて聞く」に変えると、夕方がラクになります</li>
+      <li><b>ポイント③</b>：気に入ったら「この献立を毎週日曜に出して」と頼めば、"献立係"に育ちます</li>
+    </ul>
+    <div class="hostnote">献立は"即・成功体験"が出るので、参加者の表情がゆるむ。「考えるのが苦痛なことこそ、まるごと渡していい」を体感させる。ここで一気に「AI楽しい」に持っていく。</div>
+  </section>
+
+  <!-- ===== 3. 毎日使う ===== -->
+  <section class="slide" id="s3">
+    <span class="time">6分</span>
+    <span class="chapno">WHY DAILY</span>
+    <h2>なぜ「毎日」話しかけるのが<br>大事なの？</h2>
+    <p class="big">AIは、話した分だけ<br>あなた専用のプロに育つから。</p>
+    <p class="lead">さっきの差を思い出してください。まっさらなAIと、育てたAI。ちがいは頭の良さではなく、<b>「あなたのことをどれだけ知っているか」</b>だけです。</p>
+    <ul class="pts">
+      <li>今日の出来事・悩み・愚痴・やりたいこと——<b>なんでも話しかけていい</b></li>
+      <li>「調べもの」「文章づくり」「壁打ち」——<b>1日1回でもいい</b>から続ける</li>
+      <li>話すたびに、あなたの言葉づかい・状況・好みが伝わり、答えが"あなた仕様"に近づく</li>
+    </ul>
+    <div class="box pink"><b>合言葉：</b>「うまく頼めない」と悩む前に、まず<b>たくさん話す</b>。上手な頼み方は、話しているうちに勝手にうまくなります☺️</div>
+  </section>
+
+  <!-- ===== 4. チャット vs Code ===== -->
+  <section class="slide" id="s4">
+    <span class="time">10分</span>
+    <span class="chapno">TWO KINDS</span>
+    <h2>「チャット」と「Claude Code」<br>のちがい</h2>
+    <p class="lead">チャットに慣れてきたら、次のステップが<b>Claude Code</b>です。同じClaudeでも、<b>できることが変わります</b>。</p>
+    <table class="cmp">
+      <tr><th></th><th>💬 Claude チャット</th><th>⌨️ Claude Code</th></tr>
+      <tr><td>たとえると</td><td>電話ごしの<b>賢い相談相手</b></td><td>パソコンの前に座る<b>助手</b></td></tr>
+      <tr><td>できること</td><td>話す・考える・文章・アイデア</td><td>それに加えて<b>パソコンを操作・ツールを動かす</b></td></tr>
+      <tr><td>メルカリのリンク</td><td>❌ 読めない（数字やスクショを渡す）</td><td class="hi">⭕ 開いて分析できる</td></tr>
+      <tr><td>使う人</td><td>まずは全員ここでOK</td><td>慣れてきた人・本格的にやりたい人</td></tr>
+      <tr><td>必要なもの</td><td>スマホ・無料でOK</td><td>パソコン＋設定（少し上級）</td></tr>
+    </table>
+    <div class="box blue"><b>今日の私（くみこ）の画面がメルカリを読めたのは、</b>「Claude Code＝パソコンを操作できる版」を使っていたからです。みんなのチャット版は"話すのが得意な版"。まずはそこを使いこなして、いつかCodeに挑戦、でOKです。</div>
+    <div class="hostnote">「Claudeなら何でもできる、ではなく"版によって違う"」を必ず言う。生徒がアプリでリンク貼って失敗するのを防ぐ。焦らせず「いつか」でいい、と安心させる。</div>
+  </section>
+
+  <!-- ===== 5. 引き継ぎ書 ===== -->
+  <section class="slide" id="s5">
+    <span class="time">8分</span>
+    <span class="chapno">HANDOVER</span>
+    <h2>AIの記憶は、<br>場所ごとに"別々"です</h2>
+    <p class="lead">ここ、みんながつまずくところ。<b>チャットで話したことは、Claude Codeには自動で伝わりません。</b>逆も同じ。ChatGPTとClaudeも、記憶はつながっていません。</p>
+    <div class="box warn">同じ「Claude」でも、<b>チャットの記憶とCodeの記憶は別の箱</b>。ChatGPTとClaudeも別の箱。<b>それぞれの場所に、それぞれの記憶が育ちます。</b></div>
+    <h3 style="margin-top:20px;">だから「引き継ぎ書」を作らせる</h3>
+    <p>引っ越し・お引き継ぎのときは、片方のAIに<b>「引き継ぎ書を作って」</b>と頼んで、それをもう片方に渡します。これで記憶を持ち運べます。</p>
+    <div class="prompt" id="p4">これまで私と話してきたことをふまえて、
+別のAIに引き継ぐための「引き継ぎ書」を作って。
+・私の仕事／家族／大事にしていること
+・今取り組んでいること
+・私の話し方の好み
+を、そのままコピーして渡せる形でまとめて。</div>
+    <button class="copy" data-c="p4">この文をコピー</button>
+    <p style="margin-top:12px;">→ これを、引っ越し先のAI（Claude Code や 新しいチャット）に貼れば、<b>ゼロからやり直さずに済みます</b>。</p>
+  </section>
+
+  <!-- ===== 6. 引っ越し指示書（プレゼント） ===== -->
+  <section class="slide" id="s6">
+    <span class="time">5分</span>
+    <span class="tbadge">🎁 今日のプレゼント</span>
+    <h2>ChatGPTから Claudeへ<br>「お引っ越し」する魔法の言葉</h2>
+    <p class="lead">普段ChatGPTを使っている人が多いですよね。ChatGPTには、あなたのことがもう溜まっています。それを<b>Claudeに引っ越し</b>させましょう。まず<b>ChatGPTに</b>これを打ってください。</p>
+    <div class="prompt" id="p5">あなた（ChatGPT）がこれまで私について知ったことを、
+別のAI（Claude）に引き継ぐための「私の取扱説明書」を作ってください。
+
+次の項目を、そのままコピーして渡せる形でまとめて：
+① 私の仕事・立場
+② 家族構成・暮らし
+③ 私が大事にしている価値観
+④ いま取り組んでいること・目標
+⑤ 私の話し方や、してほしい返し方の好み
+⑥ 覚えておいてほしい注意点
+
+やさしい言葉で、箇条書きでお願いします。</div>
+    <button class="copy" data-c="p5">この文をコピー</button>
+    <div class="step" style="margin-top:20px;"><div class="n">1</div><div class="tx"><b>ChatGPTに</b>上の言葉を打つ → 「私の取扱説明書」が出てくる</div></div>
+    <div class="step"><div class="n">2</div><div class="tx">出てきた文章を<b>まるごとコピー</b>する</div></div>
+    <div class="step"><div class="n">3</div><div class="tx"><b>Claudeに貼って</b>「これが私です。今日からよろしくね」と送る</div></div>
+    <div class="box pink" style="margin-top:16px;">これで、Claudeが<b>初日からあなたのことを知っている状態</b>でスタートできます。引っ越しの荷造り、完了です☺️</div>
+  </section>
+
+  <!-- ===== 7. まとめ ===== -->
+  <section class="slide" id="s7">
+    <span class="chapno">WRAP UP</span>
+    <h2>まとめ ＆ 今週の宿題</h2>
+    <ul class="pts">
+      <li><b>AIは、自分のデータを渡すほど"あなた専用のプロ"になる</b>（メルカリの数字・冷蔵庫の中身）</li>
+      <li><b>リンクは読めない</b>。数字かスクショを"渡す"のが正解</li>
+      <li><b>チャットとClaude Code</b>は別物。まずはチャットを使いこなす</li>
+      <li><b>記憶は場所ごとに別々</b>。引っ越すときは「引き継ぎ書」を作らせる</li>
+    </ul>
+    <div class="box pink" style="margin-top:18px;">
+      <div class="t">🌸 今週の宿題</div>
+      <p style="margin-top:6px;">① ChatGPTに「引っ越し指示書」を打って、自分の取扱説明書を作る<br>
+      ② それをClaudeに渡して、あなた専用の相棒をスタートさせる<br>
+      ③ 1日1回、なんでもいいのでAIに話しかける</p>
+    </div>
+    <p style="margin-top:16px;">わからなくなったら、<b>カルテのAIくみこ</b>に聞いてくださいね。次回もお楽しみに☺️</p>
+  </section>
+
+  <footer>Merone AI活用ラボ｜第1回 勉強会 資料</footer>
+</div>
+
+<div class="toast" id="toast">コピーしました</div>
+<script>
+(function(){
+  var toast=document.getElementById("toast"), t=null;
+  function show(){ toast.classList.add("show"); clearTimeout(t); t=setTimeout(function(){toast.classList.remove("show");},1400); }
+  Array.prototype.forEach.call(document.querySelectorAll(".copy"),function(b){
+    b.addEventListener("click",function(){
+      var el=document.getElementById(b.getAttribute("data-c")); if(!el) return;
+      var txt=el.innerText||el.textContent;
+      function ok(){ show(); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok).catch(fb); } else fb();
+      function fb(){ var ta=document.createElement("textarea"); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy"); ok();}catch(e){} document.body.removeChild(ta); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

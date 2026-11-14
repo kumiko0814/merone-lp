@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merone 北海道 STUDY TRIP｜旅のしおり 2026.7.24-25 札幌</title>
+<meta name="description" content="Merone 北海道スタディトリップ 2026年7月24日-25日 札幌。ビアガーデン・観光・鮨を巡りながら『街は、いちばん面白い仕入れの教科書』をテーマに学ぶ2日間。旅のしおり。">
+<meta name="theme-color" content="#2e3448">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#e0799e;
+    --pink-deep:#cf6488;
+    --pink-soft:#f4b9cf;
+    --pink-tint:#fdeff4;
+    --blue:#5b96c9;
+    --blue-deep:#3f7bb0;
+    --blue-soft:#a9cdec;
+    --blue-tint:#eef5fb;
+    --navy:#2e3448;
+    --navy-2:#3d465f;
+    --ink:#2e3038;
+    --ink-2:#636776;
+    --ink-3:#9a9ea9;
+    --line:#ece7ea;
+    --line-2:#f4f0f2;
+    --cream:#fbf8f4;
+    --bg:#ffffff;
+    --gold:#c79a53;
+    --serif:"Shippori Mincho",serif;
+    --sans:"Noto Sans JP",sans-serif;
+    --latin:"Inter",sans-serif;
+    --shadow:0 18px 50px -22px rgba(46,52,72,.34);
+    --shadow-s:0 8px 26px -16px rgba(46,52,72,.30);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    line-height:1.95;
+    font-size:15px;
+    font-weight:400;
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+    letter-spacing:.012em;
+    overflow-x:hidden;
+  }
+  a{color:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+  .eyebrow{
+    font-family:var(--latin);
+    font-size:11px;font-weight:600;
+    letter-spacing:.32em;
+    color:var(--pink);
+    text-transform:uppercase;
+  }
+  .serif{font-family:var(--serif)}
+
+  /* ===== Top ribbon ===== */
+  .ribbon{
+    background:var(--navy);color:#fff;text-align:center;
+    font-family:var(--latin);font-size:11px;font-weight:500;
+    letter-spacing:.26em;padding:9px 16px;
+  }
+  .ribbon span{color:var(--pink-soft)}
+
+  /* ===== Hero ===== */
+  header.hero{
+    position:relative;text-align:center;overflow:hidden;
+    padding:74px 22px 66px;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(169,205,236,.40), transparent 48%),
+      radial-gradient(circle at 84% 22%, rgba(244,185,207,.42), transparent 46%),
+      radial-gradient(circle at 50% 108%, rgba(199,154,83,.14), transparent 55%),
+      linear-gradient(180deg,#ffffff 0%,var(--cream) 100%);
+  }
+  .hero .brand{
+    font-family:var(--latin);font-weight:700;font-size:14px;
+    letter-spacing:.20em;color:var(--navy);margin-bottom:22px;
+  }
+  .hero .brand span{color:var(--pink)}
+  .hero .kicker{
+    display:inline-block;font-family:var(--latin);font-weight:600;
+    font-size:11px;letter-spacing:.30em;color:var(--blue-deep);
+    border:1px solid var(--blue-soft);border-radius:100px;
+    padding:6px 16px;background:rgba(255,255,255,.6);margin-bottom:26px;
+  }
+  .hero h1{
+    font-family:var(--serif);font-weight:800;
+    font-size:clamp(34px,8.6vw,60px);
+    letter-spacing:.045em;line-height:1.28;color:var(--navy);
+  }
+  .hero h1 em{font-style:normal;color:var(--pink-deep)}
+  .hero .sub{
+    font-family:var(--latin);font-weight:600;letter-spacing:.2em;
+    font-size:13px;color:var(--ink-2);margin-top:20px;
+  }
+  .hero .divider{
+    width:58px;height:2px;margin:26px auto 0;border-radius:2px;
+    background:linear-gradient(90deg,var(--pink),var(--blue));
+  }
+  .hero .lead{
+    max-width:500px;margin:24px auto 0;color:var(--ink-2);
+    font-size:14.5px;line-height:2.1;
+  }
+  .hero .meta{
+    display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:30px;
+  }
+  .hero .meta .chip{
+    background:#fff;border:1px solid var(--line);border-radius:100px;
+    padding:9px 18px;font-size:12.5px;color:var(--navy-2);font-weight:500;
+    box-shadow:var(--shadow-s);
+  }
+  .hero .meta .chip b{font-family:var(--latin);color:var(--pink-deep);letter-spacing:.04em}
+
+  /* ===== Sticky nav ===== */
+  nav.jump{
+    position:sticky;top:0;z-index:40;
+    background:rgba(251,248,244,.86);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.jump .inner{
+    max-width:760px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;
+    padding:10px 14px;scrollbar-width:none;
+  }
+  nav.jump .inner::-webkit-scrollbar{display:none}
+  nav.jump a{
+    flex:0 0 auto;font-size:12.5px;font-weight:500;color:var(--ink-2);
+    text-decoration:none;padding:7px 14px;border-radius:100px;white-space:nowrap;
+    transition:.2s;
+  }
+  nav.jump a:hover{background:#fff;color:var(--navy);box-shadow:var(--shadow-s)}
+
+  /* ===== Section base ===== */
+  section{padding:58px 0}
+  .sec-head{text-align:center;margin-bottom:38px}
+  .sec-head .eyebrow{display:block;margin-bottom:12px}
+  .sec-head h2{
+    font-family:var(--serif);font-weight:700;
+    font-size:clamp(24px,5.4vw,32px);letter-spacing:.05em;color:var(--navy);
+    line-height:1.4;
+  }
+  .sec-head p{max-width:520px;margin:14px auto 0;color:var(--ink-2);font-size:14px}
+
+  /* ===== Letter ===== */
+  .letter{
+    background:linear-gradient(180deg,#fff,#fffdfb);
+    border:1px solid var(--line);border-radius:22px;
+    padding:40px 34px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .letter::before{
+    content:"";position:absolute;top:-40px;right:-40px;width:150px;height:150px;
+    background:radial-gradient(circle,rgba(244,185,207,.4),transparent 68%);border-radius:50%;
+  }
+  .letter .eyebrow{margin-bottom:16px}
+  .letter h3{
+    font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:.04em;
+    color:var(--navy);line-height:1.6;margin-bottom:20px;position:relative;
+  }
+  .letter p{color:var(--ink);font-size:14.5px;line-height:2.15;margin-bottom:16px;position:relative}
+  .letter p:last-child{margin-bottom:0}
+  .letter .hl{
+    background:linear-gradient(transparent 62%, var(--pink-tint) 62%);
+    font-weight:700;color:var(--navy);padding:0 2px;
+  }
+  .letter .sign{
+    margin-top:26px;text-align:right;font-family:var(--serif);font-weight:600;
+    color:var(--navy-2);font-size:14px;letter-spacing:.06em;position:relative;
+  }
+
+  /* ===== Mission ===== */
+  #mission{
+    background:
+      radial-gradient(circle at 90% 0%, rgba(169,205,236,.16), transparent 40%),
+      var(--navy);
+    color:#fff;border-radius:0;
+  }
+  #mission .sec-head h2{color:#fff}
+  #mission .sec-head .eyebrow{color:var(--pink-soft)}
+  #mission .sec-head p{color:rgba(255,255,255,.72)}
+  .mission-lead{
+    max-width:600px;margin:0 auto 36px;text-align:center;
+    font-size:15px;line-height:2.15;color:rgba(255,255,255,.86);
+  }
+  .mission-lead b{color:var(--pink-soft);font-weight:700}
+  .m-title{
+    text-align:center;margin:0 auto 40px;
+  }
+  .m-title .big{
+    font-family:var(--serif);font-weight:800;
+    font-size:clamp(23px,5.6vw,34px);letter-spacing:.05em;line-height:1.5;color:#fff;
+  }
+  .m-title .big u{
+    text-decoration:none;
+    background:linear-gradient(transparent 60%, rgba(224,121,158,.55) 60%);padding:0 4px;
+  }
+  .cards{display:grid;gap:16px}
+  .mcard{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.14);border-radius:18px;
+    padding:24px 22px;display:flex;gap:18px;align-items:flex-start;
+    transition:.25s;
+  }
+  .mcard:hover{background:rgba(255,255,255,.09);transform:translateY(-2px)}
+  .mcard .no{
+    flex:0 0 auto;width:46px;height:46px;border-radius:13px;
+    background:linear-gradient(135deg,var(--pink),var(--blue));
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--latin);font-weight:700;font-size:17px;color:#fff;
+    box-shadow:0 8px 20px -8px rgba(224,121,158,.7);
+  }
+  .mcard .body{flex:1}
+  .mcard .spot{
+    font-family:var(--latin);font-size:10.5px;font-weight:600;letter-spacing:.14em;
+    color:var(--blue-soft);text-transform:uppercase;margin-bottom:6px;
+  }
+  .mcard h4{
+    font-family:var(--serif);font-weight:700;font-size:17px;color:#fff;
+    letter-spacing:.03em;line-height:1.5;margin-bottom:8px;
+  }
+  .mcard p{font-size:13.5px;line-height:1.95;color:rgba(255,255,255,.76)}
+  .mcard .q{
+    display:inline-block;margin-top:10px;font-size:12.5px;color:var(--pink-soft);
+    font-style:italic;font-family:var(--serif);
+  }
+  .final-card{
+    margin-top:20px;background:linear-gradient(135deg,rgba(224,121,158,.16),rgba(91,150,201,.16));
+    border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:30px 26px;text-align:center;
+  }
+  .final-card .eyebrow{color:var(--pink-soft);display:block;margin-bottom:12px}
+  .final-card h4{font-family:var(--serif);font-weight:700;font-size:19px;color:#fff;line-height:1.6;letter-spacing:.03em}
+  .final-card p{margin-top:12px;font-size:13.5px;color:rgba(255,255,255,.8);line-height:2}
+
+  /* ===== Day tabs / timeline ===== */
+  .day-badge{
+    display:inline-flex;align-items:center;gap:12px;margin:0 auto 30px;
+    background:#fff;border:1px solid var(--line);border-radius:100px;
+    padding:8px 8px 8px 22px;box-shadow:var(--shadow-s);
+  }
+  .day-badge .d{font-family:var(--serif);font-weight:700;color:var(--navy);font-size:15px;letter-spacing:.04em}
+  .day-badge .n{
+    font-family:var(--latin);font-weight:700;font-size:12px;letter-spacing:.1em;color:#fff;
+    background:var(--pink-deep);border-radius:100px;padding:6px 14px;
+  }
+  .day-badge.blue .n{background:var(--blue-deep)}
+  .center{text-align:center}
+
+  .tl{position:relative;padding-left:8px}
+  .tl::before{
+    content:"";position:absolute;left:23px;top:14px;bottom:14px;width:2px;
+    background:linear-gradient(180deg,var(--pink-soft),var(--blue-soft));border-radius:2px;
+  }
+  .stop{position:relative;padding:0 0 20px 60px}
+  .stop .dot{
+    position:absolute;left:14px;top:4px;width:20px;height:20px;border-radius:50%;
+    background:#fff;border:3px solid var(--pink);box-shadow:0 0 0 4px var(--cream);
+  }
+  .stop.blue .dot{border-color:var(--blue)}
+  .stop .time{
+    font-family:var(--latin);font-weight:700;font-size:13px;letter-spacing:.06em;
+    color:var(--pink-deep);margin-bottom:8px;
+  }
+  .stop.blue .time{color:var(--blue-deep)}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:18px;
+    padding:22px 22px;box-shadow:var(--shadow-s);transition:.25s;
+  }
+  .card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .card h3{
+    font-family:var(--serif);font-weight:700;font-size:18.5px;color:var(--navy);
+    letter-spacing:.03em;line-height:1.5;
+  }
+  .card .cost{
+    flex:0 0 auto;font-family:var(--latin);font-weight:700;font-size:14px;
+    color:var(--navy);background:var(--blue-tint);border-radius:10px;padding:6px 12px;white-space:nowrap;
+  }
+  .card .cost small{font-family:var(--sans);font-weight:500;font-size:10.5px;color:var(--ink-2);display:block;letter-spacing:0}
+  .card .desc{font-size:13.5px;line-height:1.95;color:var(--ink-2);margin-top:10px}
+  .card .rows{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;display:grid;gap:7px}
+  .card .rows .r{display:flex;gap:10px;font-size:12.5px;color:var(--ink-2);line-height:1.7}
+  .card .rows .r .lb{
+    flex:0 0 62px;font-weight:700;color:var(--navy-2);font-size:11px;letter-spacing:.04em;
+  }
+  .card .rows .r a{color:var(--blue-deep);text-decoration:none;border-bottom:1px solid var(--blue-soft)}
+  .card .eye{
+    margin-top:14px;background:var(--pink-tint);border-radius:12px;padding:12px 14px;
+    font-size:12.5px;line-height:1.85;color:var(--navy-2);
+  }
+  .card .eye b{color:var(--pink-deep);font-weight:700}
+  .free-tag{
+    display:inline-block;font-family:var(--latin);font-size:10.5px;font-weight:600;letter-spacing:.08em;
+    color:var(--gold);border:1px solid #e6d3ab;background:#fdf9ef;border-radius:100px;padding:3px 10px;margin-left:8px;vertical-align:middle;
+  }
+
+  /* ===== Info grid ===== */
+  #info{background:linear-gradient(180deg,var(--cream),#fff)}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .ibox{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 20px;box-shadow:var(--shadow-s);
+  }
+  .ibox .ic{
+    width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;
+    font-family:var(--latin);font-weight:700;font-size:15px;color:#fff;margin-bottom:14px;
+    background:linear-gradient(135deg,var(--blue),var(--blue-deep));
+  }
+  .ibox.pink .ic{background:linear-gradient(135deg,var(--pink),var(--pink-deep))}
+  .ibox h4{font-family:var(--serif);font-weight:700;font-size:15.5px;color:var(--navy);margin-bottom:10px;letter-spacing:.03em}
+  .ibox ul{list-style:none;display:grid;gap:8px}
+  .ibox li{font-size:12.8px;line-height:1.75;color:var(--ink-2);padding-left:16px;position:relative}
+  .ibox li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--pink-soft)}
+  .ibox.pink li::before{background:var(--blue-soft)}
+  .ibox li b{color:var(--navy-2);font-weight:700}
+
+  .pay-note{
+    grid-column:1/-1;background:var(--navy);color:#fff;border-radius:16px;padding:24px 24px;
+  }
+  .pay-note .eyebrow{color:var(--pink-soft);display:block;margin-bottom:12px}
+  .pay-note .steps{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  .pay-note .st{display:flex;gap:12px;align-items:flex-start}
+  .pay-note .st .n{
+    flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.12);
+    display:flex;align-items:center;justify-content:center;font-family:var(--latin);font-weight:700;font-size:12px;color:var(--pink-soft);
+  }
+  .pay-note .st p{font-size:12.8px;line-height:1.7;color:rgba(255,255,255,.84)}
+  .pay-note .st p b{color:#fff}
+
+  /* ===== Closing ===== */
+  #closing{
+    text-align:center;position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(244,185,207,.34), transparent 44%),
+      radial-gradient(circle at 82% 30%, rgba(169,205,236,.34), transparent 44%),
+      var(--cream);
+  }
+  #closing h2{font-family:var(--serif);font-weight:800;font-size:clamp(24px,6vw,36px);letter-spacing:.05em;color:var(--navy);line-height:1.5}
+  #closing h2 em{font-style:normal;color:var(--pink-deep)}
+  #closing .lead{max-width:480px;margin:22px auto 0;color:var(--ink-2);font-size:14.5px;line-height:2.15}
+  #closing .divider{width:58px;height:2px;margin:30px auto;border-radius:2px;background:linear-gradient(90deg,var(--pink),var(--blue))}
+  #closing .from{font-family:var(--serif);font-weight:600;color:var(--navy-2);letter-spacing:.06em;font-size:14px}
+
+  footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;padding:34px 22px;font-size:11.5px;letter-spacing:.06em}
+  footer .b{font-family:var(--latin);font-weight:700;letter-spacing:.2em;color:#fff;font-size:13px;margin-bottom:8px}
+  footer .b span{color:var(--pink-soft)}
+
+  @media(max-width:560px){
+    .info-grid{grid-template-columns:1fr}
+    .pay-note .steps{grid-template-columns:1fr}
+    .letter{padding:32px 22px}
+    .card .cost{width:100%}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<div class="ribbon">MERONE <span>&times;</span> HOKKAIDO STUDY TRIP &nbsp;/&nbsp; SAPPORO 2026</div>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="brand">Mer<span>o</span>ne</div>
+  <span class="kicker">STUDY TRIP in HOKKAIDO</span>
+  <h1 class="serif">街は、いちばん面白い<br><em>“仕入れの教科書”</em>。</h1>
+  <div class="sub">2026.07.24 FRI &ndash; 07.25 SAT ／ 札幌</div>
+  <div class="divider"></div>
+  <p class="lead">会議室では学べないことを、街で。<br>おいしいものと、きれいな景色と、仲間と一緒に。<br>この2日間そのものが、今月の“勉強会”です。</p>
+  <div class="meta">
+    <span class="chip">初日 <b>7/24</b> ビアガーデン懇親会</span>
+    <span class="chip">2日目 <b>7/25</b> 観光＆講座</span>
+  </div>
+</header>
+
+<!-- ===== JUMP NAV ===== -->
+<nav class="jump">
+  <div class="inner">
+    <a href="#letter">はじめに</a>
+    <a href="#mission">今回のミッション</a>
+    <a href="#day1">1日目 7/24</a>
+    <a href="#day2">2日目 7/25</a>
+    <a href="#info">お金・もちもの・行き方</a>
+    <a href="#closing">最後に</a>
+  </div>
+</nav>
+
+<!-- ===== LETTER ===== -->
+<section id="letter">
+  <div class="wrap">
+    <div class="letter">
+      <span class="eyebrow">Why this trip</span>
+      <h3 class="serif">なぜ、会議室じゃなくて“街”なのか。</h3>
+      <p>この旅は、ただの観光ではありません。かといって、堅い勉強会でもありません。<br>私たちが持って帰ってほしいのは、<span class="hl">「体験そのものから学びを掴む力」</span>です。</p>
+      <p>おいしいお店には、必ず「選ばれる理由」があります。定番の観光地には、変わらずに愛され続ける「価値」があります。それは、みなさんが普段向き合っている“売れる／売れない”の世界と、まったく同じ景色でつながっています。</p>
+      <p>だから今回は、遊びながら、食べながら、<span class="hl">「なんでこれ、こんなに人気なんだろう？」</span>を一緒に探しにいきます。楽しんだ分だけ、持って帰れるものが増える2日間にしましょうね。</p>
+      <div class="sign">Merone ／ 森川くみこ・清水 翔</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MISSION ===== -->
+<section id="mission">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Your Mission</span>
+      <h2 class="serif">今回の、たったひとつの宿題。</h2>
+      <p>むずかしく考えなくて大丈夫。各スポットで“1分だけ”立ち止まって、感じたことをメモするだけです。</p>
+    </div>
+
+    <p class="mission-lead">テーマは<b>「なぜ、売れるんだろう？」</b>。<br>街のあちこちに散らばった“選ばれる理由”を、あなたの目で見つけてください。<br>集めたヒントは、最後の講座でみんなでシェアします。</p>
+
+    <div class="m-title">
+      <p class="big serif">見て、食べて、感じて。<br><u>気づきを“ことば”にして</u>持って帰る。</p>
+    </div>
+
+    <div class="cards">
+      <div class="mcard">
+        <div class="no">01</div>
+        <div class="body">
+          <div class="spot">Sapporo Beer Museum ／ お土産店</div>
+          <h4>思わず手に取った、その1つ。</h4>
+          <p>お土産コーナーで、あなたが「あ、いいな」と手に取った商品をひとつ。パッケージ？限定？物語？——手が伸びた“理由”はどこにありましたか。</p>
+          <span class="q">“人は、何にお金じゃなく気持ちを動かされる？”</span>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="no">02</div>
+        <div class="body">
+          <div class="spot">Jingisukan ／ 懇親会</div>
+          <h4>この空間に、お金を払いたくなる理由。</h4>
+          <p>ジンギスカンは“お肉”を食べにきているようで、実は“体験”を買っています。煙、音、みんなの笑顔——モノじゃない価値に、いくら払える？を感じてみて。</p>
+          <span class="q">“体験には、いくらの値段がつくんだろう？”</span>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="no">03</div>
+        <div class="body">
+          <div class="spot">Sushi Natsume ／ 松竹梅</div>
+          <h4>あなたは、どれを選ぶ？</h4>
+          <p>鮨匠なつめのにぎりは、2,530／3,630／4,400円の3段階。多くの人が“真ん中”に手を伸ばします。それはなぜ？——価格の並べ方には、設計があります。</p>
+          <span class="q">“なぜ、まん中を選びたくなるの？”</span>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="no">04</div>
+        <div class="body">
+          <div class="spot">Odori ／ 定番観光</div>
+          <h4>“定番”が、定番であり続ける訳。</h4>
+          <p>時計台、テレビ塔、赤れんが庁舎。何十年も選ばれ続ける場所には、流行り廃りを超えた“変わらない価値”があります。それって、何だと思う？</p>
+          <span class="q">“長く愛されるものに、共通することは？”</span>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="no">05</div>
+        <div class="body">
+          <div class="spot">Anywhere ／ いつもと違う一歩</div>
+          <h4>普段の自分なら、しないことを。</h4>
+          <p>隣の人に「なんで来たんですか？」と聞いてみる。いつもは選ばない味を頼んでみる。小さな“はじめて”が、いちばん記憶に残る学びになります。</p>
+          <span class="q">“ちょっとの勇気が、世界を広げる。”</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-card">
+      <span class="eyebrow">Final Share</span>
+      <h4 class="serif">最後の講座で、ひとことだけ。<br>「私が持って帰る“売れる理由”」を、みんなへ。</h4>
+      <p>正解はありません。あなたが街で見つけた小さな気づきが、そのまま仲間へのプレゼントになります。<br>気負わず、楽しんだままのテンションで来てくださいね。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DAY 1 ===== -->
+<section id="day1">
+  <div class="wrap">
+    <div class="center">
+      <div class="day-badge">
+        <span class="d serif">7月24日（金）</span>
+        <span class="n">DAY 1</span>
+      </div>
+    </div>
+
+    <div class="tl">
+      <div class="stop">
+        <span class="dot"></span>
+        <div class="time">17:00 集合</div>
+        <div class="card">
+          <div class="top">
+            <h3>サッポロビール博物館 <span class="free-tag">入館無料</span></h3>
+            <div class="cost">別館 ¥1,000<small>酒気は身分証で¥700／試飲は別途</small></div>
+          </div>
+          <p class="desc">日本で最も歴史のあるビール博物館。7/1にリニューアルしたばかりで、スマホを使った“没入型”の体験が話題です。ゴールデンカムイの舞台としても知られる場所。まずはここに集合して、旅のスタートを切りましょう。</p>
+          <div class="rows">
+            <div class="r"><span class="lb">住所</span><span>札幌市東区北7条東9丁目1</span></div>
+            <div class="r"><span class="lb">アクセス</span><span>札幌駅からタクシー約10分／苗穂駅から徒歩圏</span></div>
+            <div class="r"><span class="lb">MAP</span><span><a href="https://www.sapporobeer.jp/brewery/s_museum/access/" target="_blank" rel="noopener">公式アクセス &rarr;</a></span></div>
+          </div>
+          <div class="eye"><b>MISSION 01</b>：お土産コーナーで、思わず手に取った1つを覚えておいて。“選ばれる理由”はどこにありましたか？</div>
+        </div>
+      </div>
+
+      <div class="stop">
+        <span class="dot"></span>
+        <div class="time">18:30 タクシーで移動（約10分）</div>
+        <div class="card">
+          <div class="top"><h3>移動 ｜ 博物館 &rarr; 大通エリアへ</h3></div>
+          <p class="desc">数名でタクシーに乗り合わせて移動します。車中も、初対面の人と話せる小さなチャンス。18:50ごろにお店に到着予定です。</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <span class="dot"></span>
+        <div class="time">19:00 懇親会スタート</div>
+        <div class="card">
+          <div class="top">
+            <h3>平岸ジンギスカン 大通店</h3>
+            <div class="cost">¥5,500<small>7品・120分飲み放題（税込）</small></div>
+          </div>
+          <p class="desc">厳選ラム肉と秘伝のタレ。生ラム・丸ジンギスカン・ソーセージ・野菜とライスは食べ放題。ジンギスカンの煙とにぎわいの中で、みんなで乾杯しましょう。この日いちばんの“体験”です。</p>
+          <div class="rows">
+            <div class="r"><span class="lb">住所</span><span>札幌市中央区南1条西4-8 NKC-1-4ビル 1F</span></div>
+            <div class="r"><span class="lb">ご注意</span><span>“ススキノ店”ではなく<b>“大通店”</b>です。お間違えなく</span></div>
+            <div class="r"><span class="lb">お支払い</span><span>予約名は「Merone」／会計は当日ご案内します</span></div>
+            <div class="r"><span class="lb">MAP</span><span><a href="https://www.hotpepper.jp/strJ004558550/smap/" target="_blank" rel="noopener">お店の地図 &rarr;</a></span></div>
+          </div>
+          <div class="eye"><b>MISSION 02</b>：この空間、なぜお金を払いたくなる？“モノじゃなく体験”の値付けを感じてみて。</div>
+        </div>
+      </div>
+
+      <div class="stop">
+        <span class="dot"></span>
+        <div class="time">21:00 一次会 終了</div>
+        <div class="card">
+          <div class="top"><h3>おつかれさまでした</h3></div>
+          <p class="desc">1日目はここまで。ゆっくり休んで、明日にそなえましょう。もし二次会のご希望があれば、当日その場でご相談を。無理はせず、楽しめる範囲で。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DAY 2 ===== -->
+<section id="day2" style="background:linear-gradient(180deg,#fff,var(--cream))">
+  <div class="wrap">
+    <div class="center">
+      <div class="day-badge blue">
+        <span class="d serif">7月25日（土）</span>
+        <span class="n">DAY 2</span>
+      </div>
+    </div>
+
+    <div class="tl">
+      <div class="stop blue">
+        <span class="dot"></span>
+        <div class="time">10:00 集合</div>
+        <div class="card">
+          <div class="top"><h3>大通ビッセ 1F 入口</h3></div>
+          <p class="desc">2日目は大通エリアからスタート。まずはここに集合して、みんなで札幌の街歩きへ出発します。</p>
+          <div class="rows">
+            <div class="r"><span class="lb">住所</span><span>札幌市中央区大通西3丁目7 敷島大通センタービル 1F</span></div>
+            <div class="r"><span class="lb">MAP</span><span><a href="https://www.odori-bisse.com/access/" target="_blank" rel="noopener">大通ビッセ アクセス &rarr;</a></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop blue">
+        <span class="dot"></span>
+        <div class="time">10:10 &ndash; 11:30 街歩き</div>
+        <div class="card">
+          <div class="top"><h3>大通 定番さんぽ<br><span style="font-size:13px;color:var(--ink-2);font-weight:500">テレビ塔 &rarr; 時計台 &rarr; 赤れんが庁舎</span></h3>
+            <div class="cost">各自 自由</div>
+          </div>
+          <p class="desc">札幌の“顕著な定番”をぐるり。テレビ塔は札幌のカントリーサイン、赤れんが庁舎は国の重要文化財。定番写真も、ぜひみんなで。</p>
+          <div class="rows">
+            <div class="r"><span class="lb">10:10</span><span>さっぽろテレビ塔</span></div>
+            <div class="r"><span class="lb">10:40</span><span>札幌市時計台</span></div>
+            <div class="r"><span class="lb">11:10</span><span>北海道庁 赤れんが庁舎</span></div>
+          </div>
+          <div class="eye" style="background:var(--blue-tint)"><b style="color:var(--blue-deep)">MISSION 04</b>：定番が定番であり続けるのは、なぜ？“変わらない価値”に目を向けてみて。</div>
+        </div>
+      </div>
+
+      <div class="stop blue">
+        <span class="dot"></span>
+        <div class="time">11:45 ランチ</div>
+        <div class="card">
+          <div class="top">
+            <h3>鮨匠 なつめ 大通ビッセ店</h3>
+            <div class="cost">各自会計<small>下記メニューから選択</small></div>
+          </div>
+          <p class="desc">食べログ高評価の人気店で、北海道の新鮮な海の幸を。にぎりは3段階、ちょい寿司セットも3段階。“どれを選ぶか”そのものが、今日のミッションです。</p>
+          <div class="rows">
+            <div class="r"><span class="lb">松竹梅</span><span>にぎり 2,530／3,630／4,400円</span></div>
+            <div class="r"><span class="lb">セット</span><span>ちょい寿司 4,180／5,500／6,600円</span></div>
+            <div class="r"><span class="lb">住所</span><span>大通ビッセ 4F（敷島大通センタービル）</span></div>
+            <div class="r"><span class="lb">MENU</span><span><a href="https://www.sushi-natsume.com/bisse_menu/" target="_blank" rel="noopener">メニューを見る &rarr;</a></span></div>
+          </div>
+          <div class="eye"><b>MISSION 03</b>：あなたはどれを選ぶ？なぜ真ん中に手が伸びるのか、選んだあとに考えてみて。</div>
+        </div>
+      </div>
+
+      <div class="stop blue">
+        <span class="dot"></span>
+        <div class="time">13:50 会場入り</div>
+        <div class="card">
+          <div class="top">
+            <h3>サントリー ザ・プレミアム・モルツ<br>ビアガーデン</h3>
+            <div class="cost">¥1,600<small>ドリンク1杯＋おつまみ2種</small></div>
+          </div>
+          <p class="desc">大通公園を舞台にした、夏の風物詩ビアガーデン。開放感のなかで、この旅のしめくくりの講座を行います。会場では、スタッフに「Merone です」とお伝えください。</p>
+          <div class="rows">
+            <div class="r"><span class="lb">場所</span><span>大通公園 5丁目 会場（大通西5）</span></div>
+            <div class="r"><span class="lb">お支払い</span><span><b>キャッシュレス決済のみ</b>（当日ご案内）</span></div>
+            <div class="r"><span class="lb">MAP</span><span><a href="https://www.sapporo.travel/summerfes/event/odori05/" target="_blank" rel="noopener">大通ビアガーデン &rarr;</a></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stop blue">
+        <span class="dot"></span>
+        <div class="time">14:00 &ndash; 15:40 講座＆シェア</div>
+        <div class="card">
+          <div class="top"><h3>森川・清水の講座 ／ みんなでシェア</h3></div>
+          <p class="desc">この2日間で見つけた“売れる理由”を、ひとことずつシェアしましょう。街で感じたことと、私たちの考え方を重ねて、明日から使える「自分だけの気づき」に変えていく時間です。</p>
+          <div class="eye" style="background:linear-gradient(135deg,var(--pink-tint),var(--blue-tint))"><b>FINAL</b>：「私が持って帰る“売れる理由”」をひとつ。あなたの言葉が、そのまま仲間へのギフトになります。</div>
+        </div>
+      </div>
+
+      <div class="stop blue">
+        <span class="dot"></span>
+        <div class="time">15:40 解散</div>
+        <div class="card">
+          <div class="top"><h3>2日間、おつかれさまでした</h3></div>
+          <p class="desc">会場から札幌駅までは徒歩15〜20分。飛行機で帰る方は、乗り遅れのないよう時間に余裕をもって。新千歳空港は、それ自体が2時間見ても飽きないグルメ天国です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INFO ===== -->
+<section id="info">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Good to know</span>
+      <h2 class="serif">お金・もちもの・行き方</h2>
+      <p>当日あわてないように、ここだけ先に押さえておきましょう。</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="ibox">
+        <div class="ic">¥</div>
+        <h4>費用のめやす（税込）</h4>
+        <ul>
+          <li>ビール博物館：<b>別館¥1,000</b>（酒気¥700／試飲別）</li>
+          <li>ジンギスカン：<b>¥5,500</b>（7品120分飲み放題）</li>
+          <li>鮨ランチ：<b>各自会計</b>（¥2,530〜）</li>
+          <li>ビアガーデン講座：<b>¥1,600</b>（1杯＋おつまみ）</li>
+        </ul>
+      </div>
+
+      <div class="ibox pink">
+        <div class="ic">◍</div>
+        <h4>もちもの</h4>
+        <ul>
+          <li>身分証明書（博物館の酒気割引に）</li>
+          <li>スマホ（決済・MAP・博物館の体験に必須）</li>
+          <li>羽織るもの1枚（夜は少し冷えます）</li>
+          <li>歩きやすい靴（街歩きがあります）</li>
+        </ul>
+      </div>
+
+      <div class="ibox">
+        <div class="ic">JR</div>
+        <h4>行き方（新千歳空港⇄札幌）</h4>
+        <ul>
+          <li>快速エアポートで<b>約37分</b>／1時間4.5本</li>
+          <li>普通席 1,230円／Uシート指定＋1,000円</li>
+          <li>札幌駅・大通駅から会場は徒歩＆地下鉄圏</li>
+        </ul>
+      </div>
+
+      <div class="ibox pink">
+        <div class="ic">◲</div>
+        <h4>荷物・ロッカー</h4>
+        <ul>
+          <li>札幌駅・大通駅にコインロッカーあり</li>
+          <li>観光シーズンは早めの確保が安心です</li>
+          <li>手ぶら観光：荷物1日1,000円で配送も可</li>
+        </ul>
+      </div>
+
+      <div class="pay-note">
+        <span class="eyebrow">Payment</span>
+        <div style="font-family:var(--serif);font-weight:700;font-size:16px;color:#fff;margin-bottom:14px;letter-spacing:.03em">ジンギスカン・ビアガーデンのお支払い</div>
+        <div class="steps">
+          <div class="st"><span class="n">1</span><p>お店でのお会計は、<b>清水がまとめて立て替え</b>ます。</p></div>
+          <div class="st"><span class="n">2</span><p>そのあと清水へ、<b>PayPay か 現金</b>でお支払いください。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLOSING ===== -->
+<section id="closing">
+  <div class="wrap">
+    <span class="eyebrow" style="display:block;margin-bottom:16px">See you in Sapporo</span>
+    <h2 class="serif">はるばる、ようこそ。<br><em>最高の2日間</em>にしましょう。</h2>
+    <p class="lead">お仕事も、家庭も、それぞれ都合をつけて集まってくれること。<br>それ自体が、もう本当にすごいことです。<br>気負わず、楽しんだ分だけ持って帰る。それでじゅうぶんです。</p>
+    <div class="divider"></div>
+    <p class="from serif">みなさんに会えるのを、楽しみにしています。<br>Merone ／ 森川くみこ・清水 翔</p>
+  </div>
+</section>
+
+<footer>
+  <div class="b">Mer<span>o</span>ne</div>
+  北海道 STUDY TRIP ｜ 2026.07.24&ndash;25 SAPPORO<br>
+  ※このしおりの内容・時間は当日の状況により変更になる場合があります。
+</footer>
+
+</body>
+</html>

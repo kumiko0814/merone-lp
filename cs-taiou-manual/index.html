@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>お客様対応マニュアル｜返信テンプレート集</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#FAF8F2; --ink:#2A2A2A; --muted:#6B665C;
+  --line:#E8E3D6; --mustard:#E8A24C; --green:#B5D04E; --teal:#7DB8B8;
+  --pale:#FAE8A0; --slot:rgba(250,232,160,.55); --card:#FFFFFF;
+  --shadow:0 1px 3px rgba(42,42,42,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#201E19; --surface:#282520; --ink:#F0EDE4; --muted:#A9A294;
+    --line:#3B372E; --slot:rgba(250,232,160,.18); --card:#2D2A24;
+    --shadow:0 1px 3px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#201E19; --surface:#282520; --ink:#F0EDE4; --muted:#A9A294;
+  --line:#3B372E; --slot:rgba(250,232,160,.18); --card:#2D2A24;
+  --shadow:0 1px 3px rgba(0,0,0,.4);
+}
+:root[data-theme="light"]{
+  --bg:#FFFFFF; --surface:#FAF8F2; --ink:#2A2A2A; --muted:#6B665C;
+  --line:#E8E3D6; --slot:rgba(250,232,160,.55); --card:#FFFFFF;
+  --shadow:0 1px 3px rgba(42,42,42,.08);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","YuGothic",Meiryo,sans-serif;
+  line-height:1.75; font-size:15px;
+}
+.stripe{display:flex;height:6px}
+.stripe span{flex:1}
+.stripe .s1{background:var(--mustard)} .stripe .s2{background:var(--green)}
+.stripe .s3{background:var(--teal)} .stripe .s4{background:var(--pale)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px 80px}
+header.top{padding:40px 0 8px}
+.kicker{font-size:12px;letter-spacing:.14em;color:var(--muted);margin:0 0 6px}
+h1{font-size:26px;margin:0 0 10px;font-weight:700;text-wrap:balance}
+.lede{color:var(--muted);max-width:40em;margin:0 0 4px}
+.doclinks{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0}
+.doclinks a{
+  font-size:12.5px;color:var(--ink);text-decoration:none;border:1px solid var(--line);
+  border-radius:999px;padding:6px 14px;background:var(--surface);
+}
+.doclinks a:hover{border-color:var(--mustard)}
+nav.jump{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;position:sticky;top:0;background:var(--bg);
+  padding:12px 0;z-index:5;border-bottom:1px solid var(--line)}
+nav.jump a{
+  flex:1 1 150px;text-align:center;text-decoration:none;color:var(--ink);font-weight:700;font-size:13px;
+  padding:10px 8px;border-radius:10px;border:1px solid var(--line);background:var(--surface);
+}
+nav.jump a.g:hover{background:var(--green);color:#2A2A2A}
+nav.jump a.t:hover{background:var(--teal);color:#2A2A2A}
+nav.jump a.p:hover{background:var(--pale);color:#2A2A2A}
+section.manual{margin-top:44px}
+.band{
+  border-radius:12px;padding:16px 22px;color:#2A2A2A;margin:0 0 8px;
+}
+.band.green{background:var(--green)} .band.teal{background:var(--teal)}
+.band h2{margin:0;font-size:20px}
+.band p{margin:2px 0 0;font-size:13px;opacity:.85}
+h3{font-size:16px;margin:36px 0 14px;padding-left:12px;border-left:5px solid var(--mustard)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;box-shadow:var(--shadow);
+}
+.card .no{
+  display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--pale);
+  color:#2A2A2A;font-weight:700;font-size:13px;align-items:center;justify-content:center;margin:0 0 8px;
+}
+.card h4{margin:0 0 6px;font-size:14.5px}
+.card p{margin:0;font-size:13px;color:var(--muted)}
+.flow{display:grid;gap:12px}
+.case{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.case h4{margin:0 0 10px;font-size:14.5px}
+.case ol{margin:0;padding-left:0;list-style:none;display:grid;gap:6px}
+.case ol li{display:flex;gap:10px;font-size:13.5px}
+.case ol li b.step{
+  flex:none;width:22px;height:22px;border-radius:50%;background:var(--surface);
+  border:1px solid var(--line);font-size:11.5px;display:inline-flex;align-items:center;justify-content:center;
+  color:var(--muted);margin-top:2px;
+}
+.case .ref{color:var(--muted)}
+.tpl{
+  display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:20px;margin:0 0 16px;box-shadow:var(--shadow);
+}
+@media (max-width:720px){ .tpl{grid-template-columns:1fr} }
+.phone{
+  background:#FFFFFF;border-radius:18px;overflow:hidden;border:1px solid #D8D4CA;max-width:340px;
+}
+.phone .bar{
+  background:#F5F5F3;color:#333;font-size:12px;font-weight:700;padding:9px 14px;
+  border-bottom:1px solid #E5E3DD;display:flex;gap:8px;align-items:center;
+}
+.phone .bar .back{color:#8A8A8A;font-weight:400}
+.chat{background:#8CABD8;padding:14px 12px;display:grid;gap:10px}
+.msg{max-width:82%;padding:9px 12px;border-radius:14px;font-size:12.5px;line-height:1.7;white-space:pre-line}
+.msg.cust{background:#FFFFFF;color:#222;justify-self:start;border-top-left-radius:4px}
+.msg.reply{background:#8DE055;color:#17290D;justify-self:end;border-top-right-radius:4px}
+.meta{font-size:10px;color:rgba(255,255,255,.85);justify-self:end;margin-top:-4px}
+.meta.l{justify-self:start}
+.ctx{font-size:10.5px;color:#FFFFFF;background:rgba(42,42,42,.35);border-radius:999px;
+  padding:2px 10px;justify-self:center}
+.slot{background:var(--slot);border-radius:4px;padding:0 3px}
+.msg .slot{background:rgba(250,232,160,.9);color:#5A4A10}
+.tpl .info h4{margin:0 0 4px;font-size:15px}
+.tpl .info .use{font-size:13px;color:var(--muted);margin:0 0 12px}
+.copy{
+  background:var(--mustard);color:#2A2A2A;border:none;border-radius:8px;
+  padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;
+}
+.copy:hover{filter:brightness(.95)}
+.copy:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.note{font-size:12px;color:var(--muted);margin:10px 0 0}
+.timechips{display:flex;flex-wrap:wrap;gap:10px}
+.timechips .chip{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;
+}
+.timechips .chip b{display:block;font-size:14px}
+.timechips .chip.avoid{border-style:dashed}
+.nglist{display:grid;gap:8px}
+.nglist li{
+  list-style:none;display:flex;gap:10px;align-items:baseline;font-size:13.5px;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;
+}
+.nglist{padding-left:0;margin:0}
+.ngchip{
+  flex:none;font-size:10.5px;font-weight:700;border:1.5px solid var(--ink);
+  border-radius:4px;padding:0 5px;letter-spacing:.06em;
+}
+.arrowflow{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap;margin:0 0 6px}
+.arrowflow .st{
+  flex:1;min-width:150px;background:var(--surface);border:1px solid var(--line);
+  border-radius:10px;padding:12px 14px;font-size:13px;
+}
+.arrowflow .st b{display:block;font-size:14px;margin-bottom:2px}
+.arrowflow .ar{align-self:center;color:var(--muted)}
+.esc{
+  border:2px solid var(--mustard);border-radius:12px;padding:16px 20px;background:var(--card);
+}
+.esc h4{margin:0 0 8px;font-size:14.5px}
+.esc ul{margin:0;padding-left:1.2em;font-size:13.5px}
+.grow{
+  background:var(--pale);color:#2A2A2A;border-radius:12px;padding:18px 22px;margin-top:44px;
+}
+.grow h3{border:none;padding:0;margin:0 0 6px;color:#2A2A2A}
+.grow p{margin:0;font-size:13.5px}
+/* 現在→おすすめ の比較 */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 8px}
+@media (max-width:560px){ .ba{grid-template-columns:1fr} }
+.ba .col{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.ba .lab{font-size:11.5px;font-weight:700;letter-spacing:.04em;border-radius:6px;padding:3px 11px;display:inline-block;margin:0 0 10px}
+.ba .now .lab{background:var(--surface);color:var(--muted);border:1px solid var(--line)}
+.ba .rec .lab{background:var(--green);color:#2A2A2A}
+.ba .bub{border-radius:12px;padding:10px 13px;font-size:12.5px;line-height:1.7;white-space:pre-line}
+.ba .now .bub{background:#EFEDE7;color:#5C574D}
+.ba .rec .bub{background:#8DE055;color:#17290D}
+.ba .why{font-size:12px;color:var(--muted);margin:9px 0 0;display:flex;gap:7px}
+.ba .why b{flex:none;font-size:10.5px;font-weight:700;border:1.5px solid currentColor;border-radius:4px;padding:0 5px;height:fit-content;margin-top:1px}
+/* 引き継ぎメモ（社内用） */
+.memo{background:var(--surface);border:1px dashed var(--mustard);border-radius:12px;padding:16px 18px;margin:0 0 8px}
+.memo .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;background:var(--mustard);color:#2A2A2A;border-radius:6px;padding:3px 11px;margin:0 0 12px}
+.memo .field{display:flex;gap:10px;font-size:13px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.memo .field:last-child{border-bottom:none;padding-bottom:0}
+.memo .field b{flex:none;width:6.5em;color:var(--muted);font-weight:700}
+/* ポイント囲み */
+.point{border:1.5px solid var(--teal);border-radius:12px;padding:14px 18px;background:var(--card);margin:16px 0 0;box-shadow:var(--shadow)}
+.point b{color:var(--ink)}
+.point p{margin:0;font-size:13px;color:var(--muted)}
+#toast{
+  position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:var(--bg);padding:10px 22px;border-radius:999px;font-size:13px;
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (prefers-reduced-motion: reduce){
+  #toast{transition:none} html{scroll-behavior:auto}
+}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<div class="stripe"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></div>
+<div class="wrap">
+
+<header class="top">
+  <p class="kicker">famm カスタマー対応チーム用</p>
+  <h1>お客様対応マニュアル（モック）</h1>
+  <p class="lede">8月スタッフ勉強会・お困りごとアンケートと、現場から届いたご質問をもとにしたマニュアルです。曖昧なご返信・お怒り案件に加え、「また来週連絡します」「50代でも大丈夫？」「女性の担当に変えてほしい」への返し方もまとめました。各テンプレートは、お客様のLINE画面でどう見えるかをそのまま再現しています。「コピーする」でそのまま使えます。</p>
+  <div class="doclinks">
+    <a href="https://docs.google.com/document/d/1opgQ3dm-ddiZ4iQK1c8Bfk8kecyunLPb9DKP4Qdmv4o/edit" target="_blank" rel="noopener">Googleドキュメント版① 曖昧なご返信</a>
+    <a href="https://docs.google.com/document/d/112LZ3g2YXAC2UVmhzDQblGPFbaO78FWHYsEv5z5Hlro/edit" target="_blank" rel="noopener">Googleドキュメント版② お怒り案件</a>
+  </div>
+</header>
+
+<nav class="jump">
+  <a class="g" href="#m1">① 曖昧なご返信</a>
+  <a class="t" href="#m2">② お怒り案件</a>
+  <a class="g" href="#m3">③「また来週連絡」</a>
+  <a class="p" href="#m4">④ 年齢のご不安</a>
+  <a class="t" href="#m5">⑤ 担当変更のご希望</a>
+</nav>
+
+<!-- ══════════ マニュアル① ══════════ -->
+<section class="manual" id="m1">
+  <div class="band green">
+    <h2>① 曖昧なご返信への対応</h2>
+    <p>「出られないかもしれない」とリスケもキャンセルも明言されないお客様への対応</p>
+  </div>
+
+  <h3>基本の考え方（勉強会での合意事項）</h3>
+  <div class="cards">
+    <div class="card"><span class="no">１</span>
+      <h4>まず受け入れる</h4>
+      <p>「分かりました」「大丈夫ですよ」と一度受け止めます。その場でリスケかキャンセルかの二択を迫りません。お客様は断りたいのではなく、ご自身でも状況が読めずに困っていることがほとんどです。</p>
+    </div>
+    <div class="card"><span class="no">２</span>
+      <h4>催促よりも気遣いを先に</h4>
+      <p>「大丈夫ですか？」のひとことを最初に送ります。あえて追わないことで、かえって後日の掘り起こしにつながった事例が複数共有されています。</p>
+    </div>
+    <div class="card"><span class="no">３</span>
+      <h4>追うのは2日後</h4>
+      <p>曖昧なまま返信が止まったら、2日後にリマインドを1通だけ。短い間隔での連投は「催促されている」という感覚を生み、離脱の原因になります。</p>
+    </div>
+  </div>
+
+  <h3>ケース別の対応フロー</h3>
+  <div class="flow">
+    <div class="case">
+      <h4>ケース１　事前に「仕事が長引くかもしれない」と連絡があった</h4>
+      <ol>
+        <li><b class="step">1</b><span>受け入れのひとことを返す<span class="ref">（文例１）</span></span></li>
+        <li><b class="step">2</b><span>ご予約の時間はそのまま生かし、「出られなくても大丈夫」と伝えておく</span></li>
+        <li><b class="step">3</b><span>当日つながらなければ、30分後に改めておかけする提案をする<span class="ref">（文例２）</span></span></li>
+      </ol>
+    </div>
+    <div class="case">
+      <h4>ケース２　当日「病院にいる」など、状況の報告だけが届いた</h4>
+      <ol>
+        <li><b class="step">1</b><span>日程の話はせず、気遣いのメッセージだけを送る<span class="ref">（文例３）</span></span></li>
+        <li><b class="step">2</b><span>その日は追わない</span></li>
+        <li><b class="step">3</b><span>2日後にリマインドを送る<span class="ref">（文例５）</span></span></li>
+      </ol>
+    </div>
+    <div class="case">
+      <h4>ケース３　予約時間にお電話がつながらない</h4>
+      <ol>
+        <li><b class="step">1</b><span>おかけした旨と、30分後に改めておかけする旨をLINEで送る<span class="ref">（文例２）</span></span></li>
+        <li><b class="step">2</b><span>再度おかけしてつながらない場合は15分待機し、それ以上は追わない</span></li>
+        <li><b class="step">3</b><span>締めのメッセージを送っていったんクローズ。日程変更の導線だけ残す<span class="ref">（文例４）</span></span></li>
+      </ol>
+    </div>
+    <div class="case">
+      <h4>ケース４　曖昧なまま返信が止まって2日経った</h4>
+      <ol>
+        <li><b class="step">1</b><span>リマインドを1通だけ送る<span class="ref">（文例５）</span></span></li>
+        <li><b class="step">2</b><span>送る時間帯は「送信する時間帯の目安」に合わせる</span></li>
+        <li><b class="step">3</b><span>それでも返信がなければ、チーム内で共有して次回の掘り起こしリストへ</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>返信文例（LINEでの見え方）</h3>
+  <p class="note">黄色マーカーの<span class="slot">【　】</span>部分はお客様に合わせて差し替えます。1通につきお願いごとは1つまでです。</p>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="msg cust">明日のお電話なのですが、仕事が長引いて出られないかもしれません…</div>
+        <div class="meta l">12:40</div>
+        <div class="msg reply" data-tpl>【お名前】さん、ご連絡ありがとうございます☺️
+お仕事お疲れさまです。承知しました、無理のないタイミングで大丈夫ですよ。
+ひとまずご予約の<span class="slot">【時間】</span>にお電話しますね。もし出られなくてもお気になさらないでください。</div>
+        <div class="meta">既読 12:58</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例１　受け入れ・事前連絡へ</h4>
+      <p class="use">「〜かもしれない」の連絡が来た直後に。二択を迫らず、予約はそのまま生かします。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="ctx">予約時間におかけして、つながらなかった直後</div>
+        <div class="msg reply" data-tpl>【お名前】さん、先ほど<span class="slot">【時間】</span>にお電話いたしました。
+お忙しいタイミングでしたらすみません。<span class="slot">【30分後の時間】</span>ごろに改めておかけしますね☺️</div>
+        <div class="meta">14:03</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例２　つながらなかった直後・30分後の提案</h4>
+      <p class="use">不在着信のあとすぐに1通。責める言葉は入れず、次におかけする時間だけ伝えます。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="msg cust">すみません、今日は子どもの付き添いで病院に来ています</div>
+        <div class="meta l">10:15</div>
+        <div class="msg reply" data-tpl>【お名前】さん、ご連絡ありがとうございます。
+大丈夫ですか？どうぞそちらを最優先になさってくださいね。
+お電話は落ち着いてからで大丈夫です。また改めてご連絡しますね☺️</div>
+        <div class="meta">既読 10:22</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例３　当日の状況報告だけが届いたとき・気遣い優先</h4>
+      <p class="use">日程の話は一切しません。気遣いだけを送り、その日は追わないのがルールです。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="ctx">30分後の再架電もつながらず、15分待機したあと</div>
+        <div class="msg reply" data-tpl>【お名前】さん、本日はご都合が合わなかったようですので、いったんこちらで区切りますね。
+ご都合の良い日時がありましたら、このLINEにひとことお送りください☺️
+改めてご案内いたします。</div>
+        <div class="meta">15:05</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例４　再度つながらなかったあとのクローズ</h4>
+      <p class="use">キャンセル扱いにする場面でも、言葉は「区切る」＋日程変更の導線だけ残します。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="ctx">曖昧なまま2日経ったら、1通だけ</div>
+        <div class="msg reply" data-tpl>【お名前】さん、こんにちは☺️ その後いかがですか？
+先日はお忙しい中ご連絡をありがとうございました。
+もしよろしければ、今週ご都合の良い曜日だけでも、ひとことお送りください。ご返信は30秒で大丈夫です。</div>
+        <div class="meta">11:00</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例５　2日後のリマインド</h4>
+      <p class="use">「30秒で大丈夫」と所要時間を添えて、返信のハードルを下げます。送る時間帯は下の目安に合わせてください。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <h3>送信する時間帯の目安</h3>
+  <div class="timechips">
+    <div class="chip"><b>11時ごろ</b>お仕事の方・昼休憩の少し前</div>
+    <div class="chip"><b>17時〜18時</b>お仕事の方・帰宅の移動中</div>
+    <div class="chip"><b>朝9時ごろ</b>子育て中の方・送り出しのあと</div>
+    <div class="chip"><b>21時ごろ</b>子育て中の方・お子さまの就寝後</div>
+    <div class="chip avoid"><b>避けたい時間帯</b>早朝／14時〜16時（ほかの通知に埋もれやすい）</div>
+  </div>
+
+  <h3>午前チーム・午後チームの連携（バトンタッチ）</h3>
+  <div class="case">
+    <ol>
+      <li><b class="step">1</b><span>午前担当：Slackの共有チャンネルに「お客様名・状況・送った文例・次のアクションと時間」を記載する</span></li>
+      <li><b class="step">2</b><span>午後担当：夕方（17時前後）のリマインドを引き継いで送る</span></li>
+      <li><b class="step">3</b><span>架電管理チームとCSチームの間でも、同じ書式でバトンタッチする</span></li>
+    </ol>
+  </div>
+
+  <h3>やらないこと（NG対応）</h3>
+  <ul class="nglist">
+    <li><span class="ngchip">NG</span>その場で「リスケされますか？キャンセルされますか？」と二択を迫る</li>
+    <li><span class="ngchip">NG</span>「まだご返信いただけていません」のような催促の言葉を使う</li>
+    <li><span class="ngchip">NG</span>短い間隔での連投（15分後、1時間後など）</li>
+    <li><span class="ngchip">NG</span>1通のメッセージに複数の質問やお願いを入れる</li>
+  </ul>
+</section>
+
+<!-- ══════════ マニュアル② ══════════ -->
+<section class="manual" id="m2">
+  <div class="band teal">
+    <h2>② お怒り案件への対応・返信テンプレート集</h2>
+    <p>「無料と書いてあったのに」「広告と違う」へのご返信</p>
+  </div>
+
+  <h3>基本の考え方（勉強会での合意事項）</h3>
+  <div class="cards">
+    <div class="card"><span class="no">１</span>
+      <h4>すぐに返さない</h4>
+      <p>強いお怒りのメッセージには即レスしません。半日ほど時間を置くと落ち着かれるケースが多いことが共有されています。急いで返すほど、やり取りは長引きます。</p>
+    </div>
+    <div class="card"><span class="no">２</span>
+      <h4>テンプレートで返す</h4>
+      <p>毎回文章を練りません。テンプレートは手抜きではなく、対応の質を揃えて、自分の心をすり減らさないための仕組みです。</p>
+    </div>
+    <div class="card"><span class="no">３</span>
+      <h4>型は「お詫び、事実、ご案内」</h4>
+      <p>お詫びは「ご不安にさせたこと」に対してで、非を全面的に認める謝罪ではありません。反論や言い訳は書きません。</p>
+    </div>
+    <div class="card"><span class="no">４</span>
+      <h4>一人で抱えない</h4>
+      <p>テンプレートで2往復しても収まらなければ、返信を止めて上長へ相談します。</p>
+    </div>
+  </div>
+
+  <h3>返信の型</h3>
+  <div class="arrowflow">
+    <div class="st"><b>お詫び</b>ご不安な思いをさせたことへ</div>
+    <div class="ar">→</div>
+    <div class="st"><b>事実</b>短く、正確に</div>
+    <div class="ar">→</div>
+    <div class="st"><b>ご案内</b>次にできることをひとつ</div>
+  </div>
+  <p class="note">お怒りへのご返信では絵文字は使いません。<span class="slot">【　】</span>内は、正式なキャンペーン条件を確認してから差し込んでください。</p>
+
+  <h3>パターンＡ　「無料と書いてあったのに無料じゃない」</h3>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さま</div>
+      <div class="chat">
+        <div class="msg cust">キャンペーンに無料って書いてあったのに、無料じゃないですよね？広告の内容と違うと思います。</div>
+        <div class="meta l">20:12</div>
+        <div class="msg reply" data-tpl>【お名前】さま
+このたびは、ご不安な思いをさせてしまい申し訳ございません。ご案内が分かりづらかったこと、お詫びいたします。
+今回のキャンペーンでは、<span class="slot">【無料でご利用いただける範囲】</span>は費用がかからずご利用いただけます。<span class="slot">【有料となる内容】</span>は別のご案内で、お申し込みの前に必ず金額をご確認いただく流れですので、知らないうちに費用が発生することはございません。
+ご不明な点がありましたら、このままご返信ください。</div>
+        <div class="meta">既読 21:30</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>Ａ−１　初回のご返信（誤解を丁寧に解く）</h4>
+      <p class="use">最初の1通。お詫び→無料の範囲→「知らないうちに費用は発生しない」の順で不安を解きます。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さま</div>
+      <div class="chat">
+        <div class="ctx">説明のあとも、ご納得いただけないとき（2回目）</div>
+        <div class="msg reply" data-tpl>重ねてのご連絡をありがとうございます。
+ご案内の行き違いで、ご不安な思いをさせてしまったことを改めてお詫びいたします。
+【お名前】さまに費用のご請求が発生することはございませんので、どうぞご安心ください。
+無料でご利用いただける範囲は、先にお送りしたご案内のとおりです。</div>
+        <div class="meta">10:00</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>Ａ−２　それでもご納得いただけないとき</h4>
+      <p class="use">説明を繰り返さず、「請求は発生しない」という結論だけを短く伝えます。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さま</div>
+      <div class="chat">
+        <div class="msg cust">無料と書いておいてお金がかかるなんて、詐欺じゃないですか？</div>
+        <div class="meta l">22:41</div>
+        <div class="msg reply" data-tpl>ご指摘を真摯に受け止めております。
+ご覧いただいたご案内に分かりづらい表現があったこと、お詫びいたします。
+事実として、<span class="slot">【無料でご利用いただける範囲】</span>に費用は一切かかりません。
+いただいたご意見は運営にも共有し、ご案内の改善に活かしてまいります。</div>
+        <div class="meta">既読 翌9:30</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>Ａ−３　「詐欺ではないか」など強い言葉があるとき</h4>
+      <p class="use">感情には反応せず、事実だけを冷静に。返信は時間を置いてからで大丈夫です。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <h3>パターンＢ　「広告の内容と違う」</h3>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さま</div>
+      <div class="chat">
+        <div class="msg cust">広告に書いてあった内容と違うと思うのですが。</div>
+        <div class="meta l">13:20</div>
+        <div class="msg reply" data-tpl>【お名前】さま
+ご指摘をありがとうございます。正しくご案内するために、ご覧になった広告の画面を確認させていただけますでしょうか。
+お手数ですが、スクリーンショットか、覚えていらっしゃる範囲の文言をお送りください。
+確認のうえ、改めてご説明いたします。</div>
+        <div class="meta">既読 14:05</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>Ｂ−１　まず事実確認</h4>
+      <p class="use">どの広告かが分からないまま説明しないこと。確認のお願いをひとつだけ伝えます。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さま</div>
+      <div class="chat">
+        <div class="ctx">スクリーンショットなどを確認したあと</div>
+        <div class="msg reply" data-tpl>お送りいただきありがとうございました。
+ご覧いただいた広告の<span class="slot">【該当箇所】</span>について、分かりづらい表現でご心配をおかけしました。
+正しくは<span class="slot">【正しい内容】</span>となります。
+いただいたご意見は、広告の改善にも反映してまいります。</div>
+        <div class="meta">16:40</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>Ｂ−２　確認後のご返信</h4>
+      <p class="use">確認した事実をもとに、該当箇所と正しい内容だけを伝えます。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <h3>パターンＣ　「電話がかかってこない」（架電管理チーム向け）</h3>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さま</div>
+      <div class="chat">
+        <div class="msg cust">予約したのに電話がかかってきません。どうなっていますか？</div>
+        <div class="meta l">15:02</div>
+        <div class="msg reply" data-tpl>【お名前】さま
+お電話がおつなぎできておらず、申し訳ございません。
+原因を確認したいため、お手数ですが次の2点のご確認をお願いいたします。
+・ご登録のお電話番号は<span class="slot">【登録番号】</span>でお間違いないでしょうか
+・非通知や、ご登録のない番号からの着信を受け取らない設定になっていないでしょうか
+ご確認いただけましたら、<span class="slot">【日時】</span>に改めておかけいたします。</div>
+        <div class="meta">既読 15:30</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>Ｃ−１　まず設定の確認</h4>
+      <p class="use">番号の相違か着信設定が原因のことが多いため、この2点を先に確認します。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さま</div>
+      <div class="chat">
+        <div class="ctx">設定確認後の再架電もつながらなかったとき</div>
+        <div class="msg reply" data-tpl><span class="slot">【日時】</span>にお電話いたしましたが、おつなぎできなかったため、いったんご予約を区切らせていただきますね。
+またご都合の良い日時がありましたら、このLINEにお送りください。改めてご案内いたします。</div>
+        <div class="meta">17:20</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>Ｃ−２　確認後もつながらないとき</h4>
+      <p class="use">キャンセル扱いにする場面でも、日程変更の導線を残して締めます。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <h3>パターンＤ　お怒りが収まらないときの締めのご返信</h3>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さま</div>
+      <div class="chat">
+        <div class="ctx">テンプレートで2往復しても、同じお怒りが続くとき</div>
+        <div class="msg reply" data-tpl>重ねてのご説明となり恐れ入ります。
+いただいたご意見は運営に共有し、今後のご案内の改善に必ず活かしてまいります。
+本件についてのご説明は以上となりますが、ほかにご不明な点がありましたら、いつでもご連絡ください。</div>
+        <div class="meta">11:30</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>Ｄ　締めのご返信</h4>
+      <p class="use">これを送ったら本件はクローズし、上長へ共有します。それ以上の往復はしません。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <h3>対応の心得</h3>
+  <div class="cards">
+    <div class="card"><h4>お怒りの正体は不安</h4><p>多くの場合「損をしたかもしれない」という不安です。人格を攻撃されているわけではないので、まともに受け止めすぎないでください。</p></div>
+    <div class="card"><h4>全員の納得はゴールではない</h4><p>丁寧に説明を尽くしたら、手放して大丈夫です。</p></div>
+    <div class="card"><h4>時間を置くのも対応のひとつ</h4><p>極端にお怒りの方ほど、時間を置いたほうが穏便に収まった実例が共有されています。放置ではなく、対応です。</p></div>
+    <div class="card"><h4>謝りすぎない</h4><p>お詫びは「ご不安にさせたこと」に対して。内容の非を全面的に認める文章にはしません。</p></div>
+  </div>
+
+  <h3>上長へ相談する基準（エスカレーション）</h3>
+  <div class="esc">
+    <h4>次のいずれかに当てはまったら、ご自身で返信せず、すぐにSlackで共有してください</h4>
+    <ul>
+      <li>返金のご要求があった</li>
+      <li>消費者センター、弁護士、通報などの言葉が出た</li>
+      <li>SNSへの投稿を予告された</li>
+      <li>テンプレートで2往復しても、同じ内容のお怒りが続いている</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ マニュアル③ ══════════ -->
+<section class="manual" id="m3">
+  <div class="band green">
+    <h2>③「また来週ご連絡します」への対応</h2>
+    <p>お客様ご自身が「来週連絡します」と次のお約束をしてくださったとき</p>
+  </div>
+
+  <h3>基本の考え方</h3>
+  <div class="cards">
+    <div class="card"><span class="no">１</span>
+      <h4>一度、気持ちよくお受けする</h4>
+      <p>お客様は自分から「来週連絡します」と次のお約束をしてくださっています。ここで念押しやお願いを重ねると「催促された」と感じて、かえってご返信が遠のきます。まずは気持ちよくお受けするのが正解です。</p>
+    </div>
+    <div class="card"><span class="no">２</span>
+      <h4>追加のお願いを足さない</h4>
+      <p>「一言でも大丈夫ですのでご返信を」とお願いすると、お客様に“宿題”が増えます。この瞬間はご返信をもらうことがゴールではありません。「かしこまりました、お待ちしますね」で完了です。</p>
+    </div>
+    <div class="card"><span class="no">３</span>
+      <h4>覚えておくのはこちらの仕事</h4>
+      <p>お客様に「忘れずに連絡してくださいね」とは言いません。代わりに私たちが引き継ぎメモに「翌週こちらから連絡」と残し、次の週に改めてこちらからご連絡します。</p>
+    </div>
+  </div>
+
+  <h3>今の返し方と、おすすめの返し方</h3>
+  <div class="ba">
+    <div class="col now">
+      <span class="lab">今の返し方（惜しい）</span>
+      <div class="bub">別日希望や少し検討したいなど、一言でも大丈夫ですのでご返信いただけますと嬉しいです</div>
+      <p class="why"><b>理由</b>ご返信という“宿題”が増え、「催促された」と感じて遠のきやすい</p>
+    </div>
+    <div class="col rec">
+      <span class="lab">おすすめの返し方</span>
+      <div class="bub">かしこまりました。ご連絡お待ちしております☺️</div>
+      <p class="why"><b>理由</b>次のお約束は気持ちよくお受けし、こちらは引き継ぎメモで翌週フォロー</p>
+    </div>
+  </div>
+
+  <h3>対応フロー</h3>
+  <div class="flow">
+    <div class="case">
+      <h4>ケース　「今週は忙しいので、また来週連絡します」と届いた</h4>
+      <ol>
+        <li><b class="step">1</b><span>受け入れのひとことを返す（追加のお願いはしない）<span class="ref">（文例①）</span></span></li>
+        <li><b class="step">2</b><span>引き継ぎメモに「翌週、こちらから連絡」と残す<span class="ref">（下のメモ例）</span></span></li>
+        <li><b class="step">3</b><span>翌週、こちらから改めてご連絡する<span class="ref">（文例②）</span></span></li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>返信文例（LINEでの見え方）</h3>
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="msg cust">今週は忙しいので、また来週に連絡します。よろしくお願いします。</div>
+        <div class="meta l">22:20</div>
+        <div class="msg reply" data-tpl>【お名前】さん、かしこまりました☺️
+お忙しい中ご連絡いただき、ありがとうございます。
+来週のご連絡、お待ちしておりますね。どうぞご無理なさらないでください。</div>
+        <div class="meta">既読 22:24</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例①　受け入れの返信</h4>
+      <p class="use">「来週連絡します」に対して、ここでは追わずに気持ちよくお受けします。日程を問い詰めたり、返信をお願いしたりはしません。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="memo">
+    <span class="tag">引き継ぎメモ（社内用・お客様には送りません）</span>
+    <div class="field"><b>お客様名</b><span>【お名前】さん</span></div>
+    <div class="field"><b>状況</b><span>今週は多忙。ご本人から「また来週連絡します」とご連絡あり</span></div>
+    <div class="field"><b>次の対応</b><span>翌週◯/◯（◯）に、こちらから改めてご連絡する</span></div>
+    <div class="field"><b>担当</b><span>今週の担当 →（翌週の担当へバトンタッチ）</span></div>
+  </div>
+  <p class="note">Slackの共有チャンネルにも同じ内容を残しておくと、翌週の担当がそのまま引き継げます。</p>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="ctx">翌週、こちらから改めてご連絡</div>
+        <div class="msg reply" data-tpl>【お名前】さん、こんにちは☺️
+先週「また来週」とお声がけいただいていたので、こちらから改めてご連絡しました。
+その後、お忙しさは少し落ち着かれましたか？
+もしご都合の合いそうな日があれば、ひとことだけ教えていただけたら嬉しいです。</div>
+        <div class="meta">10:00</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例②　翌週のこちらからのご連絡</h4>
+      <p class="use">お客様の連絡を待つだけにせず、翌週こちらから。「30秒で大丈夫」の気軽さで、返信のハードルを下げます。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <h3>やらないこと（NG対応）</h3>
+  <ul class="nglist">
+    <li><span class="ngchip">NG</span>「一言でも大丈夫ですのでご返信ください」と、追加のお願いを重ねる</li>
+    <li><span class="ngchip">NG</span>「いつ頃になりそうですか？」と、時期を問い詰める</li>
+    <li><span class="ngchip">NG</span>翌週こちらから連絡せず、お客様からの連絡をただ待つ（＝そのまま忘れられて終わる）</li>
+  </ul>
+</section>
+
+<!-- ══════════ マニュアル④ ══════════ -->
+<section class="manual" id="m4">
+  <div class="band" style="background:var(--pale)">
+    <h2>④「50代ですが大丈夫？」年齢のご不安への対応</h2>
+    <p>「厳しいなら辞退します」と、ご自身で線を引こうとされているとき</p>
+  </div>
+
+  <h3>基本の考え方</h3>
+  <div class="cards">
+    <div class="card"><span class="no">１</span>
+      <h4>年齢ではなく「お気持ちと行動」で決まる</h4>
+      <p>弊社では、50代でご自身で案件を獲得し、お仕事につなげていらっしゃる方がいます。大切なのはスキルの有無よりも「自分でやってみよう」というマインドセットと行動です。まずここを、誠実にお伝えします。</p>
+    </div>
+    <div class="card"><span class="no">２</span>
+      <h4>お仕事の幅も具体的に伝える</h4>
+      <p>デザインの案件だけでなく、事務のお仕事などもあります。「デザインが得意でないと無理」という思い込みをほどくと、ぐっと安心していただけます。</p>
+    </div>
+    <div class="card"><span class="no">３</span>
+      <h4>誇張はしない（誠実さが信頼になる）</h4>
+      <p>成果報酬のため「必ず成果が出ます」とはお約束しません。そこを正直にお伝えしたうえで、「頑張りたいお気持ちがあれば十分つながります」と背中を押します。断定しないことが、かえって信頼につながります。</p>
+    </div>
+  </div>
+
+  <h3>対応フロー</h3>
+  <div class="flow">
+    <div class="case">
+      <h4>ケース　「50代ですが参加できますか？厳しいなら辞退します」</h4>
+      <ol>
+        <li><b class="step">1</b><span>まず「もちろん大丈夫です」と受け止め、不安をほどく<span class="ref">（文例①）</span></span></li>
+        <li><b class="step">2</b><span>50代の実例・お仕事の幅・マインドセットの大切さを伝える<span class="ref">（文例①）</span></span></li>
+        <li><b class="step">3</b><span>「必ず」とは言わず誠実に。そのうえで一歩を後押しする<span class="ref">（不安が強いときは文例②）</span></span></li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>返信文例（LINEでの見え方）</h3>
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="msg cust">50代ですが参加可能ですか？50代でも受講されている方いますか？50代でも仕事に繋がりますか？
+
+厳しいようなら、今のうち、辞退いたします。</div>
+        <div class="meta l">12:44</div>
+        <div class="msg reply" data-tpl>【お名前】さん、ご質問ありがとうございます☺️
+はい、50代で受講されている方も、ご自身で案件を獲得してお仕事につなげていらっしゃる方もいらっしゃいます。
+弊社ではデザインのお仕事だけでなく事務のお仕事などもあり、スキルの有無というよりも「自分でやってみよう」というお気持ちと行動があれば、きちんと収入につながる仕組みになっています。
+成果報酬のため「必ず」とお約束はできませんが、年齢よりも“やってみたい”というお気持ちがいちばん大切です。だからこそ、今の時点で諦めてしまうのはもったいないなと感じています。よろしければ、まずはお話だけでも聞いてみませんか？</div>
+        <div class="meta">既読 13:05</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例①　標準の返信</h4>
+      <p class="use">受け止め→50代の実例→お仕事の幅→マインドセット→誠実な一言→やわらかい後押し、の順。「辞退します」への安心材料をひととおり入れています。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="ctx">それでも「自分にできるか」と不安が続くとき</div>
+        <div class="msg reply" data-tpl>ご不安なお気持ち、とてもよくわかります。
+最初は皆さん「自分にできるかな」と思いながらのスタートです。
+弊社はスキルよりも先に「一歩踏み出してみよう」という姿勢を大切にしていますので、今のお気持ちがあれば十分だと思っています。
+まずは説明会で、実際のお仕事の様子を見てから決めていただいても大丈夫ですよ☺️</div>
+        <div class="meta">18:30</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例②　不安が強いときの後押し</h4>
+      <p class="use">共感を厚めに。決断を急がせず「見てから決めて大丈夫」と、まず一歩だけ進めていただきます。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="point">
+    <p><b>お伝えするときの軸：</b>スキルの前に“あり方・マインドセット”。「必ず」は使わず、成果報酬であることは正直に。そのうえで「お気持ちがあれば十分つながります」と、前を向いていただくのがゴールです。</p>
+  </div>
+
+  <h3>やらないこと（NG対応）</h3>
+  <ul class="nglist">
+    <li><span class="ngchip">NG</span>「50代だと厳しいかもしれません」など、不安をあおる返し方</li>
+    <li><span class="ngchip">NG</span>「絶対に結果が出ます」と成果を保証する言い方（成果報酬のため）</li>
+    <li><span class="ngchip">NG</span>「可能です」だけの事務的な返信（お気持ちに触れない）</li>
+  </ul>
+</section>
+
+<!-- ══════════ マニュアル⑤ ══════════ -->
+<section class="manual" id="m5">
+  <div class="band teal">
+    <h2>⑤「女性の担当に変えてほしい」へのご対応</h2>
+    <p>カウンセラーへのご要望の裏にある“お気持ち”を先に受け止める</p>
+  </div>
+
+  <h3>基本の考え方</h3>
+  <div class="cards">
+    <div class="card"><span class="no">１</span>
+      <h4>「変えます」の前に、お気持ちを聞く</h4>
+      <p>すぐ「女性に変えますね」と手配するのは簡単ですが、その前に「前回、何か気になることがありましたか？」と伺います。女性をご希望される背景には、たいてい理由があります。</p>
+    </div>
+    <div class="card"><span class="no">２</span>
+      <h4>吐き出していただくことが信頼になる</h4>
+      <p>モヤモヤやご不安を言葉にして共有していただくと、「この人には本音を話せた」という関係が生まれます。これが、その後のカウンセリングの土台になります。</p>
+    </div>
+    <div class="card"><span class="no">３</span>
+      <h4>聞いたら、必ず応える</h4>
+      <p>理由を伺ったら「同じことがないよう対応します」とお約束し、女性のカウンセラーで調整します。聞きっぱなしにしないことが大切です。</p>
+    </div>
+  </div>
+
+  <h3>対応フロー</h3>
+  <div class="flow">
+    <div class="case">
+      <h4>ケース　「案内は一律同じ？／担当を女性に変えてほしい」</h4>
+      <ol>
+        <li><b class="step">1</b><span>まず感謝と共感を伝え、「前回気になったこと」をやわらかく伺う<span class="ref">（文例①）</span></span></li>
+        <li><b class="step">2</b><span>理由やモヤモヤを話してくださったら、しっかり受け止める</span></li>
+        <li><b class="step">3</b><span>「同じことがないよう対応します」と伝え、女性の担当で調整する<span class="ref">（文例②）</span></span></li>
+      </ol>
+    </div>
+  </div>
+
+  <h3>返信文例（LINEでの見え方）</h3>
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="msg cust">明日のカウンセリングの案内は一律同じ内容なのでしょうか？全員に同じご担当が振り当てられているのですか？
+できれば女性に変えて頂けるとありがたいです。</div>
+        <div class="meta l">13:22</div>
+        <div class="msg reply" data-tpl>【お名前】さん、ご連絡いただきありがとうございます☺️
+楽しみにしていただけているとのこと、私たちもとても嬉しいです。
+前回のお電話で、何か気になられたことなどございましたか？
+もしご不安な点があれば事前に教えていただければ、同じことがないよう必ず対応させていただきます。
+モヤっとされることがありましたら、どうぞこのLINEで教えてくださいね。</div>
+        <div class="meta">既読 13:40</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例①　まずお気持ちを伺う</h4>
+      <p class="use">いきなり「変えます」ではなく、感謝と共感のあとに「気になったこと、ありましたか？」。“詰問”ではなく、そっとお気持ちを引き出します。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="tpl">
+    <div class="phone">
+      <div class="bar"><span class="back">〈</span>【お名前】さん</div>
+      <div class="chat">
+        <div class="ctx">お気持ちを話してくださったあと</div>
+        <div class="msg reply" data-tpl>教えてくださって、ありがとうございます。お気持ち、しっかり受け止めました。
+次回は女性のカウンセラーで調整させていただきますね。
+【お名前】さんが安心してお話しいただけるよう、精一杯サポートいたします☺️</div>
+        <div class="meta">14:02</div>
+      </div>
+    </div>
+    <div class="info">
+      <h4>文例②　理由を伺ったあと・女性の担当で調整</h4>
+      <p class="use">お気持ちを受け止めた「あと」に手配します。聞きっぱなしにせず、必ず「対応します」と結ぶのがポイントです。</p>
+      <button class="copy">コピーする</button>
+    </div>
+  </div>
+
+  <div class="point">
+    <p><b>担当の性別で見立てる：</b>前回のご担当が男性だった場合は、「男性と話しづらい理由」がある可能性が高いです。そこを責めず、そっと女性に切り替えます。前回が女性だった場合も、まずは“何が引っかかったか”を伺うのが先。理由がわかると、担当変更だけでは解けない不安にも先回りできます。</p>
+  </div>
+
+  <h3>やらないこと（NG対応）</h3>
+  <ul class="nglist">
+    <li><span class="ngchip">NG</span>理由を聞かずに「では女性に変更しますね」だけで終える</li>
+    <li><span class="ngchip">NG</span>「なぜ女性がいいのですか？」と直接問い詰める（“詰問”はNG。「気になったこと、ありましたか？」と柔らかく）</li>
+    <li><span class="ngchip">NG</span>案内が一律であることを事務的に説明して終わる</li>
+  </ul>
+</section>
+
+<div class="grow">
+  <h3>テンプレを育てる運用</h3>
+  <p>この文例集は完成形ではありません。使ってみて反応が良かった言い回しや、「この一文を足した」というアレンジは、Slackで共有してください。実例をもとに随時更新していきます。</p>
+</div>
+
+</div>
+<div id="toast">コピーしました</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var card = btn.closest('.tpl');
+    var bubble = card.querySelector('[data-tpl]');
+    var text = bubble.innerText;
+    navigator.clipboard.writeText(text).then(function(){
+      var t = document.getElementById('toast');
+      t.classList.add('show');
+      clearTimeout(t._h);
+      t._h = setTimeout(function(){ t.classList.remove('show'); }, 1800);
+    });
+  });
+});
+</script>
+<!-- バグ報告ツール -->
+<style>
+#bugL{position:fixed; left:12px; bottom:16px; z-index:59; background:rgba(255,255,255,.92); border:1px solid var(--line); color:var(--muted); font-size:10.5px; font-weight:700; border-radius:999px; padding:5px 12px; cursor:pointer; letter-spacing:.04em;}
+#bugM{position:fixed; inset:0; background:rgba(42,42,42,.55); display:none; align-items:center; justify-content:center; z-index:70; padding:24px;}
+#bugM.on{display:flex;}
+#bugM .bx{background:#fff; border-radius:20px; padding:22px 20px; max-width:360px; width:100%;}
+#bugM h3{font-size:14.5px; color:#2A2A2A; margin:0 0 8px; border:none; padding:0;}
+#bugM textarea{width:100%; border:1.5px solid #E8E3D6; border-radius:12px; padding:11px 13px; font-size:14px; line-height:1.8; color:#2A2A2A; font-family:inherit; min-height:100px; resize:vertical; box-sizing:border-box;}
+#bugM .bb{display:flex; gap:8px; margin-top:12px;}
+#bugM button{flex:1; border:none; border-radius:999px; padding:11px; font-size:13px; font-weight:700; cursor:pointer; font-family:inherit;}
+#bugM .s{background:#E8A24C; color:#2A2A2A;}
+#bugM .c{background:#F2EFE8; color:#2A2A2A;}
+#bugM .done{display:none; font-size:12.5px; color:#8A6B2F; font-weight:700; margin-top:8px; text-align:center;}
+</style>
+<div id="bugL">不具合を報告</div>
+<div id="bugM"><div class="bx">
+  <h3>不具合・気になったことを教えてください</h3>
+  <textarea id="bugT" placeholder="例）コピーするボタンを押しても反応しませんでした（iPhone/Safari）"></textarea>
+  <div class="bb"><button class="c" id="bugC">閉じる</button><button class="s" id="bugS">送信する</button></div>
+  <div class="done" id="bugD">届きました。ありがとうございます。すぐ確認します。</div>
+</div></div>
+<script>
+(function(){
+var U="https://inrvprlyobghviklulcv.supabase.co/rest/v1/ailab_notes";
+var K="sb_publishable_ZrCNcsRHMci-l7Fns8QtIA_X22XZGJp";
+var M=document.getElementById("bugM");
+document.getElementById("bugL").onclick=function(){ M.classList.add("on"); };
+document.getElementById("bugC").onclick=function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; };
+document.getElementById("bugS").onclick=function(){
+  var t=document.getElementById("bugT").value.trim();
+  if(!t){ document.getElementById("bugT").focus(); return; }
+  var btn=this; btn.disabled=true;
+  function done(){
+    document.getElementById("bugD").style.display="block";
+    document.getElementById("bugT").value=""; btn.disabled=false;
+    setTimeout(function(){ M.classList.remove("on"); document.getElementById("bugD").style.display="none"; },1800);
+  }
+  fetch(U,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},
+    body:JSON.stringify({member_id:"bug_cs-taiou-manual",member_name:"対応マニュアル",mood:"バグ報告",worry:t,want:location.href.slice(0,180)+" ／ "+navigator.userAgent.slice(0,140)})})
+    .then(function(){ done(); }).catch(function(){ btn.disabled=false; alert("送信できませんでした。通信環境をご確認ください。"); });
+};
+})();
+</script>
+</body>
+</html>

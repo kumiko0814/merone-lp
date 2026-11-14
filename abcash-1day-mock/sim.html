@@ -1,0 +1,320 @@
+<title>あなたの手残り診断｜ABCash 1day マネートレーニング</title>
+<style>
+:root{--bg:#eaf3fa;--bg2:#f1f7fb;--pink-bg:#fbeef1;--navy:#26405f;--navy-d:#1d3149;
+--pink:#cf8f9c;--pink-d:#bd7886;--blue:#7fb0d2;--ink:#4a4446;--line:#dde8f1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.85;font-size:16px;
+font-family:"Yu Gothic",YuGothic,"Hiragino Sans","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+-webkit-text-size-adjust:100%}
+.demo{background:var(--navy-d);color:#fff;padding:11px 14px;font-size:12.5px;text-align:center;line-height:1.7}
+.demo b{color:#ffd9e2}
+.demo button{margin-top:8px;background:#fff;color:var(--navy-d);border:none;border-radius:20px;
+padding:7px 16px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.wrap{max-width:460px;margin:0 auto;padding:0 16px 70px}
+.hero{text-align:center;padding:30px 6px 20px}
+.hero .kick{display:inline-block;background:var(--pink-bg);color:var(--pink-d);font-size:11.5px;
+font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:.04em}
+h1{font-size:25px;color:var(--navy-d);margin:14px 0 10px;line-height:1.45;font-weight:700}
+.hero p{margin:0;font-size:13.5px;color:#68737e}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 20px;margin:14px 0}
+label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin:0 0 8px}
+label span{font-weight:400;color:#8b96a1;font-size:11.5px}
+.opts{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+.opts button{flex:1 1 auto;min-width:74px;background:#f4f9fc;border:1.5px solid var(--line);color:var(--ink);
+border-radius:10px;padding:11px 6px;font:inherit;font-size:13.5px;cursor:pointer;line-height:1.4}
+.opts button.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:700}
+.go{width:100%;background:var(--pink-d);color:#fff;border:none;border-radius:12px;padding:16px;
+font:inherit;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.02em}
+.go:disabled{background:#c9d6e0;cursor:default}
+.note{font-size:11.5px;color:#8b96a1;text-align:center;margin:10px 0 0;line-height:1.7}
+#result{display:none}
+.rhead{text-align:center;padding:8px 0 4px}
+.rhead .lab{font-size:12px;color:var(--pink-d);font-weight:700;letter-spacing:.08em}
+.rhead h2{font-size:19px;color:var(--navy-d);margin:6px 0 0;font-weight:700}
+.big{text-align:center;padding:6px 0}
+.big .t{font-size:12.5px;color:#68737e;margin-bottom:2px}
+.big .v{font-size:40px;color:var(--navy-d);font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.big .v small{font-size:17px;font-weight:700;margin-left:2px}
+.big .s{font-size:12.5px;color:#8b96a1;margin-top:2px}
+.bd{border-top:1px dashed #e2ecf4;margin:16px 0 0;padding-top:14px}
+.li{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;padding:6px 0}
+.li span{color:#68737e;font-size:13.5px}
+.li b{color:var(--navy-d);font-size:16px;font-variant-numeric:tabular-nums}
+.hl{background:var(--pink-bg);border-radius:12px;padding:14px 16px;margin-top:14px;text-align:center}
+.hl .t{font-size:12.5px;color:var(--pink-d);font-weight:700}
+.hl .v{font-size:29px;color:var(--navy-d);font-weight:700;line-height:1.3}
+.hl .v small{font-size:15px}
+.soft{font-size:13px;color:#5b6672;background:#f1f7fb;border-radius:12px;padding:13px 15px;margin-top:14px;line-height:1.8}
+.locknote{font-size:12px;color:#8b96a1;text-align:center;margin:10px 0 0}
+
+/* ===== 数字だけをぼかす（占いサイト方式） ===== */
+.lk{filter:blur(7px);color:var(--navy-d);transition:filter .5s;user-select:none}
+body.unlocked .lk{filter:none;user-select:auto}
+.gate{background:var(--pink-bg);border:1px solid #f0d8de;border-radius:14px;padding:18px 16px;margin-top:14px;text-align:center}
+.gate .ic{font-size:22px}
+.gate .h{font-size:15.5px;font-weight:700;color:var(--navy-d);margin:6px 0 4px;line-height:1.55}
+.gate .p{font-size:12px;color:#68737e;margin:0 0 13px;line-height:1.8}
+.gate .cta{display:block;width:100%;background:var(--pink-d);color:#fff;text-decoration:none;
+border-radius:12px;padding:15px;font-weight:700;font-size:15.5px}
+.gate .sub{font-size:11px;color:#8b96a1;margin:9px 0 0;line-height:1.7}
+body.unlocked .gate{display:none}
+.ubadge{display:none;background:#e6f2ee;color:#2f7a63;font-size:12px;font-weight:700;
+border-radius:10px;padding:9px 12px;text-align:center;margin-top:14px}
+body.unlocked .ubadge{display:block}
+.foot{font-size:11px;color:#9aa4ae;text-align:center;padding:24px 8px 0;line-height:1.8}
+@media(max-width:400px){h1{font-size:22px}.big .v{font-size:34px}}
+@media(prefers-color-scheme:dark){body{background:#eaf3fa;color:#4a4446}}
+</style>
+<div style="text-align:center;padding:10px 12px 0"><a href="index.html" style="font-size:12px;color:#26405f">← モックアップ一覧にもどる</a></div>
+
+<div class="demo">
+  これは確認用のモックです。<b>予約前（数字がぼかし）</b>と<b>予約後（完全版）</b>を切り替えられます
+  <br><button id="tg">予約後の画面を見る</button>
+</div>
+
+<div class="wrap">
+
+<div class="hero">
+  <span class="kick">1day マネートレーニングにご参加の方へ</span>
+  <h1>あなたの手残り、<br>ちゃんと知っていますか？</h1>
+  <p>4つ選ぶだけ・30秒でわかりますよ☺️</p>
+</div>
+
+<div class="card" id="form">
+  <label>年収（額面）<span>／ おおよそで大丈夫です</span></label>
+  <div class="opts" data-k="income">
+    <button data-v="2500000">250万</button><button data-v="3000000">300万</button>
+    <button data-v="4000000">400万</button><button data-v="5000000">500万</button>
+    <button data-v="6000000">600万</button><button data-v="8000000">800万</button>
+  </div>
+
+  <label>年代</label>
+  <div class="opts" data-k="age">
+    <button data-v="25">20代</button><button data-v="35">30代</button>
+    <button data-v="45">40代</button><button data-v="55">50代</button>
+  </div>
+
+  <label>いま、貯金にまわせているのは<span>／ 月あたり</span></label>
+  <div class="opts" data-k="save">
+    <button data-v="0">0円</button><button data-v="10000">〜1万</button>
+    <button data-v="30000">1〜3万</button><button data-v="50000">3〜5万</button>
+    <button data-v="80000">5万〜</button>
+  </div>
+
+  <label>お子さまは<span>／ これからの想定に使います</span></label>
+  <div class="opts" data-k="kids">
+    <button data-v="0">いない</button><button data-v="1">いる</button>
+  </div>
+
+  <button class="go" id="go" disabled>結果を見る</button>
+  <p class="note">入力はこれだけです。個人情報は必要ありません🌷</p>
+</div>
+
+<div id="result">
+
+  <!-- ===== 無料で見える（今の話） ===== -->
+  <div class="card">
+    <div class="rhead">
+      <p class="lab">STEP 1／今年のあなた</p>
+      <h2>お給料から引かれている額</h2>
+    </div>
+    <div class="big">
+      <div class="t">年収 <span id="inc"></span> の方の場合</div>
+      <div class="v" id="deduct">—<small>万円</small></div>
+      <div class="s">が、1年で引かれています</div>
+    </div>
+    <div class="bd">
+      <div class="li"><span>社会保険料</span><b id="d1">—</b></div>
+      <div class="li"><span>所得税</span><b id="d2">—</b></div>
+      <div class="li"><span>住民税</span><b id="d3">—</b></div>
+    </div>
+    <div class="soft">
+      毎月の明細にのっている数字ですが、1年ぶんを合計して見たことのある方は
+      ほとんどいらっしゃいません☺️<br>
+      社会保険料は税金ではなくて、健康保険や年金としてご自身とご家族に戻ってくるお金ですよ🌷
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rhead">
+      <p class="lab">STEP 2／手取り</p>
+      <h2>今年、手元に残るお金</h2>
+    </div>
+    <div class="big">
+      <div class="v" id="net">—<small>万円</small></div>
+      <div class="s">月におよそ <span id="netm"></span> です</div>
+    </div>
+    <div class="li" style="border-top:1px dashed #e2ecf4;margin-top:14px;padding-top:14px">
+      <span>いま、貯金にまわせているのは（月）</span><b id="savem">—</b></div>
+  </div>
+
+  <!-- ===== ここから数字がぼかし（これからの話） ===== -->
+  <div class="card">
+    <div class="rhead">
+      <p class="lab">STEP 3／これから</p>
+      <h2 id="s3h">結婚と子育てを想定すると</h2>
+    </div>
+    <p class="locknote">項目はそのまま見られます。金額は、ご予約でひらきます🔒</p>
+    <div class="bd" style="padding-top:6px">
+      <div class="li" id="rowmarry"><span>結婚にかかる費用（これから）</span><b>約 <span class="lk" id="marry">340</span> 万円</b></div>
+      <div class="li"><span id="childlbl">子ども1人を大学まで育てる費用</span><b>約 <span class="lk" id="child">2900</span> 万円</b></div>
+      <div class="li"><span>そのうち、貯金で備える教育費</span><b>約 <span class="lk" id="edu">1100</span> 万円</b></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="rhead">
+      <p class="lab">STEP 4／毎月いくら？</p>
+      <h2>この先のために、毎月そなえたい額</h2>
+    </div>
+    <div class="big">
+      <div class="t">いまの暮らしを続けながらだと</div>
+      <div class="v">毎月 <span class="lk" id="needm">4.6</span><small>万円</small></div>
+      <div class="s">貯金しておきたい計算です</div>
+    </div>
+    <div class="bd">
+      <div class="li"><span>いまの貯金（月・あなたの入力）</span><b id="savem2">—</b></div>
+      <div class="li"><span>そなえたい額（月）</span><b>約 <span class="lk" id="needm2">4.6</span> 万円</b></div>
+      <div class="li"><span id="gaplbl">あと、毎月ちかづけたい額</span><b>約 <span class="lk" id="gap">1.6</span> 万円</b></div>
+    </div>
+
+    <div class="soft">
+      推し活や旅行を、がまんしましょうというお話ではないんです☺️<br>
+      いまのお金の「置き場所」を少し変えるだけで、この差はぐっと縮められますよ🌷
+    </div>
+
+    <div class="gate">
+      <div class="ic">🔒</div>
+      <p class="h">この先の金額は、ご予約いただいた方に<br>お見せしています</p>
+      <p class="p">
+        結婚・子育てにかかる金額／毎月そなえたい額／<br>
+        いまの手取りから、それを引いて残るお金
+      </p>
+      <a class="cta" href="#">1分で予約して、続きを見る</a>
+      <p class="sub">
+        1day マネートレーニング（オンライン60〜90分・1対1）<br>
+        受講に費用はかかりません／金融商品の販売はいたしません
+      </p>
+    </div>
+    <div class="ubadge">✓ 金額が開きました（予約後の表示です）</div>
+  </div>
+
+  <p class="foot">
+    ※ 概算です。会社員・扶養の状況・お住まいなどで実際の金額は変わります<br>
+    ※ 税金・社会保険料：国税庁／厚生労働省／協会けんぽ の公表資料より<br>
+    ※ 子育て費用：文部科学省「令和5年度子供の学習費調査」／内閣府「子育て費用に関する調査」より<br>
+    ※ 結婚費用：ゼクシィ結婚トレンド調査2024（挙式・披露宴 総額）より
+  </p>
+</div>
+
+</div>
+
+<script>
+var S = {income:null, age:null, save:null, kids:null};
+
+document.querySelectorAll('.opts').forEach(function(g){
+  var k = g.getAttribute('data-k');
+  g.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){
+      g.querySelectorAll('button').forEach(function(o){o.classList.remove('on');});
+      b.classList.add('on');
+      S[k] = parseInt(b.getAttribute('data-v'), 10);
+      document.getElementById('go').disabled =
+        (S.income===null || S.age===null || S.save===null || S.kids===null);
+    });
+  });
+});
+
+function man(y){ return (Math.round(y/1000)/10).toFixed(1); }
+function manInt(y){ return Math.round(y/10000); }
+
+function kyuyoKojo(inc){
+  if(inc <= 1625000) return 550000;
+  if(inc <= 1800000) return inc*0.4 - 100000;
+  if(inc <= 3600000) return inc*0.3 + 80000;
+  if(inc <= 6600000) return inc*0.2 + 440000;
+  if(inc <= 8500000) return inc*0.1 + 1100000;
+  return 1950000;
+}
+function shotokuzei(k){
+  if(k <= 0) return 0;
+  var r, c;
+  if(k <= 1950000){ r=0.05; c=0; }
+  else if(k <= 3300000){ r=0.10; c=97500; }
+  else if(k <= 6950000){ r=0.20; c=427500; }
+  else if(k <= 9000000){ r=0.23; c=636000; }
+  else if(k <= 18000000){ r=0.33; c=1536000; }
+  else { r=0.40; c=2796000; }
+  return Math.max(0, (k*r - c) * 1.021);
+}
+
+document.getElementById('go').addEventListener('click', function(){
+  var inc = S.income;
+  var sha = inc * 0.1523;
+  var kyu = inc - kyuyoKojo(inc);
+  var st = shotokuzei(Math.max(0, kyu - sha - 580000));
+  var jt = Math.max(0, kyu - sha - 430000) * 0.10 + 5000;
+  var total = sha + st + jt;
+  var net = inc - total;
+
+  document.getElementById('inc').textContent = manInt(inc) + '万円';
+  document.getElementById('deduct').innerHTML = man(total) + '<small>万円</small>';
+  document.getElementById('d1').textContent = man(sha) + '万円';
+  document.getElementById('d2').textContent = man(st) + '万円';
+  document.getElementById('d3').textContent = man(jt) + '万円';
+  document.getElementById('net').innerHTML = man(net) + '<small>万円</small>';
+  document.getElementById('netm').textContent = (Math.round(net/12/1000)/10).toFixed(1) + '万円';
+
+  var saveTxt = S.save === 0 ? '0円' : (Math.round(S.save/1000)/10).toFixed(1) + '万円';
+  document.getElementById('savem').textContent = saveTxt;
+  document.getElementById('savem2').textContent = saveTxt;
+
+  // ---- これからの費用（ぼかす数字） ----
+  var childTotal = 29000000;    // 混合ルート（一般的）2,900万円
+  var eduSave    = 11000000;    // 貯金で備える教育費の目安 約1,100万円
+  var collegeMonthly = 4180000 / 18 / 12;   // 私立文系大学 418万を18年で ≒ 月1.9万
+  var marriage   = 3440000;     // ゼクシィ2024 挙式・披露宴総額 約344万円
+
+  var needMonthly = collegeMonthly;
+  if (S.kids === 0){
+    // これから結婚も想定：5年で結婚資金を積むぶんを加算
+    needMonthly += marriage / 5 / 12;
+    document.getElementById('rowmarry').style.display = 'flex';
+    document.getElementById('s3h').textContent = '結婚と子育てを想定すると';
+    document.getElementById('childlbl').textContent = '子ども1人を大学まで育てる費用';
+  } else {
+    // お子さまがいる：教育費の備えに絞る
+    needMonthly = collegeMonthly;
+    document.getElementById('rowmarry').style.display = 'none';
+    document.getElementById('s3h').textContent = 'これからの子育てを想定すると';
+    document.getElementById('childlbl').textContent = 'お子さまを大学まで育てる費用';
+  }
+
+  var gap = Math.max(0, needMonthly - S.save);
+
+  document.getElementById('marry').textContent = manInt(marriage);
+  document.getElementById('child').textContent = manInt(childTotal);
+  document.getElementById('edu').textContent   = manInt(eduSave);
+  document.getElementById('needm').textContent  = (Math.round(needMonthly/1000)/10).toFixed(1);
+  document.getElementById('needm2').textContent = (Math.round(needMonthly/1000)/10).toFixed(1);
+
+  if (gap <= 0){
+    document.getElementById('gaplbl').textContent = 'いまの貯金でのそなえは';
+    document.getElementById('gap').textContent = '足りています';
+  } else {
+    document.getElementById('gaplbl').textContent = 'あと、毎月ちかづけたい額';
+    document.getElementById('gap').textContent = (Math.round(gap/1000)/10).toFixed(1) + '万';
+  }
+
+  document.getElementById('form').style.display = 'none';
+  document.getElementById('result').style.display = 'block';
+  window.scrollTo(0, 0);
+});
+
+var tg = document.getElementById('tg');
+tg.addEventListener('click', function(){
+  document.body.classList.toggle('unlocked');
+  tg.textContent = document.body.classList.contains('unlocked')
+    ? '予約前の画面に戻す' : '予約後の画面を見る';
+});
+</script>

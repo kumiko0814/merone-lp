@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>広告→LINE 流れの見取り図</title>
+<style>
+:root{--navy:#1F2E4D;--blue:#3A78C9;--pink:#F08BA6;--bg:#F5F7FB;--line:#E1E6EF;--muted:#6B7280;--text:#1F2937}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;font-size:15px;line-height:1.8}
+.wrap{max-width:820px;margin:0 auto;padding:20px 16px 80px}
+header{background:var(--navy);color:#fff;border-radius:16px;padding:18px 20px;margin-bottom:16px}header h1{font-size:18px;margin:0 0 6px}header p{margin:0;font-size:12.5px;opacity:.9}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px}
+h2{font-size:15.5px;margin:0 0 12px;padding-left:10px;border-left:5px solid var(--pink)}
+.flow{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.node{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;background:#FAFBFD}
+.node b{display:block;font-size:14px}.node small{color:var(--muted);font-size:12px}
+.arrow{text-align:center;color:var(--muted);font-size:13px;font-weight:700}
+.banners{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.bn{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.bn img{width:100%;display:block}.bn .in{padding:10px 12px}
+.bn .nm{font-weight:700;font-size:14px}.bn .tag{display:inline-block;font-size:11px;font-weight:700;background:#EEF1F6;color:var(--navy);border-radius:6px;padding:2px 8px;margin:4px 0}
+.bn.off{opacity:.75;background:#F7F7F7}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}th{background:#EEF3FA;font-size:12px}
+.tbl{overflow-x:auto}
+.warn{background:#FFF2F5;border:1px solid #F6C4D0;border-radius:12px;padding:12px 14px;font-size:13.5px;margin-top:10px}
+.ok{background:#EEF5FF;border:1px solid #C9DCF5;border-radius:12px;padding:12px 14px;font-size:13.5px;margin-top:10px}
+.sc{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0}.sc b{font-size:14px}.sc .n{float:right;font-weight:700;color:var(--blue)}
+.small{font-size:12px;color:var(--muted)}
+details{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:6px 0;background:#FAFBFD}summary{font-weight:700;font-size:13.5px;cursor:pointer}
+</style></head>
+<body><div class="wrap">
+<header><h1>広告→LP→LINE→シナリオ の見取り図</h1><p>いま広告から来た人がどのバナーを見て、LINEのどの流れに入っているか。アクセラ・クローザー向け。数字は9/26 19:00のプロライン実測（広告用口座 359人）。</p></header>
+
+<div class="card"><h2>1. いまの流れ（結論：バナーは3つ、入口は1つ、シナリオはAだけ）</h2>
+<div class="flow">
+ <div class="node"><b>Meta広告（3本のバナー）</b><small>TEST02_offer_v1（動画54秒）／TEST03_filter_v1（動画45秒）／LP_Lead_CR1（本人写真の静止画・推測）</small></div>
+ <div class="arrow">↓ クリック（URLの末尾に「どのバナーか」の名札＝utmが付く）</div>
+ <div class="node"><b>LP（lp.merone.co.jp）1枚</b><small>LPの「LINEで受け取る」ボタンは1つだけ。リンク先は j4b9oaqz.autosns.app/line（＝広告用LINEの標準の入口）</small></div>
+ <div class="arrow">↓ 友だち追加</div>
+ <div class="node"><b>広告用LINE　シナリオA（既存の導線）</b><small>アンケート→動画1本目→2本目→3本目→スクール動画→面談予約。名札は「フリー6」欄に書かれ、9/18以降の登録者にだけ入っている</small></div>
+ <div class="arrow">↓</div>
+ <div class="node"><b>面談予約 → クローザー</b><small>面談前ヒアリング・面談は他のアライアンスと同じ</small></div>
+</div>
+<div class="warn">シナリオB（1本目の感想後に面談予約を解放）とC（毎朝7時に1本ずつ配信）は作ってありますが、入口はQRコードだけで、広告からは誰も入っていません。タグの実数は A＝79人、B＝0人、C＝0人です。つまり「バナーごとにA/B/Cを比べるテスト」はまだ始まっていません。</div>
+</div>
+
+<div class="card"><h2>2. バナー（どんな広告が出ているか）</h2>
+<div class="banners">
+ <div class="bn"><img src="ad_test02.jpg" alt="TEST02_offer_v1"><div class="in"><div class="nm">TEST02_offer_v1</div><span class="tag">動画54秒・9/11開始・配信中</span><div class="small">「＼ママ必見✨在宅副業 1日15分からOK！／ 在宅で安定した収入を実現した方法を無料公開中」。プロラインのフリー6には ReChe_TEST02_offer_v1 と入る</div></div></div>
+ <div class="bn"><img src="ad_test03.jpg" alt="TEST03_filter_v1"><div class="in"><div class="nm">TEST03_filter_v1</div><span class="tag">動画45秒・9/19開始・配信中</span><div class="small">文章は上と同じ。動画が短い版。フリー6には ReChe_TEST03_filter_v1 と入る</div></div></div>
+ <div class="bn off"><div class="in" style="padding-top:18px"><div class="nm">LP_Lead_CR1</div><span class="tag">静止画（本人写真・推測）・平田さん報告では配信中</span><div class="small">フリー6には 120248066020410521 または ReChe_LP_Lead_CR1 と入る（同じ広告の2通りの書き方）。Metaの広告ライブラリでは「広告がありません」と表示され、見た目を確認できませんでした。</div></div></div>
+</div>
+<p class="small" style="margin:10px 0 0">広告ライブラリで公開されているMeroneの広告は、この2本だけです（アクティブのみ表示・9/26確認）。過去に回した TEST02_offer_v2 と TEST01_taidan_v2 は停止中です。</p>
+</div>
+
+<div class="card"><h2>3. バナー別の進み具合（9/18以降に名札が付いた人）</h2>
+<div class="tbl"><table><thead><tr><th>バナー（フリー6の値）</th><th>登録</th><th>アンケート回答</th><th>面談まで</th><th>成約</th><th>シナリオ</th></tr></thead><tbody>
+<tr><td>TEST03_filter_v1</td><td>52</td><td>21（40%）</td><td>4</td><td>0</td><td>A</td></tr>
+<tr><td>TEST02_offer_v1</td><td>46</td><td>6（13%）</td><td>0</td><td>0</td><td>A</td></tr>
+<tr><td>TEST02_offer_v2（停止）</td><td>25</td><td>7</td><td>1</td><td>1</td><td>A</td></tr>
+<tr><td>LP_Lead_CR1（2表記合算）</td><td>18</td><td>2</td><td>0</td><td>0</td><td>A</td></tr>
+<tr><td>TEST01_taidan_v2（停止）</td><td>6</td><td>2</td><td>0</td><td>0</td><td>A</td></tr>
+<tr><td>link_in_bio（インスタのプロフィール）</td><td>3</td><td>1</td><td>0</td><td>0</td><td>A</td></tr>
+<tr><td>main（名札なし扱い）</td><td>1</td><td>0</td><td>0</td><td>0</td><td>A</td></tr>
+<tr><td>空欄（9/18より前の登録・名札が外れた人）</td><td>207</td><td>68</td><td>11</td><td>6</td><td>A</td></tr>
+</tbody></table></div>
+<div class="ok">いま分かっていること。同じ文章でも、45秒の動画（TEST03）はアンケート回答が40%、54秒（TEST02_v1）は13%で、3倍の差があります。面談に進んだのもTEST03の4人だけです。成約2人（Miki・kae）は名札が付く前の登録なので、どのバナーかは分かりません。</div>
+</div>
+
+<div class="card"><h2>4. シナリオA・B・Cとは</h2>
+<div class="sc"><span class="n">79人</span><b>A：既存の導線</b><br><span class="small">登録→アンケート→動画1本目→2本目→3本目→スクール動画→面談予約。広告のLPからはここに入る。</span></div>
+<div class="sc"><span class="n">0人</span><b>B：アンケートなし・1本目の感想を出したら面談予約ができる</b><br><span class="small">入口はQRのみ（j4b9oaqz.autosns.app/addfriend/s/bK7xCSwUME/@038atjsh）。性別・職業・年収は取れない。</span></div>
+<div class="sc"><span class="n">0人</span><b>C：毎朝7時に1本ずつ配信・2本目と同時に面談予約ができる</b><br><span class="small">入口はQRのみ（j4b9oaqz.autosns.app/addfriend/s/Zps9fHuKNx/@038atjsh）。</span></div>
+<div class="sc"><span class="n">未作成</span><b>D：最初からスクール動画を見せて、すぐ面談予約できる</b><br><span class="small">予約後に仕入れ動画・対談動画を当日までに見てもらう案。平田さんの当初案にはあったが、ひかさんの設定時に除外された（9/25）。</span></div>
+<p class="small">平田さんの当初案は「A：既存／B：アンケートなしで1本目の感想後に予約解放／C：時間で自動的に次へ進み2本目で予約解放／D：最初からスクール動画で即予約」のABCD比較でした。</p>
+<p class="small">「ABテスト_A/B/C」のタグは、その入口から入った人に自動で付きます。LPのボタンがAの入口にしかつながっていないので、B・Cには広告の人が入れません。</p>
+</div>
+
+<div class="card"><h2>5. クローザー・アクセラの見方</h2>
+<ul style="margin:0;padding-left:18px;font-size:14px">
+<li>その人がどのバナーを見たかは、プロラインの友だち情報の「フリー6」欄を見てください（トーク画面右の友だち情報）。値と広告の対応は上の表です。</li>
+<li>フリー6が空欄の人は、9/18より前に登録した人か、リンクを保存し直して登録した人です。バナーは分かりません。</li>
+<li>「main」はインタレストマッチ（Meta以外の広告）の想定ですが、いまは1人しかいないため、まだ判定には使えません。</li>
+<li>面談に来た人へ「どの動画（広告）で知りましたか」と一言聞いて、面談報告に書いてもらえると、名札が無い人の穴が埋まります。</li>
+</ul>
+</div>
+
+<p class="small">作成 2026-09-26。出どころ：プロライン広告用口座（フリー6・タグ）、Meta広告ライブラリ（公開ページ）、LPのHTML、ひかさんのA/B/C設定報告、平田さんの報告。</p>
+</div>
+<style>#bugL{position:fixed;left:12px;bottom:16px;z-index:59;background:rgba(255,255,255,.92);border:1px solid var(--line);color:var(--muted);font-size:10.5px;font-weight:700;border-radius:999px;padding:5px 12px;cursor:pointer}#bugM{position:fixed;inset:0;background:rgba(31,46,77,.55);display:none;align-items:center;justify-content:center;z-index:70;padding:24px}#bugM.on{display:flex}#bugM .bx{background:#fff;border-radius:20px;padding:22px 20px;max-width:360px;width:100%}#bugM h3{font-size:14.5px;margin:0 0 8px}#bugM textarea{width:100%;border:1.5px solid #E1E6EF;border-radius:12px;padding:11px 13px;font-size:14px;font-family:inherit;min-height:100px;box-sizing:border-box}#bugM .bb{display:flex;gap:8px;margin-top:12px}#bugM button{flex:1;border:none;border-radius:999px;padding:11px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}#bugM .s{background:#3A78C9;color:#fff}#bugM .c{background:#F2F4F8}#bugM .done{display:none;font-size:12.5px;color:#3A78C9;font-weight:700;margin-top:8px;text-align:center}</style>
+<div id="bugL">不具合を報告</div><div id="bugM"><div class="bx"><h3>不具合・気になったことを教えてください</h3><textarea id="bugT"></textarea><div class="bb"><button class="c" id="bugC">閉じる</button><button class="s" id="bugS">送信する</button></div><div class="done" id="bugD">届きました。ありがとうございます。</div></div></div>
+<script>(function(){var U="https://inrvprlyobghviklulcv.supabase.co/rest/v1/ailab_notes",K="sb_publishable_ZrCNcsRHMci-l7Fns8QtIA_X22XZGJp",M=document.getElementById("bugM");document.getElementById("bugL").onclick=function(){M.classList.add("on")};document.getElementById("bugC").onclick=function(){M.classList.remove("on")};document.getElementById("bugS").onclick=function(){var t=document.getElementById("bugT").value.trim();if(!t)return;var b=this;b.disabled=true;fetch(U,{method:"POST",headers:{apikey:K,Authorization:"Bearer "+K,"Content-Type":"application/json"},body:JSON.stringify({member_id:"bug_ad-funnel-map",member_name:"広告見取り図",mood:"バグ報告",worry:t,want:location.href.slice(0,180)})}).then(function(){document.getElementById("bugD").style.display="block";document.getElementById("bugT").value="";b.disabled=false;setTimeout(function(){M.classList.remove("on")},1500)}).catch(function(){b.disabled=false;alert("送信できませんでした")})}})();</script>
+</body></html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Li-Li エルメ運用マニュアル</title>
+<style>
+:root{
+  --lav:#7D91C5; --violet:#967FC3; --lav-deep:#6E63A6; --lav-bg:#F5F3FB;
+  --card:#FFFFFF; --pink:#E2AFD6; --pink-soft:#F6E7F2; --wheat:#C3AF88; --wheat-soft:#EFE7D6;
+  --ink:#3A3742; --muted:#8C86A0; --line:#E7E1F3; --violet-soft:#F0ECF9; --lav-soft:#EAEEF7;
+  --rose:#B07A9B;
+  --shadow-sm:0 4px 18px rgba(125,145,197,.10);
+  --shadow-md:0 12px 30px rgba(110,99,166,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --lav:#A9B6E6; --violet:#B7A4E0; --lav-deep:#C7BEEA; --lav-bg:#181527;
+    --card:#241F36; --pink-soft:#332231; --wheat:#CBB78F; --wheat-soft:#2E2842;
+    --ink:#ECE9F6; --muted:#A49EBC; --line:#352E4C; --violet-soft:#2A2440; --lav-soft:#232038;
+  }
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--lav-bg); color:var(--ink);
+  font-family:"Hiragino Maru Gothic ProN","Hiragino Maru Gothic Pro","Yu Gothic Medium",YuGothic,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+  font-size:15px; line-height:1.85; -webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+}
+.latin{font-family:"Avenir Next","Poppins","Century Gothic","Futura",sans-serif;}
+a{color:var(--lav-deep);}
+.wrap{max-width:900px;margin:0 auto;padding:22px 18px 70px;}
+img{max-width:100%;}
+
+/* ---------- topbar ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.logo-chip{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:7px 16px;font-weight:700;font-size:13px;box-shadow:var(--shadow-sm);}
+.logo-chip .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--lav));}
+.badge-mock{display:inline-flex;align-items:center;gap:6px;background:var(--pink-soft);color:var(--rose);border:1px dashed var(--pink);border-radius:16px;padding:6px 14px;font-size:12px;font-weight:700;letter-spacing:.03em;}
+
+/* ---------- hero ---------- */
+.hero{
+  border-radius:26px;padding:34px 26px;text-align:center;color:#fff;
+  background:linear-gradient(135deg,#8E86C6 0%,#7D91C5 55%,#9585C4 100%);
+  box-shadow:var(--shadow-md);
+}
+.hero .eyebrow{font-family:"Avenir Next","Poppins","Century Gothic","Futura",sans-serif;font-size:12px;letter-spacing:.14em;opacity:.85;font-weight:700;}
+.hero h1{font-size:26px;margin:10px 0 12px;line-height:1.5;}
+.hero p{font-size:14px;opacity:.94;max-width:520px;margin:0 auto;line-height:1.9;}
+
+/* ---------- toc ---------- */
+.toc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 4px;}
+.toc a{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px 15px;
+  font-size:12.5px;font-weight:700;color:var(--lav-deep);text-decoration:none;box-shadow:var(--shadow-sm);
+}
+
+/* ---------- section ---------- */
+section.block{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;
+  padding:26px 24px;margin-top:20px;box-shadow:var(--shadow-sm);
+}
+.sec-head{text-align:center;margin-bottom:18px;}
+.sec-head .eyebrow{font-family:"Avenir Next","Poppins","Century Gothic","Futura",sans-serif;font-size:11.5px;letter-spacing:.14em;color:var(--violet);font-weight:800;}
+.sec-head h2{font-size:20px;margin:8px 0 10px;color:var(--lav-deep);}
+.sec-head .lead{font-size:13.5px;color:var(--muted);max-width:560px;margin:0 auto;}
+
+h3.sub{font-size:15.5px;color:var(--lav-deep);margin:26px 0 10px;padding-top:16px;border-top:1px dashed var(--line);}
+section.block > h3.sub:first-of-type{border-top:none;padding-top:0;}
+
+/* ---------- flow strip ---------- */
+.flow{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0;}
+.flow .fstep{
+  flex:1 1 110px;background:var(--lav-soft);border-radius:14px;text-align:center;padding:12px 6px;
+}
+.flow .fstep .n{font-family:"Avenir Next","Poppins","Century Gothic","Futura",sans-serif;font-size:11px;letter-spacing:.06em;color:var(--violet);font-weight:800;}
+.flow .fstep .t{font-size:12.5px;font-weight:700;margin-top:4px;color:var(--ink);}
+.flow .arrow{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;flex:0 0 16px;}
+@media(max-width:640px){
+  .flow{flex-direction:column;}
+  .flow .fstep{flex:1 1 auto;}
+  .flow .arrow{transform:rotate(90deg);flex:0 0 auto;padding:2px 0;}
+}
+
+/* ---------- steps list ---------- */
+ol.steps{list-style:none;margin:14px 0;padding:0;counter-reset:step;}
+ol.steps li{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:13.5px;}
+ol.steps li:last-child{border-bottom:none;}
+ol.steps li .num{
+  flex:0 0 26px;height:26px;border-radius:50%;background:var(--violet-soft);color:var(--lav-deep);
+  display:flex;align-items:center;justify-content:center;font-family:"Avenir Next","Poppins","Century Gothic","Futura",sans-serif;
+  font-weight:800;font-size:12.5px;
+}
+ol.steps li .txt b{color:var(--lav-deep);}
+
+/* ---------- callouts ---------- */
+.tip{background:var(--lav-soft);border-left:4px solid var(--lav);border-radius:12px;padding:12px 16px;font-size:13px;margin:14px 0;}
+.tip b{color:var(--lav-deep);}
+.check{background:var(--pink-soft);border:2px dashed var(--pink);border-radius:14px;padding:12px 16px;font-size:13px;margin:14px 0;}
+.check b{color:var(--rose);}
+.warn{background:var(--wheat-soft);border-left:4px solid var(--wheat);border-radius:12px;padding:12px 16px;font-size:13px;margin:14px 0;}
+.warn b{color:#8a6d3f;}
+@media (prefers-color-scheme: dark){.warn b{color:var(--wheat);}}
+
+/* ---------- real screenshots ---------- */
+.shot-block{margin:16px 0;}
+.shot-row{display:grid;gap:10px;margin-bottom:8px;}
+.shot-row.c1{grid-template-columns:1fr;max-width:460px;margin-left:auto;margin-right:auto;}
+.shot-row.c2{grid-template-columns:1fr 1fr;}
+.shot-row.c3{grid-template-columns:1fr 1fr 1fr;}
+@media(max-width:640px){
+  .shot-row.c2,.shot-row.c3{grid-template-columns:1fr;}
+}
+.shot{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);background:#fff;display:flex;align-items:center;}
+.shot img{display:block;width:100%;height:auto;}
+.shot-num{position:relative;}
+.shot-num .badge{position:absolute;top:8px;left:8px;background:var(--violet);color:#fff;font-family:"Avenir Next","Poppins","Century Gothic","Futura",sans-serif;font-weight:800;font-size:11px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.25);}
+.shot-cap{text-align:center;font-size:11px;color:var(--muted);}
+.shot-cap b{color:var(--lav-deep);font-weight:700;}
+
+/* ---------- table ---------- */
+table.info{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+table.info th,table.info td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top;}
+table.info th{color:var(--muted);font-weight:700;width:34%;}
+
+/* ---------- checklist ---------- */
+ul.check-list{list-style:none;margin:14px 0;padding:0;}
+ul.check-list li{display:flex;gap:10px;padding:8px 0;font-size:13.5px;border-bottom:1px dashed var(--line);}
+ul.check-list li:last-child{border-bottom:none;}
+ul.check-list li:before{content:"✓";flex:0 0 auto;color:var(--violet);font-weight:800;}
+
+/* ---------- glossary ---------- */
+.gloss{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:640px){.gloss{grid-template-columns:1fr;}}
+.gloss .g-item{background:var(--lav-soft);border-radius:14px;padding:12px 14px;}
+.gloss .g-item .term{font-weight:800;color:var(--lav-deep);font-size:13px;margin-bottom:4px;}
+.gloss .g-item .def{font-size:12.5px;color:var(--ink);}
+
+/* ---------- refs ---------- */
+.refs{font-size:12px;color:var(--muted);}
+.refs h4{font-size:12.5px;color:var(--lav-deep);margin:16px 0 6px;}
+.refs ul{margin:0;padding-left:18px;}
+.refs li{margin-bottom:4px;word-break:break-all;}
+.refs a{color:var(--muted);}
+
+footer{text-align:center;font-size:11.5px;color:var(--muted);margin-top:26px;padding:0 10px;}
+footer .dots{display:flex;justify-content:center;gap:6px;margin-bottom:10px;}
+footer .dots span{width:6px;height:6px;border-radius:50%;}
+footer .dots span:nth-child(1){background:var(--pink);}
+footer .dots span:nth-child(2){background:var(--lav);}
+
+.note-bullet{color:var(--wheat);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="logo-chip"><span class="dot"></span>Li-Li × Merone｜運用マニュアル</div>
+    <div class="badge-mock">モックアップ版</div>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">LI-LI LINE OPERATION GUIDE</div>
+    <h1>エルメ運用マニュアル</h1>
+    <p>友だち登録から一斉送信・ステップ配信・日々の対応まで、LINE運用に必要な操作をひとつにまとめました。担当が変わっても、同じ品質でお客様とやり取りできるように。</p>
+  </section>
+
+  <nav class="toc">
+    <a href="#howto">使い方</a>
+    <a href="#sec-a">A. 受け取りフロー</a>
+    <a href="#sec-b">B. 一斉送信</a>
+    <a href="#sec-c">C. ステップ配信</a>
+    <a href="#sec-d">D. ツール設定</a>
+    <a href="#sec-comm">対応・コミュニケーション</a>
+    <a href="#glossary">用語集</a>
+  </nav>
+
+  <!-- ================= 使い方 ================= -->
+  <section class="block" id="howto">
+    <div class="sec-head">
+      <div class="eyebrow">HOW TO USE</div>
+      <h2>このマニュアルの使い方</h2>
+      <p class="lead">はじめてエルメを担当する方向けの操作ガイドです。上の目次から知りたい項目に飛んで、番号の手順どおりに進めれば操作できるようになっています。</p>
+    </div>
+
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">まずは<b>A. 受け取りフロー</b>を読んで、お客様が友だち追加してからどんな体験をするのか、全体の流れをつかんでください。</div></li>
+      <li><div class="num">2</div><div class="txt">日々の配信作業をするときは<b>B. 一斉送信</b>・<b>C. ステップ配信</b>を、その都度手順を見ながら操作してください。</div></li>
+      <li><div class="num">3</div><div class="txt">アカウントの基本設定やタグの考え方に迷ったら<b>D. ツール設定</b>を確認してください。</div></li>
+      <li><div class="num">4</div><div class="txt">操作以外の、返信スピードや面談誘導の基準は<b>対応・コミュニケーション</b>にまとめています。</div></li>
+    </ol>
+
+    <div class="tip"><b>困ったときは。</b>操作に迷ったときは、代表の春香さんまたはLi-Li社内の運用チャットで確認してください。エルメそのものの機能について分からないことがあれば、L Message公式マニュアル(lme.jp/manual/)もあわせて確認できます。</div>
+
+    <div class="check"><b>このマニュアルについて。</b>本マニュアルに掲載している画面画像は、L Message公式マニュアル(lme.jp/manual/)に掲載されている実際の操作画面キャプチャです。ただしLi-Li社の実際のアカウント画面ではないため、タグの中身やメニューの並びなど細部が異なる場合があります。点線の枠で囲んだ部分は「Li-Liの実機で確認してほしい箇所」の目印です。</div>
+  </section>
+
+  <!-- ================= A. 受け取りフロー ================= -->
+  <section class="block" id="sec-a">
+    <div class="sec-head">
+      <div class="eyebrow">A. RECEIVING FLOW</div>
+      <h2>受け取りフロー</h2>
+      <p class="lead">お客様がLINEを友だち追加した瞬間から、特典を受け取り、案内したい内容(ステップ配信)につながるまでの一連の流れです。ここでの体験がその後の関係性を左右します。</p>
+    </div>
+
+    <div class="flow">
+      <div class="fstep"><div class="n">STEP 1</div><div class="t">友だち追加</div></div>
+      <div class="arrow">→</div>
+      <div class="fstep"><div class="n">STEP 2</div><div class="t">あいさつメッセージ</div></div>
+      <div class="arrow">→</div>
+      <div class="fstep"><div class="n">STEP 3</div><div class="t">特典を配布</div></div>
+      <div class="arrow">→</div>
+      <div class="fstep"><div class="n">STEP 4</div><div class="t">タグを自動付与</div></div>
+      <div class="arrow">→</div>
+      <div class="fstep"><div class="n">STEP 5</div><div class="t">ステップ配信スタート</div></div>
+    </div>
+
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/a1-overview.png" alt="友だち追加した直後にあいさつメッセージが届くイメージ"></div></div>
+      <div class="shot-cap">出典：L Message公式マニュアル（lme.jp/manual/）</div>
+    </div>
+
+    <h3 class="sub">A-1. あいさつメッセージを設定する</h3>
+    <p style="font-size:13.5px;">友だち追加した直後に自動で届く最初のメッセージです。「新規友だち用」「既存友だち用」「ブロック解除友だち用」の3パターンを、それぞれ個別に設定します。</p>
+
+    <div class="shot-block">
+      <div class="shot-row c2">
+        <div class="shot"><img src="shots/a1-setting.png" alt="左メニューからあいさつメッセージを選ぶ画面"></div>
+        <div class="shot"><img src="shots/a1-action.png" alt="1:1チャットで実際に届いたあいさつメッセージの例"></div>
+      </div>
+      <div class="shot-cap">左：あいさつメッセージを選ぶ場所 ／ 右：実際に届く例（出典：L Message公式マニュアル）</div>
+    </div>
+
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">左メニューの「あいさつメッセージ」にカーソルを合わせ、「新規友だち用」を選ぶ</div></li>
+      <li><div class="num">2</div><div class="txt">「メッセージ・アクション設定」画面が開くので、送信するメッセージを入力する</div></li>
+      <li><div class="num">3</div><div class="txt">画面下部の「アクション追加・編集」から、あわせて実行したい動作(特典配布・タグ付与・ステップ開始など)を追加する</div></li>
+      <li><div class="num">4</div><div class="txt">左下の「保存」を押す</div></li>
+      <li><div class="num">5</div><div class="txt">保存できたら、必ずテスト送信で実際の届き方を確認する</div></li>
+    </ol>
+    <div class="tip">複数のアクションを設定しても、<b>必ずしも登録した順番どおりに実行されるとは限りません</b>。「特典配布→タグ付与→ステップ開始」のように順番が大事な場合は、テスト送信で届く順序を毎回確認してください。</div>
+    <div class="check">あいさつメッセージで選べるメッセージ形式(テキスト/画像/カルーセルなど)の詳しい選択肢は、上の画像のようにLi-Liの実際の管理画面でも確認しておいてください。</div>
+
+    <h3 class="sub">A-2. 特典を自動で届ける</h3>
+    <p style="font-size:13.5px;">PDF配布・カルーセル・リッチメニューの3つの方法があります。用途に合わせて使い分けます。</p>
+
+    <p style="font-size:13.5px;"><b>(a) PDF・URLを送る「テンプレート」機能</b></p>
+    <div class="shot-block">
+      <div class="shot-row c2">
+        <div class="shot"><img src="shots/a2a-template.jpg" alt="友だち追加時設定でテンプレートを送るイメージ"></div>
+        <div class="shot"><img src="shots/a2a-pdf.png" alt="1:1チャットのメニューでテンプレートを選ぶ画面"></div>
+      </div>
+      <div class="shot-cap">出典：L Message公式マニュアル（lme.jp/manual/）</div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">メッセージ作成画面で「＋PDFアップロード」を押す</div></li>
+      <li><div class="num">2</div><div class="txt">配布したいPDFファイルをアップロードする(自動でURLが発行される)</div></li>
+      <li><div class="num">3</div><div class="txt">必要であれば「URL表示期限・アクション設定」で、リンクの有効期限やタップ時の動作(タグ付けなど)を設定する</div></li>
+      <li><div class="num">4</div><div class="txt">「＋メッセージ追加」でテキストや画像を組み合わせて1通のメッセージにする</div></li>
+    </ol>
+
+    <p style="font-size:13.5px;"><b>(b) カード形式で見せる「パネル・ボタン」機能(カルーセル)</b></p>
+    <p style="font-size:13px;color:var(--muted);">特典が複数ある場合や、お客様に選んでもらいたいときに使う横並びカードです。スタンダード／カラーボタン／画像／クイックリプライの4種類があります。</p>
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/a2b-panel.jpg" alt="メッセージタイプ選択画面でパネル・ボタンを選ぶところ"></div></div>
+      <div class="shot-cap">メッセージ作成画面の「メッセージタイプを選択」欄（出典：L Message公式マニュアル）</div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">メッセージ作成画面で「パネル・ボタン」を選ぶ</div></li>
+      <li><div class="num">2</div><div class="txt">パネルの種類を選ぶ(基本は画像+テキスト+ボタンの「スタンダード」でOK)</div></li>
+      <li><div class="num">3</div><div class="txt">「＋パネル追加」でカードを追加していく(最大10枚)</div></li>
+      <li><div class="num">4</div><div class="txt">各カードのボタンを押したときの動作(URLを開く／タグをつける 等)を設定する</div></li>
+    </ol>
+
+    <p style="font-size:13.5px;"><b>(c) 初回だけ特別なメニューを見せる「リッチメニュー」</b></p>
+    <div class="shot-block">
+      <div class="shot-row c2">
+        <div class="shot shot-num"><span class="badge">1</span><img src="shots/a2c-richmenu.jpg" alt="顧客対応メニューからリッチメニューを選ぶ画面"></div>
+        <div class="shot shot-num"><span class="badge">2</span><img src="shots/a2c-link.png" alt="リッチメニュー管理画面で新規作成ボタンを押す画面"></div>
+      </div>
+      <div class="shot-cap">①顧客対応→リッチメニュー　②新規作成（出典：L Message公式マニュアル）</div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">事前準備として、左メニュー「顧客対応」→「リッチメニュー」で新規作成し、画像とタップ領域を設定しておく</div></li>
+      <li><div class="num">2</div><div class="txt">「あいさつメッセージ」→「新規友だち用」を開く</div></li>
+      <li><div class="num">3</div><div class="txt">「アクション追加・編集」→アクション種類から「リッチメニュー」を選ぶ</div></li>
+      <li><div class="num">4</div><div class="txt">表示設定を「表示する」にして、事前登録したリッチメニューを指定する</div></li>
+      <li><div class="num">5</div><div class="txt">「保存」を2回押す(アクション画面→あいさつメッセージ画面の順)</div></li>
+    </ol>
+    <div class="tip">リッチメニュー画像の推奨サイズは<b>大：2,500×1,686px／小：2,500×843px</b>です。Canvaやエルメ内のAI画像作成機能でも作成できます。</div>
+
+    <h3 class="sub">A-3. 流入経路タグを自動でつける</h3>
+    <p style="font-size:13.5px;">「どの広告から来た人か」「どの導線から登録した人か」を後から追いかけられるように、友だち追加のタイミングでタグを自動的につけます。</p>
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/d3-action.png" alt="友だち追加をきっかけに自動でメッセージやタグが動く仕組みの図解"></div></div>
+      <div class="shot-cap">友だち行動をきっかけに自動で動く「エルメアクション」の考え方（出典：L Message公式マニュアル）</div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">事前準備：左メニュー「情報管理」→「タグ管理」→「新規作成」→フォルダを選んで管理名(タグ名)を入力→「＋タグ追加」(1回で最大20個まで作成可)</div></li>
+      <li><div class="num">2</div><div class="txt">「あいさつメッセージ」→「新規友だち用」を開く</div></li>
+      <li><div class="num">3</div><div class="txt">「アクション追加・編集」を押す</div></li>
+      <li><div class="num">4</div><div class="txt">アクション種類から「タグ」を選ぶ</div></li>
+      <li><div class="num">5</div><div class="txt">「つける」を選択し、対象のタグを選ぶ</div></li>
+      <li><div class="num">6</div><div class="txt">「保存」</div></li>
+    </ol>
+    <div class="check">この自動タグ付与の手順は、公式マニュアルの複数ページの情報を組み合わせたものです。タグ作成の実際の画面は<b>D-2「タグを設計する」</b>にあります。<b>実際のエルメ画面で同じ流れになるか、Li-Liの実機で一度確認</b>してからマニュアルを確定してください。なお「情報管理」→「QRコードアクション」を使うと、広告や設置場所ごとに違うQRコード／URLを発行し、流入経路別にタグを分けることもできます。</div>
+
+    <h3 class="sub">A-4. ステップ配信につなげる</h3>
+    <p style="font-size:13.5px;">あいさつメッセージや特典配布のあと、本来案内したい一連のメッセージ(ステップ配信)を自動でスタートさせます。詳しい組み立て方はCの章を参照してください。</p>
+    <div class="shot-block">
+      <div class="shot-row c3">
+        <div class="shot shot-num"><span class="badge">1</span><img src="shots/a4-step1.jpg" alt="メッセージ内のステップ配信メニューを選ぶ画面"></div>
+        <div class="shot shot-num"><span class="badge">2</span><img src="shots/a4-step2.jpg" alt="ステップ配信新規作成で管理名とフォルダを入力する画面"></div>
+        <div class="shot shot-num"><span class="badge">3</span><img src="shots/a3-action.png" alt="エルメアクションでステップの開始・再開を選ぶ画面"></div>
+      </div>
+      <div class="shot-cap">①ステップ配信を開く　②先に中身を作る　③あいさつメッセージ側で「開始/再開」を選ぶ（出典：L Message公式マニュアル）</div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">先に「メッセージ」→「ステップ配信」で配信したい内容を作っておく</div></li>
+      <li><div class="num">2</div><div class="txt">「あいさつメッセージ」→「新規友だち用」を開く</div></li>
+      <li><div class="num">3</div><div class="txt">「アクション追加・編集」→アクション種類から「ステップ」を選ぶ</div></li>
+      <li><div class="num">4</div><div class="txt">配信設定で「開始／再開」を選ぶ</div></li>
+      <li><div class="num">5</div><div class="txt">スタートさせたいステップ配信を選ぶ</div></li>
+      <li><div class="num">6</div><div class="txt">「保存」</div></li>
+    </ol>
+    <div class="tip">1人のお客様が同時に受け取れるステップ配信は<b>1つだけ</b>です。新しいステップ配信を開始すると、それまで受け取っていたステップ配信は自動的に止まります。掛け持ちさせたいときは要注意です。</div>
+  </section>
+
+  <!-- ================= B. 一斉送信 ================= -->
+  <section class="block" id="sec-b">
+    <div class="sec-head">
+      <div class="eyebrow">B. BROADCAST</div>
+      <h2>一斉送信</h2>
+      <p class="lead">全員に同じ内容を届けたいとき、または特定のタグの人だけに届けたいときに使う機能です。左メニューの「メッセージ」→「メッセージ配信」から作成します。</p>
+    </div>
+
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/b2-overview.png" alt="サイドメニューからメッセージ配信を選ぶ画面"></div></div>
+      <div class="shot-cap">左メニュー「メッセージ」→「メッセージ配信」（出典：L Message公式マニュアル）</div>
+    </div>
+
+    <h3 class="sub">B-1. 作成〜送信までの流れ</h3>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">左メニュー「メッセージ」→「メッセージ配信」を開く</div></li>
+      <li><div class="num">2</div><div class="txt">右上の「新規作成」を押す</div></li>
+      <li><div class="num">3</div><div class="txt">「管理用タイトル」を入力する(社内管理用の名前。お客様には表示されない)</div></li>
+      <li><div class="num">4</div><div class="txt">「送信者名」を設定する</div></li>
+      <li><div class="num">5</div><div class="txt">配信タイミングを選ぶ(すぐに配信／予約配信)</div></li>
+      <li><div class="num">6</div><div class="txt">配信先を絞り込む(全員に送る／タグで絞る)</div></li>
+      <li><div class="num">7</div><div class="txt">「予定配信者数」で対象人数を確認する</div></li>
+      <li><div class="num">8</div><div class="txt">「メッセージの登録に進む」を押して本文を作る</div></li>
+      <li><div class="num">9</div><div class="txt">内容に間違いがないか、必ずテスト送信で確認する</div></li>
+      <li><div class="num">10</div><div class="txt">配信内容を確認して送信する</div></li>
+    </ol>
+    <div class="tip">
+      <b>あわせて使うと良い機能：情報自動挿入。</b>本文に「LINE名」や「登録からの経過日数」を自動で差し込める機能があります。「太郎さんだけにご案内！」のように、一斉配信でも一人ひとりへの個別連絡のように見せられます。
+      <div class="shot-block" style="margin-top:10px;">
+        <div class="shot-row c3">
+          <div class="shot"><img src="shots/b5-test-overview.png" alt="情報自動挿入でLINE名を差し込んだメッセージが届くイメージ"></div>
+          <div class="shot"><img src="shots/b1-new1.png" alt="情報自動挿入メニューでLINE名を選ぶ画面"></div>
+          <div class="shot"><img src="shots/b1-new2.png" alt="情報自動挿入メニューで経過日数を選ぶ画面"></div>
+        </div>
+        <div class="shot-cap">メッセージ本文の入力欄にある「情報自動挿入」から呼び出せます（出典：L Message公式マニュアル）</div>
+      </div>
+    </div>
+
+    <h3 class="sub">B-2. 配信対象を絞り込む(タグ配信)</h3>
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/b2-tag.png" alt="タグで友だちを分類するイメージ図"></div></div>
+      <div class="shot-cap">タグ機能のイメージ図（出典：L Message公式マニュアル）</div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">「配信先絞り込み」を「すべての友だち」から「絞り込み」に切り替える</div></li>
+      <li><div class="num">2</div><div class="txt">「設定」を押して絞り込み画面を開く</div></li>
+      <li><div class="num">3</div><div class="txt">条件の組み合わせ方(すべて満たす／いずれか1つ)を選ぶ</div></li>
+      <li><div class="num">4</div><div class="txt">項目リストから「タグ」を選ぶ</div></li>
+      <li><div class="num">5</div><div class="txt">対象にしたいタグにチェックを入れる</div></li>
+      <li><div class="num">6</div><div class="txt">「保存」を押す</div></li>
+      <li><div class="num">7</div><div class="txt">画面右側の「予定配信者数」で人数を必ず確認する</div></li>
+    </ol>
+    <p style="font-size:13px;color:var(--muted);">タグ以外にも「友だち追加日」「ステップ購読状況」「QRコードアクション(流入経路)」「対応ステータス」などで絞り込めます。</p>
+    <div class="check">「性別」を直接絞り込む項目はエルメ内には見当たりませんでした。性別で分けて配信したい場合は、フォームなどで性別を聞いてタグ付けしておく運用が必要になりそうです。<b>実機で最新の絞り込み項目一覧を確認</b>してください。</div>
+
+    <h3 class="sub">B-3. 予約配信の設定</h3>
+    <p style="font-size:13.5px;">配信タイミングで「予約配信」を選ぶと「＋配信日時追加」から配信したい日時を指定できます。複数の日時を登録すれば、同じ内容を複数のタイミングでそれぞれ配信することも可能です。</p>
+    <div class="check">カレンダーでの日時選択の細かい操作画面は、公式マニュアルの文章だけでは確認できませんでした。<b>Li-Liの実機で確認</b>してください。</div>
+
+    <h3 class="sub">B-4. メッセージの形式を選ぶ</h3>
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/b4-richmessage.png" alt="1枚の画像に複数のリンクを仕込むリッチメッセージのイメージ"></div></div>
+      <div class="shot-cap">画像1枚に複数のタップ領域を仕込む「リッチメッセージ」のイメージ（出典：L Message公式マニュアル）</div>
+    </div>
+    <table class="info">
+      <tr><th>テキスト</th><td>一番シンプルな形式。伝えたいことをそのまま届ける</td></tr>
+      <tr><th>パネル・ボタン</th><td>複数の選択肢やリンクをカード形式(カルーセル)で見せたいとき</td></tr>
+      <tr><th>画像・動画・音声</th><td>1枚の画像に複数のタップ領域を仕込みたいとき(リッチメッセージ)</td></tr>
+      <tr><th>スタンプ／位置情報</th><td>補助的な用途。単体で使うことは少ない</td></tr>
+    </table>
+
+    <h3 class="sub">B-5. 送る前に必ずテスト送信する</h3>
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/b5-test-detail.png" alt="テスト送信先を検索して選ぶ画面"></div></div>
+      <div class="shot-cap">テスト送信先を検索・追加する画面（出典：L Message公式マニュアル）</div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">画面上部のQRコードアイコンから、自分自身をLINE公式アカウントの友だちに登録しておく(初回のみ)</div></li>
+      <li><div class="num">2</div><div class="txt">作成したメッセージの「プレビュー」を開く</div></li>
+      <li><div class="num">3</div><div class="txt">登録済みのテストアカウント横の「テスト送信」を押す</div></li>
+      <li><div class="num">4</div><div class="txt">実際にLINEアプリで届いた内容を確認する</div></li>
+    </ol>
+    <div class="tip">本文の言い回し・改行・URLのリンク切れは、テスト送信で<b>必ず自分の目で確認</b>してから一斉送信してください。一度送ってしまうと取り消せません。</div>
+  </section>
+
+  <!-- ================= C. ステップ配信 ================= -->
+  <section class="block" id="sec-c">
+    <div class="sec-head">
+      <div class="eyebrow">C. STEP MESSAGE</div>
+      <h2>ステップ配信</h2>
+      <p class="lead">あらかじめ用意したメッセージを、指定した間隔で自動的に配信し続ける仕組みです。「作っただけでは配信されない」のがポイントで、必ず開始のきっかけ(トリガー)とセットで設定します。</p>
+    </div>
+
+    <h3 class="sub">C-1. ステップ配信を作る</h3>
+    <div class="shot-block">
+      <div class="shot-row c2">
+        <div class="shot"><img src="shots/c1-overview.jpg" alt="メッセージメニューでステップ配信を選ぶ画面"></div>
+        <div class="shot"><img src="shots/c5-branch2.png" alt="ステップ配信新規作成で管理名を入力する画面"></div>
+      </div>
+      <div class="shot-cap">左：ステップ配信を開く ／ 右：新規作成で管理名を入力（出典：L Message公式マニュアル）</div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">左メニュー「メッセージ」→「ステップ配信」を開く</div></li>
+      <li><div class="num">2</div><div class="txt">「新規作成」を押す</div></li>
+      <li><div class="num">3</div><div class="txt">管理名(社内用の名前)を入力し、保存先のフォルダを選ぶ</div></li>
+      <li><div class="num">4</div><div class="txt">「メッセージ登録に進む」を押して中身を作っていく</div></li>
+    </ol>
+
+    <h3 class="sub">C-2. 配信タイミングを決める</h3>
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/c2-timing.png" alt="配信タイミング追加ボタンを押す画面"></div></div>
+      <div class="shot-cap">「＋配信タイミング」から追加します（出典：L Message公式マニュアル）</div>
+    </div>
+    <table class="info">
+      <tr><th>ステップ開始直後</th><td>トリガーが実行された瞬間に届く(1通目のみ設定可能)</td></tr>
+      <tr><th>日時で指定</th><td>「開始した日から◯日後の◯時◯分」という形で指定する</td></tr>
+      <tr><th>経過時間で指定</th><td>「開始から◯時間◯分後」という形で指定する(最大72時間まで)</td></tr>
+    </table>
+    <p style="font-size:13px;color:var(--muted);">例：友だち追加の翌日9時に届けたい場合は「1日後の9時」で登録しておきます。</p>
+
+    <h3 class="sub">C-3. メッセージを追加していく</h3>
+    <ul class="check-list">
+      <li>同じタイミングに複数のメッセージを入れたい → 「＋メッセージ」を繰り返し押す(テキストと画像を混ぜてもOK)</li>
+      <li>別のタイミングでメッセージを送りたい → 「＋配信タイミング」で新しいタイミングを追加する</li>
+    </ul>
+    <div class="check">登録済みメッセージの<b>並び替え(順番の入れ替え)ができるか</b>は、公式マニュアルの文章だけでは確認できませんでした。実機で確認してください。</div>
+
+    <h3 class="sub">C-4. このステップ配信をいつ始めるか(トリガー)を決める</h3>
+    <table class="info">
+      <tr><th>パターン1<br>友だち追加時に自動</th><td>あいさつメッセージの「アクション追加・編集」から「ステップ」→「開始／再開」を選ぶ(A-4と同じ設定)</td></tr>
+      <tr><th>パターン2<br>1人だけ手動で開始</th><td>「1:1チャット」で対象者を選ぶ→「基本情報」の「ステップ配信」の鉛筆マーク→「ステップを開始・変更する」</td></tr>
+      <tr><th>パターン3<br>複数人へまとめて開始</th><td>「情報管理」→「友だちリスト」で対象を絞り込む→チェックを入れて「アクション選択」→「ステップ」を選んで実行</td></tr>
+    </table>
+    <div class="tip">1人が同時に受け取れるステップ配信は<b>1つだけ</b>です。新しいステップを始めると、それまでのステップは自動的に止まります。</div>
+
+    <h3 class="sub">C-5. 対象によってメッセージを出し分ける(分岐)</h3>
+    <p style="font-size:13.5px;">エルメの分岐は「YES/NOで枝分かれ」ではなく、「配信対象のグループをいくつか用意して、それぞれに違う内容を配信する」という考え方です。</p>
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/c5-branch1.png" alt="ステップのエルメアクションで開始・再開を選ぶ画面（分岐機能と同じ記事内の参考画面）"></div></div>
+      <div class="shot-cap">参考：ステップに関するアクション設定画面。「配信対象を追加」する絞り込み画面そのものは次の手順でLi-Liの実機で確認してください（出典：L Message公式マニュアル）</div>
+    </div>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">「選択中の配信対象」横の矢印を押す</div></li>
+      <li><div class="num">2</div><div class="txt">「＋配信対象追加」で新しいグループを作る</div></li>
+      <li><div class="num">3</div><div class="txt">「絞り込み条件 編集」で条件を設定する(例：特定のタグを持っている人)</div></li>
+      <li><div class="num">4</div><div class="txt">「保存」</div></li>
+      <li><div class="num">5</div><div class="txt">グループを切り替えながら、それぞれに配信するメッセージを登録する</div></li>
+    </ol>
+    <div class="check">分岐(配信対象を複数持つ)機能は<b>有料プラン限定の場合があります</b>。Li-Liで契約しているプランで使えるかどうかを事前に確認してください。</div>
+
+    <h3 class="sub">C-6. ステップ配信を止める</h3>
+    <div class="shot-block">
+      <div class="shot-row c2">
+        <div class="shot"><img src="shots/c6-stop1.png" alt="1:1チャットを開く画面"></div>
+        <div class="shot"><img src="shots/c6-stop2.png" alt="ステップ配信を停止するを選び次にすすむを押す画面"></div>
+      </div>
+      <div class="shot-cap">左：1:1チャットを開く ／ 右：「ステップ配信を停止する」→「次にすすむ」（出典：L Message公式マニュアル）</div>
+    </div>
+    <table class="info">
+      <tr><th>個別に止める</th><td>「1:1チャット」→対象者を選ぶ→「ステップ配信」の鉛筆マーク→「ステップ配信を停止する」→「次にすすむ」→「OK」</td></tr>
+      <tr><th>まとめて止める</th><td>「情報管理」→「友だちリスト」→「ステップ購読状況」で対象ステップ・「購読中」の人を絞り込む→対象にチェック→「アクション選択」→「ステップ」→「停止」</td></tr>
+    </table>
+    <div class="check">タグを外しただけではステップ配信は自動的に止まりません。止めたい場合は<b>別途「停止」のアクションを設定</b>する必要があります。ステップ配信全体を一括でOFFにする管理者スイッチがあるかどうかは実機で確認してください。</div>
+
+    <h3 class="sub">C-7. テスト配信で確認する</h3>
+    <ol class="steps">
+      <li><div class="num">1</div><div class="txt">対象のステップ配信を開く</div></li>
+      <li><div class="num">2</div><div class="txt">メッセージ内の「≡」アイコンから「テスト配信」を選ぶ</div></li>
+      <li><div class="num">3</div><div class="txt">テストしたいアカウントを検索して追加する</div></li>
+      <li><div class="num">4</div><div class="txt">「テスト送信」または「一括操作」→「テスト」で確認する</div></li>
+    </ol>
+  </section>
+
+  <!-- ================= D. ツール設定 ================= -->
+  <section class="block" id="sec-d">
+    <div class="sec-head">
+      <div class="eyebrow">D. ACCOUNT SETUP</div>
+      <h2>ツール設定</h2>
+      <p class="lead">日々の配信をスムーズに行うための、アカウントの初期設定・タグの設計・ステップ配信の仕組みについてまとめています。</p>
+    </div>
+
+    <h3 class="sub">D-1. アカウントの初期設定で気をつけること</h3>
+    <div class="shot-block">
+      <div class="shot-row c1"><div class="shot"><img src="shots/d1-register.jpg" alt="L Messageの新規アカウント登録画面"></div></div>
+      <div class="shot-cap">エルメ自体の新規登録画面。LINE公式アカウントの管理画面とは別のシステムです（出典：L Message公式マニュアル）</div>
+    </div>
+    <div class="warn"><span class="note-bullet">▸</span> <b>「プロフィール(アカウント名・アイコン・ステータスメッセージ)」や「応答設定(チャット／自動応答のON・OFF)」は、エルメの管理画面(step.lme.jp)ではなく、LINE公式アカウント自体の管理画面「LINE Official Account Manager」側</b>で設定します。エルメとLINE公式アカウント管理画面は別物、という点を最初に理解しておくと迷いません。</div>
+    <div class="tip">エルメ側で独自にあいさつメッセージを配信する場合、LINE純正の「応答メッセージ」機能と内容が重複しないよう、LINE Official Account Manager側の設定もあわせて確認してください。</div>
+
+    <h3 class="sub">D-2. タグを設計する</h3>
+    <p style="font-size:13.5px;">タグは「情報管理」→「タグ管理」から作成します。1回の操作で最大20個まで、CSVを使えば一度に最大200個まで作成できます。</p>
+    <div class="shot-block">
+      <div class="shot-row c2">
+        <div class="shot"><img src="shots/d2-tagmanage.png" alt="タグ管理のイメージ図"></div>
+        <div class="shot"><img src="shots/d2-tagfilter.png" alt="タグ管理画面で新規作成ボタンを押すところ"></div>
+      </div>
+      <div class="shot-cap">右：実際の「タグ管理」画面、「＋新規作成」から作成します（出典：L Message公式マニュアル）</div>
+    </div>
+    <div class="tip">
+      <b>命名ルールの提案(案)</b><br>
+      ・「流入経路_◯◯広告」のように「流入経路_」を頭につける<br>
+      ・「ステータス_面談済み」のように「ステータス_」を頭につける<br>
+      ・「属性_◯◯コース」のように「属性_」を頭につける<br>
+      画面左の「＋フォルダ追加」でこの頭文字ごとにタグを整理できます。
+    </div>
+    <div class="check">タグの命名ルールについて、公式マニュアルに決まった正解は書かれていません。上記はあくまで<b>提案</b>です。Li-Li社内で正式なルールとして決めてから運用してください。</div>
+    <p style="font-size:13.5px;">タグでの絞り込みは「情報管理」→「友だちリスト」→「絞り込み」から、以下の4パターンで指定できます。</p>
+    <table class="info">
+      <tr><th>OR</th><td>いずれか1つ以上を含む人</td></tr>
+      <tr><th>AND</th><td>すべてを含む人</td></tr>
+      <tr><th>NOT OR</th><td>いずれか1つ以上を含む人を除外</td></tr>
+      <tr><th>NOT AND</th><td>すべてを含む人を除外</td></tr>
+    </table>
+
+    <h3 class="sub">D-3. ステップ配信の仕組み(おさらい)</h3>
+    <p style="font-size:13.5px;">ステップ配信は「配信タイミング」×「メッセージ」の組み合わせでできていて、単体では動かず、必ず何かのきっかけ(あいさつメッセージ・タグ付与・フォーム回答など)とセットで動きます。この「きっかけ」のことをエルメでは<b>「エルメアクション」</b>と呼びます。詳しい組み立て方はCの章を参照してください。</p>
+    <div class="tip"><b>呼び方の注意。</b>このツールは公式に「エルメ」「L Message」と呼び、ステップ配信機能のことも正式に「ステップ配信」と呼びます。「シナリオ配信」は別ツール「Lステップ」の呼び方なので、混同しないよう注意してください。</div>
+  </section>
+
+  <!-- ================= 対応・コミュニケーション ================= -->
+  <section class="block" id="sec-comm">
+    <div class="sec-head">
+      <div class="eyebrow">DAILY OPERATION</div>
+      <h2>対応・コミュニケーション</h2>
+      <p class="lead">配信の設定だけでなく、お客様とのやり取りのスピードと丁寧さが信頼につながります。</p>
+    </div>
+
+    <h3 class="sub">日々の返信業務</h3>
+    <table class="info">
+      <tr><th>理想</th><td>5分以内に返信</td></tr>
+      <tr><th>通常</th><td>1時間以内に返信</td></tr>
+      <tr><th>最低ライン</th><td>3時間以内には必ず返信</td></tr>
+      <tr><th>稼働の目安時間</th><td>9:00〜17:00 ／ 20:00〜24:00</td></tr>
+    </table>
+    <div class="tip">稼働時間外に届いたメッセージも、次に稼働を始めたタイミングで最優先に確認し、3時間ルールを超えないように対応してください。</div>
+
+    <h3 class="sub">営業アテンド(面談への誘導・日程調整)</h3>
+    <ul class="check-list">
+      <li>お客様の状況(検討度合い・気になっている点)を一言でも聞いてから日程調整に入る</li>
+      <li>候補日は2〜3個提示し、お客様に選んでもらう形にする(圧をかけない)</li>
+      <li>日程確定後は、リマインドを面談前日と当日朝の2回送る</li>
+      <li>面談後は結果(成約／検討中／見送り)を必ずタグや対応ステータスに反映する</li>
+    </ul>
+
+    <h3 class="sub">過去リストの追いかけ</h3>
+    <ul class="check-list">
+      <li>以前やり取りしたがそのまま止まっている人を、定期的に見直すリスト</li>
+      <li>タグや友だちリストの絞り込みで「最終対応日が古い人」を抽出し、負担にならない範囲で再連絡する</li>
+      <li>久しぶりの連絡は「催促」ではなく「お役に立てることがあれば」というスタンスで送る</li>
+    </ul>
+
+    <h3 class="sub">未着座・検討中リストの追いかけ</h3>
+    <ul class="check-list">
+      <li>「面談の日程がまだ決まっていない人(未着座)」と「面談はしたが検討中の人」を分けて管理する</li>
+      <li>検討中の人には、検討のハードルになっている点を聞いた上で、個別に必要な情報を届ける</li>
+      <li>未着座の人には、日程調整のハードルを下げる一言(候補日の再提示など)を送る</li>
+    </ul>
+  </section>
+
+  <!-- ================= 用語集 ================= -->
+  <section class="block" id="glossary">
+    <div class="sec-head">
+      <div class="eyebrow">GLOSSARY</div>
+      <h2>用語集</h2>
+      <p class="lead">このマニュアルで使っている言葉の意味です。迷ったらここに戻ってきてください。</p>
+    </div>
+    <div class="gloss">
+      <div class="g-item"><div class="term">エルメ／L Message</div><div class="def">このマニュアルで使うLINE配信ツールの名称</div></div>
+      <div class="g-item"><div class="term">あいさつメッセージ</div><div class="def">友だち追加した直後に自動で届く最初のメッセージ</div></div>
+      <div class="g-item"><div class="term">エルメアクション</div><div class="def">タグ付け・ステップ開始など、エルメ内のさまざまな機能を呼び出す仕組み</div></div>
+      <div class="g-item"><div class="term">タグ</div><div class="def">友だちを分類するための目印。配信の絞り込みなどに使う</div></div>
+      <div class="g-item"><div class="term">ステップ配信</div><div class="def">決まった間隔で自動配信される、一連のメッセージの流れ</div></div>
+      <div class="g-item"><div class="term">一斉配信(メッセージ配信)</div><div class="def">任意のタイミングで、全員または絞り込んだ対象に送る配信</div></div>
+      <div class="g-item"><div class="term">パネル・ボタン</div><div class="def">カルーセル形式のメッセージ。カードを横に並べて見せる</div></div>
+      <div class="g-item"><div class="term">リッチメニュー</div><div class="def">トーク画面下部に固定表示される画像メニュー</div></div>
+    </div>
+  </section>
+
+  <!-- ================= 参考資料 ================= -->
+  <section class="block refs" id="refs">
+    <div class="sec-head">
+      <div class="eyebrow">REFERENCES</div>
+      <h2 style="color:var(--lav-deep);">参照した公式マニュアル</h2>
+      <p class="lead">本マニュアルはL Message公式マニュアル(lme.jp/manual/)の内容をもとに作成しています。詳しくは各リンク先も確認してください。</p>
+    </div>
+    <h4>A. 受け取りフロー</h4>
+    <ul>
+      <li><a href="https://lme.jp/manual/greetings/">あいさつメッセージ 操作マニュアル</a></li>
+      <li><a href="https://lme.jp/manual/templete/">テンプレート 操作マニュアル</a></li>
+      <li><a href="https://lme.jp/manual/question_button/">パネル・ボタン(カルーセル) 操作マニュアル</a></li>
+      <li><a href="https://lme.jp/manual/rich_menu/">リッチメニュー 操作マニュアル</a></li>
+      <li><a href="https://lme.jp/manual/step_delivery_friend_add/">友だち追加時にステップ配信を開始させる方法</a></li>
+    </ul>
+    <h4>B. 一斉送信</h4>
+    <ul>
+      <li><a href="https://lme.jp/manual/message_delivery/">メッセージ(一斉)配信 操作マニュアル</a></li>
+      <li><a href="https://lme.jp/manual/howto_send_tagged_users/">タグ付けしたユーザーへの一斉配信方法</a></li>
+      <li><a href="https://lme.jp/manual/friend_list/">友だちリスト 操作マニュアル</a></li>
+      <li><a href="https://lme.jp/manual/test_delivery/">テスト送信 操作マニュアル</a></li>
+    </ul>
+    <h4>C. ステップ配信</h4>
+    <ul>
+      <li><a href="https://lme.jp/manual/step_delivery/">ステップ配信 操作マニュアル</a></li>
+      <li><a href="https://lme.jp/manual/step_branching/">ステップ配信でメッセージを分岐させる方法</a></li>
+      <li><a href="https://lme.jp/manual/linestep-stop/">ステップ配信を停止させる方法</a></li>
+      <li><a href="https://lme.jp/manual/how-to-test-step-delivery/">ステップ配信のテストをする方法</a></li>
+      <li><a href="https://lme.jp/manual/step_faq/">ステップ配信 FAQ</a></li>
+    </ul>
+    <h4>D. ツール設定</h4>
+    <ul>
+      <li><a href="https://lme.jp/manual/tag/">タグ管理 操作マニュアル</a></li>
+      <li><a href="https://lme.jp/manual/tag_friend/">友だちにタグ付けをする方法</a></li>
+      <li><a href="https://lme.jp/manual/lme_action/">エルメアクションの設定方法</a></li>
+      <li><a href="https://lme.jp/manual/register/">新規無料ユーザー登録と接続方法</a></li>
+      <li><a href="https://lme.jp/manual/">L Message 公式マニュアルトップ</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="dots"><span></span><span></span></div>
+本マニュアル内の画面画像はL Message公式マニュアル(lme.jp/manual/)に掲載されている実際の操作画面キャプチャです。Li-Li社ご自身のアカウント画面ではないため、点線枠の箇所を中心に実機でのご確認をおすすめします。画面のボタン配置やメニュー名は、ツールのアップデートにより変更される場合があります。<br>
+    作成：Merone
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リッチメニュー 進捗ゲージのご提案（モック）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#D9A69C; --rose-d:#C08B80; --rose-soft:#F6EAE6;
+    --slate:#6E8F97; --slate-d:#4C6B73; --slate-soft:#E9F0F1;
+    --cream:#FAF7F4; --ink:#3A4449; --muted:#93A0A6; --line:#E7E2DD;
+    --doneBg:#F1EFEC; --doneInk:#ADB6BA;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);
+    font-family:"游ゴシック","Yu Gothic",YuGothic,"Hiragino Kaku Gothic ProN",sans-serif;
+    -webkit-font-smoothing:antialiased;padding:0 0 70px;}
+  .hero{background:linear-gradient(135deg,#E8BFB5 0%,#EFD7CF 30%,#C5D2D4 62%,#5F7F88 100%);
+    padding:52px 18px 44px;text-align:center;color:#fff;}
+  .hero .en{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:15px;letter-spacing:.22em;opacity:.95;}
+  .hero h1{font-size:22px;font-weight:800;letter-spacing:.04em;margin:10px 0 6px;text-shadow:0 1px 8px rgba(60,80,90,.25);}
+  .hero .sub{font-size:12.5px;opacity:.95;}
+  .wrap{max-width:760px;margin:-24px auto 0;padding:0 14px;}
+
+  .card{background:#fff;border-radius:14px;box-shadow:0 6px 22px rgba(76,107,115,.10);
+    padding:20px 22px;margin-bottom:26px;font-size:13px;line-height:1.9;}
+  .card h2{font-size:15px;margin:0 0 10px;color:var(--slate-d);letter-spacing:.03em;}
+  .kpi{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0 6px;}
+  .kpi .box{flex:1;min-width:180px;background:var(--rose-soft);border-radius:12px;padding:14px 16px;text-align:center;}
+  .kpi .num{font-size:24px;font-weight:800;color:var(--rose-d);letter-spacing:.02em;}
+  .kpi .lbl{font-size:11.5px;color:#8A6F68;margin-top:2px;}
+  .note{font-size:11px;color:var(--muted);}
+
+  .block{margin-bottom:34px;}
+  .state-tag{display:inline-block;font-size:12px;font-weight:800;color:#fff;background:var(--slate);
+    border-radius:20px;padding:4px 14px;margin-bottom:9px;}
+  .state-note{font-size:12.5px;color:var(--muted);margin:0 0 10px;}
+
+  /* rich menu frame */
+  .rm{width:100%;max-width:680px;background:#fff;border-radius:14px;overflow:hidden;
+    box-shadow:0 6px 22px rgba(76,107,115,.14);border:1px solid var(--line);}
+  .rm-head{background:var(--slate);color:#fff;text-align:center;padding:12px 14px 13px;}
+  .rm-head .t{font-size:15px;font-weight:800;letter-spacing:.03em;}
+  .rm-head .s{font-size:11.5px;opacity:.92;margin-top:2px;}
+  .gauge{display:flex;gap:5px;max-width:230px;margin:9px auto 0;}
+  .gauge i{flex:1;height:7px;border-radius:4px;background:rgba(255,255,255,.32);}
+  .gauge i.on{background:#F3D9CF;box-shadow:0 0 6px rgba(243,217,207,.6);}
+  .rm-body{display:grid;grid-template-columns:1fr 1fr 1fr;}
+  .panel{padding:20px 10px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;min-height:198px;}
+  .panel + .panel{border-left:1px solid var(--line);}
+  .step-pill{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;
+    color:var(--slate-d);background:var(--slate-soft);border-radius:20px;padding:2px 11px;margin-bottom:11px;}
+  .p-title{font-size:13.5px;font-weight:800;color:var(--ink);line-height:1.55;margin-bottom:5px;min-height:42px;display:flex;align-items:center;justify-content:center;}
+  .p-time{font-size:11.5px;color:var(--muted);margin-bottom:14px;}
+  .p-btn{margin-top:auto;display:inline-block;background:var(--rose);color:#fff;font-weight:800;
+    font-size:12.5px;border-radius:24px;padding:10px 16px;box-shadow:0 3px 0 var(--rose-d);white-space:nowrap;}
+
+  .panel.done{background:var(--doneBg);}
+  .panel.done .step-pill{color:var(--doneInk);background:#E4E1DD;}
+  .panel.done .p-title{color:var(--doneInk);}
+  .panel.done .p-time{color:#C4BFBA;}
+  .done-badge{margin-top:auto;display:inline-flex;align-items:center;gap:6px;
+    background:#fff;border:2px solid var(--slate);color:var(--slate-d);font-weight:800;
+    font-size:12.5px;border-radius:24px;padding:8px 15px;}
+  .done-badge .ck{width:18px;height:18px;border-radius:50%;background:var(--slate);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:11px;}
+
+  .rm-foot{text-align:center;padding:11px 12px;font-size:12.5px;font-weight:700;}
+  .foot-todo{background:var(--rose-soft);color:#A0756B;}
+  .foot-done{background:var(--slate-soft);color:var(--slate-d);}
+
+  .why{background:#fff;border-left:4px solid var(--rose);border-radius:8px;
+    padding:14px 17px;font-size:12.5px;line-height:1.85;color:#5C5450;margin-top:6px;max-width:680px;}
+  .why b{color:var(--rose-d);}
+  .why2{border-left-color:var(--slate);}
+  .why2 b{color:var(--slate-d);}
+  @media (max-width:520px){
+    .p-title{font-size:12px;min-height:48px;}
+    .p-btn{font-size:11px;padding:9px 10px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="en">Rich Menu Proposal</div>
+  <h1>リッチメニュー 進捗ゲージのご提案</h1>
+  <div class="sub">体験レッスン予約後LINE｜モックアップ｜Merone</div>
+</div>
+
+<div class="wrap">
+
+  <div class="card">
+    <h2>ご提案の要点</h2>
+    予約後のリッチメニューを、「当日準備の進捗ボード」に変えるご提案です。<br>
+    やることが<b>何個中何個終わっているか</b>が常に見え、完了したものにはチェックがつき、残りのものだけが目立ちます。
+    配信（プッシュ）は見逃されることがありますが、リッチメニューは<b>LINEを開くたびに必ず目に入る常設の導線（プル）</b>です。両輪にすることで、診断・ヒアリングの完了率を底上げします。
+  </div>
+
+  <div class="card">
+    <h2>同様の施策の実績</h2>
+    弊社支援先の女性向けスクール（社名は伏せさせていただきます）で、進捗が見えるリッチメニューへ変更した結果です。
+    <div class="kpi">
+      <div class="box"><div class="num">クリック率 1.2倍</div><div class="lbl">リッチメニュー内のタップ率</div></div>
+      <div class="box"><div class="num">50% → 59%</div><div class="lbl">参加率（+9pt）</div></div>
+    </div>
+    <span class="note">※「見える化してタップを促す」施策の有効性は実証済みです。数値の詳細は口頭でご説明いたします。</span>
+  </div>
+
+  <!-- 状態① 予約直後 -->
+  <div class="block">
+    <span class="state-tag">状態① 予約直後（0/3）</span>
+    <p class="state-note">診断・職種・価値観のすべてがこれからの方</p>
+    <div class="rm">
+      <div class="rm-head">
+        <div class="t">当日準備リスト</div>
+        <div class="s">3つ・合計5分でととのいます</div>
+        <div class="gauge"><i></i><i></i><i></i></div>
+      </div>
+      <div class="rm-body">
+        <div class="panel">
+          <span class="step-pill">STEP 1</span>
+          <div class="p-title">事前診断に<br>答える</div>
+          <div class="p-time">約3分</div>
+          <span class="p-btn">答える（3分）</span>
+        </div>
+        <div class="panel">
+          <span class="step-pill">STEP 2</span>
+          <div class="p-title">気になる職種を<br>選ぶ</div>
+          <div class="p-time">約1分</div>
+          <span class="p-btn">選ぶ（1分）</span>
+        </div>
+        <div class="panel">
+          <span class="step-pill">STEP 3</span>
+          <div class="p-title">大切にしたい軸を<br>選ぶ</div>
+          <div class="p-time">約1分</div>
+          <span class="p-btn">選ぶ（1分）</span>
+        </div>
+      </div>
+      <div class="rm-foot foot-todo">3つ終わると、当日があなた仕様になります</div>
+    </div>
+  </div>
+
+  <!-- 状態② 診断のみ完了 -->
+  <div class="block">
+    <span class="state-tag">状態② 診断まで完了（1/3）</span>
+    <p class="state-note">診断は完了、職種・価値観がこれからの方</p>
+    <div class="rm">
+      <div class="rm-head">
+        <div class="t">当日準備リスト</div>
+        <div class="s">あと2つ・合計2分です</div>
+        <div class="gauge"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="rm-body">
+        <div class="panel done">
+          <span class="step-pill">STEP 1</span>
+          <div class="p-title">事前診断に<br>答える</div>
+          <div class="p-time">約3分</div>
+          <span class="done-badge"><span class="ck">✓</span>完了</span>
+        </div>
+        <div class="panel">
+          <span class="step-pill">STEP 2</span>
+          <div class="p-title">気になる職種を<br>選ぶ</div>
+          <div class="p-time">約1分</div>
+          <span class="p-btn">選ぶ（1分）</span>
+        </div>
+        <div class="panel">
+          <span class="step-pill">STEP 3</span>
+          <div class="p-title">大切にしたい軸を<br>選ぶ</div>
+          <div class="p-time">約1分</div>
+          <span class="p-btn">選ぶ（1分）</span>
+        </div>
+      </div>
+      <div class="rm-foot foot-todo">あと2つで、準備完了です</div>
+    </div>
+  </div>
+
+  <!-- 状態③ 職種まで完了 -->
+  <div class="block">
+    <span class="state-tag">状態③ 職種まで完了（2/3）</span>
+    <p class="state-note">残りは価値観ヒアリングのみの方</p>
+    <div class="rm">
+      <div class="rm-head">
+        <div class="t">当日準備リスト</div>
+        <div class="s">あと1つ・1分で完了です</div>
+        <div class="gauge"><i class="on"></i><i class="on"></i><i></i></div>
+      </div>
+      <div class="rm-body">
+        <div class="panel done">
+          <span class="step-pill">STEP 1</span>
+          <div class="p-title">事前診断に<br>答える</div>
+          <div class="p-time">約3分</div>
+          <span class="done-badge"><span class="ck">✓</span>完了</span>
+        </div>
+        <div class="panel done">
+          <span class="step-pill">STEP 2</span>
+          <div class="p-title">気になる職種を<br>選ぶ</div>
+          <div class="p-time">約1分</div>
+          <span class="done-badge"><span class="ck">✓</span>完了</span>
+        </div>
+        <div class="panel">
+          <span class="step-pill">STEP 3</span>
+          <div class="p-title">大切にしたい軸を<br>選ぶ</div>
+          <div class="p-time">約1分</div>
+          <span class="p-btn">選ぶ（1分）</span>
+        </div>
+      </div>
+      <div class="rm-foot foot-todo">あと1つで、準備完了です</div>
+    </div>
+  </div>
+
+  <!-- 状態④ すべて完了 -->
+  <div class="block">
+    <span class="state-tag">状態④ すべて完了（3/3）</span>
+    <p class="state-note">当日を待つだけの方</p>
+    <div class="rm">
+      <div class="rm-head" style="background:var(--rose);">
+        <div class="t">準備完了です</div>
+        <div class="s">当日、お待ちしています</div>
+        <div class="gauge"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      </div>
+      <div class="rm-body">
+        <div class="panel done">
+          <span class="step-pill">STEP 1</span>
+          <div class="p-title">事前診断に<br>答える</div>
+          <div class="p-time">約3分</div>
+          <span class="done-badge"><span class="ck">✓</span>完了</span>
+        </div>
+        <div class="panel done">
+          <span class="step-pill">STEP 2</span>
+          <div class="p-title">気になる職種を<br>選ぶ</div>
+          <div class="p-time">約1分</div>
+          <span class="done-badge"><span class="ck">✓</span>完了</span>
+        </div>
+        <div class="panel done">
+          <span class="step-pill">STEP 3</span>
+          <div class="p-title">大切にしたい軸を<br>選ぶ</div>
+          <div class="p-time">約1分</div>
+          <span class="done-badge"><span class="ck">✓</span>完了</span>
+        </div>
+      </div>
+      <div class="rm-foot foot-done">準備がすべてととのいました。当日お会いできるのを楽しみにしています</div>
+    </div>
+  </div>
+
+  <div class="why">
+    <b>なぜ効くのか</b>：不安の正体は「全体像が見えないこと」です。何個中何個終わったかのゲージがあると、①残りの量と時間が一目でわかり、②完了のチェックが達成感になり、③残りひとつだけが自然と目立ちます。急かす言葉を使わずに、ご本人が自分から進めたくなる設計です。
+  </div>
+  <div class="why why2" style="margin-top:12px;">
+    <b>運用イメージ</b>：回答状況（診断・職種・価値観の完了状態）に応じて、上の4パターンのメニュー画像を自動で切り替えます。判定に使う条件は、現在ご提案中の配信ブラッシュアップと同じ区分をそのまま使えますので、新しいセグメントの追加は不要です。
+  </div>
+
+</div>
+</body>
+</html>

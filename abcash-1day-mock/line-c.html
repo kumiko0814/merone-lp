@@ -1,0 +1,207 @@
+<title>ABCash C案｜LINEナーチャリング</title>
+<style>
+:root{--bg:#eaf3fa;--navy:#26405f;--navy-d:#1d3149;--pink:#cf8f9c;--pink-d:#bd7886;
+--blue:#7fb0d2;--ink:#4a4446;--line:#d6e3ee;--lbg:#8ab4d8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.8;
+font-family:"Yu Gothic",YuGothic,"Hiragino Sans","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+-webkit-text-size-adjust:100%}
+header{background:linear-gradient(160deg,#eaf3fa,#fbeef1);padding:28px 16px 20px;text-align:center;
+border-bottom:1px solid var(--line)}
+h1{font-size:19px;color:var(--navy-d);margin:0 0 6px;font-weight:700;line-height:1.5}
+header p{margin:0;font-size:12.5px;color:#6c7883}
+.nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;padding:14px 12px;background:var(--bg);
+border-bottom:1px solid var(--line);position:sticky;top:0;z-index:9}
+.nav a{border:1.5px solid var(--navy);background:#fff;color:var(--navy);font-size:12.5px;font-weight:700;
+padding:8px 14px;border-radius:22px;text-decoration:none;line-height:1.3}
+.nav a.on{background:var(--navy);color:#fff}
+.stage{max-width:440px;margin:0 auto;padding:14px 12px 80px}
+.spec{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin:0 1px 16px}
+.sttl{font-size:16px;font-weight:700;color:var(--navy-d);margin:0 0 6px}
+.sflow{font-size:12.5px;color:#68737e;margin:0 0 12px;background:#f4f9fc;border-radius:8px;padding:9px 11px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.cell{background:#f4f9fc;border-radius:9px;padding:10px 11px}
+.cell span{display:block;font-size:10.5px;color:var(--pink-d);font-weight:700;letter-spacing:.04em}
+.cell b{display:block;font-size:17px;color:var(--navy-d);line-height:1.4;margin:2px 0 3px}
+.cell i{font-style:normal;font-size:11px;color:#68737e;line-height:1.6;display:block}
+.phone{background:var(--lbg);border-radius:24px;padding:0 0 20px;overflow:hidden;
+box-shadow:0 8px 30px rgba(38,64,95,.16)}
+.bar{background:#2c3e50;color:#fff;padding:10px 15px;font-size:13.5px;font-weight:700;display:flex;
+align-items:center;gap:9px}
+.bar .back{opacity:.6;font-weight:400}
+.bar .cnt{margin-left:auto;font-size:11px;opacity:.6;font-weight:400}
+.chat{padding:13px 11px 0}
+.chip{text-align:center;margin:20px 0 9px}
+.chip span{background:rgba(0,0,0,.3);color:#fff;font-size:11px;padding:4px 12px;border-radius:12px;
+display:inline-block;line-height:1.6}
+.row{display:flex;gap:8px;margin-bottom:5px;align-items:flex-start}
+.av{width:33px;height:33px;border-radius:50%;background:linear-gradient(140deg,#cf8f9c,#7fb0d2);
+flex:0 0 33px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10.5px;font-weight:700}
+.av.gh{visibility:hidden}
+.col{min-width:0;flex:1}
+.nm{font-size:11px;color:rgba(255,255,255,.9);margin:0 0 3px 2px}
+.bub{background:#fff;border-radius:4px 16px 16px 16px;padding:11px 14px;font-size:14px;line-height:1.9;
+white-space:pre-wrap;word-break:break-word;display:inline-block;max-width:100%;color:#2b2b2b}
+.cta{display:block;margin-top:9px;background:#06c755;color:#fff;text-align:center;font-weight:700;
+font-size:13px;padding:10px;border-radius:9px;text-decoration:none}
+.stampbox{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.stampbox i{font-style:normal;background:#f2f6f9;border:1px solid #e0e8ee;border-radius:14px;
+padding:4px 11px;font-size:12.5px;color:#4a4446}
+.end{text-align:center;font-size:12px;color:#6c7883;padding:18px 10px 0}
+.hub{max-width:520px;margin:0 auto;padding:18px 16px 70px}
+.hcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 18px;margin:12px 0;
+text-decoration:none;display:block;color:var(--ink)}
+.hcard b{display:block;font-size:16px;color:var(--navy-d);margin-bottom:4px}
+.hcard i{font-style:normal;font-size:12.5px;color:#68737e;display:block;line-height:1.7}
+.step{background:#f4f9fc;border-radius:10px;padding:12px 14px;margin:8px 0;font-size:13px}
+.step b{color:var(--navy-d)}
+@media(max-width:440px){.stage{padding:10px 8px 60px}.bub{font-size:13.5px}.grid{grid-template-columns:1fr}}
+@media(prefers-color-scheme:dark){body{background:#eaf3fa;color:#4a4446}}
+</style>
+<header><h1>ABCash 1day マネートレーニング<br>LINEナーチャリング モックアップ</h1><p>広告 → LINE登録 → アンケート → 診断 → 予約 → 当日</p></header><div class="nav"><a class="" href="index.html">ぜんたいの流れ</a><a class="" href="line-a.html">A案</a><a class="on" href="line-c.html">C案</a><a class="" href="sim.html">診断（試算）</a></div><div class="stage"><div class="spec"><p class="sttl">C案｜診断が先／予約後は動画</p><p class="sflow">アンケート → 診断をためす → 予約 → 完全版がひらく → 動画 → 当日</p><div class="grid"><div class="cell"><span>リードタイム</span><b>3〜9日</b><i>登録 → 予約：最短当日／最長3日<br>予約 → 当日：1〜5日<br>カレンダーは5日以内のみ表示、それ以降は「もっと見る」で開く</i></div><div class="cell"><span>配信通数</span><b>全9通</b><i>予約前 6通／予約後 3通</i></div><div class="cell"><span>予約ボタンが出るのは</span><b>3通目（以降すべてに常設）</b></div><div class="cell"><span>予約までのアクション</span><b>3回</b><i>アンケート（1分） → 診断（30秒） → 日程をタップ（1分）／所要 約2分30秒</i></div></div></div><div class="phone"><div class="bar"><span class="back">&lsaquo;</span>ABCash<span class="cnt">9通</span></div><div class="chat"><div class="chip"><span>C-1　登録直後（即時）</span></div><div class="row"><div class="av">AB</div><div class="col"><p class="nm">ABCash</p><div class="bub">〇〇さん、はじめまして☺️
+ご登録ありがとうございます✨
+
+さいしょに、かんたんな
+アンケートにお答えいただけますか？
+
+＝＝＝＝＝＝＝
+・お名前
+・性別
+・おおよその年収
+・お子さまの有無
+・いま気になっていること
+＝＝＝＝＝＝＝
+
+5つだけ、1分ほどで終わりますよ〜🌷
+
+このあとすぐ、〇〇さんの数字で
+かんたんな診断ができますので<a class="cta" href="sim.html">アンケートに答える（1分）</a></div></div></div><div class="chip"><span>C-2　アンケート回答の直後（自動）</span></div><div class="row"><div class="av">AB</div><div class="col"><div class="bub">教えてくださって、ありがとうございます🌸
+
+さっそくですが、
+〇〇さんの数字で見てみませんか☺️
+
+＝＝＝＝＝＝＝
+＼あなたの手残り診断／
+3つえらぶだけ・30秒
+＝＝＝＝＝＝＝
+
+・今年、お給料からいくら引かれているか
+・手元にいくら残っているか
+・月にすると、いくらか
+
+個人情報はいりませんよ🌷
+タップだけで終わりますので、
+お手すきのときにどうぞ〜<a class="cta" href="sim.html">30秒で診断する</a></div></div></div><div class="chip"><span>C-3　診断を見た直後（自動）</span></div><div class="row"><div class="av">AB</div><div class="col"><div class="bub">〇〇さん、いかがでしたか☺️
+
+思っていたより引かれていて、
+すこしびっくりされたかもしれませんね💦
+
+でも大丈夫ですよ。
+これは〇〇さんのやりくりの問題ではなくて、
+そう決まっているだけの話なんです🌷
+
+＝＝＝＝＝＝＝
+そして、ここからが本題で
+＝＝＝＝＝＝＝
+
+・2027年、手取りはいくら減るのか
+・この1年で、いくら貯まるのか
+・いま直せる3つと、その効果
+
+このあたりは、ご予約くださった方に
+完全版としてお渡ししていますよ✨
+
+「じゃあどうすればいいの」を
+一緒に見る60分ですので〜<a class="cta" href="sim.html">1分で予約して、続きを見る</a></div></div></div><div class="row"><div class="av gh">AB</div><div class="col"><div class="bub">まずは日程だけ、のぞいてみませんか？🌸</div></div></div><div class="chip"><span>C-4　翌朝 9:00（未予約の方）</span></div><div class="row"><div class="av">AB</div><div class="col"><div class="bub">〇〇さん、おはようございます☀️
+
+診断で出た数字の「なぜ」を、
+6分の動画にまとめましたよ🌷
+
+＝＝＝＝＝＝＝
+① 2027年、なにが上がるのか（6分）
+＝＝＝＝＝＝＝
+
+・防衛特別所得税が始まります
+・子ども・子育て支援金も乗ります
+・どれも、もう決まっていることです
+
+予測のお話ではなくて、
+決まっている話だけをしていますよ☺️
+
+音を出せないときのために、
+字幕もついています<a class="cta" href="sim.html">① 動画を見る（6分）</a><div class="stampbox"><i>見ました　❤️</i><i>あとで見ます　🌀</i></div></div></div></div><div class="row"><div class="av gh">AB</div><div class="col"><div class="bub">もう決まっている方は、こちらから1分でご予約できますよ🌷</div></div></div><div class="chip"><span>C-5　翌夜 21:00（未予約の方）</span></div><div class="row"><div class="av">AB</div><div class="col"><div class="bub">〇〇さん、こんばんはー🌙
+
+今夜は、実際に受けてくださった方の
+お話を1本だけ🎥
+
+＝＝＝＝＝＝＝
+Fさん（30代・パート／お子さま2人）
+＝＝＝＝＝＝＝
+
+「支払いが重なって、家計が
+まわらなくなりかけていたんです」
+
+いまは家計簿もつづいていて、
+ゴミ袋が1サイズ小さくなったそうですよ☺️
+ものを買わなくなった証拠ですね🌷
+
+3分ほどですので、
+よかったら寝る前にでも〜<a class="cta" href="sim.html">動画を見る（3分）</a></div></div></div><div class="row"><div class="av gh">AB</div><div class="col"><div class="bub">ご予約はこちらから、1分で完了しますよ✨</div></div></div><div class="chip"><span>C-6　3日後 21:00（未予約の方・最終）</span></div><div class="row"><div class="av">AB</div><div class="col"><div class="bub">〇〇さん、こんばんはー☺️
+
+ご案内は、今回でいったん
+最後にしますね🌷
+
+貯金がゼロでも、
+家計簿がつづかなかった方でも、
+そのままでお越しいただけますよ〜
+
+反対に「とにかくラクに増やしたい」
+という方には、たぶん合いません💦
+
+診断の完全版だけでも、
+受け取っていってくださいね✨<a class="cta" href="sim.html">1分で予約する</a></div></div></div><div class="row"><div class="av gh">AB</div><div class="col"><div class="bub">お会いできるのを楽しみにしておりますっ！</div></div></div><div class="chip"><span>C-7　予約完了の直後（自動）</span></div><div class="row"><div class="av">AB</div><div class="col"><div class="bub">〇〇さん、ご予約ありがとうございます🌸
+
+＝＝＝＝＝＝＝
+📅 〇月〇日（〇）〇時〜
+オンライン／60〜90分
+＝＝＝＝＝＝＝
+
+お約束していた診断の完全版、
+こちらから開きますよ✨
+
+＼あなたの手残り診断・完全版／
+2027年の手取り／1年で貯まる額／
+65歳までの見通し／いま直せる3つ
+
+ご準備はいりませんよ〜
+通帳か家計アプリだけ、
+お手元にあれば大丈夫です🌷<a class="cta" href="sim.html">完全版をひらく</a></div></div></div><div class="row"><div class="av gh">AB</div><div class="col"><div class="bub">当日、お会いできるのを楽しみにしておりますっ！</div></div></div><div class="chip"><span>C-8　前日 21:00</span></div><div class="row"><div class="av">AB</div><div class="col"><div class="bub">〇〇さん、こんばんはー🌷
+
+明日、いよいよですね☺️
+
+＝＝＝＝＝＝＝
+📅 明日 〇月〇日（〇）〇時〜
+オンライン／60〜90分
+＝＝＝＝＝＝＝
+
+もしお時間があれば、
+2本目の動画だけ見ておいていただけると
+明日の話がぐっと早くなりますよ✨
+
+＝＝＝＝＝＝＝
+② 貯まる仕組みのつくり方（6分）
+＝＝＝＝＝＝＝
+
+見なくても大丈夫ですので、
+無理はなさらないでくださいね〜<a class="cta" href="sim.html">② 動画を見る（6分）</a><div class="stampbox"><i>楽しみ　❤️</i><i>すこし緊張　🌀</i><i>正直、忘れかけてた　💡</i></div></div></div></div><div class="row"><div class="av gh">AB</div><div class="col"><div class="bub">「忘れかけてた」も、ぜんぜん大丈夫ですよ😂</div></div></div><div class="chip"><span>C-9　当日朝 9:00</span></div><div class="row"><div class="av">AB</div><div class="col"><div class="bub">〇〇さん、おはようございます☀️
+
+本日〇時から、お待ちしておりますね☺️
+
+📅 本日 〇時〜（60〜90分）
+📍 下のボタンから入れますよ
+
+・スマホでもパソコンでも平気です
+・カメラはオフのままで大丈夫ですよ
+・途中で抜けていただいても構いません🌷
+
+それでは、のちほど〜✨<a class="cta" href="sim.html">入室する</a></div></div></div></div></div><p class="end">— C案 ここまで（全9通）—</p></div>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>Famm 7/29 勉強会｜診断つき配信キャンペーン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#2A3F63; --navy-d:#1E2E49; --navy-soft:#54709B;
+  --blue:#EAF1F9; --blue2:#DCE8F5; --sky:#7FA8D6; --sky-d:#5E86B8;
+  --pink:#D98BA3; --pink-d:#C56E8A; --pink-soft:#F1C6D5; --pink-bg:#FBEEF3;
+  --gold:#C6A15B;
+  --paper:#FFFFFF; --bg:#F4F7FB;
+  --ink:#3C4353; --ink-soft:#8C93A3; --line:#E4EBF3;
+  --shadow:0 16px 40px rgba(42,63,99,.14); --shadow-sm:0 5px 16px rgba(42,63,99,.09);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;}
+body{font-family:"游ゴシック体",YuGothic,"Noto Sans JP",sans-serif;color:var(--ink);line-height:1.85;font-size:15px;
+  background:linear-gradient(175deg,#F4F8FC 0%,#EDF2F9 55%,#F6F1F4 100%);-webkit-font-smoothing:antialiased;}
+.serif{font-family:"Noto Serif JP",serif;}
+.wrap{max-width:940px;margin:0 auto;padding:0 0 90px;}
+
+.hero{background:linear-gradient(145deg,var(--navy),var(--navy-d));color:#fff;padding:44px 26px 42px;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:"";position:absolute;right:-90px;top:-70px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(217,139,163,.4),transparent 70%);}
+.hero::before{content:"";position:absolute;left:-70px;bottom:-90px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(127,168,214,.35),transparent 70%);}
+.hero .eye{font-size:12px;letter-spacing:.2em;color:var(--pink-soft);font-weight:700;position:relative;z-index:1;}
+.hero h1{font-size:28px;font-weight:900;margin:14px 0 6px;line-height:1.42;position:relative;z-index:1;}
+.hero h1 .hl{background:linear-gradient(transparent 58%, rgba(217,139,163,.6) 58%);padding:0 5px;}
+.hero .datepill{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);border-radius:16px;padding:12px 22px;margin-top:16px;position:relative;z-index:1;}
+.hero .datepill .big{font-size:26px;font-weight:900;font-family:"Noto Serif JP";}
+.hero .datepill .sm{font-size:12px;opacity:.9;text-align:left;line-height:1.4;}
+.hero .sub{font-size:13.5px;opacity:.92;margin-top:16px;position:relative;z-index:1;}
+
+.lead-card{margin:-26px 22px 0;position:relative;z-index:5;background:var(--paper);border-radius:22px;box-shadow:var(--shadow);padding:24px 24px;border-top:5px solid var(--pink);}
+.lead-card h2{font-size:18px;color:var(--navy);font-weight:900;margin-bottom:8px;display:flex;align-items:center;gap:9px;}
+.lead-card h2 .ic{width:30px;height:30px;border-radius:9px;background:var(--pink-bg);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.lead-card p{font-size:14px;}
+.lead-card .hi{color:var(--pink-d);font-weight:700;}
+.arc{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.arc .a{flex:1;min-width:200px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:13px 15px;}
+.arc .a .n{font-size:11px;font-weight:900;color:#fff;background:var(--navy-soft);border-radius:20px;padding:2px 10px;display:inline-block;}
+.arc .a.c1 .n{background:var(--sky-d);} .arc .a.c2 .n{background:var(--pink);} .arc .a.c3 .n{background:var(--navy);}
+.arc .a h4{font-size:13.5px;color:var(--navy);margin:7px 0 3px;}
+.arc .a p{font-size:12px;color:var(--ink);}
+
+section{margin:34px 22px 0;}
+.sec-eye{font-size:11px;letter-spacing:.16em;color:var(--pink-d);font-weight:900;}
+.sec-ttl{font-size:21px;font-weight:900;color:var(--navy);margin:4px 0 6px;line-height:1.4;display:flex;align-items:center;gap:10px;}
+.sec-ttl .no{background:var(--navy);color:#fff;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.sec-lead{font-size:13.5px;color:var(--ink-soft);margin-bottom:16px;}
+.sendat{display:inline-block;background:var(--navy);color:#fff;font-size:12.5px;font-weight:900;border-radius:10px;padding:7px 15px;margin:2px 0 16px;box-shadow:var(--shadow-sm);}
+.sendat b{color:var(--pink-soft);font-size:14px;}
+
+.sched{background:var(--paper);border-radius:18px;box-shadow:var(--shadow-sm);padding:8px;display:flex;flex-wrap:wrap;}
+.sched .s{flex:1;min-width:190px;padding:16px;position:relative;}
+.sched .s:not(:last-child)::after{content:"→";position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--sky);font-weight:900;font-size:18px;}
+.sched .s .d{font-size:12px;color:var(--pink-d);font-weight:900;}
+.sched .s .t{font-size:14.5px;color:var(--navy);font-weight:900;margin:2px 0 4px;}
+.sched .s .m{font-size:12px;color:var(--ink-soft);}
+
+.msgrow{background:var(--paper);border-radius:22px;box-shadow:var(--shadow-sm);padding:22px;margin-top:18px;display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start;}
+@media(max-width:720px){.msgrow{grid-template-columns:1fr;gap:18px;}}
+
+.phone{width:300px;max-width:100%;margin:0 auto;border-radius:34px;background:#1c1c1e;padding:10px;box-shadow:0 20px 44px rgba(30,46,73,.28);}
+.screen{border-radius:26px;overflow:hidden;background:#8FB0D9;position:relative;}
+.lbar{background:linear-gradient(#6486b3,#5b7aa6);color:#fff;padding:12px 14px 10px;display:flex;align-items:center;gap:10px;}
+.lbar .bk{font-size:18px;opacity:.9;}
+.lbar .av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#F3B7CC,#9FBEE4);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:13px;border:1.5px solid #fff;}
+.lbar .nm{font-size:14px;font-weight:700;flex:1;}
+.lbar .ic{font-size:15px;opacity:.85;}
+.chat{background:linear-gradient(#8FB0D9,#93b3da);padding:14px 12px 16px;min-height:120px;}
+.daychip{text-align:center;margin:2px 0 12px;}
+.daychip span{background:rgba(0,0,0,.16);color:#fff;font-size:10.5px;padding:3px 12px;border-radius:20px;}
+.brow{display:flex;gap:8px;align-items:flex-end;margin-bottom:12px;}
+.brow .av{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#F3B7CC,#9FBEE4);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:11px;border:1.5px solid #fff;}
+.bub{background:#fff;border-radius:4px 18px 18px 18px;padding:11px 13px;font-size:12.5px;line-height:1.7;color:#33373d;box-shadow:0 1px 2px rgba(0,0,0,.12);max-width:210px;white-space:pre-wrap;}
+.bub .lk{color:var(--pink-d);font-weight:700;}
+.bub .num{background:var(--blue);border-radius:8px;padding:6px 9px;margin:6px 0;font-size:11.5px;font-weight:700;color:var(--navy);display:block;}
+.btime{font-size:9px;color:rgba(255,255,255,.85);align-self:flex-end;margin-bottom:2px;}
+.card-bub{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.12);max-width:210px;margin-left:36px;margin-bottom:12px;cursor:pointer;}
+.card-bub .thumb{height:96px;background:linear-gradient(140deg,var(--navy),var(--navy-soft));position:relative;display:flex;align-items:center;justify-content:center;}
+.card-bub .thumb .emo{font-size:38px;}
+.card-bub .thumb .tag{position:absolute;left:10px;top:10px;background:var(--pink);color:#fff;font-size:9px;font-weight:900;padding:3px 8px;border-radius:20px;}
+.card-bub .meta{padding:9px 11px;}
+.card-bub .meta .t{font-size:11.5px;font-weight:900;color:var(--navy);line-height:1.4;}
+.card-bub .meta .u{font-size:9px;color:#9aa2b0;margin-top:3px;}
+.infobub{background:#fff;border-radius:12px;padding:10px 12px;font-size:10.5px;line-height:1.8;color:#48505a;box-shadow:0 1px 2px rgba(0,0,0,.12);max-width:210px;margin-left:36px;margin-bottom:12px;white-space:pre-wrap;font-weight:500;}
+
+.mmeta .badge{display:inline-block;font-size:11px;font-weight:900;background:var(--navy);color:#fff;border-radius:20px;padding:4px 13px;}
+.mmeta .when{display:inline-block;font-size:11px;font-weight:900;background:var(--pink-bg);color:var(--pink-d);border-radius:20px;padding:4px 13px;margin-left:6px;}
+.mmeta .tone{display:inline-block;font-size:11px;font-weight:900;border-radius:20px;padding:4px 13px;margin-left:6px;}
+.mmeta .tone.soft{background:#E4F0EA;color:#5FA37E;} .mmeta .tone.hard{background:#FBEEF3;color:var(--pink-d);}
+.mmeta h3{font-size:17px;color:var(--navy);font-weight:900;margin:12px 0 4px;}
+.mmeta .aim{font-size:13px;color:var(--ink);background:var(--blue);border-radius:12px;padding:11px 14px;margin:10px 0;border-left:3px solid var(--sky);}
+.mmeta .aim b{color:var(--navy);}
+.mmeta .cnt{font-size:11.5px;color:var(--ink-soft);margin-top:4px;}
+.copybtn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--pink),var(--pink-d));color:#fff;border:none;border-radius:13px;padding:12px 20px;font-family:inherit;font-weight:900;font-size:14px;cursor:pointer;box-shadow:var(--shadow-sm);margin-top:8px;transition:transform .12s;}
+.copybtn:active{transform:translateY(2px);}
+.copybtn.done{background:linear-gradient(135deg,#5FA37E,#4C8A68);}
+.rawwrap{margin-top:12px;}
+.rawwrap summary{font-size:12px;color:var(--sky-d);cursor:pointer;font-weight:700;}
+.raw{white-space:pre-wrap;font-size:12.5px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px;color:#38414f;line-height:1.85;}
+
+.diag{margin:34px 22px 0;background:linear-gradient(150deg,var(--pink),var(--pink-d));border-radius:22px;padding:28px 24px;color:#fff;text-align:center;box-shadow:var(--shadow);}
+.diag h2{font-size:21px;font-weight:900;margin-bottom:8px;}
+.diag p{font-size:13.5px;opacity:.97;}
+.diag a.go{display:inline-block;margin-top:16px;background:#fff;color:var(--pink-d);text-decoration:none;border-radius:14px;padding:14px 30px;font-weight:900;font-size:16px;box-shadow:0 8px 20px rgba(0,0,0,.14);}
+.diag .url{font-size:11px;opacity:.9;margin-top:12px;word-break:break-all;}
+
+.note-sec{margin:34px 22px 0;background:var(--paper);border-radius:20px;box-shadow:var(--shadow-sm);padding:26px 22px;}
+.verdict{background:linear-gradient(135deg,var(--navy),var(--navy-d));color:#fff;border-radius:16px;padding:18px 18px;margin-top:12px;}
+.verdict .vt{font-size:14px;font-weight:900;margin-bottom:6px;color:var(--pink-soft);}
+.verdict p{font-size:13px;opacity:.96;}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+@media(max-width:640px){.mgrid{grid-template-columns:1fr;}}
+.mcard{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:15px 16px;}
+.mcard .h{font-size:13.5px;font-weight:900;color:var(--navy);margin-bottom:5px;display:flex;align-items:center;gap:7px;}
+.mcard p{font-size:12.5px;color:var(--ink);}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:20px;padding:2px 9px;}
+.tag.f{background:#E4F0EA;color:#5FA37E;} .tag.g{background:#FBF1E0;color:#C89A4C;}
+
+.foot{text-align:center;color:var(--ink-soft);font-size:12px;margin:36px 22px 0;}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:12px 24px;border-radius:14px;font-size:13px;font-weight:700;opacity:0;transition:.3s;z-index:100;box-shadow:var(--shadow);}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eye">FAMM ／ 診断つき 勉強会 配信キャンペーン</div>
+    <h1>ソフトで<span class="hl">開かせて</span>、<br>具体で<span class="hl">決めさせる</span>。</h1>
+    <div class="datepill">
+      <span class="big">7/29</span>
+      <span class="sm">(水) よる21:00〜<br>おうち時間で、はじめての+3万円 勉強会</span>
+    </div>
+    <p class="sub">枯れたリストは「また同じ話か」で閉じる。だから①は新しい入口で開かせ、②③で実証済みの数字で決めてもらう。</p>
+  </div>
+
+  <div class="lead-card">
+    <h2><span class="ic">🎯</span>マーケター結論：開封と成約は別レイヤー。分けて攻める</h2>
+    <p>「メルカリ具体化」は<span class="hi">開いた人の成約率(創出率30%)</span>を最大化する勝ちパターン。でも今の課題は<span class="hi">"開く量"の低下（不用品物語の反復で飽き）</span>。この2つは別の問題です。だから——</p>
+    <div class="arc">
+      <div class="a c1"><span class="n">① 開かせる</span><h4>ソフト・新奇性</h4><p>診断プレゼント＋「あなたの稼ぎ方タイプ」。メルカリを前に出さず、枯れたリストを再び開く。</p></div>
+      <div class="a c2"><span class="n">② 決めさせる</span><h4>具体・実証数字</h4><p>まゆみさんの実数字（不用品58→28品/月+7万）で、開いた人を勉強会へ。</p></div>
+      <div class="a c3"><span class="n">③ 締める</span><h4>当日・参加</h4><p>「わたしなんて…→できた」の温度で、今夜の席へ。</p></div>
+    </div>
+    <p style="margin-top:12px;font-size:13px"><b>違和感の解消：</b>診断の入口も①に合わせてソフトな自己発見に並べ替え済み。"おうちの使っていないモノ"は結果のご褒美として後から出るので、いきなり不用品を聞かれる違和感はありません。各配信文は<b>ワンタップでコピー</b>できます。</p>
+  </div>
+
+  <section>
+    <div class="sec-eye">SCHEDULE ／ 送信スケジュール（7/29 水 基準）</div>
+    <div class="sec-ttl"><span class="no">◷</span>3通の送るタイミング</div>
+    <div class="sched">
+      <div class="s"><div class="d">1通目 ｜ 7/26(日) 21:00</div><div class="t">ソフト再開封＋診断プレゼント</div><div class="m">個別連絡感で、まず開いてもらう。メルカリは出さない。リンク＝診断。</div></div>
+      <div class="s"><div class="d">2通目 ｜ 7/28(火) 21:00</div><div class="t">実証数字で席とり（前日夜）</div><div class="m">まゆみさんの数字で、開いた人を勉強会へ。⚠️残席。リンク＝LINE登録。</div></div>
+      <div class="s"><div class="d">3通目 ｜ 7/29(水) 17:30</div><div class="t">最終リマインド・参加（当日）</div><div class="m">今夜21時。締めの温度で。リンク＝LINE登録＋診断の両方。</div></div>
+    </div>
+    <p class="sec-lead" style="margin-top:10px">※ 前日夜21時／当日はくみこ黄金の生活時間。日程・曜日は検算済み（7/29＝水）。予約はすべて指定のLINEに接続済み。</p>
+  </section>
+
+  <!-- MESSAGE 1 -->
+  <section>
+    <div class="sec-eye">MESSAGE 01</div>
+    <div class="sec-ttl"><span class="no">1</span>ソフト再開封＋診断プレゼント</div>
+    <div class="sendat">📤 配信日時：<b>7/26(日) 21:00</b> ／ 1通目（3日前の夜・再開封）</div>
+    <div class="msgrow">
+      <div class="phone"><div class="screen">
+        <div class="lbar"><span class="bk">‹</span><span class="av">F</span><span class="nm">Famm</span><span class="ic">☰</span></div>
+        <div class="chat">
+          <div class="daychip"><span>7月26日(日)</span></div>
+          <div class="brow"><span class="av">F</span><div class="bub">【name】さん、個別にご連絡失礼します☺️
+
+Fammでずっと頑張ってきた【name】さんに、ひとつプレゼントです🎁
+
+【7/29(水) よる21時】に、おうちで“はじめての収入”をつくる無料の勉強会をひらきます。</div><span class="btime">21:00</span></div>
+          <div class="brow"><span class="av">F</span><div class="bub">その前に——
+「在宅で収入って、私にはどんなやり方が合うんだろう？」
+
+それが60秒でわかる【あなたの“おうち収入タイプ”診断】をご用意しました。
+答えるだけで、あなたに合った一歩と、当日の楽しみ方が見えてきます。</div></div>
+          <div class="card-bub" onclick="window.open('famm.html','_blank')">
+            <div class="thumb"><span class="tag">🎁 無料プレゼント</span><span class="emo">🏠✨</span></div>
+            <div class="meta"><div class="t">あなたの“おうち収入タイプ”診断（60秒）</div><div class="u">kumiko0814.github.io/shindan-funnel/famm.html</div></div>
+          </div>
+          <div class="infobub">＝＝＝＝＝＝＝＝＝
+日時：7/29(水) 21:00〜22:00（60分）
+場所：Zoom（スマホOK／顔出し不要／お子さま同席OK）
+参加費：無料
+登録者限定特典：1万円相当のプレゼント
+＝＝＝＝＝＝＝＝＝</div>
+          <div class="brow"><span class="av">F</span><div class="bub">まずは自分のタイプだけ、のぞいてみてくださいね。
+<span class="lk">▶ 予習の診断はこちら（60秒）</span></div><span class="btime">21:01</span></div>
+        </div>
+      </div></div>
+      <div class="mmeta">
+        <span class="badge">1通目</span><span class="when">7/26(日) 21:00 配信</span><span class="tone soft">ソフト＝開かせる</span>
+        <h3>メルカリを出さず、新しい入口で開かせる</h3>
+        <div class="aim"><b>狙い：</b>枯れの主因は"不用品物語の反復"。だから①はメルカリを前に出さず、個別連絡感＋「あなたの稼ぎ方タイプ」という新奇性で<b>開封を取り戻す</b>。オファーは診断だけ＝1アクション。診断の入口もこのソフトさに合わせてあるので違和感なし。</div>
+        <div class="cnt">個別連絡感・自己関連づけ・1アクション（診断）</div>
+        <button class="copybtn" data-k="m1" onclick="copyMsg(this)">📋 この配信文をコピー</button>
+        <details class="rawwrap"><summary>コピーされる本文を確認</summary><div class="raw" id="raw-m1"></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGE 2 -->
+  <section>
+    <div class="sec-eye">MESSAGE 02</div>
+    <div class="sec-ttl"><span class="no">2</span>実証数字で"決めさせる"（前日・席とり）</div>
+    <div class="sendat">📤 配信日時：<b>7/28(火) 21:00</b> ／ 2通目（前日の夜）</div>
+    <div class="msgrow">
+      <div class="phone"><div class="screen">
+        <div class="lbar"><span class="bk">‹</span><span class="av">F</span><span class="nm">Famm</span><span class="ic">☰</span></div>
+        <div class="chat">
+          <div class="daychip"><span>7月28日(火)</span></div>
+          <div class="brow"><span class="av">F</span><div class="bub">【name】さん、こんばんは☺️
+
+明日【7/29(水) よる21時】の勉強会。もう“予習の診断”はやってみましたか？
+
+診断で少し触れた“おうちの使っていないモノ”、じつは立派な収入の元になります。</div><span class="btime">21:00</span></div>
+          <div class="brow"><span class="av">F</span><div class="bub">Fammを卒業したあるママは、家にあったモノで——
+<span class="num">出品 58品 → 売れた 28品（販売率48.2%）
+1日30分ほど／ひと月の利益 約7万円</span>
+特別な仕入れもスキルもなし。Fammで学んだ写真とキャプションを活かしただけ。</div></div>
+          <div class="infobub">＝＝＝＝＝＝＝＝＝
+日時：7/29(水) 21:00〜22:00（60分）
+場所：Zoom（スマホOK／顔出し不要／お子さま同席OK）
+参加費：無料
+登録者限定特典：1万円相当のプレゼント
+＝＝＝＝＝＝＝＝＝</div>
+          <div class="brow"><span class="av">F</span><div class="bub">その“続き”を、明日メルカリの実例で全部お話しします。
+
+⚠️お席が埋まってきています
+<span class="lk">▶ 明日の席をとる（お申込み）</span></div><span class="btime">21:00</span></div>
+        </div>
+      </div></div>
+      <div class="mmeta">
+        <span class="badge">2通目</span><span class="when">7/28(火) 21:00 配信</span><span class="tone hard">具体＝決めさせる</span>
+        <h3>ここで実証済みの数字を出す（勝ちパターン）</h3>
+        <div class="aim"><b>狙い：</b>①で開いた人に、創出率1位の勝ちパターン＝まゆみさんの実数字を提示。診断で"おうちの使っていないモノ"に触れた直後だから、メルカリの具体が<b>自然な続き</b>として入る（違和感が出ない順番）。前日夜21時＝黄金の生活時間。⚠️残席は実配信でも使う手。</div>
+        <div class="cnt">実数字アンカー・診断の続き・1アクション（席とり）</div>
+        <button class="copybtn" data-k="m2" onclick="copyMsg(this)">📋 この配信文をコピー</button>
+        <details class="rawwrap"><summary>コピーされる本文を確認</summary><div class="raw" id="raw-m2"></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGE 3 -->
+  <section>
+    <div class="sec-eye">MESSAGE 03</div>
+    <div class="sec-ttl"><span class="no">3</span>当日・参加うながし</div>
+    <div class="sendat">📤 配信日時：<b>7/29(水) 17:30</b> ／ 3通目（当日・開催前）</div>
+    <div class="msgrow">
+      <div class="phone"><div class="screen">
+        <div class="lbar"><span class="bk">‹</span><span class="av">F</span><span class="nm">Famm</span><span class="ic">☰</span></div>
+        <div class="chat">
+          <div class="daychip"><span>7月29日(水)</span></div>
+          <div class="brow"><span class="av">F</span><div class="bub">【name】さん、いよいよ今日です☺️
+
+【7/29(水) よる21時】、おうちで“はじめての収入”をつくる勉強会。
+
+「わたしなんて…」から始めたママが、家のモノを“収入”に変えるまで——その全部を、今夜お話しします。</div><span class="btime">17:30</span></div>
+          <div class="infobub">＝＝＝＝＝＝＝＝＝
+日時：7/29(水) 21:00〜22:00（60分）
+場所：Zoom（スマホOK／顔出し不要／お子さま同席OK）
+参加費：無料
+登録者限定特典：1万円相当のプレゼント
+＝＝＝＝＝＝＝＝＝</div>
+          <div class="brow"><span class="av">F</span><div class="bub">お子さんを寝かしつけたあとの60分、お会いできるのを楽しみにしています。
+
+⚠️お席のこり わずかです
+
+<span class="lk">▶ 今夜21時の参加はこちら（LINE登録）</span>
+
+診断がまだの方は、寝かしつけ前の60秒でタイプだけでも☺️
+<span class="lk">▶ 予習の診断はこちら（60秒）</span></div><span class="btime">17:30</span></div>
+        </div>
+      </div></div>
+      <div class="mmeta">
+        <span class="badge">3通目</span><span class="when">7/29(水) 17:30 配信（当日）</span><span class="tone hard">締め</span>
+        <h3>「わたしなんて→できた」で今夜の席へ</h3>
+        <div class="aim"><b>狙い：</b>当日リマインド。実配信で最も効いている自己効力感コピー「わたしなんて…→できた」で締める。主アクションは参加に一本化、未診断者にはやさしく予習をうながす。⚠️残席で最後の一押し（圧は強めない温度）。</div>
+        <div class="cnt">自己効力感・1アクション（参加）</div>
+        <button class="copybtn" data-k="m3" onclick="copyMsg(this)">📋 この配信文をコピー</button>
+        <details class="rawwrap"><summary>コピーされる本文を確認</summary><div class="raw" id="raw-m3"></div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- diagnostic -->
+  <div class="diag">
+    <h2>🏠 配信に載せる診断ツール（7/29版・稼働中）</h2>
+    <p>①のリンク先。冒頭に【7/29(水)】バナー、質問は"今の気持ち"からソフトに開始。<b>診断の途中でも「席をとる」ボタン</b>を常時表示（LINE接続済み）＝完走しなくても予約できます。</p>
+    <a class="go" href="famm.html">診断を開いて確認する →</a>
+    <div class="url">診断 https://lp.merone.jp/shindan-funnel/famm.html ／ 予約 https://kgp3b9or.autosns.app/line</div>
+  </div>
+
+  <!-- marketer note -->
+  <div class="note-sec">
+    <div class="sec-eye">WHY ／ マーケター2人の議論と結論</div>
+    <div class="sec-ttl" style="margin-left:0"><span class="no">💡</span>「不用品をいきなり聞く」問題への結論</div>
+    <p style="font-size:13px">くみこの違和感は正しい。ただし論点は「メルカリ語がダメ」ではなく<b>「配信で言っていないメルカリを、診断がいきなり聞いた＝トーン不一致」</b>。2つの立場を戦わせて結論を出しました。</p>
+    <div class="mgrid">
+      <div class="mcard"><div class="h">🅰 メルカリ明示派</div><p>「具体は抽象に勝つ。メルカリ具体化は創出率1位(30%)。診断も配信も数字を主役に揃えよ」<span class="tag f">実測＝正しい</span></p></div>
+      <div class="mcard"><div class="h">🅱 ソフト新奇性派</div><p>「枯れ＝"開く量"の低下（反復飽き）。創出率は"開いた人の質"で別レイヤー。今直すのは量。ソフトで開かせよ」<span class="tag f">論点整理＝正しい</span></p></div>
+    </div>
+    <div class="verdict">
+      <div class="vt">▶ 結論（統合）</div>
+      <p>両者は正しく、<b>レイヤーが違うだけ</b>。開封（量）はソフト新奇性で取り戻し、成約（質）は実証済みのメルカリ数字で決める。だから<b>①ソフトで開かせ→②③具体で決めさせる</b>逐次リビール。違和感は"診断の入口を配信に合わせてソフト化＋モノは後出し"で解消。メルカリ数字は消さず、開かせた後（②③）に温存＝両取り。</p>
+    </div>
+    <p style="font-size:12.5px;color:var(--ink-soft);margin-top:14px">実測の勘所：①<b>開封率・診断クリック率</b>（＝量が戻ったか）②診断完了率 ③席とりクリック ④実参加。①がソフト化で戻り、③④が数字で伸びれば設計通り。<b>断言はしません（予測）</b>——が、枯れリストほど"新しい入口"の効きは大きいはずです。</p>
+  </div>
+
+  <div class="foot">Merone プロモーション事業部 ／ Famm 7/29 勉強会 診断つき配信キャンペーン ／ 2026-07-26<br>※配信文はワンタップでコピーしてFammプロLINEへ。日程・曜日は検算済み（7/29＝水）。予約LINE・診断URLは接続済み。</div>
+</div>
+
+<div class="toast" id="toast">コピーしました！</div>
+
+<script>
+var DIAG_URL = "https://lp.merone.jp/shindan-funnel/famm.html";
+var RESV_URL = "https://kgp3b9or.autosns.app/line";
+var INFO = "＝＝＝＝＝＝＝＝＝＝＝\n日時：7月29日（水）よる21:00〜22:00（60分）\n場所：Zoom（スマホOK／顔出し不要／お子さま同席OK）\n参加費：無料\n登録者限定特典：1万円相当のプレゼントあり\n＝＝＝＝＝＝＝＝＝＝＝";
+var MSG = {
+  m1: "【name】さん、個別にご連絡失礼します☺️\n\nFammでずっと頑張ってきた【name】さんに、ひとつプレゼントです🎁\n\n【7/29(水) よる21時】に、おうちで“はじめての収入”をつくる無料の勉強会をひらきます。\n\nその前に——\n「在宅で収入って、私にはどんなやり方が合うんだろう？」\n\nそれが60秒でわかる【あなたの“おうち収入タイプ”診断】をご用意しました。\n答えるだけで、あなたに合った一歩と、当日の楽しみ方が見えてきます。\n\nまずは自分のタイプだけ、のぞいてみてくださいね。\n\n" + INFO + "\n\n▼ まずは予習の診断はこちら（60秒）▼\n" + DIAG_URL,
+  m2: "【name】さん、こんばんは☺️\n\n明日【7/29(水) よる21時】の勉強会。もう“予習の診断”はやってみましたか？\n\n診断で少し触れた“おうちの使っていないモノ”、じつは立派な収入の元になります。\n\nFammを卒業したあるママは、家にあったモノで——\n出品58品 → 売れた28品（販売率48.2%）\n1日30分ほど／ひと月の利益 約7万円。\n\n特別な仕入れもスキルもなし。Fammで学んだ写真とキャプションを活かしただけ。\n\nその“続き”を、明日メルカリの実例で全部お話しします。\n\n" + INFO + "\n\n⚠️お席が埋まってきています\n\n▼ 明日の席をとる（お申込み）▼\n" + RESV_URL,
+  m3: "【name】さん、いよいよ今日です☺️\n\n【7/29(水) よる21時】、おうちで“はじめての収入”をつくる勉強会。\n\n「わたしなんて…」から始めたママが、家のモノを“収入”に変えるまで——その全部を、今夜お話しします。\n\nお子さんを寝かしつけたあとの60分、お会いできるのを楽しみにしています。\n\n" + INFO + "\n\n⚠️お席のこり わずかです\n\n▼ 今夜21時の参加はこちら（LINE登録）▼\n" + RESV_URL + "\n\n▼ 診断がまだの方は、寝かしつけ前の60秒でタイプだけでも（予習の診断）▼\n" + DIAG_URL
+};
+["m1","m2","m3"].forEach(function(k){ document.getElementById("raw-"+k).textContent = MSG[k]; });
+
+function toast(msg){ var t=document.getElementById("toast"); t.textContent=msg; t.classList.add("on"); setTimeout(function(){ t.classList.remove("on"); },1600); }
+function copyMsg(btn){
+  var k = btn.getAttribute("data-k"); var text = MSG[k];
+  function done(){ btn.classList.add("done"); btn.textContent="✓ コピーしました"; toast("配信文をコピーしました！LINEに貼れます"); setTimeout(function(){ btn.classList.remove("done"); btn.textContent="📋 この配信文をコピー"; },2200); }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(function(){ fallback(text,done); });
+  } else { fallback(text,done); }
+}
+function fallback(text,done){
+  var ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); done(); }catch(e){ toast("コピーできませんでした。本文を長押しで選択してください"); }
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<style>
+  :root{
+    --bg:#eef4fb; --bg2:#fbeef1; --card:#ffffff; --ink:#26405f; --ink2:#4a4446;
+    --muted:#8a8790; --line:#dbe6f0; --accent:#cf8f9c; --accent-deep:#bd7886; --blue:#7fb0d2;
+    --shadow:rgba(38,64,95,.08);
+    /* word categories — all within Merone blue/navy/pink family */
+    --money-bg:#e7edf5; --money-tx:#26405f; --money-bd:#c3d3e5;
+    --event-bg:#e6f1fa; --event-tx:#3d6f9c; --event-bd:#bcdaef;
+    --spend-bg:#fbeef1; --spend-tx:#b56f7e; --spend-bd:#eecdd4;
+    --feel-bg:#efeaf3; --feel-tx:#7a6a86; --feel-bd:#dcd0e4;
+    --sans:"游ゴシック","Yu Gothic",YuGothic,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#141a24; --bg2:#231a20; --card:#1b2330; --ink:#dbe6f2; --ink2:#c2c6cf;
+      --muted:#8791a0; --line:#2b3648; --accent:#d69fab; --accent-deep:#cf8f9c; --blue:#7fb0d2;
+      --shadow:rgba(0,0,0,.35);
+      --money-bg:#22303f; --money-tx:#a7c6e4; --money-bd:#33475c;
+      --event-bg:#1c2b3a; --event-tx:#8fbde0; --event-bd:#2f4a63;
+      --spend-bg:#33222a; --spend-tx:#e0a3b1; --spend-bd:#553b44;
+      --feel-bg:#2a2433; --feel-tx:#c3add6; --feel-bd:#443a55;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#eef4fb;--bg2:#fbeef1;--card:#ffffff;--ink:#26405f;--ink2:#4a4446;--muted:#8a8790;
+    --line:#dbe6f0;--accent:#cf8f9c;--accent-deep:#bd7886;--blue:#7fb0d2;--shadow:rgba(38,64,95,.08);
+    --money-bg:#e7edf5;--money-tx:#26405f;--money-bd:#c3d3e5;
+    --event-bg:#e6f1fa;--event-tx:#3d6f9c;--event-bd:#bcdaef;
+    --spend-bg:#fbeef1;--spend-tx:#b56f7e;--spend-bd:#eecdd4;
+    --feel-bg:#efeaf3;--feel-tx:#7a6a86;--feel-bd:#dcd0e4;
+  }
+  :root[data-theme="dark"]{
+    --bg:#141a24;--bg2:#231a20;--card:#1b2330;--ink:#dbe6f2;--ink2:#c2c6cf;--muted:#8791a0;
+    --line:#2b3648;--accent:#d69fab;--accent-deep:#cf8f9c;--blue:#7fb0d2;--shadow:rgba(0,0,0,.35);
+    --money-bg:#22303f;--money-tx:#a7c6e4;--money-bd:#33475c;
+    --event-bg:#1c2b3a;--event-tx:#8fbde0;--event-bd:#2f4a63;
+    --spend-bg:#33222a;--spend-tx:#e0a3b1;--spend-bd:#553b44;
+    --feel-bg:#2a2433;--feel-tx:#c3add6;--feel-bd:#443a55;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink2);font-family:var(--sans);line-height:1.7;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px 90px;}
+
+  header{padding:56px 0 30px;border-bottom:2px solid var(--ink);}
+  .eyebrow{font-size:.74rem;letter-spacing:.26em;color:var(--accent-deep);margin:0 0 14px;font-weight:700;}
+  h1{font-size:clamp(1.9rem,5.2vw,2.9rem);margin:0;letter-spacing:.02em;line-height:1.2;font-weight:800;color:var(--ink);}
+  h1 small{display:block;font-size:clamp(.9rem,2.4vw,1.05rem);color:var(--muted);font-weight:500;margin-top:12px;letter-spacing:.02em;}
+  .use{margin:22px 0 0;font-size:.92rem;color:var(--ink2);max-width:52em;line-height:1.85;}
+  .use b{color:var(--ink);}
+
+  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:22px;}
+  .lg{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;color:var(--ink2);}
+  .dot{width:12px;height:12px;border-radius:3px;border:1px solid;}
+  .dot.money{background:var(--money-bg);border-color:var(--money-bd);}
+  .dot.event{background:var(--event-bg);border-color:var(--event-bd);}
+  .dot.spend{background:var(--spend-bg);border-color:var(--spend-bd);}
+  .dot.feel{background:var(--feel-bg);border-color:var(--feel-bd);}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px;}
+  @media (max-width:720px){.grid{grid-template-columns:1fr;}}
+
+  .m{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 20px 22px;
+    box-shadow:0 2px 12px var(--shadow);position:relative;}
+  .m.now{border:2px solid var(--accent);box-shadow:0 4px 20px color-mix(in srgb,var(--accent) 30%,transparent);}
+  .m.now .badge{position:absolute;top:-11px;left:18px;background:var(--accent);color:#fff;font-size:.72rem;
+    font-weight:700;letter-spacing:.14em;padding:3px 12px;border-radius:100px;}
+  .m-h{display:flex;align-items:baseline;gap:10px;margin-bottom:4px;}
+  .m-n{font-size:1.7rem;line-height:1;color:var(--accent-deep);font-weight:800;font-variant-numeric:tabular-nums;}
+  .m-mood{font-size:.83rem;color:var(--muted);margin:8px 0 15px;line-height:1.6;}
+
+  .cat{margin-top:13px;}
+  .cat-l{font-size:.7rem;font-weight:700;letter-spacing:.05em;margin:0 0 7px;display:flex;align-items:center;gap:6px;}
+  .cat.money .cat-l{color:var(--money-tx);} .cat.event .cat-l{color:var(--event-tx);}
+  .cat.spend .cat-l{color:var(--spend-tx);} .cat.feel .cat-l{color:var(--feel-tx);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;}
+  .chips span{font-size:.82rem;padding:3px 11px;border-radius:100px;border:1px solid;line-height:1.5;white-space:nowrap;}
+  .cat.money .chips span{background:var(--money-bg);color:var(--money-tx);border-color:var(--money-bd);}
+  .cat.event .chips span{background:var(--event-bg);color:var(--event-tx);border-color:var(--event-bd);}
+  .cat.spend .chips span{background:var(--spend-bg);color:var(--spend-tx);border-color:var(--spend-bd);}
+  .cat.feel .chips span{background:var(--feel-bg);color:var(--feel-tx);border-color:var(--feel-bd);}
+
+  .guard{margin-top:34px;background:var(--bg2);border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:6px;padding:20px 22px;}
+  .guard h3{margin:0 0 10px;font-size:1.02rem;font-weight:800;color:var(--ink);}
+  .guard p{margin:0;font-size:.88rem;color:var(--ink2);line-height:1.9;}
+  .guard b{color:var(--ink);}
+  footer{margin-top:30px;font-size:.78rem;color:var(--muted);line-height:1.8;}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">ABCash ナーチャリング</p>
+    <h1>季節別・効くワード集<small>その季節に配信へ入れると開封と共感が上がる、お金まわりの言葉バンク</small></h1>
+    <p class="use"><b>使い方：</b>配信のタイトル冒頭や本文に、いまの季節のワードを1〜2語まぜるだけ。「夏のボーナス」「お盆」のように、読んだ人が“自分の今”を思い出す言葉を選ぶと刺さります。対象＝お金の不安を持つ20〜40代女性・ママ層。</p>
+    <div class="legend">
+      <span class="lg"><span class="dot money"></span>お金が動く</span>
+      <span class="lg"><span class="dot event"></span>季節の行事</span>
+      <span class="lg"><span class="dot spend"></span>出費のきっかけ</span>
+      <span class="lg"><span class="dot feel"></span>気持ちワード</span>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <!-- 8月 現在 -->
+    <div class="m now"><span class="badge">今月</span>
+      <div class="m-h"><span class="m-n">8月</span></div>
+      <p class="m-mood">ボーナスが帰省とレジャーで溶ける月。「夏が終わるのに通帳は同じ」が刺さる。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>夏のボーナス</span><span>ボーナスの使い道</span><span>夏の出費</span><span>お盆玉</span><span>光熱費（猛暑）</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>お盆</span><span>帰省</span><span>夏休み</span><span>お盆休み</span><span>花火</span><span>夏祭り</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>帰省費用</span><span>レジャー代</span><span>旅行</span><span>子どもの夏休み費用</span><span>2学期の準備</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>気づいたら溶けてた</span><span>夏が終わる</span><span>通帳そのまま</span><span>今年の夏も</span></div></div>
+    </div>
+
+    <!-- 9月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">9月</span></div>
+      <p class="m-mood">下半期スタート。「あと4ヶ月、まだ間に合う」で再起動を促せる。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>下半期</span><span>今年もあと4ヶ月</span><span>秋の見直し</span><span>秋の家計チェック</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>シルバーウィーク</span><span>敬老の日</span><span>運動会</span><span>防災の日</span><span>お月見</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>連休の行楽費</span><span>衣替え</span><span>秋物の買い替え</span><span>行楽シーズン</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>まだ間に合う</span><span>年始の抱負どこへ</span><span>今からでも</span></div></div>
+    </div>
+
+    <!-- 10月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">10月</span></div>
+      <p class="m-mood">毎年恒例「値上げの秋」。静かに増える負担を可視化できる月。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>値上げの秋</span><span>ふるさと納税</span><span>物価高</span><span>知らない値上げ</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>ハロウィン</span><span>紅葉</span><span>行楽シーズン</span><span>七五三の準備</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>食欲の秋</span><span>衣替え出費</span><span>七五三費用</span><span>お出かけ代</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>気づかないうちに</span><span>じわじわ増える</span><span>知らないと損</span></div></div>
+    </div>
+
+    <!-- 11月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">11月</span></div>
+      <p class="m-mood">年末調整とブラックフライデー。「わからないまま」と「誘惑」が同居。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>年末調整</span><span>ボーナス前</span><span>ブラックフライデー</span><span>控除</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>七五三</span><span>紅葉狩り</span><span>ボジョレー</span><span>冬支度</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>セールの誘惑</span><span>冬物の買い替え</span><span>暖房の準備</span><span>まとめ買い</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>意味わかって書いてる？</span><span>ついポチる</span><span>来年こそ</span></div></div>
+    </div>
+
+    <!-- 12月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">12月</span></div>
+      <p class="m-mood">冬のボーナスと出費イベント連発。「1年の総決算」が最強フック。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>冬のボーナス</span><span>1年の総決算</span><span>ふるさと納税締切</span><span>年末の家計</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>クリスマス</span><span>忘年会</span><span>年末年始</span><span>大掃除</span><span>冬休み</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>クリスマスプレゼント</span><span>お年玉の準備</span><span>帰省</span><span>年末の買い出し</span><span>お歳暮</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>今年も同じでいい？</span><span>来年こそ</span><span>また今年も</span><span>1年あっという間</span></div></div>
+    </div>
+
+    <!-- 1月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">1月</span></div>
+      <p class="m-mood">「今年こそ」が最高潮。リセット気分に乗せて背中を押せる月。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>お年玉</span><span>福袋</span><span>初売り</span><span>家計リセット</span><span>新年の家計</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>お正月</span><span>初詣</span><span>成人式</span><span>七草</span><span>鏡開き</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>お年玉（あげる側）</span><span>初売り・セール</span><span>冬の光熱費</span><span>新年会</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>今年こそ</span><span>心機一転</span><span>去年の私を超える</span><span>リセット</span></div></div>
+    </div>
+
+    <!-- 2月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">2月</span></div>
+      <p class="m-mood">確定申告でお金と向き合わされる。「よくわからないまま払ってる」自覚が出る月。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>確定申告</span><span>還付金</span><span>税金</span><span>控除</span><span>ボーナス後の残高</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>バレンタイン</span><span>節分</span><span>受験シーズン</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>バレンタイン</span><span>光熱費ピーク</span><span>受験・進学費用</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>説明できますか</span><span>わからないまま</span><span>他人事にしてない？</span></div></div>
+    </div>
+
+    <!-- 3月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">3月</span></div>
+      <p class="m-mood">年度末で一年を振り返る。まとまった出費で「消えた」を体感する月。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>年度末</span><span>確定申告締切</span><span>この1年いくら残った</span><span>期末</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>卒業</span><span>ひな祭り</span><span>ホワイトデー</span><span>送別会</span><span>春休み</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>入学準備</span><span>引っ越し</span><span>新生活の初期費用</span><span>制服・学用品</span><span>教育費の山</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>気づいたら消えてた</span><span>1年の振り返り</span><span>また同じ一年</span></div></div>
+    </div>
+
+    <!-- 4月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">4月</span></div>
+      <p class="m-mood">新年度で「変わりたい」気分。昇給しても残らない矛盾を突ける月。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>新年度</span><span>昇給</span><span>社会保険料の改定</span><span>保険の見直し</span><span>手取り</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>入学式</span><span>お花見</span><span>新生活</span><span>新学期</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>新生活の出費</span><span>入園入学費用</span><span>歓迎会</span><span>家電の買い替え</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>今年度こそ</span><span>心機一転</span><span>変わりたい</span><span>昇給したのに</span></div></div>
+    </div>
+
+    <!-- 5月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">5月</span></div>
+      <p class="m-mood">GWの使いすぎと住民税通知。「見るのが少し怖い」共感で入れる月。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>住民税の通知</span><span>GW後の残高</span><span>五月の家計チェック</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>ゴールデンウィーク</span><span>母の日</span><span>こどもの日</span><span>連休</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>GWのレジャー費</span><span>帰省</span><span>母の日ギフト</span><span>行楽費</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>連休明けが怖い</span><span>使いすぎた</span><span>5月病</span><span>通帳を見たくない</span></div></div>
+    </div>
+
+    <!-- 6月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">6月</span></div>
+      <p class="m-mood">夏のボーナスと住民税天引きの矛盾。「入ったのに残らない」が刺さる。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>夏のボーナス</span><span>住民税の天引き開始</span><span>手取りが減る</span><span>ボーナス月</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>父の日</span><span>ジューンブライド</span><span>梅雨</span><span>衣替え</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>父の日ギフト</span><span>梅雨のおこもり出費</span><span>ボーナス払い</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>入ったのに残らない</span><span>もう消えてる</span><span>手取り減った</span></div></div>
+    </div>
+
+    <!-- 7月 -->
+    <div class="m">
+      <div class="m-h"><span class="m-n">7月</span></div>
+      <p class="m-mood">ボーナスの使い道を考える高揚と、上半期が終わった焦り。</p>
+      <div class="cat money"><p class="cat-l">お金が動く</p><div class="chips">
+        <span>夏のボーナス</span><span>ボーナスの使い道</span><span>上半期</span><span>上半期の決算</span></div></div>
+      <div class="cat event"><p class="cat-l">季節の行事</p><div class="chips">
+        <span>七夕</span><span>夏休み</span><span>お中元</span><span>海開き</span></div></div>
+      <div class="cat spend"><p class="cat-l">出費のきっかけ</p><div class="chips">
+        <span>旅行・帰省の予約</span><span>子どもの夏休み費用</span><span>お中元</span><span>レジャー計画</span></div></div>
+      <div class="cat feel"><p class="cat-l">気持ちワード</p><div class="chips">
+        <span>もう半年終わった</span><span>今年こそはと思ってたのに</span><span>上半期どうだった</span></div></div>
+    </div>
+
+  </div>
+
+  <div class="guard">
+    <h3>使うときの3つの注意（ABCash向け）</h3>
+    <p><b>① 季節ワードを“締切”に変えない。</b>「ボーナス期の今だけ」「年末まで先着」は営業の匂いで逃げられます。あくまで“今の気分”を思い出させる言葉として使う。<br>
+    <b>② 「増やす」でなく「わかる」に着地。</b>季節ワードで開いた入口は、必ず「自分のお金が読めるようになる」へ繋ぐ。<br>
+    <b>③ 責めない・脅さない。</b>「消えましたね、大変」で終わらず、「意志ではなく仕組みの問題」へ接続する。</p>
+  </div>
+
+  <footer>
+    Merone ｜ ABCash ナーチャリング用・季節別ワード集
+  </footer>
+</div>

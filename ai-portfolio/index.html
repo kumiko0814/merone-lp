@@ -1,0 +1,966 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="半年で、素人がここまで来れた。Merone・森川くみこがAIで作った34ツールを段階的に並べたポートフォリオ。">
+<title>Merone AI活用ポートフォリオ｜半年で、素人がここまで</title>
+<style>
+  :root{
+    color-scheme:light;
+    --ground:#FAFBFD;--panel:#FFFFFF;--panel-2:#F3F5FA;--ink:#1E2A44;--ink-soft:#4A5670;--muted:#6E7890;
+    --line:#E3E8F1;--line-strong:#D2D9E8;--accent:#4A7BB5;--accent-soft:#6E9FD4;--pink:#C97E92;--pink-soft:#E8C4CB;
+    --lv1:#E0A6B2;--lv2:#C98BA9;--lv3:#8E93C0;--lv4:#5A78AD;--lv5:#2E4372;
+    --shadow:0 1px 2px rgba(30,42,68,.05),0 8px 24px rgba(30,42,68,.06);
+    --shadow-lg:0 2px 6px rgba(30,42,68,.08),0 18px 48px rgba(30,42,68,.10);
+    --font-gothic:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Yu Gothic Medium","Meiryo",system-ui,sans-serif;
+    --font-mincho:"Hiragino Mincho ProN","Yu Mincho","YuMincho",Georgia,"Times New Roman",serif;
+  }
+  /* Locked to the light Merone palette — the page always renders the same warm, on-brand
+     look for every viewer, regardless of their device's light/dark setting. */
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font-gothic);line-height:1.75;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"palt" 1}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 90% at 88% -10%, color-mix(in srgb,var(--pink-soft) 55%, transparent), transparent 60%),
+      radial-gradient(120% 90% at -10% 110%, color-mix(in srgb,var(--accent-soft) 32%, transparent), transparent 55%);opacity:.9}
+  .hero-inner{position:relative;padding:76px 0 64px}
+  .eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 22px}
+  .eyebrow span{color:var(--muted);font-weight:600}
+  h1{font-weight:800;font-size:clamp(2.1rem,6.2vw,3.9rem);line-height:1.18;letter-spacing:.01em;margin:0 0 26px;text-wrap:balance}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lede{max-width:40ch;font-size:1.06rem;color:var(--ink-soft);margin:0 0 26px}
+  .honest{display:inline-block;font-family:var(--font-mincho);font-size:clamp(1.25rem,3.6vw,1.9rem);line-height:1.5;
+    color:var(--ink);border-left:3px solid var(--pink);padding:2px 0 2px 18px;margin:0 0 40px}
+  .honest b{color:var(--pink);font-weight:600}
+  .stats{display:flex;flex-wrap:wrap;gap:14px 40px;padding-top:18px;border-top:1px solid var(--line-strong)}
+  .stat{display:flex;flex-direction:column;gap:2px}
+  .stat .v{font-family:var(--font-mincho);font-size:clamp(1.7rem,4vw,2.5rem);line-height:1;color:var(--ink)}
+  .stat .v small{font-size:.55em;color:var(--muted);margin-left:2px}
+  .stat .k{font-size:.76rem;color:var(--muted);letter-spacing:.04em}
+
+  section{padding:64px 0}
+  .sec-eyebrow{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 12px}
+  h2{font-weight:800;font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.35;margin:0 0 14px;text-wrap:balance;letter-spacing:.01em}
+
+  /* ---------- Truth ---------- */
+  .truth{background:var(--panel-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .truth .lead{max-width:44ch;color:var(--ink-soft);margin:0 0 36px}
+  .weapons{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .weapon{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px 24px;box-shadow:var(--shadow)}
+  .weapon .wn{font-family:var(--font-mincho);font-size:1.5rem;color:var(--pink);line-height:1;margin:0 0 14px;display:block}
+  .weapon h3{font-size:1.04rem;font-weight:700;margin:0 0 8px;line-height:1.5}
+  .weapon p{font-size:.92rem;color:var(--ink-soft);margin:0}
+  .truth-close{margin:34px 0 0;font-family:var(--font-mincho);font-size:clamp(1.1rem,2.8vw,1.4rem);line-height:1.6;color:var(--ink)}
+  .truth-close b{color:var(--accent);font-weight:600}
+
+  /* ---------- Legend ---------- */
+  .legend{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;padding:20px 24px;background:var(--panel);
+    border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}
+  .legend .lg{font-size:.82rem;color:var(--ink-soft);display:flex;align-items:center;gap:8px}
+  .legend .lg b{color:var(--ink);font-weight:700}
+  .ramp{display:flex;align-items:center;gap:6px}
+  .ramp i{width:16px;height:16px;border-radius:4px;display:inline-block}
+  .r1{background:var(--lv1)}.r2{background:var(--lv2)}.r3{background:var(--lv3)}.r4{background:var(--lv4)}.r5{background:var(--lv5)}
+  .legend-note{margin:14px 2px 0;font-size:.78rem;color:var(--muted)}
+
+  /* ---------- Levels ---------- */
+  .level{padding:52px 0}
+  .level + .level{border-top:1px solid var(--line)}
+  .level-head{display:flex;align-items:flex-start;gap:22px;margin:0 0 30px}
+  .level-no{font-family:var(--font-mincho);font-weight:400;font-size:clamp(3rem,9vw,5.4rem);line-height:.82;color:var(--lvc);flex:none;letter-spacing:-.02em}
+  .level-titles{padding-top:6px}
+  .level-titles h2{margin:0 0 4px}
+  .level-titles p{margin:0;color:var(--muted);font-size:.95rem}
+  .level-bar{height:4px;border-radius:4px;background:var(--lvc);width:56px;margin:10px 0 0}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;overflow:hidden;
+    transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .5s ease,box-shadow .25s ease,border-color .25s ease}
+  .card:hover{box-shadow:var(--shadow-lg);border-color:var(--line-strong);transform:translateY(-3px)}
+  .card-body{display:flex;flex-direction:column;gap:9px;padding:16px 18px 20px}
+  .card-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .lvdot{width:9px;height:9px;border-radius:50%;background:var(--lvc);flex:none}
+  .card h3{font-size:1.02rem;font-weight:700;line-height:1.5;margin:0}
+  .card p{font-size:.9rem;color:var(--ink-soft);margin:0;line-height:1.65}
+  .client{font-size:.78rem;color:var(--muted)}
+  .demo-link{align-self:flex-start;margin-top:2px;font-size:.82rem;font-weight:800;color:var(--accent);text-decoration:none;
+    display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;
+    background:color-mix(in srgb,var(--accent) 9%,var(--panel));border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);transition:background .2s,transform .15s}
+  .demo-link:hover{background:color-mix(in srgb,var(--accent) 16%,var(--panel));transform:translateY(-1px)}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  .tag{font-size:.68rem;font-weight:700;letter-spacing:.02em;padding:3px 9px;border-radius:999px;white-space:nowrap;line-height:1.6}
+  .t-live{background:var(--accent);color:#fff}
+  .t-run{background:transparent;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 45%,transparent)}
+  .t-result{background:color-mix(in srgb,var(--pink) 20%,transparent);color:var(--pink);border:1px solid color-mix(in srgb,var(--pink) 40%,transparent)}
+  .t-muted{background:var(--panel-2);color:var(--muted);border:1px solid var(--line)}
+  .t-butsudan{background:transparent;color:var(--pink);border:1px dashed color-mix(in srgb,var(--pink) 55%,transparent)}
+
+  /* =========================================================
+     MOCKUPS — all reconstructed with dummy data (no real client info)
+     Built on container query units (cqw) so they scale cleanly when zoomed
+     ========================================================= */
+  .mock{position:relative;display:block;width:100%;aspect-ratio:16/10;border:none;border-bottom:1px solid var(--line);
+    background:var(--panel-2);overflow:hidden;container-type:inline-size;cursor:default;padding:0;margin:0;text-align:left;
+    font-family:var(--font-gothic);color:var(--ink)}
+  .mock[data-live]{cursor:pointer}
+  .mk-zoom{display:none}
+  .mk-bar{height:8cqw;display:flex;align-items:center;gap:1.6cqw;padding:0 3.4cqw;
+    background:color-mix(in srgb,var(--ink) 6%,var(--panel));border-bottom:1px solid var(--line)}
+  .mk-dot{width:1.9cqw;height:1.9cqw;border-radius:50%;background:var(--line-strong)}
+  .mk-dot:nth-child(1){background:#E6A6AE}.mk-dot:nth-child(2){background:#E8CE9A}.mk-dot:nth-child(3){background:#9FC4A8}
+  .mk-ttl{font-size:3cqw;color:var(--muted);font-weight:700;margin-left:2cqw;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mk-body{padding:4cqw 4.4cqw}
+
+  /* chat */
+  .mk-chat .mk-body{display:flex;flex-direction:column;gap:2.4cqw;padding-top:3.4cqw}
+  .mk-msg{max-width:74%;padding:2.4cqw 3.2cqw;border-radius:3.4cqw;font-size:3.2cqw;line-height:1.5}
+  .mk-msg.them{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:.8cqw;align-self:flex-start}
+  .mk-msg.me{background:var(--accent);color:#fff;border-bottom-right-radius:.8cqw;align-self:flex-end}
+  .mk-msg.bot{background:color-mix(in srgb,var(--accent) 14%,var(--panel));color:var(--ink);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);align-self:flex-start;border-bottom-left-radius:.8cqw}
+  .mk-photo-msg{align-self:flex-end;width:34%;aspect-ratio:4/3;border-radius:2.6cqw;background:
+    linear-gradient(135deg,var(--pink-soft),var(--accent-soft))}
+  .mk-input{margin-top:auto;height:6cqw;border-radius:3cqw;background:var(--panel);border:1px solid var(--line);
+    display:flex;align-items:center;padding:0 3cqw;font-size:2.8cqw;color:var(--muted)}
+
+  /* sheet */
+  .mk-sheet .mk-body{padding:2.6cqw 3.4cqw}
+  .mk-row{display:grid;gap:2cqw;font-size:2.9cqw;padding:2.1cqw 1.4cqw;border-bottom:1px solid var(--line);align-items:center}
+  .mk-row.head{color:var(--muted);font-weight:700;font-size:2.6cqw}
+  .mk-row.new{background:color-mix(in srgb,var(--accent) 12%,transparent);border-radius:1.6cqw;border-bottom:1px solid transparent}
+  .mk-row b{font-weight:700;font-variant-numeric:tabular-nums}
+  .mk-badge{font-size:2.2cqw;font-weight:700;color:#fff;background:var(--accent);padding:.4cqw 1.6cqw;border-radius:999px;justify-self:start}
+
+  /* form */
+  .mk-form .mk-body{display:flex;flex-direction:column;gap:2.8cqw}
+  .mk-prog{display:flex;gap:1.4cqw;align-items:center;font-size:2.6cqw;color:var(--muted)}
+  .mk-prog i{width:3.4cqw;height:1.4cqw;border-radius:999px;background:var(--line-strong)}
+  .mk-prog i.on{background:var(--accent);width:6cqw}
+  .mk-q{font-size:3.8cqw;font-weight:700;line-height:1.4}
+  .mk-opt{font-size:3.1cqw;padding:2.6cqw 3cqw;border-radius:2.4cqw;border:1px solid var(--line);background:var(--panel);color:var(--ink-soft)}
+  .mk-opt.sel{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--panel));color:var(--ink);font-weight:700}
+  .mk-line-btn{font-size:3cqw;font-weight:700;color:#fff;background:#06C755;border-radius:2.4cqw;padding:2.8cqw;text-align:center}
+  .mk-field{height:6cqw;border-radius:2cqw;background:var(--panel);border:1px solid var(--line)}
+
+  /* todo / list */
+  .mk-todo .mk-body{display:flex;flex-direction:column;gap:2.2cqw;padding-top:3cqw}
+  .mk-todo-h{display:flex;justify-content:space-between;align-items:center;font-size:3cqw;font-weight:700}
+  .mk-todo-h .cnt{font-size:2.6cqw;color:var(--accent);font-weight:700}
+  .mk-item{display:flex;align-items:center;gap:2.4cqw;font-size:3cqw;padding:1.8cqw 2cqw;background:var(--panel);
+    border:1px solid var(--line);border-radius:2cqw}
+  .mk-check{width:4cqw;height:4cqw;border-radius:1.2cqw;border:1.4px solid var(--line-strong);flex:none}
+  .mk-check.on{background:var(--accent);border-color:var(--accent);position:relative}
+  .mk-check.on::after{content:"";position:absolute;left:1.2cqw;top:.5cqw;width:1.2cqw;height:2.2cqw;border:solid #fff;border-width:0 .7cqw .7cqw 0;transform:rotate(45deg)}
+  .mk-item.done{color:var(--muted)}
+  .mk-chip{font-size:2.2cqw;font-weight:700;padding:.4cqw 1.6cqw;border-radius:999px;margin-left:auto;
+    background:color-mix(in srgb,var(--pink) 18%,transparent);color:var(--pink)}
+  .mk-ava{width:4cqw;height:4cqw;border-radius:50%;background:linear-gradient(135deg,var(--accent-soft),var(--pink-soft));margin-left:auto}
+
+  /* faq */
+  .mk-faq .mk-body{display:flex;flex-direction:column;gap:2cqw}
+  .mk-search{height:6cqw;border-radius:3cqw;background:var(--panel);border:1px solid var(--line);display:flex;align-items:center;padding:0 3cqw;font-size:2.8cqw;color:var(--muted)}
+  .mk-qrow{background:var(--panel);border:1px solid var(--line);border-radius:2cqw;padding:2.4cqw 3cqw;font-size:3cqw;font-weight:700;display:flex;justify-content:space-between}
+  .mk-qrow.open{border-color:var(--accent)}
+  .mk-arow{font-size:2.8cqw;color:var(--ink-soft);font-weight:400;line-height:1.5;margin-top:1.6cqw}
+
+  /* doc / minutes */
+  .mk-doc .mk-body{display:flex;flex-direction:column;gap:2.2cqw}
+  .mk-doc-title{font-size:3.4cqw;font-weight:800}
+  .mk-txtline{height:2cqw;border-radius:999px;background:var(--line-strong);opacity:.7}
+  .mk-txtline.s{width:70%}.mk-txtline.m{width:88%}
+  .mk-keybox{border-left:2.4cqw solid var(--accent);background:color-mix(in srgb,var(--accent) 9%,var(--panel));
+    border-radius:0 2cqw 2cqw 0;padding:2.4cqw 3cqw;display:flex;flex-direction:column;gap:1.6cqw}
+  .mk-keybox .kh{font-size:2.6cqw;font-weight:800;color:var(--accent)}
+  .mk-rt{display:grid;grid-template-columns:1.35fr 1fr;gap:2.6cqw;padding:3cqw 3.4cqw}
+  .mk-rt .col{display:flex;flex-direction:column;gap:1.8cqw}
+  .mk-rt .lbl{font-size:2.4cqw;font-weight:800;color:var(--muted);letter-spacing:.04em}
+  .mk-live{width:2.4cqw;height:2.4cqw;border-radius:50%;background:#E06A6A;display:inline-block;margin-right:1.2cqw;vertical-align:middle}
+  .mk-pill-k{font-size:2.7cqw;background:color-mix(in srgb,var(--accent) 12%,var(--panel));border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+    border-radius:1.6cqw;padding:1.6cqw 2cqw;color:var(--ink);line-height:1.4}
+
+  /* dashboard */
+  .mk-dash .mk-body{padding:3.4cqw 3.8cqw;display:flex;flex-direction:column;gap:3cqw}
+  .mk-kpi{display:flex;align-items:flex-end;gap:2.4cqw}
+  .mk-kpi .big{font-family:var(--font-mincho);font-size:9cqw;line-height:.9;color:var(--ink);font-variant-numeric:tabular-nums}
+  .mk-kpi .up{font-size:3.2cqw;font-weight:800;color:#2F9E7B;padding-bottom:1cqw}
+  .mk-kpi .klbl{font-size:2.7cqw;color:var(--muted);padding-bottom:1.4cqw}
+  .mk-prgbar{height:3.4cqw;border-radius:999px;background:var(--line);overflow:hidden}
+  .mk-prgbar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent-soft),var(--accent))}
+  .mk-bars{display:flex;align-items:flex-end;gap:2.6cqw;height:20cqw}
+  .mk-bars .b{flex:1;border-radius:1.4cqw 1.4cqw 0 0;background:color-mix(in srgb,var(--accent) 35%,var(--panel))}
+  .mk-bars .b.hi{background:var(--accent)}
+  .mk-bars .b.pink{background:var(--pink)}
+  .mk-abcompare{display:flex;gap:3cqw;align-items:flex-end;height:22cqw}
+  .mk-abcompare .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:1.4cqw;height:100%;justify-content:flex-end}
+  .mk-abcompare .bar{width:60%;border-radius:1.4cqw 1.4cqw 0 0}
+  .mk-abcompare .tagab{font-size:2.6cqw;font-weight:800;color:var(--muted)}
+
+  /* banner */
+  .mk-banner .mk-body{padding:3.4cqw;display:flex;flex-direction:column;gap:2.6cqw}
+  .mk-bn{border-radius:2.4cqw;padding:3.4cqw;color:#3a2f10;background:linear-gradient(120deg,#F3D9A0,#EBC373);
+    display:flex;flex-direction:column;gap:1.6cqw;box-shadow:var(--shadow)}
+  .mk-bn .eb{font-size:2.4cqw;font-weight:800;letter-spacing:.1em}
+  .mk-bn .h{font-size:4.4cqw;font-weight:900;line-height:1.25}
+  .mk-bn .cta{align-self:flex-start;font-size:2.6cqw;font-weight:800;background:#2E4372;color:#fff;padding:1.4cqw 3cqw;border-radius:999px}
+  .mk-bn.v2{background:linear-gradient(120deg,#CFE0F2,#A9C8ED);color:#1E2A44}
+  .mk-bn.v3{background:linear-gradient(120deg,#EAD0D6,#DBA9B4);color:#4a2530}
+  .mk-bn.mini{padding:2.4cqw}.mk-bn.mini .h{font-size:3.2cqw}
+  .mk-note{font-size:2.7cqw;color:var(--muted);background:var(--panel);border:1px dashed var(--line-strong);border-radius:2cqw;padding:2cqw 2.6cqw}
+
+  /* lp */
+  .mk-lp .mk-body{padding:0}
+  .mk-hero{height:26cqw;background:linear-gradient(120deg,var(--accent-soft),var(--pink-soft));display:flex;align-items:flex-end;padding:3cqw}
+  .mk-hero .h{font-size:4cqw;font-weight:900;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.2)}
+  .mk-people{display:grid;grid-template-columns:repeat(3,1fr);gap:2.4cqw;padding:3cqw}
+  .mk-person{display:flex;flex-direction:column;gap:1.4cqw;align-items:center}
+  .mk-person .fa{width:12cqw;height:12cqw;border-radius:50%;background:linear-gradient(135deg,var(--pink-soft),var(--accent-soft))}
+  .mk-person .nm{width:80%;height:1.8cqw;border-radius:999px;background:var(--line-strong)}
+  .mk-person .rl{width:60%;height:1.6cqw;border-radius:999px;background:var(--line)}
+
+  /* map / shiori */
+  .mk-map{position:relative;height:100%}
+  .mk-mapimg{height:64%;background:
+    repeating-linear-gradient(0deg,transparent 0 5.8cqw,rgba(0,0,0,.05) 5.8cqw 6cqw),
+    repeating-linear-gradient(90deg,transparent 0 5.8cqw,rgba(0,0,0,.05) 5.8cqw 6cqw),
+    linear-gradient(135deg,#BFD9B8,#9FC7CE);position:relative}
+  .mk-mapimg .road{position:absolute;left:10%;top:20%;width:70%;height:3.4cqw;background:#EEDFAC;border-radius:999px;transform:rotate(12deg)}
+  .mk-mapimg .pin{position:absolute;left:58%;top:44%;width:4cqw;height:4cqw;border-radius:50% 50% 50% 0;background:var(--pink);transform:rotate(-45deg);box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .mk-itin{padding:2.6cqw 3cqw;display:flex;flex-direction:column;gap:1.6cqw}
+  .mk-itin .r{display:flex;gap:2cqw;font-size:2.8cqw;align-items:center}
+  .mk-itin .tm{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+
+  /* product — おたすけ君 */
+  .mk-product .mk-body{padding:3.2cqw;display:grid;grid-template-columns:37% 1fr;gap:3.4cqw}
+  .mk-pimg{aspect-ratio:1;border-radius:2.6cqw;background:linear-gradient(135deg,#E7C9D0,#B9CFE9);position:relative;overflow:hidden}
+  .mk-pimg::after{content:"";position:absolute;left:18%;bottom:14%;width:64%;height:44%;background:rgba(255,255,255,.35);border-radius:2cqw}
+  .mk-pinfo{display:flex;flex-direction:column;gap:1.8cqw}
+  .mk-aitag{align-self:flex-start;font-size:2.3cqw;font-weight:800;color:#fff;background:linear-gradient(90deg,var(--accent),var(--pink));padding:.8cqw 2.2cqw;border-radius:999px}
+  .mk-ptitle{font-size:3.2cqw;font-weight:800;line-height:1.35}
+  .mk-price{font-family:var(--font-mincho);font-size:6.4cqw;color:var(--ink);font-variant-numeric:tabular-nums}
+  .mk-price small{font-size:.4em;color:var(--muted);margin-right:1cqw}
+  .mk-pdesc{height:1.8cqw;border-radius:999px;background:var(--line-strong);opacity:.7}
+  .mk-pfoot{grid-column:1/-1;display:flex;gap:2.4cqw;margin-top:.6cqw}
+  .mk-pfoot .st{flex:1;background:var(--panel-2);border:1px solid var(--line);border-radius:2cqw;padding:1.8cqw 2.2cqw;font-size:2.5cqw;color:var(--muted)}
+  .mk-pfoot .st b{display:block;font-size:3.6cqw;color:var(--ink);font-variant-numeric:tabular-nums;font-weight:800}
+
+  /* quest — RPG */
+  .mk-quest .mk-body{padding:0}
+  .mk-rpg{height:66%;position:relative;background:linear-gradient(160deg,#8FB98C,#6FA5AE);
+    image-rendering:pixelated;
+    background-image:
+      repeating-linear-gradient(0deg,transparent 0 5.4cqw,rgba(0,0,0,.06) 5.4cqw 5.6cqw),
+      repeating-linear-gradient(90deg,transparent 0 5.4cqw,rgba(0,0,0,.06) 5.4cqw 5.6cqw),
+      linear-gradient(160deg,#8FB98C,#6FA5AE)}
+  .mk-rpg .water{position:absolute;right:0;top:0;width:26%;height:100%;background:#7FB6C9;opacity:.9}
+  .mk-rpg .house{position:absolute;left:16%;top:22%;width:11cqw;height:9cqw;background:#E7B7BE;border:1.4px solid #9c6b74}
+  .mk-rpg .house::before{content:"";position:absolute;left:-1.4px;top:-4cqw;border-left:5.7cqw solid transparent;border-right:5.7cqw solid transparent;border-bottom:4cqw solid #C97E92}
+  .mk-rpg .hero-c{position:absolute;left:46%;top:52%;width:4.4cqw;height:4.4cqw;background:#2E4372;box-shadow:0 0 0 1.4px #fff}
+  .mk-rpg .npc{position:absolute;left:64%;top:36%;width:4cqw;height:4cqw;background:#E8CE9A;box-shadow:0 0 0 1.4px #7a6a3a}
+  .mk-dialog{margin:0;height:34%;background:#111726;color:#fff;border-top:2px solid #fff;padding:2.8cqw 3.4cqw;display:flex;flex-direction:column;gap:1.6cqw;justify-content:center}
+  .mk-dialog .l1{font-size:3cqw}
+  .mk-dialog .l2{font-size:2.6cqw;opacity:.8}
+  .mk-dialog .stat{display:flex;gap:3cqw;font-size:2.4cqw;color:#A9C8ED;font-weight:800;font-variant-numeric:tabular-nums}
+
+  /* stamp */
+  .mk-stamp .mk-body{display:flex;flex-direction:column;gap:2.8cqw;padding-top:3.4cqw}
+  .mk-stamp-h{font-size:3cqw;font-weight:800;text-align:center}
+  .mk-stgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2.6cqw}
+  .mk-st{aspect-ratio:1;border-radius:50%;border:1.6px dashed var(--line-strong);display:flex;align-items:center;justify-content:center;font-size:3.4cqw;font-weight:800;color:var(--muted)}
+  .mk-st.on{border-style:solid;border-color:var(--pink);background:color-mix(in srgb,var(--pink) 18%,var(--panel));color:var(--pink);transform:rotate(-8deg)}
+  .mk-code{margin-top:auto;height:6cqw;border-radius:3cqw;border:1px solid var(--accent);background:color-mix(in srgb,var(--accent) 8%,var(--panel));display:flex;align-items:center;justify-content:center;font-size:2.8cqw;color:var(--accent);font-weight:700}
+
+  /* game30 */
+  .mk-g30 .mk-body{display:flex;flex-direction:column;gap:2.6cqw;padding-top:3.2cqw}
+  .mk-g30-h{display:flex;justify-content:space-between;align-items:center;font-size:2.8cqw}
+  .mk-g30-h .pt{font-family:var(--font-mincho);font-size:5cqw;color:var(--accent);font-variant-numeric:tabular-nums}
+  .mk-g30-h .rank{font-size:2.5cqw;font-weight:800;color:var(--pink);background:color-mix(in srgb,var(--pink) 16%,transparent);padding:.6cqw 2cqw;border-radius:999px}
+  .mk-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:1.6cqw}
+  .mk-cal .d{aspect-ratio:1;border-radius:1.4cqw;background:var(--panel-2);border:1px solid var(--line)}
+  .mk-cal .d.done{background:color-mix(in srgb,var(--accent) 30%,var(--panel));border-color:transparent}
+  .mk-cal .d.star{background:var(--pink);position:relative}
+  .mk-cal .d.star::after{content:"★";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:2.6cqw}
+
+  /* mahjong */
+  .mk-mahjong .mk-body{display:flex;flex-direction:column;gap:3cqw;justify-content:center;height:100%}
+  .mk-hand{display:flex;gap:1.2cqw;justify-content:center;flex-wrap:nowrap}
+  .mk-tile{width:6.2cqw;height:8.6cqw;border-radius:1.2cqw;background:linear-gradient(180deg,#fff,#eef1f6);border:1px solid #cdd5e3;
+    box-shadow:0 1.4cqw 0 #d3dae8;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:3.4cqw;color:#2E4372;flex:none}
+  .mk-tile.man{color:#B4494F}.mk-tile.sou{color:#2F8F5B}.mk-tile.z{color:#2E4372}
+  .mk-tile.win{background:linear-gradient(180deg,#FBEAD0,#F3D9A0);border-color:#e0be80;transform:translateY(-1.6cqw)}
+  .mk-mj-cap{text-align:center;font-size:2.8cqw;font-weight:800;color:var(--muted)}
+  .mk-mj-cap b{color:var(--pink)}
+
+  /* ---------- CTA ---------- */
+  .cta{position:relative;overflow:hidden;text-align:center;
+    background:linear-gradient(160deg,var(--lv5),color-mix(in srgb,var(--lv4) 70%,var(--lv5)));color:#fff;border-radius:20px;padding:64px 32px}
+  .cta::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 120% at 90% -20%,rgba(255,255,255,.16),transparent 60%);pointer-events:none}
+  .cta h2{color:inherit;font-size:clamp(1.6rem,4.5vw,2.4rem);position:relative}
+  .cta p{position:relative;max-width:46ch;margin:14px auto 30px;opacity:.92;font-size:1.02rem}
+  .cta .cta-when{display:inline-block;margin:0 auto 26px;padding:9px 20px;border-radius:999px;
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);font-size:.92rem;font-weight:700;opacity:1;max-width:none}
+  .cta .btn{position:relative;display:inline-block;background:#fff;color:var(--lv5);font-weight:800;font-size:1rem;padding:15px 34px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.2);transition:transform .2s ease,box-shadow .2s ease}
+  .cta .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,.28)}
+
+  footer{padding:40px 0 60px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);margin-top:64px}
+
+  /* 常時表示のLINE追加バー（スクロールしても下に固定） */
+  body{padding-bottom:104px}
+  .linebar{position:fixed;left:0;right:0;bottom:0;z-index:1000;display:flex;align-items:center;gap:12px;
+    background:#06C755;color:#fff;text-decoration:none;font-family:var(--font-gothic);
+    padding:11px 16px;padding-bottom:calc(11px + env(safe-area-inset-bottom,0px));
+    box-shadow:0 -6px 26px rgba(0,0,0,.18);transition:background .2s}
+  .linebar:hover{background:#05b34d}
+  .linebar-badge{flex:none;background:#fff;color:#06C755;font-weight:900;font-size:.72rem;letter-spacing:.04em;
+    padding:6px 9px;border-radius:9px;line-height:1}
+  .linebar-txt{display:flex;flex-direction:column;line-height:1.3;min-width:0}
+  .linebar-txt b{font-size:1rem;font-weight:800}
+  .linebar-txt small{font-size:.73rem;opacity:.96;font-weight:600}
+  .linebar-cta{flex:none;margin-left:auto;background:#fff;color:#06C755;font-weight:800;font-size:.9rem;
+    padding:10px 18px;border-radius:999px;white-space:nowrap;transition:transform .15s}
+  .linebar:hover .linebar-cta{transform:translateY(-1px)}
+  @media (max-width:480px){
+    .linebar-txt small{font-size:.69rem}
+    .linebar-cta{display:none}
+    .linebar-txt b{font-size:.98rem}
+    .linebar{gap:10px;padding-left:13px;padding-right:13px}
+    .linebar::after{content:"→";flex:none;margin-left:auto;font-size:1.3rem;font-weight:800}
+  }
+  footer p{margin:0 0 6px}
+
+  /* Reveal only hides when JS has explicitly enabled it (body.anim); otherwise content is always visible */
+  body.anim .reveal{opacity:0;transform:translateY(16px)}
+  body.anim .reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+  @media (prefers-reduced-motion:reduce){body.anim .reveal{opacity:1;transform:none}.card{transition:none}}
+  a:focus-visible,.btn:focus-visible,.mock:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+  @media (max-width:720px){.weapons{grid-template-columns:1fr}.level-head{gap:16px}.hero-inner{padding:56px 0 48px}}
+</style>
+
+</head>
+<body>
+<div class="hero">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">MERONE&nbsp;&nbsp;/&nbsp;&nbsp;<span>AI活用ポートフォリオ</span></p>
+    <h1>半年で、<br>素人がここまで<em>来れた。</em></h1>
+    <p class="lede">「よくわからないけど、頑張ればこのくらいできるんだ」——ここに並ぶのは、私がこの数ヶ月、AIに「これ作って」と頼み続けて生まれた道具たち。かんたんなものから最新のものまで、登った順に、ぜんぶ画面つきで並べました。</p>
+    <p class="honest">私は、コードを<b>1行も書いていません。</b></p>
+    <div class="stats num">
+      <div class="stat"><span class="v">34<small>個</small></span><span class="k">つくった道具</span></div>
+      <div class="stat"><span class="v">5<small>段</small></span><span class="k">のぼった階段</span></div>
+      <div class="stat"><span class="v">0<small>行</small></span><span class="k">書いたコード</span></div>
+      <div class="stat"><span class="v">約6<small>ヶ月</small></span><span class="k">かけた時間</span></div>
+    </div>
+  </div>
+</div>
+
+<section class="truth">
+  <div class="wrap">
+    <p class="sec-eyebrow">The honest truth</p>
+    <h2>「くみこさんだから」じゃない。<br>必要だったのは、たった3つだけ。</h2>
+    <p class="lead">特別な才能でも、プログラミングの知識でもありません。これから並べる34個の道具は、次の3つさえ持っていれば、誰でも作りはじめられます。</p>
+    <div class="weapons">
+      <div class="weapon reveal"><span class="wn">壱</span><h3>自分の"困りごと"を持っていること</h3><p>在庫管理がしんどい。感想の返信が回らない。あなたが毎日感じている面倒こそ、最高の"作るネタ"になります。</p></div>
+      <div class="weapon reveal"><span class="wn">弐</span><h3>やりたいことを、言葉にできること</h3><p>むずかしい専門用語はいりません。「こういうのが欲しい」を伝えられれば、あとはAIが形にしてくれます。</p></div>
+      <div class="weapon reveal"><span class="wn">参</span><h3>一度で完成しなくても、諦めないこと</h3><p>最初はうまく動きません。そこで「じゃあ、こう直して」と言い続けられる人だけが、階段をのぼれます。</p></div>
+    </div>
+    <p class="truth-close">そして——物販をやっているあなたは、実は<b>いちばんの近道</b>にいます。<br>作るために一番大切な"本物の困りごと"を、もう持っているのだから。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-eyebrow">How to read</p>
+    <h2 style="margin-bottom:22px">この階段の、見かた。</h2>
+    <div class="legend reveal">
+      <div class="lg"><span class="ramp"><i class="r1"></i><i class="r2"></i><i class="r3"></i><i class="r4"></i><i class="r5"></i></span><b>段（レベル）</b>＝むずかしさの目安。上ほど大変。</div>
+      <div class="lg"><span class="tag t-live">触れる</span>今すぐ使える公開ツール</div>
+      <div class="lg"><span class="tag t-run">稼働中</span>毎日、仕事で動いている</div>
+      <div class="lg"><span class="tag t-result">実績</span>数字で成果が出た</div>
+      <div class="lg"><span class="tag t-muted">裏側</span>会社の運営を支える</div>
+      <div class="lg"><span class="tag t-butsudan">物販向き</span>あなたの世界に直結</div>
+    </div>
+    <p class="legend-note">※ <b>「実物を開く ↗」</b>がついたカードは、タップすると実際に作った公開ツールがそのまま開きます。カード内の画面は、生徒さんやお客様の情報を守るためすべて<b>ダミーデータで再現したイメージ</b>です（クライアント案件は社名も伏せています）。</p>
+  </div>
+</section>
+
+<!-- LEVEL 01 -->
+<div class="level" style="--lvc:var(--lv1)">
+  <div class="wrap">
+    <div class="level-head reveal"><div class="level-no num">01</div><div class="level-titles"><h2>はじめの一歩</h2><p>コピペと定型で、「自動」をはじめて体験する</p><div class="level-bar"></div></div></div>
+    <div class="grid">
+
+      <article class="card reveal">
+        <button class="mock mk-sheet" data-title="入金メール自動記録" data-desc="PayPalの入金メールを、届いた瞬間にスプレッドシートへ自動で記録。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">入金記録シート</span></div>
+          <div class="mk-body">
+            <div class="mk-row head" style="grid-template-columns:1.4fr 1fr .9fr"><span>日時</span><span>入金元</span><span>金額</span></div>
+            <div class="mk-row" style="grid-template-columns:1.4fr 1fr .9fr"><span>7/24 10:12</span><span>お客様A</span><b>¥3,200</b></div>
+            <div class="mk-row" style="grid-template-columns:1.4fr 1fr .9fr"><span>7/24 09:41</span><span>お客様B</span><b>¥5,800</b></div>
+            <div class="mk-row new" style="grid-template-columns:1.4fr 1fr .9fr"><span>7/24 11:03</span><span class="mk-badge">NEW</span><b>¥2,400</b></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>入金メール自動記録</h3><p>PayPalの入金メールを、届いた瞬間にスプレッドシートへ自動でメモ。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-banner" data-title="告知バナーのAI指示テンプレ" data-desc="「この通りに頼めば毎回同じ品質」の、AIへの指示文セット。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">バナー生成</span></div>
+          <div class="mk-body">
+            <div class="mk-bn mini"><span class="eb">FREE SEMINAR</span><span class="h">お金の無料勉強会</span><span class="cta">申し込む</span></div>
+            <div class="mk-note">指示文：「マスタード基調／登壇者写真を右／日付を大きく…」→ 毎回この品質で生成</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-muted">ノーコード</span></div></div><h3>告知バナーのAI指示テンプレ</h3><p>「この通りに頼めば毎回同じ品質」の、AIへの指示文セット。</p><p class="client">某お金の教養スクール向け</p></div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<!-- LEVEL 02 -->
+<div class="level" style="--lvc:var(--lv2)">
+  <div class="wrap">
+    <div class="level-head reveal"><div class="level-no num">02</div><div class="level-titles"><h2>手作業を"自動"に変える</h2><p>毎日のくり返しを、AIに任せてみる</p><div class="level-bar"></div></div></div>
+    <div class="grid">
+
+      <article class="card reveal">
+        <button class="mock mk-chat" data-title="感想の自動返信" data-desc="勉強会の感想が届くと、一人ひとりに合った返信文をAIが書いて返す。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">感想 自動返信</span></div>
+          <div class="mk-body">
+            <div class="mk-msg them">今日の勉強会、すごく分かりやすかったです！</div>
+            <div class="mk-msg me">うれしいお言葉ありがとうございます☺️ 次の一歩、応援しています！</div>
+            <div class="mk-input">AIが自動で返信しました</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>感想の自動返信</h3><p>勉強会の感想が届くと、一人ひとりに合った返信文をAIが書いて返す。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-chat" data-title="在庫のお知らせ係" data-desc="在庫の状況を毎日チェックして「そろそろ動かそう」をLINEで教えてくれる。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">在庫アラート</span></div>
+          <div class="mk-body">
+            <div class="mk-msg bot">📦 3点が30日以上動いていません。値下げか再撮影がおすすめ。</div>
+            <div class="mk-msg bot">🔥 「ワンピース」が今よく売れています。仕入れどきかも。</div>
+            <div class="mk-input">毎朝8:00 自動でお知らせ</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-butsudan">物販向き</span><span class="tag t-run">稼働中</span></div></div><h3>在庫のお知らせ係</h3><p>在庫の状況を毎日チェックして「そろそろ動かそう」をLINEで教えてくれる。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-sheet" data-title="報告→表に自動転記" data-desc="チームがSlackでつぶやいた報告を、そのまま管理表へ書き写す。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">セールス報告表</span></div>
+          <div class="mk-body">
+            <div class="mk-row head" style="grid-template-columns:.8fr .8fr 1.4fr"><span>時刻</span><span>担当</span><span>内容</span></div>
+            <div class="mk-row" style="grid-template-columns:.8fr .8fr 1.4fr"><span>13:20</span><span>担当A</span><span>面談3件 完了</span></div>
+            <div class="mk-row" style="grid-template-columns:.8fr .8fr 1.4fr"><span>14:05</span><span>担当B</span><span>成約1件🎉</span></div>
+            <div class="mk-row new" style="grid-template-columns:.8fr .8fr 1.4fr"><span>15:40</span><span>担当C</span><span>予約2件 追加</span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>報告→表に自動転記</h3><p>チームがSlackでつぶやいた報告を、そのまま管理表へ書き写す。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-sheet" data-title="つぶやきメモ帳" data-desc="Slackに投げた思いつきを5分おきに集めて、内容ごとに自動で仕分け。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">つぶやきメモ</span></div>
+          <div class="mk-body">
+            <div class="mk-row head" style="grid-template-columns:.7fr 1.5fr .7fr"><span>時刻</span><span>メモ</span><span>分類</span></div>
+            <div class="mk-row" style="grid-template-columns:.7fr 1.5fr .7fr"><span>9:12</span><span>配信文の案…</span><span class="mk-badge">施策</span></div>
+            <div class="mk-row" style="grid-template-columns:.7fr 1.5fr .7fr"><span>9:40</span><span>あの本読む</span><span class="mk-badge">学び</span></div>
+            <div class="mk-row new" style="grid-template-columns:.7fr 1.5fr .7fr"><span>10:03</span><span>面談の改善点</span><span class="mk-badge">気づき</span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>つぶやきメモ帳</h3><p>Slackに投げた思いつきを5分おきに集めて、内容ごとに自動で仕分け。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-faq" data-title="Re:che よくある質問ページ" data-live="https://lp.merone.jp/reche-faq/" data-desc="費用・仕入れ・税金など32個の疑問を、検索して開けるQ&Aページ。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">よくあるご質問</span></div>
+          <div class="mk-body">
+            <div class="mk-search">🔍 キーワードで探す</div>
+            <div class="mk-qrow open"><span>Q. 初期費用はどのくらい？</span><span>−</span><div class="mk-arow">目安は◯万円ほど。詳しくは…</div></div>
+            <div class="mk-qrow"><span>Q. 在庫はどこで仕入れる？</span><span>＋</span></div>
+            <div class="mk-qrow"><span>Q. 確定申告は必要？</span><span>＋</span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-butsudan">物販向き</span><span class="tag t-live">触れる</span></div></div><h3>Re:che よくある質問ページ</h3><p>費用・仕入れ・税金など32個の疑問を、検索して開けるQ&amp;Aページ。</p></div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<!-- LEVEL 03 -->
+<div class="level" style="--lvc:var(--lv3)">
+  <div class="wrap">
+    <div class="level-head reveal"><div class="level-no num">03</div><div class="level-titles"><h2>「人が使うもの」を作る</h2><p>フォーム・ページ・アプリの入口へ</p><div class="level-bar"></div></div></div>
+    <div class="grid">
+
+      <article class="card reveal">
+        <button class="mock mk-todo" data-title="毎朝のToDo便" data-desc="SlackのひとことがそのままToDoになり、毎朝チェックリストが届く。押すと消える。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">今日のやること</span></div>
+          <div class="mk-body">
+            <div class="mk-todo-h"><span>今日のやること</span><span class="cnt">2 / 4</span></div>
+            <div class="mk-item done"><span class="mk-check on"></span>配信文を送る</div>
+            <div class="mk-item done"><span class="mk-check on"></span>面談の準備</div>
+            <div class="mk-item"><span class="mk-check"></span>バナーを確認</div>
+            <div class="mk-item"><span class="mk-check"></span>感想に返信</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>毎朝のToDo便</h3><p>SlackのひとことがそのままToDoになり、毎朝チェックリストが届く。押すと消える。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-sheet" data-title="登録者データ同期" data-desc="配信ツールの登録者情報を、毎朝自動で集めて整える裏方さん。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">登録者 同期</span></div>
+          <div class="mk-body">
+            <div class="mk-row head" style="grid-template-columns:1fr 1fr 1fr"><span>登録日</span><span>お名前</span><span>経路</span></div>
+            <div class="mk-row" style="grid-template-columns:1fr 1fr 1fr"><span>7/24</span><span>お客様A</span><span>広告</span></div>
+            <div class="mk-row" style="grid-template-columns:1fr 1fr 1fr"><span>7/24</span><span>お客様B</span><span>紹介</span></div>
+            <div class="mk-row new" style="grid-template-columns:1fr 1fr 1fr"><span>7/24</span><span>お客様C</span><span class="mk-badge">同期</span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>登録者データ同期</h3><p>配信ツールの登録者情報を、毎朝自動で集めて整える裏方さん。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-form" data-title="本音アンケート自動生成" data-desc="URLを開くだけで、45問の調査フォームが自動で立ち上がる。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">アンケート</span></div>
+          <div class="mk-body">
+            <div class="mk-prog"><i class="on"></i><i class="on"></i><i></i><i></i><span>&nbsp;Q3 / 45</span></div>
+            <div class="mk-q">最近、いちばん叶えたいことは？</div>
+            <div class="mk-opt sel">自分の時間がほしい</div>
+            <div class="mk-opt">収入をもう一本ふやす</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-live">触れる</span></div></div><h3>本音アンケート自動生成</h3><p>URLを開くだけで、45問の調査フォームが自動で立ち上がる。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-form" data-title="Re:che 申込フォーム" data-desc="LINEでログインして申し込み、&quot;本気の人&quot;だけを公式LINEへ案内。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">お申込みフォーム</span></div>
+          <div class="mk-body">
+            <div class="mk-q">無料説明会に申し込む</div>
+            <div class="mk-field"></div>
+            <div class="mk-field"></div>
+            <div class="mk-line-btn">LINEでかんたん申込</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-butsudan">物販向き</span><span class="tag t-run">稼働中</span></div></div><h3>Re:che 申込フォーム</h3><p>LINEでログインして申し込み、"本気の人"だけを公式LINEへ案内。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-lp" data-title="卒業生インタビューLP" data-live="https://lp.merone.jp/reche-interview/" data-desc="卒業生19名の声と動画を、きれいに並べた実績紹介ページ。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">卒業生インタビュー</span></div>
+          <div class="mk-body">
+            <div class="mk-hero"><span class="h">わたしが変われた理由</span></div>
+            <div class="mk-people">
+              <div class="mk-person"><span class="fa"></span><span class="nm"></span><span class="rl"></span></div>
+              <div class="mk-person"><span class="fa"></span><span class="nm"></span><span class="rl"></span></div>
+              <div class="mk-person"><span class="fa"></span><span class="nm"></span><span class="rl"></span></div>
+            </div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-butsudan">物販向き</span><span class="tag t-live">触れる</span></div></div><h3>卒業生インタビューLP</h3><p>卒業生19名の声と動画を、きれいに並べた実績紹介ページ。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-lp" data-title="旅のしおりアプリ" data-desc="イベントの旅程・課題・みんなの投稿を、歩きながらスマホで見られる。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">旅のしおり</span></div>
+          <div class="mk-map">
+            <div class="mk-mapimg"><span class="road"></span><span class="pin"></span></div>
+            <div class="mk-itin">
+              <div class="r"><span class="tm">10:00</span><span>集合・オリエン</span></div>
+              <div class="r"><span class="tm">13:00</span><span>目利きミッション</span></div>
+              <div class="r"><span class="tm">18:00</span><span>みんなの投稿ウォール</span></div>
+            </div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-live">公開中</span></div></div><h3>旅のしおりアプリ</h3><p>イベントの旅程・課題・みんなの投稿を、歩きながらスマホで見られる。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-todo" data-title="プロモ進行ボード" data-desc="「誰が何を担当か」をチーム全員がリアルタイムで見られる進行表。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">プロモ進行ボード</span></div>
+          <div class="mk-body">
+            <div class="mk-todo-h"><span>7/29 勉強会</span><span class="cnt">進行中</span></div>
+            <div class="mk-item done"><span class="mk-check on"></span>告知バナー作成<span class="mk-chip">制作</span></div>
+            <div class="mk-item"><span class="mk-check"></span>配信文チェック<span class="mk-chip">セールス</span></div>
+            <div class="mk-item"><span class="mk-check"></span>診断ページ公開<span class="mk-chip">CO</span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-muted">裏側</span></div></div><h3>プロモ進行ボード</h3><p>「誰が何を担当か」をチーム全員がリアルタイムで見られる進行表。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-banner" data-title="告知バナー量産機" data-desc="写真を差し替えるだけで、通数分の告知バナーを自動で作る。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">バナー量産</span></div>
+          <div class="mk-body">
+            <div class="mk-bn mini"><span class="eb">1通目</span><span class="h">無料オンライン勉強会</span></div>
+            <div class="mk-bn mini v2"><span class="eb">2通目</span><span class="h">残席わずか☺︎</span></div>
+            <div class="mk-bn mini v3"><span class="eb">3通目</span><span class="h">今夜21時スタート</span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>告知バナー量産機</h3><p>写真を差し替えるだけで、通数分の告知バナーを自動で作る。</p><p class="client">某ママ向け在宅ワークスクール向け</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-doc" data-title="ブランド改善提案書" data-desc="広告→LP→LINEでバラけた見え方を、Before/Afterで直す提案書。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">ブランド改善 提案書</span></div>
+          <div class="mk-body">
+            <div class="mk-doc-title">見え方を、ひとつに揃える</div>
+            <div class="mk-txtline m"></div><div class="mk-txtline s"></div>
+            <div class="mk-keybox"><span class="kh">5つの原則</span><div class="mk-txtline m"></div><div class="mk-txtline s"></div></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-result">実績</span></div></div><h3>ブランド改善提案書</h3><p>広告→LP→LINEでバラけた見え方を、Before/Afterで直す提案書（HTML）。</p><p class="client">某ママ向け在宅ワークスクール向け</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-lp" data-title="感想ワンストップ画面" data-desc="動画を見た流れで、そのまま感想まで1画面で完結させ、離脱を防ぐ。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">感想フォーム</span></div>
+          <div class="mk-body">
+            <div class="mk-hero" style="height:34cqw"><span class="h">▶ インタビュー動画</span></div>
+            <div style="padding:3cqw;display:flex;flex-direction:column;gap:2cqw">
+              <div style="font-size:3cqw;font-weight:700">見た感想をひとことどうぞ☺️</div>
+              <div class="mk-field" style="height:9cqw"></div>
+            </div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-live">公開モック</span></div></div><h3>感想ワンストップ画面</h3><p>動画を見た流れで、そのまま感想まで1画面で完結させ、離脱を防ぐ。</p><p class="client">某ママ向け在宅ワークスクール向け</p></div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<!-- LEVEL 04 -->
+<div class="level" style="--lvc:var(--lv4)">
+  <div class="wrap">
+    <div class="level-head reveal"><div class="level-no num">04</div><div class="level-titles"><h2>AIと仕組みを、組み合わせる</h2><p>複数の道具をつないで、"仕事"にする</p><div class="level-bar"></div></div></div>
+    <div class="grid">
+
+      <article class="card reveal">
+        <button class="mock mk-chat" data-title="AI森川（上司の分身）" data-desc="代表の考え方を覚えたAIが、チームの相談にSlackで即レスする。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl"># 相談ちゃんねる</span></div>
+          <div class="mk-body">
+            <div class="mk-msg them">面談で刺さる一言、どう伝えれば…？</div>
+            <div class="mk-msg bot">まず相手の"不安の正体"を言葉にしてあげて。答えより、共感が先だよ☺️</div>
+            <div class="mk-input">🤖 AI森川</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>AI森川（上司の分身）</h3><p>代表の考え方を覚えたAIが、チームの相談にSlackで即レスする。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-chat" data-title="追客おまかせBot" data-desc="LINE登録者に自動で追いメッセージを送り、予約まで運ぶ。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">ナーチャリング</span></div>
+          <div class="mk-body">
+            <div class="mk-msg bot">ご登録ありがとうございます☺️ まずは3分だけ、こちらから…</div>
+            <div class="mk-msg them">気になってました！</div>
+            <div class="mk-msg bot">では体験のご予約はこちら🌷</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>追客おまかせBot</h3><p>LINE登録者に自動で追いメッセージを送り、予約まで運ぶ。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-doc" data-title="議事録おまかせ係" data-desc="会議を録画すると、AIが文字起こし→清書された議事録をSlackに届ける。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">議事録 自動生成</span></div>
+          <div class="mk-body">
+            <div class="mk-doc-title">定例MTG 議事録（自動作成）</div>
+            <div class="mk-txtline m"></div><div class="mk-txtline s"></div><div class="mk-txtline m"></div>
+            <div class="mk-keybox"><span class="kh">決定事項</span><div class="mk-txtline s"></div></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-run">稼働中</span></div></div><h3>議事録おまかせ係</h3><p>会議を録画すると、AIが文字起こし→清書された議事録をSlackに届ける。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-doc" data-title="リアルタイム議事録" data-live="https://kumiko0814.github.io/live-minutes/" data-desc="会議中にその場で文字起こし＆1.5分ごとに要点を自動でまとめる。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl"><span class="mk-live"></span>録音中</span></div>
+          <div class="mk-rt">
+            <div class="col"><span class="lbl">文字起こし</span><div class="mk-txtline m"></div><div class="mk-txtline s"></div><div class="mk-txtline m"></div><div class="mk-txtline s"></div></div>
+            <div class="col"><span class="lbl">要点（自動）</span><div class="mk-pill-k">・次回までにLP改善</div><div class="mk-pill-k">・担当は来週決定</div></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-live">触れる</span></div></div><h3>リアルタイム議事録</h3><p>会議中にその場で文字起こし＆1.5分ごとに要点を自動でまとめる。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-form" data-title="診断型の集客ページ" data-live="https://lp.merone.jp/shindan-funnel/demo.html" data-desc="いきなり誘わず「60秒6問の診断」から、自然に勉強会へ導く。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">60秒 診断</span></div>
+          <div class="mk-body">
+            <div class="mk-prog"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><span>&nbsp;Q2 / 6</span></div>
+            <div class="mk-q">物販、いま一番の悩みは？</div>
+            <div class="mk-opt sel">時間が足りない</div>
+            <div class="mk-opt">売れ筋がわからない</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-live">触れる</span></div></div><h3>診断型の集客ページ</h3><p>いきなり誘わず「60秒6問の診断」から、自然に勉強会へ導く。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-dash" data-title="経営数字ダッシュボード" data-desc="集客→面談→成約の数字を毎日自動集計し「あと何件」を見える化。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">経営ダッシュボード</span></div>
+          <div class="mk-body">
+            <div class="mk-kpi"><span class="big">78%</span><span class="klbl">目標達成率</span></div>
+            <div class="mk-prgbar"><i style="width:78%"></i></div>
+            <div class="mk-bars"><span class="b" style="height:50%"></span><span class="b" style="height:72%"></span><span class="b hi" style="height:88%"></span><span class="b" style="height:64%"></span><span class="b" style="height:80%"></span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-muted">裏側</span></div></div><h3>経営数字ダッシュボード</h3><p>集客→面談→成約の数字を毎日自動集計し「あと何件」を見える化。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-todo" data-title="トレンド取込システム" data-desc="X上のAI情報をスクショから取り込み、ナレッジに自動で整理。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">AIトレンド取込</span></div>
+          <div class="mk-body">
+            <div class="mk-todo-h"><span>今週の取り込み</span><span class="cnt">12件</span></div>
+            <div class="mk-item"><span>新しい画像生成のコツ</span><span class="mk-chip">画像</span></div>
+            <div class="mk-item"><span>配信文の型</span><span class="mk-chip">文章</span></div>
+            <div class="mk-item"><span>自動化の新ネタ</span><span class="mk-chip">効率化</span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-muted">裏側</span></div></div><h3>トレンド取込システム</h3><p>X上のAI情報をスクショから取り込み、ナレッジに自動で整理。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-todo" data-title="添削もれゼロチェッカー" data-desc="10人で手分け添削する時「誰が・どれを・まだ」を一画面で管理。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">添削チェッカー</span></div>
+          <div class="mk-body">
+            <div class="mk-todo-h"><span>提出物 10件</span><span class="cnt">未添削 3</span></div>
+            <div class="mk-item done"><span class="mk-check on"></span>課題 #08<span class="mk-ava"></span></div>
+            <div class="mk-item done"><span class="mk-check on"></span>課題 #09<span class="mk-ava"></span></div>
+            <div class="mk-item"><span class="mk-check"></span>課題 #10<span class="mk-ava"></span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-butsudan">物販向き</span><span class="tag t-live">公開デモ</span></div></div><h3>添削もれゼロチェッカー</h3><p>10人で手分け添削する時「誰が・どれを・まだ」を一画面で管理。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-stamp" data-title="4日間チャレンジ スタンプ帳" data-live="https://kumiko0814.github.io/reseller/demo.html?ch=1" data-desc="毎晩の&quot;あいことば&quot;を入れるとスタンプが光る、参加特典アプリ。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">スタンプ帳</span></div>
+          <div class="mk-body">
+            <div class="mk-stamp-h">4日間チャレンジ 🎉</div>
+            <div class="mk-stgrid"><span class="mk-st on">1</span><span class="mk-st on">2</span><span class="mk-st on">3</span><span class="mk-st">4</span></div>
+            <div class="mk-code">今夜のあいことばを入力</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-butsudan">物販向き</span><span class="tag t-live">公開中</span></div></div><h3>4日間チャレンジ スタンプ帳</h3><p>毎晩の"あいことば"を入れるとスタンプが光る、参加特典アプリ。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-g30" data-title="Re:che 30日ゲーム化アプリ" data-live="https://kumiko0814.github.io/reche-30days/portfolio-demo.html" data-desc="カリキュラムをゲーム化。ポイント・称号・本人ボイスで提出率アップ。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">30日チャレンジ</span></div>
+          <div class="mk-body">
+            <div class="mk-g30-h"><span class="pt">320<span style="font-size:.4em">pt</span></span><span class="rank">🏅 コツコツ名人</span></div>
+            <div class="mk-cal">
+              <span class="d done"></span><span class="d done"></span><span class="d star"></span><span class="d done"></span><span class="d"></span><span class="d"></span><span class="d"></span>
+              <span class="d done"></span><span class="d done"></span><span class="d done"></span><span class="d star"></span><span class="d"></span><span class="d"></span><span class="d"></span>
+            </div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-butsudan">物販向き</span><span class="tag t-run">稼働中</span></div></div><h3>Re:che 30日ゲーム化アプリ</h3><p>カリキュラムをゲーム化。ポイント・称号・本人ボイスで提出率アップ。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-dash" data-title="配信フロー再設計（分析）" data-desc="20通の配信過多を可視化し、反応率を実測で改善したプロジェクト。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">配信フロー分析</span></div>
+          <div class="mk-body">
+            <div class="mk-kpi"><span class="big">＋15<span style="font-size:.5em">%</span></span><span class="up">▲</span><span class="klbl">反応率 改善</span></div>
+            <div class="mk-abcompare"><div class="col"><span class="bar" style="height:52%;background:color-mix(in srgb,var(--muted) 45%,var(--panel))"></span><span class="tagab">Before</span></div><div class="col"><span class="bar" style="height:80%;background:var(--accent)"></span><span class="tagab">After</span></div></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-result">実績 +15%</span></div></div><h3>配信フロー再設計（分析）</h3><p>20通の配信過多を可視化し、反応率を実測で改善したプロジェクト。</p><p class="client">某ママ向け在宅ワークスクール向け</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-dash" data-title="LINE導線 A/B設計" data-desc="登録→予約の導線を2案で設計し、吹き出し単位で意図を解説。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">A / B テスト設計</span></div>
+          <div class="mk-body">
+            <div class="mk-kpi"><span class="big" style="font-size:6.4cqw">仮入会で判定</span></div>
+            <div class="mk-abcompare"><div class="col"><span class="bar" style="height:70%;background:var(--accent)"></span><span class="tagab">パターンA</span></div><div class="col"><span class="bar" style="height:58%;background:var(--pink)"></span><span class="tagab">パターンB</span></div></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-result">実績</span></div></div><h3>LINE導線 A/B設計</h3><p>登録→予約の導線を2案で設計し、吹き出し単位で意図を解説。</p><p class="client">某お金の教養スクール向け</p></div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<!-- LEVEL 05 -->
+<div class="level" style="--lvc:var(--lv5)">
+  <div class="wrap">
+    <div class="level-head reveal"><div class="level-no num">05</div><div class="level-titles"><h2>本格アプリを、一人で。</h2><p>ここまで来ると、もう立派な"開発者"</p><div class="level-bar"></div></div></div>
+    <div class="grid">
+
+      <article class="card reveal">
+        <button class="mock mk-product" data-title="おたすけ君（出品支援ツール）" data-live="https://kumiko0814.github.io/reseller/demo.html" data-desc="写真加工→AIが商品名・説明・値段を提案→在庫・売上管理まで、1つで完結。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">おたすけ君</span></div>
+          <div class="mk-body">
+            <div class="mk-pimg"></div>
+            <div class="mk-pinfo">
+              <span class="mk-aitag">✨ AIが提案</span>
+              <span class="mk-ptitle">美品 ブランドワンピース 花柄 M</span>
+              <span class="mk-price"><small>¥</small>4,800</span>
+              <span class="mk-pdesc"></span><span class="mk-pdesc" style="width:80%"></span>
+            </div>
+            <div class="mk-pfoot"><div class="st">在庫<b>42</b></div><div class="st">今月売上<b>¥138,000</b></div><div class="st">出品<b>18</b></div></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-butsudan">物販向き</span><span class="tag t-result">主力</span></div></div><h3>おたすけ君（出品支援ツール）</h3><p>写真加工→AIが商品名・説明・値段を提案→在庫・売上管理まで、1つで完結。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-quest" data-title="Re:alize Quest" data-live="https://kumiko0814.github.io/realize-lp/quest-demo.html" data-desc="目標管理＋RPGゲーム＋管理盤をつないだ大型学習システム。多くの道具の土台。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">Re:alize Quest</span></div>
+          <div class="mk-body">
+            <div class="mk-rpg"><span class="water"></span><span class="house"></span><span class="npc"></span><span class="hero-c"></span></div>
+            <div class="mk-dialog"><span class="l1">▶ 目標の街へようこそ！</span><span class="stat"><span>Lv.7</span><span>達成 12/20</span><span>連続 5日</span></span></div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-muted">基盤</span></div></div><h3>Re:alize Quest</h3><p>目標管理＋RPGゲーム＋管理盤をつないだ大型学習システム。多くの道具の土台。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-chat" data-title="AI筧悟（トレーナーの分身）" data-desc="トレ報告を送ると、本人の口調で褒めてくれる健康手帳AI。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">AI筧悟</span></div>
+          <div class="mk-body">
+            <div class="mk-msg them">今日3km走りました！</div>
+            <div class="mk-msg bot">最高だ！その一歩が未来を変える。明日は水分もしっかりな💪</div>
+            <div class="mk-input">連続 5日 / 体重 −1.2kg</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-live">公開デモ</span></div></div><h3>AI筧悟（トレーナーの分身）</h3><p>トレ報告を送ると、本人の口調で褒めてくれる健康手帳AI。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-chat" data-title="リエットAI（食事コーチ）" data-desc="食事の報告に、コーチ本人の言い回しで「食べて痩せる」助言が返る。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">リエットAI</span></div>
+          <div class="mk-body">
+            <div class="mk-photo-msg"></div>
+            <div class="mk-msg bot">バランス◎ タンパク質が摂れてて素敵🌷 夜は温かいスープを足すともっと良いよ。</div>
+            <div class="mk-input">今日の食事を送る</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-muted">設計中</span></div></div><h3>リエットAI（食事コーチ）</h3><p>食事の報告に、コーチ本人の言い回しで「食べて痩せる」助言が返る。</p></div>
+      </article>
+
+      <article class="card reveal">
+        <button class="mock mk-mahjong" data-title="麻雀道場" data-desc="点数計算からCPU対戦まで、麻雀を丸ごと作った&quot;どこまでできるか&quot;の実験。">
+          <span class="mk-zoom">⤢</span>
+          <div class="mk-bar"><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-dot"></span><span class="mk-ttl">くみこの麻雀道場</span></div>
+          <div class="mk-body">
+            <div class="mk-hand">
+              <span class="mk-tile man">一</span><span class="mk-tile man">二</span><span class="mk-tile man">三</span>
+              <span class="mk-tile sou">四</span><span class="mk-tile sou">五</span><span class="mk-tile sou">六</span>
+              <span class="mk-tile z">東</span><span class="mk-tile z">東</span><span class="mk-tile win z">白</span>
+            </div>
+            <div class="mk-mj-cap"><b>ツモ！</b> 立直・一発・ドラ1</div>
+          </div>
+        </button>
+        <div class="card-body"><div class="card-top"><span class="lvdot"></span><div class="tags"><span class="tag t-muted">番外・技術デモ</span></div></div><h3>麻雀道場</h3><p>点数計算からCPU対戦まで、麻雀を丸ごと作った"どこまでできるか"の実験。</p></div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>この階段、一緒にのぼりませんか。</h2>
+      <p>物販の収入に、もう一本の柱を。私が半年かけて手探りでのぼった道を、あなたはもっと短く、迷わずのぼれるように。AIを"自分の道具"にする短期カリキュラムを、無料の勉強会からはじめます。</p>
+      <p class="cta-when">📅 7月31日（金）よる21:00〜　／　オンライン開催・アーカイブ配信あり</p>
+      <a class="btn" href="https://fv9f75lk.autosns.app/line">7月31日（金）勉強会に参加する（アーカイブも残す）</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Merone ／ Promotion &amp; AI</p>
+    <p>このページは確認用の非公開ドラフトです。掲載しているクライアント名はすべて伏せ、各ツールの画面はダミーデータで再現しています。</p>
+  </div>
+</footer>
+
+<a class="linebar" href="https://fv9f75lk.autosns.app/line" aria-label="LINE追加はこちら 7月31日勉強会に参加">
+  <span class="linebar-badge">LINE</span>
+  <span class="linebar-txt">
+    <b>LINE追加はこちら</b>
+    <small>7月31日（金）21:00 勉強会に参加／アーカイブ配信の可能性も</small>
+  </span>
+  <span class="linebar-cta">追加する →</span>
+</a>
+
+<script>
+  (function(){
+    var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    function revealAll(){ els.forEach(function(e){e.classList.add('in')}); }
+    if(rm || !('IntersectionObserver' in window)){
+      // no anim class -> everything stays visible
+    } else {
+      document.body.classList.add('anim');
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, {threshold:0.01, rootMargin:'0px 0px -5% 0px'});
+      els.forEach(function(e){io.observe(e)});
+      // safety net: never let anything stay invisible for long, even if the observer misfires
+      setTimeout(revealAll, 2500);
+      window.addEventListener('load', function(){ setTimeout(revealAll, 400); });
+    }
+
+    // Inject a "実物を開く" link into each card that has a live demo
+    document.querySelectorAll('.mock[data-live]').forEach(function(m){
+      var body=m.parentElement.querySelector('.card-body'); if(!body) return;
+      var a=document.createElement('a');
+      a.className='demo-link'; a.href=m.getAttribute('data-live');
+      a.target='_blank'; a.rel='noopener'; a.textContent='実物を開く ↗';
+      body.appendChild(a);
+    });
+
+    // A mock with a live demo opens the real tool in a new tab. No overlay, no modal.
+    document.querySelectorAll('.mock[data-live]').forEach(function(m){
+      m.addEventListener('click',function(){ window.open(m.getAttribute('data-live'),'_blank','noopener'); });
+    });
+  })();
+</script>
+</body></html>
