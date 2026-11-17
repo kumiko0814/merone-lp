@@ -103,7 +103,7 @@ img{max-width:100%;height:auto;display:block}
 .apply .lead{font-size:12.5px;color:var(--sub);margin-top:6px;line-height:1.7}
 .fld{margin-top:14px}
 .fld label.t{display:block;font-size:13px;font-weight:800;color:var(--plum2);margin-bottom:6px}
-.req,.opt{font-size:10.5px;border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle;font-weight:700}
+.req,.opt{font-size:10.5px;border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle;font-weight:700;white-space:nowrap}
 .req{background:var(--pink);color:#fff}.opt{background:var(--paper2);color:var(--sub);border:1px solid var(--line)}
 .fld input[type=text],.fld input[type=email],.fld input[type=tel],.fld textarea{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:12px 13px;font-size:16px;font-family:inherit;color:var(--plum2);background:#fff;-webkit-appearance:none;appearance:none}
 .fld input:focus,.fld textarea:focus{outline:none;border-color:var(--pink);box-shadow:0 0 0 3px rgba(240,162,197,.25)}
@@ -114,7 +114,7 @@ img{max-width:100%;height:auto;display:block}
 .choice.three{grid-template-columns:1fr 1fr 1fr}
 .choice label{display:block;cursor:pointer}
 .choice input{position:absolute;opacity:0;width:1px;height:1px}
-.choice .box{border:1.5px solid var(--line);background:var(--paper2);border-radius:14px;padding:10px 10px;text-align:center;font-size:13.5px;font-weight:800;color:var(--plum2);line-height:1.4;transition:border-color .15s,background .15s}
+.choice .box{display:block;border:1.5px solid var(--line);background:var(--paper2);border-radius:14px;padding:10px 10px;text-align:center;font-size:13.5px;font-weight:800;color:var(--plum2);line-height:1.4;transition:border-color .15s,background .15s}
 .choice .box small{display:block;font-size:11px;color:var(--sub);font-weight:600;margin-top:2px}
 .choice .box .av{display:block;font-size:10.5px;font-weight:800;color:var(--blued);margin-top:4px}
 .choice input:checked + .box{border-color:var(--pinkd);background:#fff;box-shadow:0 0 0 3px rgba(240,162,197,.25)}
@@ -444,7 +444,7 @@ img{max-width:100%;height:auto;display:block}
     return ok;
   }
   function payload(){
-    return { form: 'shuppinkai', rid: st.rid, slot: st.slot, name: st.name, email: st.email, tel: st.tel, people: Number(st.people), kids: st.kids, items: st.items, source: st.source, agree: true, hp: val('website'), ua: (navigator.userAgent || '').slice(0, 300), v: '20261117b' };
+    return { form: 'shuppinkai', rid: st.rid, slot: st.slot, name: st.name, email: st.email, tel: st.tel, people: Number(st.people), kids: st.kids, items: st.items, source: st.source, agree: true, hp: val('website'), ua: (navigator.userAgent || '').slice(0, 300), v: '20261117c' };
   }
   function collect(){
     if (!st.rid) st.rid = newRid();
