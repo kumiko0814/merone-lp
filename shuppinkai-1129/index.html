@@ -143,7 +143,8 @@ img{max-width:100%;height:auto;display:block}
 .done h3{text-align:center;font-size:18px;color:var(--plum2);margin-top:10px;line-height:1.5}
 .done .sum{margin-top:12px;background:var(--paper2);border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;font-size:13px;line-height:1.8}
 .done .sum b{color:var(--plum2)}
-.done .sum .k{color:var(--sub);font-weight:700;display:inline-block;width:6.5em}
+.done .sum div{display:flex;gap:8px;align-items:flex-start}
+.done .sum .k{color:var(--sub);font-weight:700;flex:none;width:5.5em}
 .done .note{font-size:12.5px;line-height:1.7;margin-top:10px;color:var(--ink)}
 .done .acts{margin-top:12px;display:grid;gap:8px}
 .cancelbox{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
@@ -444,7 +445,7 @@ img{max-width:100%;height:auto;display:block}
     return ok;
   }
   function payload(){
-    return { form: 'shuppinkai', rid: st.rid, slot: st.slot, name: st.name, email: st.email, tel: st.tel, people: Number(st.people), kids: st.kids, items: st.items, source: st.source, agree: true, hp: val('website'), ua: (navigator.userAgent || '').slice(0, 300), v: '20261117c' };
+    return { form: 'shuppinkai', rid: st.rid, slot: st.slot, name: st.name, email: st.email, tel: st.tel, people: Number(st.people), kids: st.kids, items: st.items, source: st.source, agree: true, hp: val('website'), ua: (navigator.userAgent || '').slice(0, 300), v: '20261117d' };
   }
   function collect(){
     if (!st.rid) st.rid = newRid();
