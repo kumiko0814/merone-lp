@@ -189,7 +189,7 @@ img{max-width:100%;height:auto;display:block}
     </div>
     <div class="cta">
       <a class="btn" href="#apply">お席を申し込む（1分）</a>
-      <div class="ctanote">お名前とメールアドレスだけで申し込めます。<br>午前・午後、合う回を選んでください。</div>
+      <div class="ctanote">お名前とメールアドレスだけで申し込めます。<br>午前・午後、合う回を選んでください。<br>お申込みは11/26（木）まで。</div>
     </div>
   </section>
 
@@ -445,7 +445,7 @@ img{max-width:100%;height:auto;display:block}
     return ok;
   }
   function payload(){
-    return { form: 'shuppinkai', rid: st.rid, slot: st.slot, name: st.name, email: st.email, tel: st.tel, people: Number(st.people), kids: st.kids, items: st.items, source: st.source, agree: true, hp: val('website'), ua: (navigator.userAgent || '').slice(0, 300), v: '20261118a' };
+    return { form: 'shuppinkai', rid: st.rid, slot: st.slot, name: st.name, email: st.email, tel: st.tel, people: Number(st.people), kids: st.kids, items: st.items, source: st.source, agree: true, hp: val('website'), ua: (navigator.userAgent || '').slice(0, 300), v: '20261118b' };
   }
   function collect(){
     if (!st.rid) st.rid = newRid();
