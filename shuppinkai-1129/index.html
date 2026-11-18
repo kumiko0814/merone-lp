@@ -445,7 +445,7 @@ img{max-width:100%;height:auto;display:block}
     return ok;
   }
   function payload(){
-    return { form: 'shuppinkai', rid: st.rid, slot: st.slot, name: st.name, email: st.email, tel: st.tel, people: Number(st.people), kids: st.kids, items: st.items, source: st.source, agree: true, hp: val('website'), ua: (navigator.userAgent || '').slice(0, 300), v: '20261117d' };
+    return { form: 'shuppinkai', rid: st.rid, slot: st.slot, name: st.name, email: st.email, tel: st.tel, people: Number(st.people), kids: st.kids, items: st.items, source: st.source, agree: true, hp: val('website'), ua: (navigator.userAgent || '').slice(0, 300), v: '20261118a' };
   }
   function collect(){
     if (!st.rid) st.rid = newRid();
@@ -552,6 +552,8 @@ img{max-width:100%;height:auto;display:block}
       if (st.tel) $('tel').value = st.tel;
       if (st.items) $('items').value = st.items;
       ['slot', 'people', 'kids', 'source'].forEach(function(n){ if (st[n]){ var el = document.querySelector('input[name="' + n + '"][value="' + st[n] + '"]'); if (el) el.checked = true; } });
+      /* 入口別のURL（?from=ib はinstabaseメール、?from=bn はバナー・SNS）→「知ったきっかけ」を先に選んでおく */
+      if (!st.source){ var fm = /[?&]from=(ib|bn)\b/.exec(location.search); if (fm){ var sv = fm[1] === 'ib' ? 'instabaseのメール' : 'バナー・SNS'; var se = document.querySelector('input[name="source"][value="' + sv + '"]'); if (se) se.checked = true; } }
       $('submitBtn').addEventListener('click', submit);
       $('retryBtn').addEventListener('click', submit);
       $('copyBtn').addEventListener('click', function(){ copy(summaryText()); });
